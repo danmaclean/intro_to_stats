@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Introduction | Understanding Statistical Thinking With Linear Models</title>
+  <meta name="description" content="Chapter 2 Introduction | Understanding Statistical Thinking With Linear Models" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Introduction | Understanding Statistical Thinking With Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Introduction | Understanding Statistical Thinking With Linear Models" />
+  
+  
+  
+
+<meta name="author" content="Dan MacLean" />
+
+
+<meta name="date" content="2020-07-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="the-linear-model.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Statistics Primer</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#models-in-biology-models-in-stats"><i class="fa fa-check"></i><b>2.1</b> Models in biology, models in stats</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#the-zig-zag-zig-model-in-plant-disease-immunity"><i class="fa fa-check"></i><b>2.1.1</b> The zig-zag-zig model in plant disease immunity</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#slopes-of-straight-lines-can-help-us-think-about-differences-between-samples"><i class="fa fa-check"></i><b>2.2</b> Slopes of straight lines can help us think about differences between samples</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>3</b> The Linear Model</a><ul>
+<li class="chapter" data-level="3.1" data-path="the-linear-model.html"><a href="the-linear-model.html#straight-line-relationships-are-described-using-two-parameters"><i class="fa fa-check"></i><b>3.1</b> Straight line relationships are described using two parameters</a></li>
+<li class="chapter" data-level="3.2" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-try-to-create-a-linear-equation-from-data"><i class="fa fa-check"></i><b>3.2</b> Linear models try to create a linear equation from data</a></li>
+<li class="chapter" data-level="3.3" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-describe-relationships-between-variables"><i class="fa fa-check"></i><b>3.3</b> Linear models describe relationships between variables</a></li>
+<li class="chapter" data-level="3.4" data-path="the-linear-model.html"><a href="the-linear-model.html#not-all-lines-of-best-fit-are-equally-good"><i class="fa fa-check"></i><b>3.4</b> Not all lines of best fit are equally good</a></li>
+<li class="chapter" data-level="3.5" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>3.5</b> Linear models contain statistics describing the goodness of the model</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="the-linear-model.html"><a href="the-linear-model.html#residual-standard-error"><i class="fa fa-check"></i><b>3.5.1</b> Residual Standard Error</a></li>
+<li class="chapter" data-level="3.5.2" data-path="the-linear-model.html"><a href="the-linear-model.html#r2"><i class="fa fa-check"></i><b>3.5.2</b> <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="the-linear-model.html"><a href="the-linear-model.html#r2-versus-residual-standard-error"><i class="fa fa-check"></i><b>3.5.3</b> <span class="math inline">\(R^2\)</span> versus Residual Standard Error</a></li>
+<li class="chapter" data-level="3.5.4" data-path="the-linear-model.html"><a href="the-linear-model.html#f-statistic"><i class="fa fa-check"></i><b>3.5.4</b> <span class="math inline">\(F\)</span>-Statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>3.6</b> Coefficients have statistics</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="the-linear-model.html"><a href="the-linear-model.html#estimate"><i class="fa fa-check"></i><b>3.6.1</b> Estimate</a></li>
+<li class="chapter" data-level="3.6.2" data-path="the-linear-model.html"><a href="the-linear-model.html#std.-error"><i class="fa fa-check"></i><b>3.6.2</b> Std. Error</a></li>
+<li class="chapter" data-level="3.6.3" data-path="the-linear-model.html"><a href="the-linear-model.html#t-value"><i class="fa fa-check"></i><b>3.6.3</b> <span class="math inline">\(t\)</span>-value</a></li>
+<li class="chapter" data-level="3.6.4" data-path="the-linear-model.html"><a href="the-linear-model.html#prt"><i class="fa fa-check"></i><b>3.6.4</b> <span class="math inline">\(Pr(&gt;|t|)\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="the-linear-model.html"><a href="the-linear-model.html#a-non-zero-slope-is-what-matters"><i class="fa fa-check"></i><b>3.7</b> A non-zero slope is what matters</a></li>
+<li class="chapter" data-level="3.8" data-path="the-linear-model.html"><a href="the-linear-model.html#major-points"><i class="fa fa-check"></i><b>3.8</b> Major points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>4</b> <span class="math inline">\(t\)</span>-tests and linear models</a><ul>
+<li class="chapter" data-level="4.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>4.1</b> Recap</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-slope-of-the-model-again"><i class="fa fa-check"></i><b>4.1.1</b> The slope of the model again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-plantgrowth-data"><i class="fa fa-check"></i><b>4.2</b> The PlantGrowth data</a></li>
+<li class="chapter" data-level="4.3" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#a-linear-model-with-a-categoric-x-axis"><i class="fa fa-check"></i><b>4.3</b> A linear model with a categoric <span class="math inline">\(x\)</span>-axis</a></li>
+<li class="chapter" data-level="4.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>4.4</b> Using the statistics of the linear model to test for differences</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-coefficient-and-the-mean-difference-between-groups-are-equivalent"><i class="fa fa-check"></i><b>4.4.1</b> The coefficient and the mean difference between groups are equivalent</a></li>
+<li class="chapter" data-level="4.4.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test"><i class="fa fa-check"></i><b>4.4.2</b> The <span class="math inline">\(p\)</span>-value of the co-efficient tests the same thing as a <span class="math inline">\(t\)</span>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+<li class="chapter" data-level="4.6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#but-wasnt-the-t-test-just-easier"><i class="fa fa-check"></i><b>4.6</b> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</a></li>
+<li class="chapter" data-level="4.7" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#task"><i class="fa fa-check"></i><b>4.7</b> Task</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>5</b> ANOVA and linear models</a><ul>
+<li class="chapter" data-level="5.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-a-single-variable"><i class="fa fa-check"></i><b>5.1</b> Comparing groups in a single variable</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#one-way-comparisons"><i class="fa fa-check"></i><b>5.1.1</b> One-Way comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-multiple-variables"><i class="fa fa-check"></i><b>5.2</b> Comparing groups in multiple variables</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#two-way-comparisons"><i class="fa fa-check"></i><b>5.2.1</b> Two-Way comparisons</a></li>
+<li class="chapter" data-level="5.2.2" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interaction-between-variables"><i class="fa fa-check"></i><b>5.2.2</b> Interaction between variables</a></li>
+<li class="chapter" data-level="5.2.3" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#modelling-an-interaction-effect"><i class="fa fa-check"></i><b>5.2.3</b> Modelling an interaction effect</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#occams-razor"><i class="fa fa-check"></i><b>5.3</b> Occam’s Razor</a></li>
+<li class="chapter" data-level="5.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-of-variables---synergistic-effects"><i class="fa fa-check"></i><b>5.4</b> interactions of variables - synergistic effects</a></li>
+<li class="chapter" data-level="5.5" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#summary-1"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Understanding Statistical Thinking With Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
+<p>The point of this document is to provide a place for the reader to have space to think about statistical methods pragmatically, to give opportunity to consider how the set of tools can be used to give clarity to the hypotheses that the reader wants to test in their own work.</p>
+<p>‘It’s for biologists, right. You think biologists are bad at this.’</p>
+<p>No! Well, yes and no! I don’t think anyone is ‘bad’ at this, I think a lot of biologists are really great at this and biology is a broad field.</p>
+<p>There are a lot of biology that works almost entirely in maths, like epidemiologists and population geneticists.</p>
+<p>I think a lot of biologists with a molecular or biochemistry or genetics or field background have only a vague conceptual framework about stats, one that leaves them with the idea that doing stats is all about picking the right test and then they’re ok. They might have gone through a post-graduate course that introduced them to a lot of tests and a lot of conditions that must be fulfilled and that there is one ‘right’ test to use in any given situation. This can be re-inforced by the presence of colleagues with eidetic memories that seem to remember all the conditions and can suggest the ‘right’ test to them in lab meetings or manuscript writing. It can seem like everything is arbitrary and dislocated without any guiding theme (or that the coherence between things is esoteric and available only to those wizards with the keys to the executive stats toilet).</p>
+<p>If you are a biologist whose prior experience has left them feeling that the entire process is a bit of an incomprehensible mess, then this course is for you.</p>
+<p>The point of this course will be to introduce to you a common theme across all the tests we commonly use as biologists. It may suprise you that this commonality will be based on a simple formula for a straight line - something usually called regression in the statistical literature. We will look at the barebones of this and see how it relates to some seemingly unrelated ideas you are trying to apply in tests and see how by thinking of regression in your work then you can quickly come to a clearer understanding of hypothesis testing and application of statistical methods in your own work.</p>
+<div id="models-in-biology-models-in-stats" class="section level2">
+<h2><span class="header-section-number">2.1</span> Models in biology, models in stats</h2>
+<p>Models are basically what science does. Everything we know is a model.</p>
+<p>Our theories and understandings of a phenomenon are models, the pictures we draw to understand them are models. Across biology there are a wide range of models, from the formula heavy epidemiology ones, to the flow diagrams we see in representations of chemical reactions and the interaction graphs we see in molecular biology, all are abstractions and simplifications of what is real.</p>
+<p>There is an aphorism in stats -</p>
+<p><code>All models are wrong. Some models are useful</code></p>
+<p>This really means that in some way all models leave something out, none are complete. But despite this they can still give us insights. Models don’t need to ‘predict’ anything or need to be made of formula to be more or less valid. Let’s consider some very different models that are useful in specific ways.</p>
+<div id="the-zig-zag-zig-model-in-plant-disease-immunity" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> The zig-zag-zig model in plant disease immunity</h3>
+<p>nickname of RZA in the Wu-Tang Clan.</p>
+</div>
+</div>
+<div id="slopes-of-straight-lines-can-help-us-think-about-differences-between-samples" class="section level2">
+<h2><span class="header-section-number">2.2</span> Slopes of straight lines can help us think about differences between samples</h2>
+<p>Straight lines are a way of thinking about differences between samples because we can make use of their slope to see whether there is a difference between the samples.</p>
+<p>Let’s consider these data</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">group1</th>
+<th align="right">group2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.321749</td>
+<td align="right">4.306031</td>
+</tr>
+<tr class="even">
+<td align="right">6.772834</td>
+<td align="right">5.258848</td>
+</tr>
+<tr class="odd">
+<td align="right">6.248925</td>
+<td align="right">5.013706</td>
+</tr>
+<tr class="even">
+<td align="right">4.842696</td>
+<td align="right">5.143682</td>
+</tr>
+<tr class="odd">
+<td align="right">6.330838</td>
+<td align="right">6.495088</td>
+</tr>
+<tr class="even">
+<td align="right">6.256860</td>
+<td align="right">4.173726</td>
+</tr>
+</tbody>
+</table>
+<p>In the beginning of our scientific education we might’ve plotted them as barcharts, by taking the mean, like this.</p>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Imagine drawing a line between the tops of the bars, like this:</p>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The slope of that line tells us about the difference in the means. If it is flat no difference, if it isnt flat maybe there is a difference.</p>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-6-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-6-2.png" width="50%" /></p>
+<p>And that is the logic we will be following in this little book. All we will do is learn to look for a slope of a line. We’ll look at using a statistical tool called a linear model, which tries to create a straight line that matches the data, so is contains the equation of a straight line but elaborates on the equation alone by providing measures of believability about the slope and other things. The technique we will learn will give us a framework for thinking about performing hypothesis testing in all sorts of comparisons including <span class="math inline">\(t\)</span>-tests, ANOVA etc and with elaborations we’ll be able to see how to use the same framework for the other class of tests that we often use, the non-parametric tests.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-linear-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["intro_to_stats.pdf", "intro_to_stats.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

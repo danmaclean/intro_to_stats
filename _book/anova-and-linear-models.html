@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 ANOVA and linear models | Understanding Statistical Thinking With Linear Models</title>
+  <meta name="description" content="Chapter 5 ANOVA and linear models | Understanding Statistical Thinking With Linear Models" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 ANOVA and linear models | Understanding Statistical Thinking With Linear Models" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 ANOVA and linear models | Understanding Statistical Thinking With Linear Models" />
+  
+  
+  
+
+<meta name="author" content="Dan MacLean" />
+
+
+<meta name="date" content="2020-07-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="t-tests-and-linear-models.html"/>
+<link rel="next" href="final-words.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Statistics Primer</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#models-in-biology-models-in-stats"><i class="fa fa-check"></i><b>2.1</b> Models in biology, models in stats</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#the-zig-zag-zig-model-in-plant-disease-immunity"><i class="fa fa-check"></i><b>2.1.1</b> The zig-zag-zig model in plant disease immunity</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#slopes-of-straight-lines-can-help-us-think-about-differences-between-samples"><i class="fa fa-check"></i><b>2.2</b> Slopes of straight lines can help us think about differences between samples</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>3</b> The Linear Model</a><ul>
+<li class="chapter" data-level="3.1" data-path="the-linear-model.html"><a href="the-linear-model.html#straight-line-relationships-are-described-using-two-parameters"><i class="fa fa-check"></i><b>3.1</b> Straight line relationships are described using two parameters</a></li>
+<li class="chapter" data-level="3.2" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-try-to-create-a-linear-equation-from-data"><i class="fa fa-check"></i><b>3.2</b> Linear models try to create a linear equation from data</a></li>
+<li class="chapter" data-level="3.3" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-describe-relationships-between-variables"><i class="fa fa-check"></i><b>3.3</b> Linear models describe relationships between variables</a></li>
+<li class="chapter" data-level="3.4" data-path="the-linear-model.html"><a href="the-linear-model.html#not-all-lines-of-best-fit-are-equally-good"><i class="fa fa-check"></i><b>3.4</b> Not all lines of best fit are equally good</a></li>
+<li class="chapter" data-level="3.5" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>3.5</b> Linear models contain statistics describing the goodness of the model</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="the-linear-model.html"><a href="the-linear-model.html#residual-standard-error"><i class="fa fa-check"></i><b>3.5.1</b> Residual Standard Error</a></li>
+<li class="chapter" data-level="3.5.2" data-path="the-linear-model.html"><a href="the-linear-model.html#r2"><i class="fa fa-check"></i><b>3.5.2</b> <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="the-linear-model.html"><a href="the-linear-model.html#r2-versus-residual-standard-error"><i class="fa fa-check"></i><b>3.5.3</b> <span class="math inline">\(R^2\)</span> versus Residual Standard Error</a></li>
+<li class="chapter" data-level="3.5.4" data-path="the-linear-model.html"><a href="the-linear-model.html#f-statistic"><i class="fa fa-check"></i><b>3.5.4</b> <span class="math inline">\(F\)</span>-Statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>3.6</b> Coefficients have statistics</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="the-linear-model.html"><a href="the-linear-model.html#estimate"><i class="fa fa-check"></i><b>3.6.1</b> Estimate</a></li>
+<li class="chapter" data-level="3.6.2" data-path="the-linear-model.html"><a href="the-linear-model.html#std.-error"><i class="fa fa-check"></i><b>3.6.2</b> Std. Error</a></li>
+<li class="chapter" data-level="3.6.3" data-path="the-linear-model.html"><a href="the-linear-model.html#t-value"><i class="fa fa-check"></i><b>3.6.3</b> <span class="math inline">\(t\)</span>-value</a></li>
+<li class="chapter" data-level="3.6.4" data-path="the-linear-model.html"><a href="the-linear-model.html#prt"><i class="fa fa-check"></i><b>3.6.4</b> <span class="math inline">\(Pr(&gt;|t|)\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="the-linear-model.html"><a href="the-linear-model.html#a-non-zero-slope-is-what-matters"><i class="fa fa-check"></i><b>3.7</b> A non-zero slope is what matters</a></li>
+<li class="chapter" data-level="3.8" data-path="the-linear-model.html"><a href="the-linear-model.html#major-points"><i class="fa fa-check"></i><b>3.8</b> Major points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>4</b> <span class="math inline">\(t\)</span>-tests and linear models</a><ul>
+<li class="chapter" data-level="4.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>4.1</b> Recap</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-slope-of-the-model-again"><i class="fa fa-check"></i><b>4.1.1</b> The slope of the model again</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-plantgrowth-data"><i class="fa fa-check"></i><b>4.2</b> The PlantGrowth data</a></li>
+<li class="chapter" data-level="4.3" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#a-linear-model-with-a-categoric-x-axis"><i class="fa fa-check"></i><b>4.3</b> A linear model with a categoric <span class="math inline">\(x\)</span>-axis</a></li>
+<li class="chapter" data-level="4.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>4.4</b> Using the statistics of the linear model to test for differences</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-coefficient-and-the-mean-difference-between-groups-are-equivalent"><i class="fa fa-check"></i><b>4.4.1</b> The coefficient and the mean difference between groups are equivalent</a></li>
+<li class="chapter" data-level="4.4.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test"><i class="fa fa-check"></i><b>4.4.2</b> The <span class="math inline">\(p\)</span>-value of the co-efficient tests the same thing as a <span class="math inline">\(t\)</span>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+<li class="chapter" data-level="4.6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#but-wasnt-the-t-test-just-easier"><i class="fa fa-check"></i><b>4.6</b> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</a></li>
+<li class="chapter" data-level="4.7" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#task"><i class="fa fa-check"></i><b>4.7</b> Task</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>5</b> ANOVA and linear models</a><ul>
+<li class="chapter" data-level="5.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-a-single-variable"><i class="fa fa-check"></i><b>5.1</b> Comparing groups in a single variable</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#one-way-comparisons"><i class="fa fa-check"></i><b>5.1.1</b> One-Way comparisons</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-multiple-variables"><i class="fa fa-check"></i><b>5.2</b> Comparing groups in multiple variables</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#two-way-comparisons"><i class="fa fa-check"></i><b>5.2.1</b> Two-Way comparisons</a></li>
+<li class="chapter" data-level="5.2.2" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interaction-between-variables"><i class="fa fa-check"></i><b>5.2.2</b> Interaction between variables</a></li>
+<li class="chapter" data-level="5.2.3" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#modelling-an-interaction-effect"><i class="fa fa-check"></i><b>5.2.3</b> Modelling an interaction effect</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#occams-razor"><i class="fa fa-check"></i><b>5.3</b> Occam’s Razor</a></li>
+<li class="chapter" data-level="5.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-of-variables---synergistic-effects"><i class="fa fa-check"></i><b>5.4</b> interactions of variables - synergistic effects</a></li>
+<li class="chapter" data-level="5.5" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#summary-1"><i class="fa fa-check"></i><b>5.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Understanding Statistical Thinking With Linear Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova-and-linear-models" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> ANOVA and linear models</h1>
+<div id="comparing-groups-in-a-single-variable" class="section level2">
+<h2><span class="header-section-number">5.1</span> Comparing groups in a single variable</h2>
+<p>In the last section we looked at using the linear model to compare two groups, in this section we’ll look at using it to compare more than two. One thing to note is that we’re still working with only one explanatory variable, the groups we are talking about are basically different values that the one variable can take. In the <code>PlantGrowth</code> data the variable is called <code>group</code> and the values it takes are <code>ctrl</code>, <code>trt1</code> and <code>trt2</code>.</p>
+<div class="todo">
+<p>TODO GLOSSARY EXPLANATORY VARIABLE, GROUPS LEVELS, FACTOR</p>
+</div>
+<p>You’ll be pleased to know this is where the pay off comes. Any number of groups is no more complicated than the two we’ve already done.</p>
+<p>We can visualise the process as simply being a case where we have more than one line to examine.</p>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>In terms of a hypothesis test what we’re asking amounts to the same as we saw with the <span class="math inline">\(t\)</span>-test:</p>
+<ul>
+<li>All flat lines with slopes of zero is equivalent to the Null hypothesis
+<ul>
+<li><span class="math inline">\(H_{0}\)</span> the group means are <em>all</em> equal</li>
+</ul></li>
+<li>At least one <span class="math inline">\(p\)</span>-value that suggests the slope is rare is equivalent to the Alternative hypothesis
+<ul>
+<li><span class="math inline">\(H_{1}\)</span> the group means are not <em>all</em> equal</li>
+</ul></li>
+</ul>
+<p>And putting that in a linear model is no different than before because we still have only one variable.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> PlantGrowth)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">summary</span>(model)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0710 -0.4180 -0.0060  0.2627  1.3690 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   5.0320     0.1971  25.527   &lt;2e-16 ***
+## grouptrt1    -0.3710     0.2788  -1.331   0.1944    
+## grouptrt2     0.4940     0.2788   1.772   0.0877 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6234 on 27 degrees of freedom
+## Multiple R-squared:  0.2641, Adjusted R-squared:  0.2096 
+## F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591</code></pre>
+<p>Great! so we handle the extra levels of the variable nearly perfectly. There are two lines of coefficient results, the first showing the gradient between the <code>ctrl</code> and <code>trt1</code> and the second showing the gradient between <code>ctrl</code> and <code>trt2</code>. The <code>ctrl</code> data has clearly been used as a common reference - this is the default design in the function, the first group in the data becomes the common reference. Here we get away with it, as we do want the first level to be the common reference. When you need to change the order, you can set the reference level explicitly.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">df &lt;-<span class="st"> </span>PlantGrowth</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">df<span class="op">$</span>group&lt;-<span class="st"> </span><span class="kw">relevel</span>(df<span class="op">$</span>group, <span class="dt">ref=</span><span class="st">&quot;trt2&quot;</span>)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>group  , <span class="dt">data =</span> df,)</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="kw">summary</span>(model2)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = weight ~ group, data = df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0710 -0.4180 -0.0060  0.2627  1.3690 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   5.5260     0.1971  28.032  &lt; 2e-16 ***
+## groupctrl    -0.4940     0.2788  -1.772  0.08768 .  
+## grouptrt1    -0.8650     0.2788  -3.103  0.00446 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6234 on 27 degrees of freedom
+## Multiple R-squared:  0.2641, Adjusted R-squared:  0.2096 
+## F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591</code></pre>
+<p>And now we see the <code>trt2</code> as common reference against the <code>ctrl</code> and <code>trt1</code> groups.</p>
+<p>In these data <code>ctrl vs trt1</code> appears to be significant according to the linear model <code>model1</code> and <code>trt1 vs trt2</code> appears to be significant according to the linear model <code>model2</code> but we did need to create two models to do this. If this seems longwinded or illogical, then that’s fair. The two models have the same data and specification so should have the same results in - it was really just the way we were ordering things in the data that was different. The real problem is just one of bookkeeping. The linear models are rich and not all the comparisons that can be done with them can easily be written in <code>summary(model)</code>. To answer specific questions from an analysis technique for getting specific comparisions (or contrasts in the statistics jargon) from linear models has been invented, that technique is called ANOVA (Analysis of Variance).</p>
+<div id="one-way-comparisons" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> One-Way comparisons</h3>
+<p>The situation where we have just one variable is called a ‘One-Way’ ANOVA.</p>
+<p>Now that we have a solid way of thinking about contrasts as the slope between the categories, we can think of ANOVA as a tool for pulling out the significances in the best way. All we have to do is learn how to specify the contrasts for ANOVA.</p>
+<p>Every time we do ANOVA we need a model to feed into it. Here’s the most common way ANOVA is done in R, with the <code>aov()</code> and <code>TukeyHSD()</code> functions, you’ve probably seen this before.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">ano &lt;-<span class="st"> </span><span class="kw">aov</span>(model)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="kw">TukeyHSD</span>(ano)</a></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = model)
+## 
+## $group
+##             diff        lwr       upr     p adj
+## trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+## trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+## trt2-trt1  0.865  0.1737839 1.5562161 0.0120064</code></pre>
+<p>It seems to do the job, though the ‘flavour’ of ANOVA it does is limited and applies only when the standard assumptions of ANOVA are met.</p>
+<p>A better alternative is the <code>multcomp</code> package function <code>glht()</code> (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">library</span>(multcomp)</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">tested &lt;-<span class="st"> </span><span class="kw">glht</span>(model, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">group =</span> <span class="st">&quot;Tukey&quot;</span>))</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw">summary</span>(tested)</a></code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: lm(formula = weight ~ group, data = PlantGrowth)
+## 
+## Linear Hypotheses:
+##                  Estimate Std. Error t value Pr(&gt;|t|)  
+## trt1 - ctrl == 0  -0.3710     0.2788  -1.331    0.391  
+## trt2 - ctrl == 0   0.4940     0.2788   1.772    0.198  
+## trt2 - trt1 == 0   0.8650     0.2788   3.103    0.012 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<p>The <code>linfct</code> option just takes a specification of the things to be tested, and the <code>mcp()</code> function is a helper that generates the comparison based on a text description, here that the variable <code>group</code> should be analysed by ‘Tukey’.</p>
+<p>By printing the summary we see the contrast hypotheses writ explicitly (e.g. the difference between <code>ctrl</code> and <code>trt1</code> is 0) and the conclusions: there is no evidence to suggest either treatment is different from the control, but the difference we observe between the <code>group1</code> and <code>group2</code> occurs by chance only about 1.2 percent of the time.</p>
+<p>We’ll see more of how to use <code>glht()</code> as we go.</p>
+</div>
+</div>
+<div id="comparing-groups-in-multiple-variables" class="section level2">
+<h2><span class="header-section-number">5.2</span> Comparing groups in multiple variables</h2>
+<p>Often we’ll have experimental data where we have more than one explanatory variable, for example, <code>temperature</code> and <code>fertiliser</code> and want to know the effects of each on a response variable like <code>yield</code>.</p>
+<div id="two-way-comparisons" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Two-Way comparisons</h3>
+<p>Such a situation is complicated over the single case as we have more the possibility of an interaction between the variables to consider. The case where we want to look at ANOVA for models with an two variables and an interaction effect is called a <code>Two-Way ANOVA</code>.</p>
+<p>Let’s work through an example that highlights that. Here’s some data on reported enjoyment of some food, with different condiments added</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Food</th>
+<th align="left">Condiment</th>
+<th align="right">Enjoyment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hot Dog</td>
+<td align="left">Mustard</td>
+<td align="right">94.30379</td>
+</tr>
+<tr class="even">
+<td align="left">Hot Dog</td>
+<td align="left">Mustard</td>
+<td align="right">87.33326</td>
+</tr>
+<tr class="odd">
+<td align="left">Ice Cream</td>
+<td align="left">Mustard</td>
+<td align="right">66.45707</td>
+</tr>
+<tr class="even">
+<td align="left">Ice Cream</td>
+<td align="left">Chocolate Sauce</td>
+<td align="right">95.22787</td>
+</tr>
+<tr class="odd">
+<td align="left">Ice Cream</td>
+<td align="left">Mustard</td>
+<td align="right">56.58818</td>
+</tr>
+</tbody>
+</table>
+<p>Looking at those in the way we have already - each variable individually - then we would generate the following plots and lines to examine.</p>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-42-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-42-2.png" width="50%" /></p>
+<p>Without rushing ahead to do the modelling, we see that chocolate sauce has a slightly greater effect on enjoyment than mustard, whereas the enjoyment of the two food types is the same. So the conclusion would be ‘use chocolate sauce to enhance your enjoyment of Hot Dogs or Ice Cream’.</p>
+<p>Let’s see what the model says, in specifying the second variable can be added with a <code>+</code> and</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">model_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(Enjoyment <span class="op">~</span><span class="st"> </span>Food <span class="op">+</span><span class="st"> </span>Condiment, <span class="dt">data =</span> food)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">summary</span>(model_<span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Enjoyment ~ Food + Condiment, data = food)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -23.0067 -14.3016   0.5382  13.4187  27.0218 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       79.3237     2.9278  27.093   &lt;2e-16 ***
+## FoodIce Cream     -0.2826     3.3807  -0.084    0.934    
+## CondimentMustard  -3.7251     3.3807  -1.102    0.274    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.12 on 77 degrees of freedom
+## Multiple R-squared:  0.01561,    Adjusted R-squared:  -0.009958 
+## F-statistic: 0.6105 on 2 and 77 DF,  p-value: 0.5457</code></pre>
+<p>The summary isn’t promising, it looks like neither is significant. Let’s do the ANOVA and get conclusive proof.</p>
+<p>The call to <code>glht()</code> is a bit more complicated, but not much</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">glht</span>(model_<span class="dv">1</span>, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">Food =</span> <span class="st">&quot;Tukey&quot;</span>, <span class="dt">Condiment =</span> <span class="st">&quot;Tukey&quot;</span>) ) )</a></code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: lm(formula = Enjoyment ~ Food + Condiment, data = food)
+## 
+## Linear Hypotheses:
+##                                           Estimate Std. Error t value Pr(&gt;|t|)
+## Food: Ice Cream - Hot Dog == 0             -0.2826     3.3807  -0.084    0.996
+## Condiment: Mustard - Chocolate Sauce == 0  -3.7251     3.3807  -1.102    0.471
+## (Adjusted p values reported -- single-step method)</code></pre>
+<p>Neither factor seems to be significant. Hmm. This seems like a slightly strange conclusion - and it is. The presence of two variables is confusing this approach. Look at what we get if we split the data by the two variables at once.</p>
+</div>
+<div id="interaction-between-variables" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Interaction between variables</h3>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-45-1.png" width="672" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<p>Ok! That’s very different and very much clearer. The enjoyment is very much dependent on the combination of food and condiment. This is a classic case of interaction between variables. You get results that are conditional on the combined values of the variables.</p>
+<p>The cross-over of the lines is a visual diagnostic of the presence of an interaction effect.</p>
+</div>
+<div id="modelling-an-interaction-effect" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Modelling an interaction effect</h3>
+<p>The interaction effect should be checked for in the linear model. It is quite easy to check for and requires a slight extension to syntax. An interaction can be specified with the <code>:</code>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">interaction_model &lt;-<span class="st"> </span><span class="kw">lm</span>(Enjoyment <span class="op">~</span><span class="st"> </span>Food <span class="op">+</span><span class="st"> </span>Condiment <span class="op">+</span><span class="st"> </span>Food<span class="op">:</span>Condiment, <span class="dt">data =</span> food)</a></code></pre></div>
+<p>(there is also a short hand that allows the whole thing to be specified in one term <code>*</code>, which is used like <code>lm(Enjoyment ~ Food * Condiment, data=food)</code>)</p>
+<p>and when we print the <code>summary()</code> we get the book-keeping issue, but we can see the usual stuff.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">summary</span>(interaction_model)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment, data = food)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -9.068 -3.068 -0.407  2.802 13.015 
+## 
+## Coefficients:
+##                                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)                      65.317      1.120   58.34   &lt;2e-16 ***
+## FoodIce Cream                    27.731      1.583   17.52   &lt;2e-16 ***
+## CondimentMustard                 24.289      1.583   15.34   &lt;2e-16 ***
+## FoodIce Cream:CondimentMustard  -56.028      2.239  -25.02   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.007 on 76 degrees of freedom
+## Multiple R-squared:  0.8935, Adjusted R-squared:  0.8892 
+## F-statistic: 212.4 on 3 and 76 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>This seems much more like what we expect from the graph, significance everywhere! Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we’re interested in? They aren’t here, and this is generally the case so we need to know how to extract them. First we must decide what the contrasts we’re going to check must be. In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let’s define which we’ll look at before we begin.</p>
+<p>Let’s see whether food alone or condiment alone has an effect. This would be like the first situation we looked at,</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">plot_condiment</a></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">plot_food</a></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-48-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-48-2.png" width="50%" /></p>
+<p>in the way that the output we’ve seen so far has it, this would be</p>
+<p>Hot Dog - Ice Cream == 0
+Chocolate Sauce - Mustard == 0</p>
+<p>Let’s also see whether <code>food * condiment</code> has an effect. This would be like the interaction situation.</p>
+<p>Hot Dog:Mustard - Ice Cream:Mustard == 0
+Hot Dog:Chocolate Sauce - Ice Cream:Chocolate Sauce == 0</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">plot_interaction</a></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>So we have four lines of interest to look at - four contrasts. For the two main non-interaction effects we can look at these as we’ve done before, using the <code>mcp()</code> function.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">summary</span>(</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2">  <span class="kw">glht</span>(interaction_model, <span class="dt">linfct =</span> <span class="kw">mcp</span>(</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3">    <span class="dt">Food =</span> <span class="st">&quot;Tukey&quot;</span>,</a>
+<a class="sourceLine" id="cb49-4" data-line-number="4">    <span class="dt">Condiment =</span> <span class="st">&quot;Tukey&quot;</span></a>
+<a class="sourceLine" id="cb49-5" data-line-number="5">  ))</a>
+<a class="sourceLine" id="cb49-6" data-line-number="6">)</a></code></pre></div>
+<pre><code>## Warning in mcp2matrix(model, linfct = linfct): covariate interactions found --
+## default contrast might be inappropriate
+
+## Warning in mcp2matrix(model, linfct = linfct): covariate interactions found --
+## default contrast might be inappropriate</code></pre>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment, data = food)
+## 
+## Linear Hypotheses:
+##                                           Estimate Std. Error t value Pr(&gt;|t|)
+## Food: Ice Cream - Hot Dog == 0              27.731      1.583   17.52   &lt;1e-10
+## Condiment: Mustard - Chocolate Sauce == 0   24.289      1.583   15.34   &lt;1e-10
+##                                              
+## Food: Ice Cream - Hot Dog == 0            ***
+## Condiment: Mustard - Chocolate Sauce == 0 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<div id="doing-all-pairwise-interactions" class="section level4">
+<h4><span class="header-section-number">5.2.3.1</span> Doing all pairwise interactions</h4>
+<p>Although we’re interested in only two specific interactions, usually it’s easier to do all pairwise comparisons in one step, as we don’t often have so many interacting variables that it gets unwieldy. To do this we must add an interaction column to our data and model that.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">food_<span class="dv">2</span> &lt;-<span class="st"> </span>food <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">FoodCondiment =</span> <span class="kw">interaction</span>(Food, Condiment))</a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">int_model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Enjoyment <span class="op">~</span><span class="st"> </span>FoodCondiment, <span class="dt">data =</span> food_<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="kw">summary</span>(<span class="kw">glht</span>(int_model2, <span class="dt">linfct =</span> <span class="kw">mcp</span>(<span class="dt">FoodCondiment =</span> <span class="st">&quot;Tukey&quot;</span>)))</a></code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: lm(formula = Enjoyment ~ FoodCondiment, data = food_2)
+## 
+## Linear Hypotheses:
+##                                                          Estimate Std. Error
+## Ice Cream.Chocolate Sauce - Hot Dog.Chocolate Sauce == 0   27.731      1.583
+## Hot Dog.Mustard - Hot Dog.Chocolate Sauce == 0             24.289      1.583
+## Ice Cream.Mustard - Hot Dog.Chocolate Sauce == 0           -4.008      1.583
+## Hot Dog.Mustard - Ice Cream.Chocolate Sauce == 0           -3.442      1.583
+## Ice Cream.Mustard - Ice Cream.Chocolate Sauce == 0        -31.739      1.583
+## Ice Cream.Mustard - Hot Dog.Mustard == 0                  -28.297      1.583
+##                                                          t value Pr(&gt;|t|)    
+## Ice Cream.Chocolate Sauce - Hot Dog.Chocolate Sauce == 0  17.515   &lt;0.001 ***
+## Hot Dog.Mustard - Hot Dog.Chocolate Sauce == 0            15.341   &lt;0.001 ***
+## Ice Cream.Mustard - Hot Dog.Chocolate Sauce == 0          -2.531   0.0635 .  
+## Hot Dog.Mustard - Ice Cream.Chocolate Sauce == 0          -2.174   0.1397    
+## Ice Cream.Mustard - Ice Cream.Chocolate Sauce == 0       -20.047   &lt;0.001 ***
+## Ice Cream.Mustard - Hot Dog.Mustard == 0                 -17.872   &lt;0.001 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<p>And now we can see all possible interaction groupings and lines. We can see that the signficances make good sense. The Hot Dog and Mustard is no more enjoyable than the Ice Cream and Chocolate Sauce, the Ice Cream and Mustard is no more enjoyable than the Hot Dog and Chocolate Sauce and all the other match and mismatch food and condiments are as we might expect from this very obviously loaded example.</p>
+<p>We said we wanted to look specifically at the interaction between the Hot Dog with Mustard and Ice Cream with Mustard - we can see that there is a significant difference in enjoyment, about 17 points. Similarly Hot Dog with Chocolate Sauce is less enjoyable than Ice Cream with Chocolate Sauce, by about 27 points.</p>
+</div>
+<div id="testing-specific-interactions" class="section level4">
+<h4><span class="header-section-number">5.2.3.2</span> Testing specific interactions</h4>
+<p>The table above, as ever, is a bit rich and confusing, you can get a simpler output at the expense of some more work. For the two sets of interactions we’re interested in we can look at them specifically but naming them explicitly in <code>glht</code> is trickier than we’ve done so far.</p>
+<p>We have to specify a matrix of comparisons ourselves. The first step is to work out all the different interactions of the levels of the <code>food*condiment</code> interaction term. We can do that with the <code>interaction()</code> function</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">f_c_interactions &lt;-<span class="st"> </span><span class="kw">interaction</span>(food<span class="op">$</span>Food, food<span class="op">$</span>Condiment, <span class="dt">sep=</span><span class="st">&quot;:&quot;</span>)</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="kw">head</span>(f_c_interactions)</a></code></pre></div>
+<pre><code>## [1] Hot Dog:Mustard Hot Dog:Mustard Hot Dog:Mustard Hot Dog:Mustard
+## [5] Hot Dog:Mustard Hot Dog:Mustard
+## 4 Levels: Hot Dog:Chocolate Sauce ... Ice Cream:Mustard</code></pre>
+<p>We can see that this is just a factor object with all the combinations of <code>Food</code> and <code>Condiment</code>. Using the <code>levels()</code> function gives us all the unique values in the order that R will use them.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">levels</span>(f_c_interactions)</a></code></pre></div>
+<pre><code>## [1] &quot;Hot Dog:Chocolate Sauce&quot;   &quot;Ice Cream:Chocolate Sauce&quot;
+## [3] &quot;Hot Dog:Mustard&quot;           &quot;Ice Cream:Mustard&quot;</code></pre>
+<p>Now we can make the matrix, our eventual matrix will look like this</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Hot Dog:Chocolate Sauce</th>
+<th align="right">Ice Cream:Chocolate Sauce</th>
+<th align="right">Hot Dog:Mustard</th>
+<th align="right">Ice Cream:Mustard</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hot Dog:Mustard - Ice Cream:Mustard</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">-1</td>
+</tr>
+<tr class="even">
+<td>Hot Dog:Chocolate Sauce - Ice Cream:Chocolate Sauce</td>
+<td align="right">1</td>
+<td align="right">-1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that there is a row per comparison and a column per possible interaction. At the intersection we write a zero if we don’t want to include that possible interaction in the contrast, a 1 if we want it to be the first part and a -1 if we want it to be the second part (IE, the part after the minus sign).</p>
+<p>As the <code>levels()</code> function gives us the order, we set up the rows one by one and join them together.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">HD.M_IC.M &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">HD.C_IC.C &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>)</a></code></pre></div>
+<p>Now we can stick them together, use the <code>levels()</code> function as the column names and add row names. Note you can call the rows what you like, so you dont have to use the long names, but the columns <em>must</em> be named and ordered according to the <code>levels()</code> function</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">contr_of_interest &lt;-<span class="st"> </span><span class="kw">rbind</span>(HD.M_IC.M, HD.C_IC.C)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="kw">colnames</span>(contr_of_interest) &lt;-<span class="st"> </span><span class="kw">levels</span>(f_c_interactions)</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="kw">rownames</span>(contr_of_interest) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;HD:M - IC:M&quot;</span>,</a>
+<a class="sourceLine" id="cb59-4" data-line-number="4">          <span class="st">&quot;HD:CS - IC:CS&quot;</span>)</a>
+<a class="sourceLine" id="cb59-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb59-6" data-line-number="6">contr_of_interest</a></code></pre></div>
+<pre><code>##               Hot Dog:Chocolate Sauce Ice Cream:Chocolate Sauce Hot Dog:Mustard
+## HD:M - IC:M                         0                         0               1
+## HD:CS - IC:CS                       1                        -1               0
+##               Ice Cream:Mustard
+## HD:M - IC:M                  -1
+## HD:CS - IC:CS                 0</code></pre>
+<p>Now we can do the test using the custom matrix.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">glht</span>( interaction_model, <span class="dt">linfct =</span> contr_of_interest))</a></code></pre></div>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment, data = food)
+## 
+## Linear Hypotheses:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## HD:M - IC:M == 0     80.317      3.540   22.69   &lt;1e-10 ***
+## HD:CS - IC:CS == 0   37.585      2.503   15.01   &lt;1e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<p>And there we have the specific interaction contrasts.</p>
+<p>H0: The means of all month groups are equal
+H1: The mean of at least one month group is different</p>
+<p>H0: The means of the gender groups are equal
+H1: The means of the gender groups are different</p>
+<p>H0: There is no interaction between the month and gender
+H1: There is interaction between the month and gender</p>
+</div>
+</div>
+</div>
+<div id="occams-razor" class="section level2">
+<h2><span class="header-section-number">5.3</span> Occam’s Razor</h2>
+<p>Simplest model - Compost data
+Add compost data to package.
+————————————–</p>
+<p>tasks one way, two way and three way anova on palmers penguins
+use <code>interaction.plot()</code> on food to reproduce interaction plot. What would no interaction look like (flat lines)
+compare and keep simplest model.</p>
+<p>Look at some results tables to see how much effects are (examine the estimate columns).</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">library</span>(palmerpenguins)</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="kw">summary</span>(penguins)</a></code></pre></div>
+<pre><code>##       species          island    bill_length_mm  bill_depth_mm  
+##  Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
+##  Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  
+##  Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  
+##                                  Mean   :43.92   Mean   :17.15  
+##                                  3rd Qu.:48.50   3rd Qu.:18.70  
+##                                  Max.   :59.60   Max.   :21.50  
+##                                  NA&#39;s   :2       NA&#39;s   :2      
+##  flipper_length_mm  body_mass_g       sex     
+##  Min.   :172.0     Min.   :2700   female:165  
+##  1st Qu.:190.0     1st Qu.:3550   male  :168  
+##  Median :197.0     Median :4050   NA&#39;s  : 11  
+##  Mean   :200.9     Mean   :4202               
+##  3rd Qu.:213.0     3rd Qu.:4750               
+##  Max.   :231.0     Max.   :6300               
+##  NA&#39;s   :2         NA&#39;s   :2</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">ggplot</span>(penguins) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(species, bill_length_mm) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> sex), <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.5</span>))</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">model &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_length_mm <span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>sex, <span class="dt">data =</span> penguins)</a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="kw">summary</span>(model)</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="co"># setup comparisons explicitly</span></a>
+<a class="sourceLine" id="cb65-5" data-line-number="5">comps &lt;-<span class="st"> </span><span class="kw">mcp</span>( <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;Chinstrap - Gentoo = 0&quot;</span>,</a>
+<a class="sourceLine" id="cb65-6" data-line-number="6">                          <span class="st">&quot;Chinstrap - Adelie = 0&quot;</span></a>
+<a class="sourceLine" id="cb65-7" data-line-number="7">                          ),</a>
+<a class="sourceLine" id="cb65-8" data-line-number="8">              <span class="dt">sex =</span> <span class="kw">c</span>(<span class="st">&quot;male - female = 0&quot;</span>)</a>
+<a class="sourceLine" id="cb65-9" data-line-number="9">            )</a>
+<a class="sourceLine" id="cb65-10" data-line-number="10"><span class="kw">summary</span>(<span class="kw">glht</span>(model, <span class="dt">linfct =</span> comps))</a>
+<a class="sourceLine" id="cb65-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb65-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb65-13" data-line-number="13"><span class="co">## or steal from individual comparisons...</span></a>
+<a class="sourceLine" id="cb65-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb65-15" data-line-number="15">sex_comps &lt;-<span class="st"> </span><span class="kw">glht</span>(model, <span class="kw">mcp</span>(<span class="dt">sex =</span> <span class="st">&quot;Tukey&quot;</span>))<span class="op">$</span>linfct</a>
+<a class="sourceLine" id="cb65-16" data-line-number="16">species_comps &lt;-<span class="st"> </span><span class="kw">glht</span>(model, <span class="kw">mcp</span>(<span class="dt">species =</span> <span class="st">&quot;Tukey&quot;</span>))<span class="op">$</span>linfct</a>
+<a class="sourceLine" id="cb65-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb65-18" data-line-number="18">comps &lt;-<span class="st"> </span><span class="kw">rbind</span>(sex_comps, species_comps)</a>
+<a class="sourceLine" id="cb65-19" data-line-number="19"><span class="kw">summary</span>(<span class="kw">glht</span>(model, <span class="dt">linfct =</span> comps))</a></code></pre></div>
+</div>
+<div id="interactions-of-variables---synergistic-effects" class="section level2">
+<h2><span class="header-section-number">5.4</span> interactions of variables - synergistic effects</h2>
+<p>line is visualised as …
+blah blah</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">model2 &lt;-<span class="st"> </span><span class="kw">lm</span>(bill_length_mm <span class="op">~</span><span class="st"> </span>species <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>species<span class="op">:</span>sex, <span class="dt">data =</span> penguins)</a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="kw">summary</span>(model2)</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="co"># setup comparisons explicitly</span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="co"># comps &lt;- mcp( species = c(&quot;Chinstrap - Gentoo = 0&quot;,</span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="co">#                           &quot;Chinstrap - Adelie = 0&quot;</span></a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="co">#                           ),</span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7"><span class="co">#               sex = c(&quot;male - female = 0&quot;),</span></a>
+<a class="sourceLine" id="cb66-8" data-line-number="8"><span class="co">#               species:sex = c(&quot;Chinstrap-male - Gentoo-female&quot;)</span></a>
+<a class="sourceLine" id="cb66-9" data-line-number="9"><span class="co">#             )</span></a>
+<a class="sourceLine" id="cb66-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb66-11" data-line-number="11"><span class="co">#summary(glht(model2, linfct = comps))</span></a>
+<a class="sourceLine" id="cb66-12" data-line-number="12"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb66-13" data-line-number="13">penguins <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">double =</span> <span class="kw">if_else</span>(sex <span class="op">==</span><span class="st"> &#39;male&#39;</span> <span class="op">&amp;</span><span class="st"> </span>species <span class="op">==</span><span class="st"> &#39;Chinstrap&#39;</span>, <span class="st">&quot;male_Chinstrap&quot;</span>, <span class="st">&quot;other&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-14" data-line-number="14"><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-15" data-line-number="15"><span class="st">  </span><span class="kw">aes</span>(species, bill_length_mm) <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> sex), <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>double)</a>
+<a class="sourceLine" id="cb66-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb66-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb66-18" data-line-number="18">supplement =<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Formula X1&quot;</span>,<span class="st">&quot;Formula X2&quot;</span>), <span class="dv">16</span>)</a>
+<a class="sourceLine" id="cb66-19" data-line-number="19">compost =<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;John Innes #1&quot;</span>, <span class="st">&quot;John Innes #2&quot;</span>, <span class="st">&quot;John Innes #2&quot;</span>, <span class="st">&quot;John Innes #1&quot;</span>), <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb66-20" data-line-number="20">size =<span class="st"> </span><span class="kw">rep</span>(<span class="kw">runif</span>(<span class="dv">32</span>))</a>
+<a class="sourceLine" id="cb66-21" data-line-number="21">df &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</a>
+<a class="sourceLine" id="cb66-22" data-line-number="22">  <span class="dt">supplement =</span> supplement,</a>
+<a class="sourceLine" id="cb66-23" data-line-number="23">  <span class="dt">compost =</span> compost,</a>
+<a class="sourceLine" id="cb66-24" data-line-number="24">  <span class="dt">size =</span> size</a>
+<a class="sourceLine" id="cb66-25" data-line-number="25">) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-26" data-line-number="26"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">size =</span> <span class="kw">if_else</span>( (supplement <span class="op">==</span><span class="st"> &quot;Formula X1&quot;</span> <span class="op">&amp;</span><span class="st"> </span>compost <span class="op">==</span><span class="st"> &quot;John Innes #2&quot;</span>), (size <span class="op">+</span><span class="st"> </span><span class="dv">1</span>), size) )</a>
+<a class="sourceLine" id="cb66-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb66-28" data-line-number="28">df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(supplement <span class="op">==</span><span class="st"> &quot;Formula X1&quot;</span>, compost <span class="op">==</span><span class="st"> &quot;John Innes #2&quot;</span>)</a>
+<a class="sourceLine" id="cb66-29" data-line-number="29">df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-30" data-line-number="30"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(compost, size) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> supplement), <span class="dt">position =</span> <span class="kw">position_dodge</span>(<span class="dt">width =</span> <span class="fl">0.5</span>))</a>
+<a class="sourceLine" id="cb66-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb66-32" data-line-number="32"><span class="co">#mod &lt;- lm(new_val ~ var1 + var2 + var1*var2, data = df)</span></a>
+<a class="sourceLine" id="cb66-33" data-line-number="33"><span class="co">#summary(mod)</span></a>
+<a class="sourceLine" id="cb66-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb66-35" data-line-number="35"><span class="co">#summary(glht(model, linfct = mcp(var1 = &quot;Tukey&quot;)))</span></a>
+<a class="sourceLine" id="cb66-36" data-line-number="36"></a>
+<a class="sourceLine" id="cb66-37" data-line-number="37"><span class="co">#contrasts(as.factor(df$var1))</span></a></code></pre></div>
+</div>
+<div id="summary-1" class="section level2">
+<h2><span class="header-section-number">5.5</span> Summary</h2>
+<p>That’s all we need to do to perform ANOVAs with linear models - which always use linear models anyway.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="t-tests-and-linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["intro_to_stats.pdf", "intro_to_stats.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

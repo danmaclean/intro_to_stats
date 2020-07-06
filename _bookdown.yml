@@ -1,0 +1,5 @@
+book_filename: "intro_to_stats"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
