@@ -1,0 +1,15 @@
+# Motivation {#motivation}
+
+
+Statistics is a word that rhymes with sadistics. Many people haven noted this similarity and have felt that sadistics is what was really meant. Admittedly, statistics is hard, even statisticians find it hard. So why on earth would we want to do it? The main reason is because we want to be able to trust in our results as objectively as possible and applying some statistics can help us to do that.  
+
+
+For reasons beyond their control, during their education a lot of biologists with a molecular or biochemistry or genetics or field background develop only a vague conceptual framework about statistics, one that leaves them with the idea that it is all about picking the right test and then they're ok. Often they have gone through a graduate course that introduced them to a lot of tests and a lot of conditions that must be fulfilled and gained the impression that there is one 'right' test to use in any given situation, which isn't true.  Later, this misaprehension is reinforced by the good intentions of colleagues and reviewers with apparently eidetic memories that seem to remember all the conditions and can suggest the 'right' test to them in lab meetings or during manuscript revision. Never is there a sense of working through a statistical problem logically or a discussion of ways of thinking about the problem.
+
+As a result many of us get the sense that everything to do with statistics is arbitrary and dislocated without any logical binding thread.  If your prior experience has left you feeling that statistics is a bit of an incomprehensible mess, then this course is for you. 
+
+The aim of this course is to introduce a simple new tool and a way of thinking about statistics that can enlighten and simplify all the tests we commonly use as biologists. It may suprise you that this tool will be based on a simple formula for a straight line, something you probably already know. We will look at the bare bones of this and see how it relates to signifcance tests and see how by thinking of straight lines in your work then you can apply complicated analyses quickly and importantly come to a clearer understanding of the hypotheses you are testing.
+
+Happy ~~sadisticating~~ statistics-ing!
+
+

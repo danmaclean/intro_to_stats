@@ -2,4 +2,7 @@ book_filename: "intro_to_stats"
 delete_merged_file: true
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Topic "
+output_dir: "docs"
+clean: ["docs", "intro_to_stats.md"]
+rmd_files: ["index.Rmd", "motivation.Rmd", "background.Rmd", "linear-models.Rmd", "r-fundamentals.Rmd", "ttest.Rmd","anova.Rmd", "discrete.Rmd", "loglinear.Rmd", "predictions.Rmd", "references.Rmd"]

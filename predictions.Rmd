@@ -1,0 +1,145 @@
+# More fun with linear models
+
+In this section we'll take a look at some things that a linear model can do beyond looking for significant differences.
+
+We'll take a look at doing things like predicting new data on our response ($y$-axis) given some $x$ values. We will also look at how we can use a categoric $y$-axis to make classifications of data into groups. Crucially in this section we will look at how to tell whether a linear model is a good one based on the data.
+
+## Assessing a linear model
+
+See Jims stats site for information.
+Point out that a good linear model is essential for good stats, this exercise can tell you whether the data are a good fit for the tests you want to do. A bad linear model fit implies that the test e.g $t-test$ anova etc will go badly.
+
+
+## Models with a mix of categorical and continuous variables
+
+It's perfectly possible to make models with categorical and continuous data and make predictions from them. We haven't looked at them  
+
+
+
+## Predictions
+
+### Intuition on prediction from continuous variables
+
+Linear models are great tools for making predictions about the response data from new or potentially unseen combinations of factors and values, depending on the complexity of the model. The intuition behind this is more straightforward than you might initially think, consider the straight lines from our first section. We had a continuous $x$ and $y$ axis
+
+```{r, message=FALSE}
+library(tidyverse)
+##todo make this a package function its_plot_with_line_time(x,y)
+set.seed("456")
+x <- runif(20, 5, 15)
+y <- x * 2 + rnorm(20)
+model <- lm(y ~ x)
+b <- coefficients(model)[1]
+a <- coefficients(model)[2]
+
+
+ggplot(data.frame(x = x, y = y) ) + aes(x,y) + geom_point() + geom_smooth(method = "lm", se=FALSE) + theme_bw() + ggtitle("Graph of y = 1.955x + 0.778")
+plot(x,y)
+abline( a = 0.778, b = 1.955 )
+title(main="Graph of y = 1.955x + 0.778", xlab="x", ylab="y") #get values from model
+```
+
+We can peek into $x$ to see what values we used
+
+```{r}
+sort(x)
+```
+
+Ok, looking at the values that make up the so we don't have a real $x = 10$ in our data. Imagine asking the question "what $y$ would we get for $x = 10$?". We can intuitively tell what the $y$-value would be simply by reading off the line at $x = 10$ - its `r v = (a * 10) + b; v` or from the formula, $y = (1.9555 * 10) + 0.7780 = `r v`$. This is the intuition behind how a linear model prediction works with continuous - we're just reading off the line. 
+
+If we build the model, we can ask it to work this out for us directly using the `predict()` function. `predict()` takes the model and the new values to be predicted in a `data.frame`.
+
+```{r}
+model <- lm(y ~ x)
+predict(model, newdata = data.frame(x = c(10)))
+```
+
+We see that we get the same value (given a little rounding error). 
+
+What happens when we give the `predict()` function a value we did have data for? Let's pull out whatever the fifth value of our data was and look at that
+
+```{r}
+x[5]
+y[5]
+```
+
+This shows us that the $x$ axis value of `r x[5]` had the corresponding $y$ value of `r y[5]`. Now let's use the model to predict the $y$ from the $x$
+
+```{r}
+predict(model, newdata = data.frame(x = c(x[5])))
+```
+
+The result from the model is quite different from the actual observed data value! This isn't an error. Its because we're asking the model to predict using the 'line' it came up with. Note that this is because the prediction comes from the model which takes into account the whole data. In the model There is an expectation of errors in the measurement that the model smooths away - the process of 'best fitting' which ensures the 'line' matches all the points as well as possible, but doesn't guarantee matching any particular point well.
+
+__PULL__out___
+It is possible to over-complicate models to make them fit all the points by allowing them to take extra parameters and become curves. Adding complexity in this way usually leads to bad models that only fit one particular data set well and is called 'overfitting'.
+__PULL_OUT__
+
+### Intuition on prediction from categoric variables
+
+In the same way we looked at the line to get an intuitive understanding of how the linear model makes predictions, we can look at the groups in a categorical variable to see how $y$ values are predicted from factors.
+
+Consider the `chickwts` data.
+
+```{r, message=FALSE}
+#plot the groups
+ggplot(chickwts) + aes(feed, weight) + geom_jitter(aes(colour = feed))
+```
+
+We can see that there is a single categorical variable for the `feed` which was the type of food the chick was raised on, and the resulting continuous output variable of `weight`. If we model that and do a prediction we can get an intuition on what the `prediction()` means. 
+
+```{r}
+model <- lm(weight ~ feed, data = chickwts)
+predict(model,newdata = data.frame(feed = c("casein")))
+predict(model,newdata = data.frame(feed = c("sunflower")))
+```
+
+Note that this time we have to give it a level of a factor, because that was the only term in this model. It doesn't make sense to give it a number. The model returns the fitted value of `weight` for the level of the factor.
+
+Do the numbers return remind you of anything? Aren't they awfully close to where we expect the mean of each group to be. Let's check that out by doing a prediction for each feed and comparing with the group mean.
+
+```{r}
+## prediction not quite the exact mean
+feeds <- sort(unique(chickwts$feed))
+preds <- predict(model,newdata = data.frame(feed = feeds) )
+names(preds) <-  feeds
+preds
+```
+
+Now calculating the mean from the data.
+
+```{r}
+group_by(chickwts, feed) %>% summarize(avg = mean(weight)) %>% data.frame()
+```
+
+Yep, they're the same. This gives us the intuition that for the model of categoric data the prediction for each group in the category is the centre of it. It may not always be the exact mean, but it's a useful way of thinking about it. 
+
+
+
+```{r}
+
+#model with more variables, inc categorical
+txhousing
+model <- lm(median ~ city + year + month, data = txhousing)
+predict(model, newdata = data.frame(city = c("Abilene"), year = c(2000), month = c(2)))
+
+
+## predict on a missing month (numerical variable - works)
+miss_month <- filter(txhousing, month != 8)
+model2 <- lm(median ~ city + year + month, data = miss_month)
+predict(model2, newdata = data.frame(city = c("Abilene"), year = c(2000), month = c(8)))
+
+## predict on a missing city (factor - won't work)
+miss_month <- filter(txhousing, city != "Abilene", month != 8)
+model2 <- lm(median ~ city + year + month, data = miss_month)
+```
+
+```{r, eval=FALSE}
+predict(model2, newdata = data.frame(city = c("Abilene"), year = c(2000), month = c(8)))
+```
+
+```
+Error in model.frame.default(Terms, newdata, na.action = na.action, xlev = object$xlevels) : 
+  factor city has new level Abilene
+```
+show how to get CI for predictions

@@ -1,0 +1,10 @@
+strain,replicate,score
+control,1,1
+mild,1,3
+deadly,1,4
+control,2,2
+mild,2,3
+deadly,2,4
+control,3,1
+mild,3,3
+deadly,3,3

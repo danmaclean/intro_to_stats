@@ -12,3 +12,66 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+.task, .roundup {
+    border-radius: 12px;
+    border: 4px solid #505050;
+    padding: 20px; 
+    background-color: #F5F5F5;
+}
+
+.roundup {
+    background-color: #FFFFE0;
+}
+
+.task:before {
+    content: "For you to do";
+    font-size: 20px;
+}
+
+.roundup:before {
+    content: "Round Up";
+    font-size: 20px;
+}
+
+.reader {
+    border-radius: 12px;
+    border: 4px solid #505050;
+    margin: 20px;
+    padding: 20px;
+    font-size: 12px;
+    font-weight:bold;
+    color: #fff;
+    background-color: #9A2617;
+}
+
+.sidenote {
+    border-radius: 12px;
+    border: 4px solid #505050;
+    margin: 20px;
+    padding: 20px;
+    font-size: 12px;
+    font-weight:bold;
+    color: #fff;
+    background-color: #1496BB;
+}
+.myquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+.myquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+.myquote p {
+  display: inline;
+}

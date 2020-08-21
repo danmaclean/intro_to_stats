@@ -1,0 +1,304 @@
+# The Linear Model
+
+1. Questions
+  * How do we describe a straight line?
+  * What is a Linear Model?
+  * How _exactly_ does a straight line and a linear model help us determine differences?
+2. Objectives
+  * Understand the parameters of a straight line
+  * Understand the statistical components of a linear model
+  * Understand how a sloped line implies a difference in a linear model
+3. Keypoints
+  * Straight lines have two parameters
+  * Linear models contain statistics
+  * Linear models can tell us whether a slope is likely flat or not given the data
+  
+## From straight lines to data  
+
+Now that we've decided to use the straight line as our Null Model, with a flat line being the case where there is no difference and a sloped line being otherwise, we need to start to think about lines and a statistical relative called a Linear Models. Linear models are a tool that are similar to a line of best fit, with measures of the variability of the data points that go in to building them. The linear model will be how we bring statistical rigour into our conceptual tool of using straight lines to think about differences. In this section we'll look at them in some detail, but first we'll recap some facts about straight lines. 
+
+## Straight line relationships are described using two parameters
+
+Its all about $y = ax + b$ (or $y = mx + c$, depending on where you went to school). These two equivalent formulae are the standard high-school equations for describing a straight line. They represent how the quantity $y$ changes as $x$ does. 
+
+As a refresher, $a$ tells us how much $y$ increases for every unit increase in $x$. Here's an example for the equation $y = 4x$ 
+
+```{r, fig.height=5, fig.width=5}
+
+library(itssl)
+its_axplusb_time(a = 4)
+
+```
+
+If we play about with that value, the slope of the line changes, the $a$ term is known as the slope, or gradient, or more often because it is just a multiplier of $x$ its called the coefficient. Here's some different coefficients just to prove that point
+
+```{r, fig.height=5, fig.width=5}
+its_axplusb_time(a = 4) +
+  its_add_line_time(a = 2, colour = "deepskyblue") +
+  its_add_line_time(a = 6, colour = "darkorange")
+```
+
+The $b$ part of the formula just tells us how much we add on to $y$ after we've calculated the coefficient effect. It has the effect of pushing the line up and down the y-axis. When we look at the value of $y$ for $x = 0$ we get the position that the graph hits the y-axis so this number is often called the intercept. Here's a set of lines to show that.
+
+```{r, fig.height=5, fig.width=5}
+its_axplusb_time(a = 4, b = 0) + 
+  its_add_line_time(a = 4, b = -2, colour = "deepskyblue") +
+  its_add_line_time(a = 4, b = 2, colour = "darkorange")
+```
+
+
+That's all we need to know about the equation of the straight line. Now we need to look at how they're a useful tool when analysing experimental data.
+
+
+## Linear models try to create a linear equation from data
+
+A linear model is a simplification of the relationship between some sets of numbers (in the simple case we will introduce here, it is two sets, but it can be more). At its heart is a straight line, with the equation we discussed above and a certain set of values for $a$ (the coefficient) and $b$ the intercept, along with some statistics that describe the strength of the relationship.
+
+Let's walk through building one, graphically and in R.
+
+First we need some sets of values, $x$ and $y$. Usually, these would be from an experiment, but here I'll make some toy ones.
+
+```{r}
+df <- its_random_xy_time(20)
+its_plot_xy_time(df)
+```
+
+The graph shows 20 random $x$ values between 5 and 15 plotted against 20 $y$ values which are calculated as $2x$ with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way. Here's where the linear equation comes in, if we could come up with a line that fitted through the data we could use the linear equation of that line to roughly describe - or model - our data. Skipping to the chase there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won't repeat them, but you may be familiar with the general methods, its the 'line of best fit' according to the ordinary least squares method. The function we need in R is `lm()` and it works like this
+
+```{r, eval=F}
+lm(y ~ x, data = df)
+```
+
+Thats it! The function `lm()` does the work, it takes a fairly odd syntax, though. The `y ~ x` bit is an R formula and describes the relationship you want to examine, you can read it as `y depends on x`. The `y` and `x` we're referring to here are the two columns of numbers we created and plotted above, the `data` argument just says in which object to look for the data.
+
+TODO independent variable, dependent variable
+
+Looking at the function output we get this 
+
+```{r, echo=FALSE}
+lm(y ~ x, data = df)
+```
+
+These are the intercept ($b$) and the coefficient of $x$ ($a$) that we need to describe the line. So our data are described by the line $y = 1.955x + 0.778$. 
+
+So this line is a model of the data, it's a model in the sense that it is something that represents our data, but isn't it. Looking at them together we can see the model and the data it stands for.
+
+```{r}
+its_plot_xy_time(df, line = TRUE)
+```
+
+The line alone can be useful to teach us about our data, but there's more to the linear model than just the line.
+
+## Linear models describe relationships between variables
+
+Beyond working out the equation of the line, the linear model process aims to quantify and describe relationships between the variables in the data, in our toy example the variables are $x$ and $y$. Specifically when we say 'relationship', we mean whether a change in the value of $x$ appears to go along with some change in the value of $y$. 
+
+In other words, we can think of relationship as being the slope. If $x$ causes some change in $y$ when we plot it then there must be a slope. We call the slope $a$ in our equation of a line and we call it the coefficient of the $x$ term in our linear model. These are all equivalent interpretations for our purposes, slope, relationship, coefficient and $a$ just mean that $
+
+Linear models calculate statistics to help us decide whether the coefficient/slope/$a$ of the relationship we observe is important or not.
+
+## Not all lines of best fit are equally good
+
+Although a line of best fit can always be calculated, the line might not be worth much. Consider two sets of very similar numbers. Here's two vectors of random numbers with the same mean and their plot. 
+
+```{r}
+more_df <- data.frame(
+  x <- runif(20, 5, 15),
+  y <- runif(20, 5, 15)
+)
+
+its_plot_xy_time(more_df)
+```
+
+We can definitely calculate a line that fits these, 
+
+```{r}
+lm(y ~ x, data = more_df)
+```
+
+and it would be $y = 0.1103x + 10.6495$. But if we compare the fit of those lines, like in these plots 
+
+```{r,fig.show="hold", out.width="50%", echo=FALSE}
+its_plot_xy_time(df, line = TRUE)
+its_plot_xy_time(more_df, line = TRUE)
+```
+
+we can clearly see that not all lines are created equal. The first line fits the data much more closely than the second one. We can also see that the relationship between $x$ and $y$ is much weaker in the second set than in the first (the coefficient/slope/$a$ is weaker. So a sensible linear model of our data would give us not just the equation but also measures of the believability of the slope of the line. In terms of our Null Model flat line/sloped line model this means that when we have a significant coefficient, we are not likely to have a flat line. Let's look at the statistics in the linear model that show us what a significant coefficient is.
+
+## Linear models contain statistics describing the goodness of the model
+
+The same function we've already used - `lm()` - calculates certain statistics. We can print them using the `summary()` function.
+
+```{r}
+model <- lm(y ~ x, data = df)
+summary(model)
+```
+
+This output is verbose, there are four blocks.
+
+  1. `Model Call` - just a restatment of the function we called
+  2. `Residuals` - a set of measures of the distribution of the residuals, we'll look at this later.
+  3. `Coefficients` - the terms of the equation and their statistics; so the intercept ($b$) and the coefficient of `x` ($a$) that we've already seen and the `Estimate` (computed values of those). We see also columns of statistics for each.
+  4. The model level statistics summary - some statistics that apply to the whole model.
+
+Let's start at the bottom and look at model level summary.
+
+### Residual Standard Error
+
+This is a measure of how well the line fits the data. In essence its the distance from each real data point to the line all added together, the further the points are from the line (the worse the fit) the bigger the Residual Standard Error.  If you look at the plots again with those distance drawn in you can see quite clearly the residual error for the second model is much bigger than for the first.
+
+
+```{r,fig.show="hold", out.width="50%", echo=FALSE}
+its_plot_xy_time(df, line = TRUE, residual = TRUE)
+its_plot_xy_time(more_df, line = TRUE, residual = TRUE)
+
+```
+
+```{block2, type="sidenote"}
+We're working hard here to avoid using too much mathematical notation and examination of the mechanics of the linear model, but the residuals are quite an important aspect, so Im going to use this aside to delve just a little deeper. Unlike the linear equation, the linear model has an extra error term, $e$ which represents the residuals by quantifying the average distance from the actual measurments to the line in the y-axis. So in a linear model we have a formula that looks more like this
+
+\begin{equation}
+ y = ax + b + e
+\end{equation}
+
+The $e$ term adds something onto the y value of the whole equation; the more we need to add on to the value of the $x$ from the line to get the real $y$. Logically, the bigger $e$ is the more the error in the model overall. The error is a major determinent of whether a model is any good or whether things are significant so it's worth knowing how it relates to the model.
+```
+
+### $R^2$
+
+$R^2$ is another measure of how well the model fits the data. If you're thinking correlation coefficient here, then you're in the right area. $R^2$ describes the proportion of variance in the $y$ values that can be explained by the $x$ values. The $R^2$ always falls between 0 and 1. Closer to 1 is usually better, but it is very domain and dataset dependent. With small and biological data sets, we don't always see values close to that because of the noise of the system.
+
+The proper one to use in ~~most~~ all cases is the `Adjusted R-squared`.
+
+#### $R^2$ versus Residual Standard Error
+
+So what's the difference between these two - at first glance they do the same thing. The major difference is that RSE is in the units of the data and $R^2$ is in relative units, so you can use them in different situations e.g if you want to make your model work within particular tolerances or you want to compare models in different units. 
+
+### $F$-Statistic
+
+The $F$-Statistic is an indicator of a relationship between the $x$ and $y$ values of the model. In effect its testing how much better the relationship is in your model relative to a model in which the relationship is completely random. When the $F$-statistic is at 1, the relationship is no stronger than a random relationship.  The further above 1 this value is, the more it is likely there is a real relationship in the model. The $p$ value here is the $p$ that this size of $F$ would occur in a  random relationship with a similar dataset size. As with the other statistics, the size of $F$ is dependent on the domain and data being analysed.
+
+## Coefficients have statistics 
+
+Along with these model level statistics, linear modelling with `lm()` gives us a set of statistics _per coefficient_. These measure the effect that each coefficient has on the output variable $y$. Basically a significant coeffecient, is one that has a non-zero slope and is an important determinant of the value of $y$. 
+
+### Estimate
+
+These are the `Estimate`, which is the actual value of the coefficient from the model. We will see that along with Intercept we can have models with more than one other coefficient. These are given in the units of the data.
+
+### Std. Error
+
+A measure of the variability of the strength of the effect, so if some $x$ points give more pronounced $y$ values at similar coefficient values, you get a higher variability of the strength. Generally lower standard error of the coefficient is good.
+
+### $t$-value
+
+An estimate of how extreme the coefficient value is, basically how many Standard Deviations away the estimate is from the centre of a presumed normal distribution with mean 0. It is absolutely a $t$-test $t$-value, and like in a $t$-test we want it to be high. The higher $t$ is, then the more likely that the coefficient is not at 0.
+
+#### Wait, what?
+
+Why would we care whether the coefficient is at 0 or not? Well, because if it is 0, then it's having no effect on the model. Consider again the equation of a line
+
+\begin{equation}
+y = ax + b
+\end{equation}
+
+If we let the coefficient $a = 0$, this happens
+
+\begin{equation}
+y = 0 x + b\\
+y = b
+\end{equation}
+
+The coefficient disappears, its having no effect! 
+
+If the coefficient is not many standard deviations away from 0, its probably not having much effect on the relationship. The $t$ value tries to work out whether, given the data, the coefficient is in anyway different to 0.
+
+In English, we are really saying that the size if the slope is not likely to be 0. That it is not likely that there is no relationship. Which is weak inference, but is _exactly_ the same sort of inference that all the other hypothesis test make and is exactly the same interpretation
+
+Of course, this will depend on the size of the standard deviation. The noisier the data or the smaller the sample size then the larger this value will need to be to be important. 
+
+### $Pr(>|t|)$
+
+This weird shorthand expression is just giving the probability of getting a value larger than the $t$-value. This comes from a $t$-test within the model and takes into account the dataset size and variability, you can think of it as the $p$-value of a test asking whether the coefficient is equal to 0. So if $p$ is less than 0.05 you can say that the value of the coefficient is not likely to be 0 and therefore is having an effect on the model. 
+
+## A non-zero slope is what matters
+
+By looking at the $p$-value of the coefficient then, we can see whether there is a significant relationship or, more accurately a non-zero slope
+
+We can really emphasise by looking at the plots of lines we looked at earlier.
+
+```{r,fig.show="hold", out.width="50%", echo=FALSE}
+its_plot_xy_time(df, line = TRUE)
+its_plot_xy_time(more_df, line = TRUE)
+```
+
+The slope of the second plot is weaker, it's much flatter - much closer to zero, in fact given the spread of the data we aren't that confident that it isn't a flat (zero) slope, so we aren't that confident that there is a significant relationship.
+
+It is this feature that will help us in our overall goal of using the linear model in doing the work of all the other statistical tests we commonly use. If we have a good model and a good fit, then we can make really flexible use of the slope by looking at the significance of the coefficient.
+
+## Major points
+
+After all that inspection of the linear model, here's what you need to remember:
+
+  1. Linear models describe relationships between sets of numbers (variables)
+  2. The creation of the model generates statistics about the goodness of the model
+  3. A non-zero coefficient (slope) means there is not likely to be no relationship (!)
+
+
+## Extra credit: Understanding linear models through the notation
+
+At the start of this topic we wrote the linear model like this 
+
+\begin{equation}
+ y = ax + b + e
+\end{equation}
+
+but that isn't the usual way the linear model is written, you can't actually translate directly from the straight line equation like I did, but it does aid our thinking to take that liberty a little.  In this section at the end I wanted to take one last step and look at how the linear model is specified because the notation is, in this case at least, an aid to understanding the model. Its probably ok to skip this bit if the idea of notation doesn't grab you.
+
+Unlike a straight line, a linear model doesn't have to have only one slope, that is from the $y$ variable to a single $x$ independent variable, it can have many. This doesn't mean that the line has a bend in it, like this 
+
+TODO FIGURE
+
+but rather that the model can take into account more than one data axis (variable) (or dimension) - more like this, where a new variable is called $z$
+
+  
+TODO FIGURE
+
+We can only see up to two extra axes in a plot, and only visualise that many without getting twitchy eyes, but going to three, four or many more dimensions is no problem for the linear model framework and they all work the same way. When it comes to notating this we run into a problem as we run out of letters. Let's build it up...
+
+First, a one slope/coefficient/independent variable model, adding one variable at a time
+
+\begin{equation}
+y = ax + e
+\end{equation}
+
+The first thing that happens is the linear model disposes of the intercept term $b$, that's ok, it is still computed, but we don't have it in the model notation now. Next we build up the number of variables/dimensions
+
+\begin{align*}
+y &= ax + bz + e\\
+y &= ax + bz + cw + e
+\end{align*}
+
+It's already got confusing, $cw$ is a bit hard to follow and it only gets worse. To get around this proliferation the notation of a linear model usually uses subscript numbers, all coeffcients are given the Greek letter beta $\beta$, all variables are given $x$ and each is written with a little number after that distinguishes them
+
+\begin{equation}
+y = \beta_1 x_1 + e
+\end{equation}
+
+then that can be extended easily to $n$ sets of variables. Finally, because $y$ in a linear model isn't specified _exactly_ by the model, the ~ operator is used
+
+\begin{equation}
+y \sim \beta_1 x_1 + \beta_2 x_2 \dotsc + \beta_n x_n + e
+\end{equation}
+
+We can see from this equation that a linear model is really just a load of variables added together to give some outcome $y$. Let's consider a plant growth experiement, in which we varied light, water and fertilizer and measured weight. The model in words looks like this
+
+\begin{equation}
+\mbox{weight} \sim \beta_1 \mbox{light} + \beta_2 \mbox{water} + \beta_3 \mbox{fertilizer} + e 
+\end{equation}
+
+We can see that what the linear model is looking for is all those values of $\beta$ - its going to calculate slopes for us. Its the job of the linear model to work out the coefficients and intercepts from the data we put into it and to tell us which of the slopes are non-zero ones and therefore important in determining the size of the output variable. With this information we can tell not only significant differences between the variables, but whether any are more important than others in affecting the outcome. 
+
+Knowing notation like this will be useful later when we are looking at comparing multiple variables with linear models.
+
+

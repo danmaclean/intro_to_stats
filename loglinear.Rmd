@@ -1,0 +1,244 @@
+# $\chi ^2$ tests and linear models
+
+In the last chapter we looked at discrete data that was ordered and got around it, as hypothesis tests do by working on the ranked data in a linear model. In this section we'll look at discrete data that isn't ordered, or is nominal, things like `agree, disagree, don't know`, or `yellow, green, wrinkled, smooth` if we're looking at something like pea colour.  We'll also look at discrete data in the form of counts or frequencies. 
+
+
+## The problem with unordered response data
+
+If we have unordered categoric response data ($y$-axis) we find ourselves in a bit of a pickle if we want to use try and apply a linear model to understand relationships.
+
+We'll put ourselves in the shoes of Gregor Mendel and work through his monohybrid cross experiment on flower colour. Mendel's first step would have been to work out the flower colours after a cross with different coloured true breeding parents, leaving him with a raw dataframe like this:
+
+```{r}
+flowers <- tibble::tibble(
+  cross = sample(c("PP", "PW", "WP", "WW"), 600, replace = TRUE) ,
+  result = dplyr::if_else(cross == "WW", "W", "P")
+)
+
+flowers
+```
+
+
+Which isn't very helpful at this stage, how on earth do we get two columns of text into a linear model? Perservering, Mendel would've gone on to count the numbers of each colour.
+
+```{r,echo=FALSE, message=FALSE}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+```{r, message=FALSE}
+library(dplyr)
+count_df <- flowers %>% 
+  count(result) %>% 
+  rename(colour = result, count = n)
+
+count_df
+```
+
+
+
+Mendel famously went on to calculate the ratios, or relative frequencies of each.
+
+```{r, message=FALSE}
+count_df %>% 
+  tidyr::pivot_wider(names_from = c("colour"), values_from = c("count")) %>% 
+  mutate(
+    ratio_p = P / min(c(P, W)), 
+    ratio_w = W / min(c(P, W)),
+    freq_p = P / (P + W),
+    freq_w = W / (P + W)
+    )
+```
+
+But that doesn't get us any nearer. The problem is that we have just got count (or frequency) data and nothing else. It seems that it isn't far from the ordered data case, we can imagine plotting the data as we did with HR score, but the response variable is colour and there's no clear explanatory ($x$) variable, so what would go on that axis. If we had more categories we could get something but there isn't an order so we can't meaningfully apply the rank to create a proxy for order. We can't meaningfully look at slopes again because there's no sense in the order of the response variable. In short it's a mess.
+
+The only question we can ask is does one set of counts differ from another, whether that be a hypothetical 'expected' set of counts for the response of interest as in  genetics data we might ask whether the observed ratio of phenotypes matches an expected `9:3:3:1`.  We might ask whether the counts in one subset of categories matches another, so in a survey to ask whether respondents agree that broccoli is a nice food, with response 'agree, disagree, don't know', we might compare responses between adults and children.
+
+## We have to compare models, not groups.
+
+It is possible to do this sort of comparison with linear models, but it gets to be fiddly and involved because we need to apply a mathematical transformation to our counts and to work on the likelihood ratio of the response to stick to some assumptions of the modelling process. 
+
+Briefly we go from this linear model, with interaction terms
+
+```
+y ~ a + b + c + a:b
+```
+
+To two models with logs all over them, one with interaction terms, one without
+
+```
+log(yi) ~ log(N) + log(ai) + log(bi) + log(ci) + log(aibi)
+log(yi) ~ log(N) + log(ai) + log(bi) + log(ci)
+```
+
+And then we have to compare the models to see which fit the data best. 
+
+Which is more complicated than we want to get into and ultimately the process is not worth it in most cases, because there are alternatives. Pragmatically, the answer is to use the $\chi^2$ tests in this case.
+
+
+It is worthwhile to remember that to analyse unordered categoric response data we need to compare models, because that means assessing which model 'fit' the data we have best. This is a useful way to think about what the tests like the $\chi^2$ and Fisher's Exact test are doing. They compare the observed counts - being considered one full set of data (or one model), against the expected counts from some ideal or some category split, a second model.  
+
+The log-linear model and the tests give closely equivalent results in most cases.
+
+## The $\chi^2$ test
+
+The basic calculation in the $\chi^2$ test is the difference between observed and expected numbers in each category subset. In Mendel's data this would be the difference between the observed number of "P" and "W", from the expected number - given we did 600 plants, then for a $3:1$ we'd expect 450 "P" and 150 "W". This difference is then compared to values of the $\chi^2$ distribution and returns a $p$- value that represents how far away from the mean the difference is. If it is an extreme value (in the tails) the $p$-value is lower. 
+
+The hypotheses are set as follows:
+
+  - $H_{0}$ the observed counts show no evidence that they are different from the expected counts
+  - $H_{1}$ the observed counts would not occur often by chance
+
+### Performing the test
+
+To do the test for the simplest case - Mendel's flower data, we need to get a dataframe with the observed counts on one row and the expected counts on another.
+
+```{r}
+
+observed_counts <- flowers %>% 
+  count(result) %>% 
+  tidyr::pivot_wider(names_from = c("result"), values_from = c("n"))
+
+observed_counts
+```
+
+We then need to make the equivalent row for the expected counts - recall we had 600 plants, so calculate the expected number of "P" and "W"
+
+```{r}
+expected_counts <- tibble::tibble(
+   P = 600 * 3/4,
+   W =  600 * 1/4
+)
+```
+
+We then need to stick those rows together 
+
+```{r}
+chi_sq_input <- bind_rows(observed_counts, expected_counts)
+rownames(chi_sq_input) <- c("observed", "expected")
+chi_sq_input
+```
+
+Finally we can do the test with the function `chisq.test()`
+
+```{r}
+chisq.test(chi_sq_input)
+```
+
+The test shows us that the $p$-value of the $\chi^2$ test is greater than 0.05 so we conclude that there is no evidence that the observed number of each flower colour differs from the expected and that we do indeed have a $3:1$ ratio. Note that the test automatically does the necessary correction for small sample sizes if the data need it.
+
+### More than one variable
+
+The data we had above only had one variable, flower colour. What if we have multiple categoric variables to compare? Largely, the process is the same but making the table is more difficult.
+
+Consider this data frame of voting intentions between generations
+
+```{r}
+##Turn into function in the package
+voting_data <- data.frame(
+  expand.grid(
+    generation = c("boomer", "millenial"),
+    alignment = c("fascist", "instagram", "marxist" )
+    ),
+    count = c(279, 165, 74, 47, 225, 191)
+)
+voting_data
+```
+
+This time we have two variables, with two or three levels of each. To make the contingency table for `chisq.test()` we can use `xtabs()` which takes an R formula as a description of how to make the table. Luckily, these are exactly the same formula we used to make linear models.
+
+```{r}
+tabulated <- xtabs(count ~ ., data = voting_data)
+tabulated
+```
+
+Here we make a formula that says `count` is the output variable, and `.` are the independent or row and column variables (`.` in formula like this just means everything else). The table comes out as we expect and we can go on to do the `chisq.test()` as before on the new table. 
+
+```{r}
+chisq.test(tabulated)
+```
+
+Here the $p$ value tells us that the pattern of voting intention is significant, but the numbers are hard to interpret ... do `millenial`s vote less for `instagram` than `boomer`s? We can make things easier to interpret if we have a proportion table. The function `prop.table()` can make one of those. 
+
+```{r}
+prop.table(tabulated, margin = 1)
+```
+
+The `margin` option takes a `1` if we want proportions across the rows, `2` if we want proportions down the columns. We can see that the difference between the two generations comes largely from a swing from `fascist` to `marxist`.
+
+
+### More than one pairwise comparison
+
+If we have more than two levels in our comparison category, we run into a problem. Look at these data
+
+```{r}
+## turn into sample data for the package
+
+d = data.frame(
+mood = c('curious', 'curious', 'tense', 'tense', 'whimsical', 'whimsical','tense', 'whimsical', 'whimsical'),
+role = c('milliner', 'carpenter', 'milliner', 'carpenter', 'milliner', 'carpenter', "cooper", "cooper", "cooper"),
+Freq = c(100, 70, 30, 32, 110, 120, 30, 32, 110)
+)
+
+tab <- xtabs(Freq ~., data = d)
+tab
+```
+
+we have data on the reported mood of people in different roles in an academic institute. Note that there are three levels of each of the categoric variables.
+We have the table and can go straight to the $\chi^2$ test.
+
+```{r}
+chisq.test(tab)
+```
+
+Umm, it's significant. But weren't we expecting to see significances between groups? As with the ANOVA it's done the overall result. We need to do a _post-hoc_ test to do the full set of pairwise comparisons. The package `rcompanion` has a nice function for this, we set the option `method` to decide which correction for multiple comparisons to do, `fdr` is a good choice.
+
+```{r}
+library(rcompanion)
+pairwiseNominalIndependence(tab, method = "fdr")
+```
+
+Better. But not quite! The groups compared are the different `moods`, presumably we wanted to look at the differences between the different `roles`. The table is in the wrong orientation in that case. 
+
+We can explicitly state the orientation of the table by manipulating the formula in `xtabs()`. Compare the results of these two calls 
+
+```{r}
+xtabs(Freq ~ role + mood, data = d)
+xtabs(Freq ~ mood + role, data = d)
+``` 
+
+We usually want the form with the variable we're comparing in the rows, that's the `Freq ~ role + mood`. We can then do the pairwise $\chi^2$. 
+
+```{r}
+tab <- xtabs(Freq ~ role + mood, data = d)
+pairwiseNominalIndependence(tab, method = "fdr")
+```
+
+And we can now clearly see the $p$-values across all the group comparisons. The default output is actually from a range of $\chi^2$ related tests. In this case always take the `p.adj` value as the final $p$-value. 
+
+## Plots for categoric and count data
+
+In previous chapters we've seen how to plot the data we've been working on and usually the sort of plot we want has been quite obvious. With the unordered categoric only data we have here, it isn't so obvious. Often just the table will do! But if you would like some plots here are some rough examples to build from.
+
+### Balloon plot
+
+```{r}
+ggplot(d) + aes(mood, role) + geom_point(aes(size = Freq))
+```
+
+This plot shows circles whose size is proportional to the count at each combination.
+
+### Heatmap
+
+```{r}
+ggplot(d) + aes(mood, role) + geom_tile(aes(fill=Freq))
+```
+
+This plot shows tiles whose filled colour represents the count at each combination
+
+### Stacked bar
+
+```{r}
+ggplot(d) + aes(role, Freq) + geom_col(aes(fill = mood))
+```
+
