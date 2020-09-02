@@ -1,33 +1,35 @@
 # Non-parametric tests and linear models
 
+1. Questions
+  * How do I can I analyse data in non-numeric scales?
+  * What are the common mistakes when analysing non-numeric data?
+2. Objectives
+  * Learn how to spot the places we mix up categoric and non-categoric data
+  * Understand how to use ranked data in a linear model
+  * Understand ordered and unordered factors
+3. Keypoints
+  * Using numbers as names does not make data quantitative
+  * Ranking data makes it possible to analyse ordered categoric data in a linear model
+
+
 So far we've looked at test where the dependent or response measurement has been continuous, so a measurable number on a continuous scale, like mass or fluorescence. In this section we'll look at how straight lines can be used to understand differences when we have a discrete or categorical response variable. A discrete response variable is one where we have certain categories of result, 'tall' or 'short', 'dead' or 'alive' or 'infected' or 'not'. You'll likely be familiar with these approaches from such things as the chi-squared ($\chi^2$) test or other so-called 'non-parametric' test like the Mann-Whitney. 
 
 We'll start by looking at how these data really are different from the data we've used already, common mistakes are always enlightening.
 
 ## Common misrepresentations of discrete data
 
+A common place where analysing discrete data goes wrong is when the analyst confuses the categoric with the continuous, this is often caused by a bad naming scheme as much as a lack of appreciation of the real nature of the data. Often using numbers as the names for categories can lead an unthinking analyst to make a critical mistake. Let's consider a plant infection assay, often called an HR assay. Here a large-ish leaf of a plant is infected at points on its surface with either different strains or varieties of some pathogen and controls. After a period of incubation the severity of disease at each patch is assessed by eye and a score of disease applied. Sometimes that score will be a numeric one that may be like this:
 
-A common place where these analyses goes wrong is when the analyst confuses the categoric with the continuous, and this is often caused by a bad naming scheme, as much as a lack of appreciation of the real nature of the data. Often using numbers as the names for categories can lead an unthinking analyst to make such a critical mistake. Let's consider a plant infection assay, often called an HR assay. Here a large-ish leaf of a plant is infected at points on its surface with either different strains or varieties of some pathogen and controls. After a period of incubation the severity of disease at each patch is assessed by eye and a score of disease applied. Sometimes that score will be a numeric one that may like this:
-
-```{r, echo=FALSE}
-library(magrittr)
-set.seed(123)
-tibble::tibble(
-  severity = c("Dead", "Very Ill", "Ill", "No Effect"),
-  score = c(4,3,2,1)
-)  %>% knitr::kable()
+```{r}
+library(itssl)
+its_hr_score_scheme_time()
 ```
-
 
 Which looks fine at first glance. Typically this will be used in a replicated infection experiment and give data that look like this when collected, which is where the problem arises.
 
-```{r, echo=FALSE}
-scores <- tibble::tibble(
-  strain = rep(c("control", "mild", "deadly"),3),
-  replicate = c(rep(1, 3), rep(2,3), rep(3,3)),
-  score = c( 1, 3, 4, 2, 3, 4, 1, 3, 3)
-) 
-knitr::kable(scores)
+```{r}
+scores <- its_hr_scores_time()
+scores %>% its_table_time()
 ```
 
 We now have a table that looks to computers and humans alike as if it is full of numbers, which it isn't, its full of numbers in the place of words. A simple mental test is to try and use the categories as numbers and see if they behave. For example, is a score of '2' twice that of '1', in this case, is 'Ill' twice the effect of 'No Effect', clearly it isn't confirming that these numbers aren't numbers at all, merely place holders for other text. 
@@ -36,28 +38,57 @@ The problem is exacerbated by not paying attention to this and jumping straight 
 
 ```{r}
 library(ggplot2)
-scores %>% ggplot() + aes(strain, score) + geom_jitter(aes(colour = replicate))
+scores %>% ggplot() + 
+  aes(strain, score) + 
+  geom_jitter(aes(colour = replicate))
 ```
 
-Looks good? No! These data are misrepresented by this plot. There are some alarm bells that should ring when we look at this The first is that scale for replicate. The scale shows replicate values like 1.5 and 2.5 - we didn't do a replicate 1.5 (not least because it doesn't make sense to do a replicate .5). So why has ggplot drawn that scale - because it saw numbers and assumed the data in this column are continuous and not discrete. This needs fixing, the replicate is a category, really, not a number. We wouldn't lose any meaning if we used `A,B,C` or `one,two,three` and while the computer is good at recognising text as categories, it just thinks the numbers are real numbers. So we'll need to avoid doing this, or be prepared to correct it.
+Looks good? 
 
-### Twisting names into numbers confuses the mind.
+No. By the sweet warmth of the first suns of spring, no. 
 
-By using numbers for our score, then we have been able to use `geom_jitter()` data and it has generated additions to the scores that leave it with decimal points and that isn't correct either. It's more defensible on the grounds that if we didn't use `geom_jitter()` all the points would be in one place but there are alternatives to this that avoid misleading us mentally about what scores are.
+These data are misrepresented by this plot. There are some alarm bells that should ring when we look at this. The first is that scale for replicate. The scale shows replicate values like 1.5 and 2.5 - we didn't do a replicate 1.5 (not least because it doesn't make sense to do a replicate .5). So why has `ggplot` drawn that scale - because it saw numbers and assumed the data in this column are continuous and not discrete. This needs fixing, the replicate is a category, really, not a number. We wouldn't lose any meaning if we used `A,B,C` or `one,two,three` and while the computer is good at recognising text as categories, it just thinks the numbers are real numbers. So we'll need to avoid doing this, or be prepared to correct it.
 
-The next level of mistake that follows from believing that the scores are numbers is treating them like numbers. We often see the plot evolve in this manner.
+```{block2, type="sidenote"}
+By using numbers for our score, then we have been able to use `geom_jitter()` as a representation and it has generated additions to the scores that leave it with decimal points and that isn't correct either. It seems defensible on the grounds that if we didn't use `geom_jitter()` all the points would be in one place but to avoid the problem we should be doing something very different.
+```
+
+### Twisting names into numbers confuses the mind
+
+The next level of mistake that follows from believing that the scores are numbers is treating them like numbers. We often see the plot evolve in this manner
 
 ```{r}
-scores %>% ggplot() + aes(strain, score) + geom_boxplot() + geom_jitter(aes(colour = replicate))
+scores %>% ggplot() + 
+  aes(strain, score) + 
+  geom_boxplot() + 
+  geom_jitter(aes(colour = replicate))
 ```
 
-What the cuss? This is a dreadful misrepresentation of the data! To work out why examine the mental contortions we're going through to read this. We see things that aren't really there, statistics like means and ranges, and relative magnitudes between categories. We think we can see these because the boxplot shows them. But the things like the mean of the data, its interquartile range etc are each a numeric feature calculated using formulae based on numbers. But our data are not numbers - they are category names that happen to have digits to represent them. We've squeezed numbers in where no numbers should be and created a problem of mental overloading - believing that because we've used numbers for categories we can treat them as numbers. On top of this the presentation tricks our mind into considering the results as if these statistics were real. 
+What the cuss? This is a dreadful misrepresentation of the data! 
+
+This plot makes us see things that aren't really there - particularly statistics like means and ranges, and relative magnitude differences between categories. 
+
+### This does not mean what I think you think it means
+
+Well, not you specifically, but someone. Someone definitely thinks what I think they think it means because this mistake keeps coming up.  
+We think we can see these statistics because the boxplot shows them. But the boxplot is a dreamlike fabrication. The things it purports to show like the mean of the data, its interquartile range etc are each a numeric feature calculated using formulae based on numbers. But these data are not numbers - they are category names that happen to have digits to represent them. We've squeezed numbers in where no numbers should be and invented statistical lies.
+  
+The use of numbers as names for the categories created a problem of mental overloading - simultaneaously knowing that the data are categorical and treating them as continuous.  Believing that because we've used numbers for categories we can treat them as numbers. On top of this the presentation tricks our mind into considering the results as if these statistics were real. 
 
 If we use the actual category names we see how ridiculous the boxplot is - consider `mean(Ill, No Effect, Ill) = 0.66`,  it doesn't make any sense. By using numbers as proxies for our categories, we've confused the issue and the knock-on effect is that we start to read (conciously or unconciously) things we shouldn't from the plot. One unavoidable impression from the plot is that 'mild' strain is somehow about 3/4 of the badness of the 'deadly' strain.  Does that mean the plants were three-quarters dead? Of course not. The misrepresentation in these plots leaves with bad intuition about the relationships in our data.  
 
-The use of boxplots to show categories is seductive, it gives an impression of transparency and apparent differences when we use numbers, but it is misleading. It is misleading because the differences along the scale are not linear and the numbers don't behave as numbers. With these plots as a base an analysts next run statistical analysis in the way we have learned and generate results that area essentially meaningless. By not considering the categoric nature of our data explicitly we run the risk of misleading ourselves into making bad conclusions about data and eventually doing bad science. 
+The use of boxplots to show categories is seductive, it gives an impression of transparency and apparent differences when we use numbers, this is a case where the road to hell is paved with good intentions.
 
-So we must avoid these confusions. First we must do this when we load our data into R, we'll need to make sure that we use the right data types. As a result of this we'll find that the plots we try to make will come out more appropriately - R will adapt to the data as far as it can. Second, when it comes to doing hypothesis tests we will have to use the proper test for the data type. As we are using the linear model as our basis for our interpretations we'll need to learn the adaptations to that. 
+With these plots as a base the analysts next move is to run statistical analysis in the way we have learned and, sadly, generate results that are worse than meaningless. 
+
+### Build a strong foundation
+
+We must avoid these category confusions. There are some key places we can do this in our analysis workflow
+
+  * Know and declare the proper data type to R
+  * Use a statistical test/model type appropriate to the datatype
+  
+When we load our data into R, we'll need to make sure that we use the right data types. As a result of this we'll find that the plots we try to make will come out more appropriately - R will adapt to the data as far as it can. Second, when it comes to doing hypothesis tests we will have to use the proper test for the data type. As we are using the linear model as our basis for our interpretations we'll need to learn the adaptations to that. 
 
 In the rest of this chapter we'll look at correctly describing data to R, creating an appropriate plot for some data and then back to our main thread, using the linear model as a basis for our understanding of statistical tests, this time with categorical response variable.
 
@@ -65,11 +96,13 @@ In the rest of this chapter we'll look at correctly describing data to R, creati
 
 At the start of an analysis, when we're loading data into R is our best opportunity to correct type, before we've done any work on it and before it starts to get in the way. In a lot of everyday cases we'll be loading text in from an Excel file or something similar like a `.csv` or `.txt` file, so that will be our example case.
 
-Base R provides the `read.csv()`  _write dot csv_ function for us to load `.csv` files and no option for loading Excel files. The `tidyverse` packages `readr` and `readxl` provide the `read_csv()` and `read_excel()` options respectively. You'll see `read.csv()` a lot in older code and quick tutorials, but it is a bit clunky. Some of `read.csv()`s default behaviours can be a bit unpredictable and we have to undo some of its work sometimes. So we'll look at the more consistent tidyverse offerings.
+```{block2, type="sidenote"}
+Base R provides the 'read.csv()'  (_read dot csv_) function for us to load '.csv' files and no option for loading Excel files. The tidyverse packages readr and readxl provide the read_csv() and read_excel() (_read underscore csv_) options respectively. You'll see read.csv() a lot in older code and quick tutorials, but it is a bit clunky. Some of read.csv()'s default behaviours can be a bit unpredictable and we have to undo some of its work sometimes. So we'll look at the more consistent tidyverse offerings.
+```
 
 ### Setting type with `read_csv()`
 
-On loading data with this, we get a column specification - this tells us what R thinks each column contained, check it carefully to make sure R understands the data as you do. Here we'll load in the mock HR data we used above.
+On loading data with `read_csv()`, we get a column specification - this tells us what R thinks each column contained, we must check it carefully to make sure R understands the data as you do. Here we'll load in the mock HR data we used above.
 
 ```{r}
 library(readr)
@@ -77,7 +110,13 @@ read_csv("data/sample.csv")
 
 ```
 
-So we can see that R thinks the column `strain` contains `character` data (text), and the `replicate` and `strain` column data are `double` (numeric type) data. Well, almost one out of three is pretty bad. Although we (foolishly) coded the categoric `replicate` and `strain` as numbers, they aren't, they're categories (or factors, in statistic parlance). We can use a column specification in the `read_csv()` function to force our types.
+So we can see that R thinks the column `strain` contains `character` data (text), and the `replicate` and `strain` column data are `double` (numeric type) data. Well, almost one out of three is pretty bad. Although we (foolishly) coded the categoric `replicate` and `strain` as numbers, they aren't, they're categories (or factors, in statistic parlance). We can use a column specification in the `read_csv()` function to force these to be factors. 
+
+```{block2, type="sidenote"}
+Factors are a statistical name for a categorical variable. Each factor is made up of one or more 'levels' the different values that factor can take. In our HR score data, the factor would be 'score' and it's levels would be '3','1','2' and '4'.  There are lots of tools that work with factors in R, they are a common object.
+```
+
+The `col_factor()` function tells R that these columns should be a factor when loading.
 
 ```{r}
 read_csv(
@@ -95,7 +134,7 @@ This is much better, R now knows not to treat any of those columns as numbers, s
 We can go one step further and explicitly state the allowed values in a factor. When we do this we get to pick the order that R will deal with them in (and this is important in our data because control < mild < deadly in some sense) and it will spot when we try to load in a factor level that we haven't declared, which can save us headaches down the road.
 
 ```{r}
-read_csv(
+scores <- read_csv(
   "data/sample.csv",
   col_types = cols(
     strain = col_factor( levels = c("control", "mild", "deadly")),
@@ -103,6 +142,8 @@ read_csv(
     score = col_factor( levels = c("1", "2", "3", "4"))
   )
 )
+
+scores
 ```
 
 If you inspect this output and the one previous we can see that we have an order that respects what we told R the data should look like. This is more obvious when we plot as the axes etc will automatically come out in that order.
@@ -111,9 +152,8 @@ If you inspect this output and the one previous we can see that we have an order
 
 Often our data won't come straight from a file, it'll come from some other function that had its own view on the types. To set types with any old dataframe, use `transmute()` from `dplyr()`
 
-```{r}
+```{r, message=FALSE}
 library(dplyr)
-str(scores)
 
 scores %>% transmute(
   strain = as.factor(strain),
@@ -139,34 +179,15 @@ scores %>% transmute(
 Now we have our data in the right format we can get to plotting, let's try and repeat the plot we went for when we first looked at these data. 
 
 ```{r}
-scores <- read_csv(
-  "data/sample.csv",
-  col_types = cols(
-    strain = col_factor( levels = c("control", "mild", "deadly")),
-    replicate = col_factor( levels = c("1", "2", "3")),
-    score = col_factor( levels = c("1", "2", "3", "4"))
-  )
-)
-
 scores %>% ggplot() +
   aes(strain, score) +
   geom_jitter(aes(colour = replicate ))
 ```
 
-Its' better but not perfect. We get the replicate labelled properly - as discrete categories rather than a continuous scale, and the strain is in a sensible order. But the jitter still leaves us with the impression that we have numeric data. We can fix this but first let's jump to repeating our earlier mistake with boxplots
+Better but not perfect. We get the replicate labelled properly - as discrete categories rather than a continuous scale, and the strain is in a sensible order. But the jitter still leaves us with the impression that we have numeric data. We can fix this but first let's jump to repeating our earlier mistake with boxplots
 
 
 ```{r}
-
-scores <- read_csv(
-  "data/sample.csv",
-  col_types = cols(
-    strain = col_factor( levels = c("control", "mild", "deadly")),
-    replicate = col_factor( levels = c("1", "2", "3")),
-    score = col_factor( levels = c("1", "2", "3", "4"))
-  )
-)
-
 
 scores %>% ggplot() +
   aes(strain, score) +
@@ -175,7 +196,7 @@ scores %>% ggplot() +
 
 ```
 
-OK, weird. The boxplot clearly fails, there isn't the proper data to draw a boxplot with so coding our data as factors has saved us this error too. Though not explictly! At least it sends some sort of signal that something isn't right with our plot. 
+OK, weird. The boxplot clearly fails, there isn't the proper data to draw a boxplot, coding our data as factors has saved us this error too. Though not explictly! At least it sends some sort of signal that something isn't right with our plot. 
 
 Moving on to evolve our plot, lets remove the jitter and go to a `geom_point()` which puts our points in the exact place, without jitter.
 
@@ -198,11 +219,11 @@ And with that we can see the number of datum that make up each point. This is a 
 
 It is possible to get a prettier and more descriptive plot with the different replicates side by side and coloured, but it takes a different set of geoms and a slightly involved approach which has more to do with using `dplyr` and `ggplot` so we can leave that as an exercise for another time. The point here is that an appropriate plot for categoric data will save us from a poor understanding of the relationships in the data. 
 
-## Linear models and a categoric response variable
+## Linear models and a categoric $y$ variable
 
-How can we now apply our knowledge of linear models to find differences between $x$ categories when our $y$ is also categoric.
+How can we now apply our knowledge of linear models to find differences between $x$ categories now that our $y$ is also categoric and not numeric.
 
-One thing we haven't considered up to now with our categories is that, although categories don't behave like numbers, they can behave like a queue, they often do have an intrinsic and meaningful order. A category like our HR score definitely has an order: $score\ 1 < score\ 2 < score\ 3 < score\ 4$ even if the intervals are not smooth or equal. Distinctly some categories don't have an order, e.g species 1 and species 2 aren't greater or lesser than each other. We need to treat ordered and unordered categories differently.
+One thing we haven't considered up to now with our categories is that, although categories don't behave like numbers, they can behave like a queue, they often do have an intrinsic and meaningful order. A category like our HR score definitely has an order: $score\ 1 < score\ 2 < score\ 3 < score\ 4$ even if the intervals are not smooth or equal or (as in an HR experiment, defined in any other way). Conversely, some categories don't have an order, e.g species 1 and species 2 aren't greater or lesser than each other. We need to treat ordered and unordered categories differently.
 
 ### Ordered categoric response variables
 
@@ -224,7 +245,7 @@ ordfac_observations <- factor(observations,
                           )
 ```
 
-All we've done here is create some data in `observations` then turn it into a factor, the `levels` option sets the allowed levels and the `ordered` option tells R to take the given order. Inspecting the factor object by printing
+All we've done here is create some data in `observations` then turn it into a factor, the `levels` option sets the allowed levels and the `ordered` option tells R to take the given order. Let's inspect the factor object by printing
 
 ```{r}
 ordfac_observations
@@ -300,7 +321,6 @@ So the Mann-Whitney U (Wilcoxon) test tells us that the difference between the s
 ```{r}
 kruskal.test(rank_score ~ strain, data = scores)
 ```
-
 
 Now this is dissappointing, as the Kruskal Wallis test tells us that at least one of the groups is different from the others, but crucially it doesn't tell us which ones! So we end up doing a multiple `wilcox.test()` and applying a correction to the $p$value. The linear model and ANOVA approach, proves to be more that a little more straightforward now that we have the knack.  
 

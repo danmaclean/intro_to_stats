@@ -143,3 +143,16 @@ Error in model.frame.default(Terms, newdata, na.action = na.action, xlev = objec
   factor city has new level Abilene
 ```
 show how to get CI for predictions
+
+
+
+-----------
+Contrast this with the effort and time investment that it would take to learn the many different significance tests and all the different ways that they work. Remember our aim here is to give you a useful tool for talking about and understanding the working of the tests you'll encounter most often as scientists
+
+The 'learn all the significance tests' approach restricts us as scientists exploring our data in important ways. For example, the $t$-test (like all other tests) is a special case of the linear model, it can only be applied reliably when certain conditions are met. 
+
+
+The $t$-test also 'black-boxes' the whole process, all the output you focus on is a $p$-value, in practice there isn't a whole lot to it and unless you study the innards of the $t$-test you can never compare two $t$-test results. 
+
+Have you ever seen a $p$-value that you couldn't replicate or looked a bit suspect but couldn't work out why - using a linear model with all its measures of believability allows such comparisons to be done, you could say exactly why one model fit was better or worse than another and which hypotheses you can keep and reject more confidently. This is a very important point, by using linear models we also have a consistent way to criticise and evaluate our statistical conclusions - helping us to make better decisions and helping us to answer questions (perhaps from reviewers or group leaders) about the applicability and believeability.
+-----------

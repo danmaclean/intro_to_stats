@@ -257,12 +257,15 @@ but that isn't the usual way the linear model is written, you can't actually tra
 
 Unlike a straight line, a linear model doesn't have to have only one slope, that is from the $y$ variable to a single $x$ independent variable, it can have many. This doesn't mean that the line has a bend in it, like this 
 
-TODO FIGURE
+```{r}
+its_bendy_line_time()
+```
 
-but rather that the model can take into account more than one data axis (variable) (or dimension) - more like this, where a new variable is called $z$
+but rather that the model can take into account more than one data axis (variable) (or dimension) - more like this, where a new variable is called $z$, so the whole thing if plotted looks more like the top 3D panel here in which the model allows us to see the combined effects of $x$ and $z$ on the output $y$ but we can focus on each variable individually by taking one at a time, like in the two split panels at the bottom (note how this is like looking into the front and right side of the 3D panel individually). 
 
-  
-TODO FIGURE
+```{r, message=FALSE, warning=FALSE, fig.height=8}
+its_three_variable_plot_time()
+```
 
 We can only see up to two extra axes in a plot, and only visualise that many without getting twitchy eyes, but going to three, four or many more dimensions is no problem for the linear model framework and they all work the same way. When it comes to notating this we run into a problem as we run out of letters. Let's build it up...
 
@@ -299,6 +302,7 @@ We can see from this equation that a linear model is really just a load of varia
 
 We can see that what the linear model is looking for is all those values of $\beta$ - its going to calculate slopes for us. Its the job of the linear model to work out the coefficients and intercepts from the data we put into it and to tell us which of the slopes are non-zero ones and therefore important in determining the size of the output variable. With this information we can tell not only significant differences between the variables, but whether any are more important than others in affecting the outcome. 
 
-Knowing notation like this will be useful later when we are looking at comparing multiple variables with linear models.
+At the very least knowing notation like this will be useful later when we are looking at comparing multiple variables with linear models, but the linear model also gives us a lot of ways of talking about our experiment that we might not otherwise have had. The model gives us a way of assessing and quantifying the effects of the experimental variables on the outcome and a way of making quantitative predictions or hypotheses about the experiment, we can use expected values of the coefficients to say how we believe a model will work, when it proves to be different from the data we can validate or falsify our hypotheses. 
+
 
 

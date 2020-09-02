@@ -1,40 +1,35 @@
 # ANOVA and linear models
 
+1. Questions
+  * How can we compare many variables and factor levels
+  * How can we check for interactions between treatments
+2. Objectives
+  * Learn how to specify more complicated linear models
+  * Understand how ANOVA works with a linear model
+  * Understand how to spot interactions from plots
+  * Learn how to deal with interactions in ANOVA
+3. Keypoints
+  * Working with many variables is the same as working with just one
+  * ANOVA is a tool for specifying comparisons between variables in linear models
+  * We must take care to account for interactions between the variables
+
 ## Comparing groups in a single variable
 
-In the last section we looked at using the linear model to compare two groups, in this section we'll look at using it to compare more than two. One thing to note is that we're still working with only one explanatory variable, the groups we are talking about are basically different values that the one variable can take. In the `PlantGrowth` data the variable is called `group` and the values it takes are `ctrl`, `trt1` and `trt2`.
+In the last section we looked at using the linear model to compare two groups, in this section we'll look at using it to compare more than two. One thing to note is that (for now) we're still working with only one explanatory variable, the groups we are talking about are basically different values that the one variable can take. In the `PlantGrowth` data the variable is called `group` and the values it takes are `ctrl`, `trt1` and `trt2`.
 
-<div class = "todo">
-TODO GLOSSARY EXPLANATORY VARIABLE, GROUPS LEVELS, FACTOR
-</div>
 
-You'll be pleased to know this is where the pay off comes. Any number of groups is no more complicated than the two we've already done.
+You'll be pleased to know this is where the pay off comes. Any number of groups (and later any number of variables) is no more complicated than the two we've already done.
 
-We can visualise the process as simply being a case where we have more than one line to examine. 
 
-```{r, echo=FALSE, message=FALSE}
-library(dplyr)
-library(ggplot2)
+We can visualise the process as simply being a case where we have more than one line to examine. Consider this figure, here we draw the categorical scatter plot and draw lines joining all the different group means that indicate the different comparisons we might choose to do with these data. 
 
-y_means <- PlantGrowth %>% 
-  group_by(group) %>% 
-  summarise(gmean = mean(weight))
-
-PlantGrowth %>% ggplot() + aes(as.numeric(group), weight) + geom_point() + 
-  geom_segment(x = 1, y = y_means$gmean[[1]], xend = 2, yend = y_means$gmean[[2]]) +
-  geom_segment(x = 1, y = y_means$gmean[[1]], xend = 3, yend = y_means$gmean[[3]] ) #+
-  #geom_segment(x = 2, y = y_means$gmean[[2]], xend = 3, yend = y_means$gmean[[3]])
-
+```{r, message=FALSE}
+library(itssl)
+its_multi_category_with_lines_time()
 ```
 
-In terms of a hypothesis test what we're asking amounts to the same as we saw with the $t$-test:
-
-  * All flat lines with slopes of zero is equivalent to the Null hypothesis 
-      - $H_{0}$ the group means are _all_ equal
-  * At least one $p$-value that suggests the slope is rare is equivalent to the Alternative hypothesis
-      - $H_{1}$ the group means are not _all_ equal
-
-And putting that in a linear model is no different than before because we still have only one variable.
+So we'll need to know how to read the linear model for each of the given lines. 
+Let's jump in and work through that. First let's build a linear model with a variable with multiple groups.
 
 ```{r}
 model <- lm(weight ~ group, data = PlantGrowth)
@@ -52,10 +47,15 @@ summary(model2)
 
 And now we see the `trt2` as common reference against the `ctrl` and `trt1` groups.
 
-In these data `ctrl vs trt1` appears to be significant according to the linear model `model1` and `trt1 vs trt2` appears to be significant according to the linear model `model2` but we did need to create two models to do this. If this seems longwinded or illogical, then that's fair. The two models have the same data and specification so should have the same results in - it was really just the way we were ordering things in the data that was different.  The real problem is just one of bookkeeping.  The linear models are rich and not all the comparisons that can be done with them can easily be written in `summary(model)`. To answer specific questions from an analysis technique for getting specific comparisions (or contrasts in the statistics jargon) from linear models has been invented, that technique is called ANOVA (Analysis of Variance).
+In these data only `trt2 vs trt1` appears to be significant according to the linear model `model2` but we did need to create two models to do this, which is a bit of a statistical mess. If this seems longwinded or illogical, then that's fair. The two models have the same data and specification so should have the same results in - it was really just the way we were ordering things in the data that was different.  The real problem is just one of bookkeeping.
 
+The linear models are rich and not all the comparisons that can be done with them can easily be written in `summary(model)`. To answer specific questions from an analysis technique for getting specific comparisions (or contrasts in the statistics jargon) from linear models has been invented, that technique is called ANOVA (Analysis of Variance).
 
-### One-Way comparisons
+```{block2, type="sidenote"}
+I know, I gave you the impression that we would be using linear models and not ANOVAs, but the thing is, ANOVAs have always been based on linear models. In a way ANOVA isn't a test of its own, not in the way we think of $t$-tests or $\chi$-squared tests. ANOVA is plural, they are a set of tools for pulling comparisons straight out of linear models in the best way. So that's another great reason for having bothered to understand something of how linear models work.
+```
+
+## One-Way comparisons - groups in a single variable
 
 The situation where we have just one variable is called a 'One-Way' ANOVA. 
 
@@ -68,9 +68,15 @@ ano <- aov(model)
 TukeyHSD(ano)
 ```
 
-It seems to do the job, though the 'flavour' of ANOVA it does is limited and applies only when the standard assumptions of ANOVA are met.
+It seems to do the job, though the 'flavour' of ANOVA it does is sometimes limited and applies only when the standard assumptions of ANOVA are met.
 
-A better alternative is the `multcomp` package function `glht()` (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.
+```{block2, type="sidenote"}
+
+A scary thing that statisticians often say is that such-and-such a method is only applicable when certain assumptions are met. This can make scientists nervy about applying any methods in case it is wrong. I would like to encourage you to relax about this aspect. Most statistical tests are pretty robust to against violations, and if anything tend to get more conservative (IE, generate fewer significant results) in these cases. There are a few assumptions and even a few types of data that we need to be aware of. I dedicate some space in the last chapter to understanding where these trip-ups might happen.
+
+```
+
+A better alternative (in the sense of flexibility for the user) is the `multcomp` package function `glht()` (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.
 
 ```{r,message = FALSE, warning=FALSE, echo=FALSE }
 #load the thing quietly
@@ -85,77 +91,63 @@ summary(tested)
 
 The `linfct` option just takes a specification of the things to be tested, and the `mcp()` function is a helper that generates the comparison based on a text description, here that the variable `group` should be analysed by 'Tukey'.
 
-By printing the summary we see the contrast hypotheses writ explicitly (e.g. the difference between `ctrl` and `trt1` is 0) and the conclusions: there is no evidence to suggest either treatment is different from the control, but the difference we observe between the `group1` and `group2` occurs by chance only about 1.2 percent of the time. 
+By printing the summary we see the contrast hypotheses writ explicitly (e.g. the difference between `ctrl` and `trt1` is 0) and the conclusions: there is no evidence to suggest either treatment is different from the control, but the difference we observe between the `trt1` and `trt2` occurs by chance only about 1.2 percent of the time, so is deemed 'significant'. 
+
+And that's it! A properly done and specified use of the linear model and a subsequent ANOVA with Tukey's _post hoc_ used to determine differences.
 
 We'll see more of how to use `glht()` as we go.
 
-## Comparing groups in multiple variables 
 
-Often we'll have experimental data where we have more than one explanatory variable, for example, `temperature` and `fertiliser` and want to know the effects of each on a response variable like `yield`. 
+## Two-Way comparisons - groups in multiple variables
 
-### Two-Way comparisons
+Often we'll have experimental data where we have more than one explanatory variable, for example, `compost` and `fertiliser` and want to know the effects of each on a response variable like `yield`. Where you have two variables, it's called a Two-Way ANOVA.
 
-Such a situation is complicated over the single case as we have more the possibility of an interaction between the variables to consider. The case where we want to look at ANOVA for models with an two variables and an interaction effect is called a `Two-Way ANOVA`. 
+Two-Way comparisons are pretty similar in practice to One-Way comparisons. So similar in fact that you're going to jump in and try one, without any further instruction
 
-Let's work through an example that highlights that. Here's some data on reported enjoyment of some food, with different condiments added 
+```{block2, type="task"}
 
-```{r, load_food, echo=FALSE, message=FALSE}
-food <- readr::read_csv("data/Interactions_Categorical.csv")
-food <- food %>% transmute(Food = as.factor(Food), Condiment = as.factor(Condiment), Enjoyment )
-knitr::kable(sample_n(food, 5))                                             
+1. Use the function `its_compost_time()` to load some data on the effects of changing compost type and a supplement on plant size. 
+2. Build a linear model specifying that size is related to the two other explanatory variables. We haven't explicitly discussed the syntax for two variables, but in the linear model a extra variables is added with '+', thats how its done in R e.g. `lm(y ~ a + b + c)`. Inspect the model.
+3. Carry out Tukey's to test the hypotheses i) that the true difference in means between Formula X1 and X2 is 0,  and ii) that the true difference in means between John Innes #1 and #2 is 0. 
+
+```
+
+## Interactions between variables
+
+Working with multiple variables is complicated over the single case as we have the possibility of an interaction between the variables to consider. That is to say that the response in an experiment may be stronger under conditions `a and b` than in `a` or `b` alone even if `a` or `b` alone is greater than `c`. We can visualise this as straight lines like in the diagrams below
+
+```{r, message=FALSE}
+its_interaction_example_time()
+```
+
+We can see the effect of interaction quite clearly in the two types of data, whenever `a & b` is used then we have greater responses, either in greater means or in steeper gradients.
+
+Let's work through an example that highlights how we identify and investigate this with linear models and ANOVAs. Here's some data on reported enjoyment of some food, with different condiments added 
+
+```{r, load_food, message=FALSE}
+food <- its_hot_dog_and_ice_cream_time()
+knitr::kable(dplyr::sample_n(food, 5))                                             
 ```
 
 Looking at those in the way we have already - each variable individually - then we would generate the following plots and lines to examine.
 
 
-```{r,fig.show="hold", out.width="50%", echo=FALSE, message=FALSE, fig.height=9}
-## turn into a plot function so you can easily render in the live coding demo
-
-plot_condiment <- food %>% 
-#  group_by(Condiment) %>% 
-#  summarise(mean_enj = mean(Enjoyment)) %>% 
-  mutate(cond_num = if_else( Condiment == "Chocolate Sauce", 1, 2) ) %>% 
-ggplot() + aes(Condiment, Enjoyment) + 
-  geom_boxplot() +
-  geom_jitter(width = 0.1) + 
-  geom_smooth(
-    aes(x = cond_num, y = Enjoyment), 
-    method = lm, 
-    colour = "red", 
-    linetype = "dashed"
-  ) + theme_minimal()
-plot_condiment
-
-plot_food <- food %>% 
-  mutate(food_num = if_else( Food == "Hot Dog", 1, 2) ) %>%
-ggplot() + aes(Food, Enjoyment) + 
-  
-  geom_boxplot() + 
-  geom_jitter(width = 0.1) + 
-  geom_smooth(
-    aes(x = food_num, y = Enjoyment), 
-    method = lm, 
-    colour = "red", 
-    linetype = "dashed"
-  )  + theme_minimal()
-plot_food
+```{r,message=FALSE}
+its_hot_dog_and_ice_cream_plot_time()
 ```
 
+Without rushing ahead to do the modelling, we see that chocolate sauce has a slightly greater effect on enjoyment than mustard, whereas the enjoyment of the two food types is the same. So without a hypothesis test the dangerously thin conclusion would be 'use chocolate sauce to enhance your enjoyment of Hot Dogs or Ice Cream'.  We might be suspect of this conclusion not only because it seems not to line up with our intuitive sense of what's going on, but also because of those strange splits in the data. Look within each column and you can see that there is a definite clustering that is not a good sign, we possibly don't have a good specification of our data here.
 
-
-
-Without rushing ahead to do the modelling, we see that chocolate sauce has a slightly greater effect on enjoyment than mustard, whereas the enjoyment of the two food types is the same. So the conclusion would be 'use chocolate sauce to enhance your enjoyment of Hot Dogs or Ice Cream'. 
-
-Let's see what the model says, in specifying the second variable can be added with a `+` and 
+Let's see what the model says, in specifying the second variable can be added with a `+` as 
 
 ```{r}
 model_1 <- lm(Enjoyment ~ Food + Condiment, data = food)
 summary(model_1)
 ```
 
-The summary isn't promising, it looks like neither is significant. Let's do the ANOVA and get conclusive proof.
+The summary isn't promising, it looks like neither is significant. Let's do the ANOVA and get a clearer view.
 
-The call to `glht()` is a bit more complicated, but not much
+The call to `glht()` is a bit more complicated than before, but not much
 
 ```{r}
 summary(glht(model_1, linfct = mcp(Food = "Tukey", Condiment = "Tukey") ) )
@@ -163,36 +155,22 @@ summary(glht(model_1, linfct = mcp(Food = "Tukey", Condiment = "Tukey") ) )
 
 Neither factor seems to be significant. Hmm. This seems like a slightly strange conclusion - and it is. The presence of two variables is confusing this approach. Look at what we get if we split the data by the two variables at once.
 
-### Interaction between variables
-
-```{r, echo=FALSE, message=FALSE}
-## turn into a plot function so you can easily render in the live coding demo
-
-plot_interaction <- food %>% 
-  mutate(food_num = if_else( Food == "Hot Dog", 1, 2) ) %>%
-  ggplot() + aes(Food, Enjoyment) + 
-  geom_jitter( aes(colour = Condiment)) +   
-  geom_smooth(
-    aes(x = food_num, y = Enjoyment, colour = Condiment), 
-    method = lm
-  )  + theme_minimal()
-
-plot_interaction
-
-interaction.plot(food$Food, food$Condiment, food$Enjoyment)
+```{r, message=FALSE}
+its_hot_dog_and_ice_cream_two_ways_time()
+#interaction.plot(food$Food, food$Condiment, food$Enjoyment)
 ```
 
 Ok! That's very different and very much clearer. The enjoyment is very much dependent on the combination of food and condiment. This is a classic case of interaction between variables. You get results that are conditional on the combined values of the variables. 
 
 
-__PULL_OUT__
+```{block2, type="sidenote"}
 The cross-over of the lines is a visual diagnostic of the presence of an interaction effect. 
-__PULL_OUT__
+```
 
 
-### Modelling an interaction effect
+### Analysing and modelling an interaction effect
 
-The interaction effect should be checked for in the linear model. It is quite easy to check for and requires a slight extension to syntax. An interaction can be specified with the `:`. 
+The interaction effect should be checked for in the linear model. It is quite easy to check for and requires a slight extension to syntax. An interaction term can be specified with the `:`. 
 
 ```{r}
 interaction_model <- lm(Enjoyment ~ Food + Condiment + Food:Condiment, data = food)
@@ -200,36 +178,42 @@ interaction_model <- lm(Enjoyment ~ Food + Condiment + Food:Condiment, data = fo
 
 (there is also a short hand that allows the whole thing to be specified in one term `*`, which is used like `lm(Enjoyment ~ Food * Condiment, data=food)`)
 
-and when we print the `summary()` we get the book-keeping issue, but we can see the usual stuff.
+and when we print the `summary()` we get the book-keeping issue of not all the results we want to see being immediately available, but we can see the usual stuff.
 
 ```{r}
 summary(interaction_model)
 ```
 
-This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? They aren't here, and this is generally the case so we need to know how to extract them. First we must decide what the contrasts we're going to check must be. In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
+This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? They are not, these seem a bit generic and hard to interperet. This is generally the case so we need to know how to extract them. First we must decide what the contrasts we're going to check must be. In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
 
 Let's see whether food alone or condiment alone has an effect. This would be like the first situation we looked at, 
 
-```{r, fig.show="hold", out.width="50%"}
-plot_condiment
-plot_food
+```{r, message=FALSE}
+its_hot_dog_and_ice_cream_plot_time()
 ```
 
 in the way that the output we've seen so far has it, this would be 
 
-  Hot Dog - Ice Cream == 0
-  Chocolate Sauce - Mustard == 0
+>
+>  Hot Dog - Ice Cream == 0
+>
+>  Chocolate Sauce - Mustard == 0
 
 Let's also see whether `food * condiment` has an effect. This would be like the interaction situation.
 
-Hot Dog:Mustard - Ice Cream:Mustard == 0
-Hot Dog:Chocolate Sauce - Ice Cream:Chocolate Sauce == 0
+>
+>  Hot Dog:Mustard - Ice Cream:Mustard == 0
+>
+>  Hot Dog:Chocolate Sauce - Ice Cream:Chocolate Sauce == 0
 
-```{r}
-plot_interaction
+```{r, message=FALSE}
+its_hot_dog_and_ice_cream_two_ways_time()
 ```
 
-So we have four lines of interest to look at - four contrasts. For the two main non-interaction effects we can look at these as we've done before, using the `mcp()` function.
+So we have four lines of interest to look at - four contrasts. 
+
+
+For the two main non-interaction effects we could think to look at these as we've done before, using the `mcp()` function with the model with the explicit interaction in it, like this
 
 ```{r}
 summary(
@@ -240,25 +224,71 @@ summary(
 )
 ```
 
-#### Doing all pairwise interactions
+This gives a result, but actually throws up a warning. Since we have an interaction term in our model, we have a complication. The `glht()` function has spotted that there are interacting terms and potential for confounding and the $p$-values are therefore a bit suspect without being a bit more careful. We need to take account of the interaction as a term of its own in our hypothesis tests. Annoyingly, this isn't an easy thing to specify in the `glht()` function and the easiest way in practice is to just do all the comparisons.
 
-Although we're interested in only two specific interactions, usually it's easier to do all pairwise comparisons in one step, as we don't often have so many interacting variables that it gets unwieldy. To do this we must add an interaction column to our data and model that.
 
-```{r}
-food_2 <- food %>% mutate(FoodCondiment = interaction(Food, Condiment))
-
-int_model2 <- lm(Enjoyment ~ FoodCondiment, data = food_2)
-
-summary(glht(int_model2, linfct = mcp(FoodCondiment = "Tukey")))
+```{block2, type = "sidenote"}
+The reason that the warnings are thrown in the interaction model is to do with an ANOVA internal object called the Contrasts Matrix, which specifies the contrasts and is used in the linear algebra of the ANOVA and Tukey's method. The Contrast Matrix is basically a grid with the different samples and contrasts as the rows and columns with a load of ones and zeroes in it. For Tukey's method to work the Contrast Matrix should be 'orthogonal', which roughly means symmetric around a certain axis. When we get the interaction term in the model we lose the orthogonality in the Contrast Matrix and Tukey's method stops working well. The orthogonality is one of the assumptions that statisticians talk about. It is possible to set up different Contrast Matrices and there are methods for getting significance for non-orthogonal ones, however that does take us a bit too far into theory. For most purposes it will work to use the alternative method below.
 ```
 
-And now we can see all possible interaction groupings and lines. We can see that the signficances make good sense. The Hot Dog and Mustard is no more enjoyable than the Ice Cream and Chocolate Sauce, the Ice Cream and Mustard is no more enjoyable than the Hot Dog and Chocolate Sauce and all the other match and mismatch food and condiments are as we might expect from this very obviously loaded example. 
+## Doing all pairwise interactions
 
-We said we wanted to look specifically at the interaction between the Hot Dog with Mustard and Ice Cream with Mustard - we can see that there is a significant difference in enjoyment, about 17 points. Similarly Hot Dog with Chocolate Sauce is less enjoyable than  Ice Cream with Chocolate Sauce, by about 27 points.
+Although we're interested in only two specific interactions, usually it's easier to do all pairwise comparisons in one step, as we don't often have so many interacting variables that it gets unwieldy. To do this we must add an interaction column to our data and model that. The `interaction()` function is built for just this reason and allows us to add an interaction column directly from existing data.
 
-#### Testing specific interactions
+```{r}
+food_2 <- food %>% dplyr::mutate(FoodCondiment = interaction(Food, Condiment))
+knitr::kable(dplyr::sample_n(food_2, 6), align = "c")
+```
 
-The table above, as ever, is a bit rich and confusing, you can get a simpler output at the expense of some more work. For the two sets of interactions we're interested in we can look at them specifically but naming them explicitly in `glht` is trickier than we've done so far.  
+We can see that all we've done is add a column that describes the interaction. We can use this in the place of the individual variables as before and now don't need to explicitly mention the interaction in the specification because it is modelled implicitly in the new column. That means our model looks like this
+
+```{r}
+interaction_model2 <- lm(Enjoyment ~ FoodCondiment, data = food_2)
+```
+
+To do the contrasts we can use the single interaction column as the target of Tukey's.
+
+```{r}
+summary(
+  glht(interaction_model2, linfct = mcp(FoodCondiment = "Tukey"))
+  )
+```
+
+We can see all possible interaction groupings and lines, without any warnings. We can see that the signficances make good sense. The Hot Dog and Mustard is no more enjoyable than the Ice Cream and Chocolate Sauce, the Ice Cream and Mustard is no more enjoyable than the Hot Dog and Chocolate Sauce and all the other match and mismatch food and condiments are as we might expect from this very obviously loaded example. 
+
+We said we wanted to look specifically at the interaction between the Hot Dog with Mustard and Ice Cream with Mustard - we can see that there is a significant difference in enjoyment, about 28 points. Similarly Hot Dog with Chocolate Sauce is less enjoyable than  Ice Cream with Chocolate Sauce, by about 28 points.
+
+## Summary
+BIT MORE TO DO
+That's all we need to do to perform ANOVAs with linear models - which always use linear models anyway. 
+
+
+## Extra Credit: ANOVA model-level $p$ and as a hypothesis test
+
+Recall that when we introduced linear models we looked at the statistics of the coefficients (the column $Pr(>|t|)$ in the coeffecient block of the summary) _and_ the statistics of the whole model, the $p$-value at the end.
+
+When we did the simple linear model as an alternative of the $t$-test, then these two $p$-values were the same - this is because the model then only had one coefficient, so the $p$ of that coefficient was the overall $p$. With more than one coefficient, then the overall model score is made up differently. The overall model can be significant, whereas the individual variables/groups/coefficient within may not be. That's what we saw when we looked at the `PlantGrowth` data.  
+
+```{r}
+summary(model)
+```
+
+None of the reported variable/group/coefficient values are significant but the model level $p$ is. This indicates that one of the groups is significant.  This is because the ANOVA as a test tests the hypothesis that all lines between groups have slopes of zero. When one line isn't likely to have a zero slope the model $p$ is low
+
+In terms of a formal hypothesis test what we're asking amounts to an extension to what we saw with the $t$-test:
+
+  * All flat lines with slopes of zero is equivalent to the Null hypothesis 
+      - $H_{0}$ the group means are _all_ equal
+  * At least one $p$-value that suggests the slope is rare is equivalent to the Alternative hypothesis
+      - $H_{1}$ the group means are not _all_ equal
+
+In other words we can think of the ANOVA testing the idea that all the groups are the result of random sampling from all the observations, if this were true the slopes between groups would all be the same. 
+
+It's by using the _post-hoc_ tests like Tukey's we get at the specific differences between groups.
+
+## Extra Credit: Testing specific interactions
+
+The table output is a bit rich and confusing, you can get a simpler output at the expense of some more work. For the two sets of interactions we're interested in we can look at them specifically but naming them explicitly in `glht` is trickier than we've done so far.  
 
 We have to specify a matrix of comparisons ourselves. The first step is to work out all the different interactions of the levels of the `food*condiment` interaction term. We can do that with the `interaction()` function
 
@@ -310,127 +340,4 @@ Now we can do the test using the custom matrix.
 summary(glht( interaction_model, linfct = contr_of_interest))
 ```
 
-And there we have the specific interaction contrasts.
-
-```{r}
-library(lsmeans)
-library(multcompView)
-marginal = lsmeans(interaction_model, ~ Food:Condiment)
-marginal
-plot(marginal)
-cld(marginal, Letters=letters)
-plot(cld(marginal, Letters=letters))
-
-contrast(marginal, adjust="Tukey")
-```
-
-
-
-
-
-
-
-H0: The means of all month groups are equal
-H1: The mean of at least one month group is different
-
-
-H0: The means of the gender groups are equal
-H1: The means of the gender groups are different
-
-
-H0: There is no interaction between the month and gender 
-H1: There is interaction between the month and gender 
-
-## Occam's Razor
-
-Simplest model - Compost data
-Add compost data to package.
---------------------------------------
-
-tasks one way, two way and three way anova on palmers penguins
-use `interaction.plot()` on food to reproduce interaction plot. What would no interaction look like (flat lines)
-compare and keep simplest model.
-
-Look at some results tables to see how much effects are (examine the estimate columns).
-
-
-Why always Tukey - warn what the assumptions are and when they need to look elsewhere
-```{r}
-library(palmerpenguins)
-summary(penguins)
-```
-
-```{r,eval = FALSE}
-ggplot(penguins) + aes(species, bill_length_mm) + geom_jitter(aes(colour = sex), position = position_dodge(width = 0.5))
-model <- lm(bill_length_mm ~ species + sex, data = penguins)
-summary(model)
-# setup comparisons explicitly
-comps <- mcp( species = c("Chinstrap - Gentoo = 0",
-                          "Chinstrap - Adelie = 0"
-                          ),
-              sex = c("male - female = 0")
-            )
-summary(glht(model, linfct = comps))
-
-
-## or steal from individual comparisons...
-
-sex_comps <- glht(model, mcp(sex = "Tukey"))$linfct
-species_comps <- glht(model, mcp(species = "Tukey"))$linfct
-
-comps <- rbind(sex_comps, species_comps)
-summary(glht(model, linfct = comps))
-
-```
-
-## interactions of variables - synergistic effects
-line is visualised as ...
-blah blah
-```{r, eval = FALSE}
-model2 <- lm(bill_length_mm ~ species + sex + species:sex, data = penguins)
-summary(model2)
-# setup comparisons explicitly
-# comps <- mcp( species = c("Chinstrap - Gentoo = 0",
-#                           "Chinstrap - Adelie = 0"
-#                           ),
-#               sex = c("male - female = 0"),
-#               species:sex = c("Chinstrap-male - Gentoo-female")
-#             )
-
-#summary(glht(model2, linfct = comps))
-library(dplyr)
-penguins %>% mutate(double = if_else(sex == 'male' & species == 'Chinstrap', "male_Chinstrap", "other")) %>% 
-ggplot() + 
-  aes(species, bill_length_mm) + geom_jitter(aes(colour = sex), position = position_dodge(width = 0.5)) + facet_wrap(~ double)
-
-
-supplement = rep(c("Formula X1","Formula X2"), 16)
-compost = rep(c("John Innes #1", "John Innes #2", "John Innes #2", "John Innes #1"), 8)
-size = rep(runif(32))
-df <- tibble::tibble(
-  supplement = supplement,
-  compost = compost,
-  size = size
-) %>% 
-  mutate(size = if_else( (supplement == "Formula X1" & compost == "John Innes #2"), (size + 1), size) )
-
-df %>% filter(supplement == "Formula X1", compost == "John Innes #2")
-df %>% 
-  ggplot() + aes(compost, size) + geom_point(aes(colour = supplement), position = position_dodge(width = 0.5))
-
-#mod <- lm(new_val ~ var1 + var2 + var1*var2, data = df)
-#summary(mod)
-
-#summary(glht(model, linfct = mcp(var1 = "Tukey")))
-
-#contrasts(as.factor(df$var1))
-```
-
-
-
-
-
-
-## Summary
-
-That's all we need to do to perform ANOVAs with linear models - which always use linear models anyway. 
+And there we have the specific interaction contrasts. Note how in doing this we don't generate any warnings even though we used the model with the explicit interaction term, this is because when we generate our own contrast matrix like this we get an appropriate orthogonality for the test.
