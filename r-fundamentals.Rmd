@@ -28,14 +28,11 @@ In this workshop we'll use R in the extremely useful RStudio software For the mo
 ```{r}
  12 * 2
 ```
-```{r}
-  3 / 0
-```
 
 
 Fairly straightforward, we type in the expression and we get a result. That's how this whole book will work, you type the stuff in, and get answers out. It'll be easiest to learn if you go ahead and copy the examples one by one. Try to resist the urge to use copy and paste. Typing longhand really encourages you to look at what you're entering.
 
-As far as the R ouput itself goes, it's really straightforward - its just the answer with a `[1]` stuck on the front. This `[1]` tells us how far through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information
+As far as the R output itself goes, it's really straightforward - its just the answer with a `[1]` stuck on the front. This `[1]` tells us how far through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information
 
 ##  Variables
 
@@ -46,7 +43,7 @@ Let's give five a name, `x` then refer to the value 5 by it's name. We can then 
 ```{r}
  x <- 5
  x
- ```
+```
 
 ```{r}
  x * 2
@@ -60,21 +57,18 @@ x * y
 
 This is of course of limited value with just numbers but is of great value when we have large datasets, as the whole thing can be referred to by the variable.
 
-
 ### Using objects and functions
 
-At the top level, R is a simple language with two types of thing: functions and objects. As a user you will use functions to do stuff, and get back objects as an answer. Functions are easy to spot, they are a name followed by a pair of brackets
- like `mean()` is the function for calculating a mean. The options (or arguments) for the function go inside the brackets: 
+At the top level, R is a simple language with two types of thing: functions and objects. As a user you will use functions to do stuff, and get back objects as an answer. Functions are easy to spot, they are a name followed by a pair of brackets. A function like `mean()` is the function for calculating a mean. The options (or arguments) for the function go inside the brackets: 
 
 ```{r}
- sqrt(16)
+sqrt(16)
 ```
-
 
 Often the result from a function will be more complicated than a simple number object, often it will be a vector (simple list), like from the `rnorm()` function that returns lists of random numbers
 
 ```{r}
- rnorm(100)
+rnorm(100)
 ```
 
 We can combine objects, variables and functions to do more complex stuff in R, here's how we get the mean of 100 random numbers.
@@ -86,23 +80,56 @@ mean(numbers)
 
 Here we created a vector object with `rnorm(100)` and assigned it to the variable `numbers`. We than used the `mean()` function, passing it the variable `numbers`. The `mean()` function returned the mean of the hundred random numbers.
 
->## Bracket notation in this document
-> I'm going to use the following descriptions for the symbols `()`, `[]` and `{}`: 
->
-> `()` are brackets,
-> `[]` are square brackets
-> `{}` are curly brackets
+## Dataframes
+
+One of the more common objects that R uses is a dataframe. The dataframe is a rectangular table-like object that contains data, think of it like a spreadsheet tab. Like the spreadsheet, the dataframe has rows and columns, the columns have names and the different columns can have different types of data in. Here's a little one
+
+```{r, echo=FALSE}
+data.frame(
+  names = c("Guido", "Marty", "Alan"),
+  age = c(24,45,11),
+  score = runif(3) * 100
+)
+```
+
+Usually we get a dataframe by loading in data from an external source or as a result from functions, occasionally we'll want to hand make one, which can be done with various functions, `data.frame` being the most common.
+
+```{r, eval=FALSE}
+data.frame(
+  names = c("Guido", "Marty", "Alan"),
+  age = c(24,45,11),
+  score = runif(3) * 100
+)
+```
+
+## Packages
+
+Many of the tools we use in will come in R packages, little nuggets of code that group related functions together. Installing new packages can be done using the `Packages` pane of RStudio or the `install.packages()` function. When we wish to use that code we use the `library()` function
+
+```{r, eval=FALSE}
+library(somepackage)
+```
+
+## Using R Help
+
+R provides a function, called `?` that will display the documentation for other functions. For example `?mean` will display the help for the `mean()` function.
+
+```{r}
+?mean
+```
+
+As in all programming languages the internal documentation in R is written with some assumption that the reader is familiar with the language. This can be a pain when you are starting out as the help will seem a bit obscure at times. Don't worry about this, usually the `Examples` section will give you a good idea of how to use the function and as your experience grows then the more things will make more sense.
 
 
-## dataframes
 
-## packages
+```{block2, type = "task"}
+Use the interactive tutorial `r-start` in the package `itssl` to get to grips with R
 
-Itsssl
+1. Type `library(learnr)` and press `Enter`
+2. Type `library(itssl)` and press `Enter`
+2. Type `run_tutorial("r-start", "itssl") and follow the tutorial that pops up.
 
-TODO: Function glossary
-
-## Quiz
+```
 1. Create two variables, `a` and `b`: Add them. What happens if we change a and then re-add a and b?
 2. We can also assign `a + b` to a new variable, `c`. How would you do this?
 3. Try some R functions: `round()`, `c()`, `range()`, `plot()` hint: Get help on a function by typing `?function_name` e.g `?c()`. Use the `mean()` function to calculate the average age of everyone in your house (Invent a housemate if you have to).
