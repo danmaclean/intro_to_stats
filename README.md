@@ -1,1 +1,3 @@
-This is a minimal example of a book based on R Markdown and **bookdown** (https://github.com/rstudio/bookdown). Please see the page "Get Started" at https://bookdown.org/home/about/ for how to compile this example.
+This is the source code for the handbook to the TSL Bioinformatics Team Intro to Stats Course
+
+[https://github.io/danmaclean/intro_to_stats](https://github.io/danmaclean/intro_to_stats)
