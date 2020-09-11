@@ -125,11 +125,10 @@ As in all programming languages the internal documentation in R is written with 
 ```{block2, type = "task"}
 Use the interactive tutorial `r-start` in the package `itssl` to get to grips with R
 
+At the R-Studio Console
+
 1. Type `library(learnr)` and press `Enter`
 2. Type `library(itssl)` and press `Enter`
-2. Type `run_tutorial("r-start", "itssl") and follow the tutorial that pops up.
+3. Type `run_tutorial("r-start", "itssl") and follow the tutorial that pops up.
 
 ```
-1. Create two variables, `a` and `b`: Add them. What happens if we change a and then re-add a and b?
-2. We can also assign `a + b` to a new variable, `c`. How would you do this?
-3. Try some R functions: `round()`, `c()`, `range()`, `plot()` hint: Get help on a function by typing `?function_name` e.g `?c()`. Use the `mean()` function to calculate the average age of everyone in your house (Invent a housemate if you have to).

@@ -10,21 +10,58 @@ link-citations: yes
 description: ""
 ---
 
-# Prerequisites
+# Introduction to statistics
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+The primary purpose of this handbook is to help you to understand how to use statistics that will help with your research. The handbook will try to explain statistics using the same path through the topic that statistic students are educated along, but without the rigorous mathematical background necessary for those students. Instead this book will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.
 
-The **bookdown** package can be installed from CRAN or Github:
+## Prerequisites
 
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
+There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like `t`, `ANOVA` and regression.
 
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
 
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.org/tinytex/>.
+You need to install the following stuff for this book: 
+
+ 1. R
+ 2. RStudio
+ 3. Two R packages: `devtools` and `itssl`
+ 
+
+## Installing R
+
+Follow this link and install the right version for your operating system [https://www.stats.bris.ac.uk/R/](https://www.stats.bris.ac.uk/R/)
+
+## Installing RStudio
+
+Follow this link and install the right version for your operating system [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
+
+## Installing R packages in RStudio.
+### Standard packages - `devtools`
+
+`devtools` is a standard R package and can be installed like any other you may have done from CRAN. Start RStudio and use the `Packages` tab in lower right panel. Click the install button (top left of the panel) and enter the package name, then click install as in this picture
+
+![Installing Packages](fig/package_install.png)
+
+### Development packages - `itssl`
+
+`itssl` is a new package that contains all the materials including the exercises for this handbook. As it isn't fully certified yet you need to install it using `devtools`.
+
+1. In the `Console` tab in the lower left panel of RStudio type `devtools::install_github("danmaclean/itssl")`
+
+## Using the `itssl` package
+
+`itssl` is a package developed solely to accompany this course, the initialism stands for `intro to stats SL`. Once it is installed you can load it as usual - `library(itssl)`
+
+All the functions in `itssl` follow this naming scheme `its_<something-something>_time()` so you'll be able to spot them as you read along. The main purpose of the functions is to make the course easier to follow and stop us from getting bogged down in a lot of circumstantial code that isn't directly related to our current point, which will usually be statistical rather than related to programming, hence you'll be able to get a lot out of this course even if you haven't used much R before. 
+
+If you do have a desire to see the code inside the `itssl` functions it is available at [https://github.com/danmaclean/itssl/tree/master/R](https://github.com/danmaclean/itssl/tree/master/R)
+
+## Acknowledgements
+
+This handbook would not have been possible without helpful inspiration from these web pages and leaders in statistical education, please check out their sites.
+
+ * [Danielle Navarro - Learning Statistics with R](https://learningstatisticswithr.com/)
+ * [Jim Frost - Statistics By Jim](https://statisticsbyjim.com/)
+ * [Jonas Kristoffer Linedlov](https://lindeloev.github.io/tests-as-linear/)
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

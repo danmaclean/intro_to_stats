@@ -49,7 +49,7 @@ And now we see the `trt2` as common reference against the `ctrl` and `trt1` grou
 
 In these data only `trt2 vs trt1` appears to be significant according to the linear model `model2` but we did need to create two models to do this, which is a bit of a statistical mess. If this seems longwinded or illogical, then that's fair. The two models have the same data and specification so should have the same results in - it was really just the way we were ordering things in the data that was different.  The real problem is just one of bookkeeping.
 
-The linear models are rich and not all the comparisons that can be done with them can easily be written in `summary(model)`. To answer specific questions from an analysis technique for getting specific comparisions (or contrasts in the statistics jargon) from linear models has been invented, that technique is called ANOVA (Analysis of Variance).
+The linear models are rich and not all the comparisons that can be done with them can easily be written in `summary(model)`. To answer specific questions from an analysis technique for getting specific comparisons (or contrasts in the statistics jargon) from linear models has been invented, that technique is called ANOVA (Analysis of Variance).
 
 ```{block2, type="sidenote"}
 I know, I gave you the impression that we would be using linear models and not ANOVAs, but the thing is, ANOVAs have always been based on linear models. In a way ANOVA isn't a test of its own, not in the way we think of $t$-tests or $\chi$-squared tests. ANOVA is plural, they are a set of tools for pulling comparisons straight out of linear models in the best way. So that's another great reason for having bothered to understand something of how linear models work.
@@ -125,7 +125,7 @@ We can see the effect of interaction quite clearly in the two types of data, whe
 Let's work through an example that highlights how we identify and investigate this with linear models and ANOVAs. Here's some data on reported enjoyment of some food, with different condiments added 
 
 ```{r, load_food, message=FALSE}
-food <- its_hot_dog_and_ice_cream_time()
+food <- its_food_data_time()
 knitr::kable(dplyr::sample_n(food, 5))                                             
 ```
 
@@ -133,10 +133,10 @@ Looking at those in the way we have already - each variable individually - then 
 
 
 ```{r,message=FALSE}
-its_hot_dog_and_ice_cream_plot_time()
+its_food_plot_time()
 ```
 
-Without rushing ahead to do the modelling, we see that chocolate sauce has a slightly greater effect on enjoyment than mustard, whereas the enjoyment of the two food types is the same. So without a hypothesis test the dangerously thin conclusion would be 'use chocolate sauce to enhance your enjoyment of Hot Dogs or Ice Cream'.  We might be suspect of this conclusion not only because it seems not to line up with our intuitive sense of what's going on, but also because of those strange splits in the data. Look within each column and you can see that there is a definite clustering that is not a good sign, we possibly don't have a good specification of our data here.
+Without rushing ahead to do the modelling, we see that hummous has a slightly greater effect on enjoyment than jam, whereas the enjoyment of the two food types is much more similar. So without a hypothesis test the dangerously thin conclusion would be 'use hummous to enhance your enjoyment of Porridge or Tortilla Chips'.  We might be suspect of this conclusion not only because it seems not to line up with our intuitive sense of what's going on, but also because of those strange splits in the data. Look within each column and you can see that there is a definite clustering that is not a good sign, we possibly don't have a good specification of our data here.
 
 Let's see what the model says, in specifying the second variable can be added with a `+` as 
 
@@ -156,8 +156,7 @@ summary(glht(model_1, linfct = mcp(Food = "Tukey", Condiment = "Tukey") ) )
 Neither factor seems to be significant. Hmm. This seems like a slightly strange conclusion - and it is. The presence of two variables is confusing this approach. Look at what we get if we split the data by the two variables at once.
 
 ```{r, message=FALSE}
-its_hot_dog_and_ice_cream_two_ways_time()
-#interaction.plot(food$Food, food$Condiment, food$Enjoyment)
+its_food_two_ways_time()
 ```
 
 Ok! That's very different and very much clearer. The enjoyment is very much dependent on the combination of food and condiment. This is a classic case of interaction between variables. You get results that are conditional on the combined values of the variables. 
@@ -184,30 +183,30 @@ and when we print the `summary()` we get the book-keeping issue of not all the r
 summary(interaction_model)
 ```
 
-This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? They are not, these seem a bit generic and hard to interperet. This is generally the case so we need to know how to extract them. First we must decide what the contrasts we're going to check must be. In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
+This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? They are not, these seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract them. First we must decide what the contrasts we're going to check must be. In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
 
 Let's see whether food alone or condiment alone has an effect. This would be like the first situation we looked at, 
 
 ```{r, message=FALSE}
-its_hot_dog_and_ice_cream_plot_time()
+its_food_plot_time()
 ```
 
 in the way that the output we've seen so far has it, this would be 
 
 >
->  Hot Dog - Ice Cream == 0
+>  Porridge - Tortilla Chips == 0
 >
->  Chocolate Sauce - Mustard == 0
+>  Hummous - Jam == 0
 
 Let's also see whether `food * condiment` has an effect. This would be like the interaction situation.
 
 >
->  Hot Dog:Mustard - Ice Cream:Mustard == 0
+>  Porridge:Jam - Tortilla Chips:Jam == 0
 >
->  Hot Dog:Chocolate Sauce - Ice Cream:Chocolate Sauce == 0
+>  Porridge:Hummous - Tortilla Chips:Hummous == 0
 
 ```{r, message=FALSE}
-its_hot_dog_and_ice_cream_two_ways_time()
+its_food_two_ways_time()
 ```
 
 So we have four lines of interest to look at - four contrasts. 
@@ -228,7 +227,7 @@ This gives a result, but actually throws up a warning. Since we have an interact
 
 
 ```{block2, type = "sidenote"}
-The reason that the warnings are thrown in the interaction model is to do with an ANOVA internal object called the Contrasts Matrix, which specifies the contrasts and is used in the linear algebra of the ANOVA and Tukey's method. The Contrast Matrix is basically a grid with the different samples and contrasts as the rows and columns with a load of ones and zeroes in it. For Tukey's method to work the Contrast Matrix should be 'orthogonal', which roughly means symmetric around a certain axis. When we get the interaction term in the model we lose the orthogonality in the Contrast Matrix and Tukey's method stops working well. The orthogonality is one of the assumptions that statisticians talk about. It is possible to set up different Contrast Matrices and there are methods for getting significance for non-orthogonal ones, however that does take us a bit too far into theory. For most purposes it will work to use the alternative method below.
+The reason that the warnings are thrown in the interaction model is to do with an ANOVA internal object called the Contrasts Matrix, which specifies the contrasts and is used in the linear algebra of the ANOVA and Tukey's method. The Contrast Matrix is basically a grid with the different samples and contrasts as the rows and columns with a load of ones and zeroes in it. For Tukey's method to work the Contrast Matrix should be 'orthogonal', which roughly means symmetric around a certain axis. When we get the interaction term in the model we lose the orthogonality in the Contrast Matrix and Tukey's method stops working well. The orthogonality is one of the assumptions that statisticians talk about. It is possible to set up different Contrast Matrices and there are methods for getting significance for non-orthogonal ones, however that does take us a bit too far into theory. For most purposes, except for those with very large numbers of variables it is convenient to use the alternative method below.
 ```
 
 ## Doing all pairwise interactions
@@ -254,18 +253,17 @@ summary(
   )
 ```
 
-We can see all possible interaction groupings and lines, without any warnings. We can see that the signficances make good sense. The Hot Dog and Mustard is no more enjoyable than the Ice Cream and Chocolate Sauce, the Ice Cream and Mustard is no more enjoyable than the Hot Dog and Chocolate Sauce and all the other match and mismatch food and condiments are as we might expect from this very obviously loaded example. 
+We can see all possible interaction groupings and lines, without any warnings. We can see that the significances make good sense. The Porridge and Jam is no more enjoyable than the Tortilla Chips and Hummous, the Porridge and Hummous is no more enjoyable than the Tortilla Chips and Jam and all the other match and mismatch food and condiments are as we might expect from this very obviously loaded example. 
 
-We said we wanted to look specifically at the interaction between the Hot Dog with Mustard and Ice Cream with Mustard - we can see that there is a significant difference in enjoyment, about 28 points. Similarly Hot Dog with Chocolate Sauce is less enjoyable than  Ice Cream with Chocolate Sauce, by about 28 points.
+We said we wanted to look specifically at the interaction between the Porridge with Jam and Tortilla Chips with Jam - we can see that there is a significant difference in enjoyment, about 29 points. Similarly Porridge with Hummous is less enjoyable than Tortilla Chips with Hummous, by about 30 points.
 
 ## Summary
-BIT MORE TO DO
-That's all we need to do to perform ANOVAs with linear models - which always use linear models anyway. 
 
+We've looked at how to use linear models to think about differences between lots of categories and at what it means for variables to be interacting. We learned that ANOVA is inherently a test based on a linear model that is designed to do all comparisons at once and we learned how to carry the ANOVAs out having built the proper linear model for cases with and without interactions. We know all we need to use R to perform ANOVAs with linear models - which always use linear models anyway. 
 
 ## Extra Credit: ANOVA model-level $p$ and as a hypothesis test
 
-Recall that when we introduced linear models we looked at the statistics of the coefficients (the column $Pr(>|t|)$ in the coeffecient block of the summary) _and_ the statistics of the whole model, the $p$-value at the end.
+Recall that when we introduced linear models we looked at the statistics of the coefficients (the column $Pr(>|t|)$ in the coefficient block of the summary) _and_ the statistics of the whole model, the $p$-value at the end.
 
 When we did the simple linear model as an alternative of the $t$-test, then these two $p$-values were the same - this is because the model then only had one coefficient, so the $p$ of that coefficient was the overall $p$. With more than one coefficient, then the overall model score is made up differently. The overall model can be significant, whereas the individual variables/groups/coefficient within may not be. That's what we saw when we looked at the `PlantGrowth` data.  
 
@@ -307,8 +305,8 @@ Now we can make the matrix, our eventual matrix will look like this
 
 ```{r, echo=FALSE}
 m <- matrix(c(0,0,1,-1, 1,-1,0,0), nrow=2, byrow = TRUE) 
-rownames(m) <- c("Hot Dog:Mustard - Ice Cream:Mustard",
-          "Hot Dog:Chocolate Sauce - Ice Cream:Chocolate Sauce")
+rownames(m) <- c("Porridge:Jam - Tortilla Chips:Jam",
+          "Porridge:Hummous - Tortilla Chips:Hummous")
 colnames(m) <- levels(f_c_interactions)
 knitr::kable(m)
 ```
@@ -318,17 +316,17 @@ We can see that there is a row per comparison and a column per possible interact
 As the `levels()` function gives us the order, we set up the rows one by one and join them together.
 
 ```{r}
-HD.M_IC.M <- c(0,0,1,-1)
-HD.C_IC.C <- c(1,-1,0,0)
+P.J_TC.J <- c(0,0,1,-1)
+P.H_TC.H <- c(1,-1,0,0)
 ```
 
 Now we can stick them together, use the `levels()` function as the column names and add row names. Note you can call the rows what you like, so you dont have to use the long names, but the columns _must_ be named and ordered according to the `levels()` function
 
 ```{r}
-contr_of_interest <- rbind(HD.M_IC.M, HD.C_IC.C)
+contr_of_interest <- rbind(P.J_TC.J, P.H_TC.H)
 colnames(contr_of_interest) <- levels(f_c_interactions)
-rownames(contr_of_interest) <- c("HD:M - IC:M",
-          "HD:CS - IC:CS")
+rownames(contr_of_interest) <- c("P:J - TC:J",
+          "P:H - TC:H")
 
 contr_of_interest
 ```

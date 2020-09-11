@@ -63,15 +63,13 @@ df <- its_random_xy_time(20)
 its_plot_xy_time(df)
 ```
 
-The graph shows 20 random $x$ values between 5 and 15 plotted against 20 $y$ values which are calculated as $2x$ with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way. Here's where the linear equation comes in, if we could come up with a line that fitted through the data we could use the linear equation of that line to roughly describe - or model - our data. Skipping to the chase there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won't repeat them, but you may be familiar with the general methods, its the 'line of best fit' according to the ordinary least squares method. The function we need in R is `lm()` and it works like this
+The graph shows 20 random $x$ values between 5 and 15 plotted against 20 $y$ values which are calculated as $2x$ with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way. Here's where the linear equation comes in, if we could come up with a line that fitted through the data we could use the linear equation of that line to roughly describe - or model - our data. Skipping to the end a bit, then there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won't repeat them, but you may be familiar with the general methods, its the 'line of best fit' according to the ordinary least squares method. Details aside, the actual linear model function we need in R is `lm()` and it works like this
 
 ```{r, eval=F}
 lm(y ~ x, data = df)
 ```
 
 Thats it! The function `lm()` does the work, it takes a fairly odd syntax, though. The `y ~ x` bit is an R formula and describes the relationship you want to examine, you can read it as `y depends on x`. The `y` and `x` we're referring to here are the two columns of numbers we created and plotted above, the `data` argument just says in which object to look for the data.
-
-TODO independent variable, dependent variable
 
 Looking at the function output we get this 
 
@@ -93,7 +91,7 @@ The line alone can be useful to teach us about our data, but there's more to the
 
 Beyond working out the equation of the line, the linear model process aims to quantify and describe relationships between the variables in the data, in our toy example the variables are $x$ and $y$. Specifically when we say 'relationship', we mean whether a change in the value of $x$ appears to go along with some change in the value of $y$. 
 
-In other words, we can think of relationship as being the slope. If $x$ causes some change in $y$ when we plot it then there must be a slope. We call the slope $a$ in our equation of a line and we call it the coefficient of the $x$ term in our linear model. These are all equivalent interpretations for our purposes, slope, relationship, coefficient and $a$ just mean that $
+In other words, we can think of relationship as being the slope. If $x$ causes some change in $y$ when we plot it then there must be a slope. We call the slope $a$ in our equation of a line and we call it the coefficient of the $x$ term in our linear model. These are all equivalent interpretations for our purposes, slope, relationship, coefficient.
 
 Linear models calculate statistics to help us decide whether the coefficient/slope/$a$ of the relationship we observe is important or not.
 
@@ -123,7 +121,7 @@ its_plot_xy_time(df, line = TRUE)
 its_plot_xy_time(more_df, line = TRUE)
 ```
 
-we can clearly see that not all lines are created equal. The first line fits the data much more closely than the second one. We can also see that the relationship between $x$ and $y$ is much weaker in the second set than in the first (the coefficient/slope/$a$ is weaker. So a sensible linear model of our data would give us not just the equation but also measures of the believability of the slope of the line. In terms of our Null Model flat line/sloped line model this means that when we have a significant coefficient, we are not likely to have a flat line. Let's look at the statistics in the linear model that show us what a significant coefficient is.
+we can clearly see that not all lines are created equal. The first line fits the data much more closely than the second one. We can also see that the relationship between $x$ and $y$ is much weaker in the second set than in the first (the coefficient/slope/$a$ is weaker. So a sensible linear model of our data would give us not just the equation but also measures of the closeness of fit and therefore believability of the value of slope of the line. In terms of our Null Model flat line/sloped line model this means that when we have a significant coefficient, we are not likely to have a flat line. Let's look at the statistics in the linear model that show us what a significant coefficient is.
 
 ## Linear models contain statistics describing the goodness of the model
 
@@ -136,7 +134,7 @@ summary(model)
 
 This output is verbose, there are four blocks.
 
-  1. `Model Call` - just a restatment of the function we called
+  1. `Model Call` - just a restatement of the function we called
   2. `Residuals` - a set of measures of the distribution of the residuals, we'll look at this later.
   3. `Coefficients` - the terms of the equation and their statistics; so the intercept ($b$) and the coefficient of `x` ($a$) that we've already seen and the `Estimate` (computed values of those). We see also columns of statistics for each.
   4. The model level statistics summary - some statistics that apply to the whole model.
@@ -155,13 +153,9 @@ its_plot_xy_time(more_df, line = TRUE, residual = TRUE)
 ```
 
 ```{block2, type="sidenote"}
-We're working hard here to avoid using too much mathematical notation and examination of the mechanics of the linear model, but the residuals are quite an important aspect, so Im going to use this aside to delve just a little deeper. Unlike the linear equation, the linear model has an extra error term, $e$ which represents the residuals by quantifying the average distance from the actual measurments to the line in the y-axis. So in a linear model we have a formula that looks more like this
+We're working hard here to avoid using too much mathematical notation and examination of the mechanics of the linear model, but the residuals are quite an important aspect, so Im going to use this aside to delve just a little deeper. Unlike the linear equation, the linear model has an extra error term, $e$ which represents the residuals by quantifying the average distance from the actual measurments to the line in the y-axis. 
 
-\begin{equation}
- y = ax + b + e
-\end{equation}
-
-The $e$ term adds something onto the y value of the whole equation; the more we need to add on to the value of the $x$ from the line to get the real $y$. Logically, the bigger $e$ is the more the error in the model overall. The error is a major determinent of whether a model is any good or whether things are significant so it's worth knowing how it relates to the model.
+The $e$ term adds something onto the y value of the whole equation; the bigger $e$ is the more we need to add on to the value of the $x$ from the line to get the real $y$. Logically, the bigger $e$ is the more the line misses the points in the model overall. The error is a major determinent of whether a model is any good or whether things are significant so it's worth knowing how it relates to the model.
 ```
 
 ### $R^2$
@@ -176,7 +170,7 @@ So what's the difference between these two - at first glance they do the same th
 
 ### $F$-Statistic
 
-The $F$-Statistic is an indicator of a relationship between the $x$ and $y$ values of the model. In effect its testing how much better the relationship is in your model relative to a model in which the relationship is completely random. When the $F$-statistic is at 1, the relationship is no stronger than a random relationship.  The further above 1 this value is, the more it is likely there is a real relationship in the model. The $p$ value here is the $p$ that this size of $F$ would occur in a  random relationship with a similar dataset size. As with the other statistics, the size of $F$ is dependent on the domain and data being analysed.
+The $F$-Statistic is an indicator of a relationship between the $x$ and $y$ values of the model. In effect its testing how much better the relationship is in your model relative to a model in which the relationship is completely random, its a sort of ratio. When the $F$-statistic is at 1, the relationship is no stronger than a random relationship.  The further above 1 this value is, the more it is likely there is a real relationship in the model. The $p$ value here is the $p$ that this size of $F$ would occur in a  random relationship with a similar dataset size. As with the other statistics, the significance of the actual size of $F$ is dependent on the domain and data being analysed.
 
 ## Coefficients have statistics 
 

@@ -2,7 +2,7 @@
 
 
 1. Questions
-  * How do linear models apply when the $x$ and $y$ are not continuous?
+  * How do linear models apply when both the $x$ and $y$ are not continuous?
   * How can I analyse counts of stuff?
 2. Objectives
   * Appreciate that the linear model idea does not translate intuitively to this data
@@ -10,7 +10,7 @@
 3. Keypoints
   * Linear models applied in the place of $\chi^2$ tests are fiddly and in practice we are better off using the hypothesis tests
 
-In the last chapter we looked at discrete data that was ordered and got around it, as hypothesis tests do by working on the ranked data in a linear model. In this section we'll look at discrete data that isn't ordered, or is nominal, things like `agree, disagree, don't know`, or `yellow, green, wrinkled, smooth`.  We'll also look at discrete data in the form of counts or frequencies. 
+In the last chapter we looked at discrete data that was ordered and got around it, as hypothesis tests do, by working on ranked data with a linear model. In this section we'll look at discrete data that isn't ordered, or is nominal, things like `agree, disagree, don't know`, or `yellow, green, wrinkled, smooth`.  We'll also look at discrete data in the form of counts or frequencies. 
 
 
 ## The problem with unordered response data
