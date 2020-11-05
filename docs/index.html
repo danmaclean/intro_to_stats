@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2020-09-11" />
+<meta name="date" content="2020-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
-<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>itssl</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---gradethis-and-itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>gradethis</code> and <code>itssl</code></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#using-the-itssl-package"><i class="fa fa-check"></i><b>1.5</b> Using the <code>itssl</code> package</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Understanding Statistical Thinking With Linear Models</h1>
 <p class="author"><em>Dan MacLean</em></p>
-<p class="date"><em>2020-09-11</em></p>
+<p class="date"><em>2020-11-05</em></p>
 </div>
 <div id="introduction-to-statistics" class="section level1">
 <h1><span class="header-section-number">Topic 1</span> Introduction to statistics</h1>
@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>R</li>
 <li>RStudio</li>
-<li>Two R packages: <code>devtools</code> and <code>itssl</code></li>
+<li>Some R packages: <code>devtools</code>, <code>gradethis</code> and <code>itssl</code></li>
 </ol>
 </div>
 <div id="installing-r" class="section level2">
@@ -314,8 +314,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Installing Packages</p>
 </div>
 </div>
-<div id="development-packages---itssl" class="section level3">
-<h3><span class="header-section-number">1.4.2</span> Development packages - <code>itssl</code></h3>
+<div id="development-packages---gradethis-and-itssl" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Development packages - <code>gradethis</code> and <code>itssl</code></h3>
+<p><code>gradethis</code> is a development package that allows us to use interactive tutorials, but it is somewhat new and still under development so we need to install it manually using <code>devtools</code>.</p>
+<ol style="list-style-type: decimal">
+<li>In the <code>Console</code> tab in the lower left panel of RStudio type <code>devtools::install_github("rstudio-education/gradethis")</code></li>
+<li>When you are asked</li>
+</ol>
+<pre><code>&gt;These packages have more recent versions available.
+  It is recommended to update all of them.
+  Which would you like to update?</code></pre>
+<p>Select <code>1: All</code></p>
 <p><code>itssl</code> is a new package that contains all the materials including the exercises for this handbook. As it isn’t fully certified yet you need to install it using <code>devtools</code>.</p>
 <ol style="list-style-type: decimal">
 <li>In the <code>Console</code> tab in the lower left panel of RStudio type <code>devtools::install_github("danmaclean/itssl")</code></li>

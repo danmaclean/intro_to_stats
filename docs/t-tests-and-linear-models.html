@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2020-09-11" />
+<meta name="date" content="2020-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
-<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>itssl</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---gradethis-and-itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>gradethis</code> and <code>itssl</code></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#using-the-itssl-package"><i class="fa fa-check"></i><b>1.5</b> Using the <code>itssl</code> package</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
@@ -327,13 +327,13 @@ y = b
 <div id="using-two-different-samples-instead-of-a-continuous-x-variable" class="section level2">
 <h2><span class="header-section-number">6.2</span> Using two different samples instead of a continuous <span class="math inline">\(x\)</span> variable</h2>
 <p>The second we try to apply what we’ve learned with the linear model to a two-sample dataset we hit an apparent problem because we’ve learned how to make linear models from datasets with a continuous, numeric <span class="math inline">\(x\)</span>-axis, but the data we have for a <span class="math inline">\(t\)</span>-test has a very different two category look, something like these here:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="t-tests-and-linear-models.html#cb42-1"></a><span class="kw">library</span>(itssl)</span>
-<span id="cb42-2"><a href="t-tests-and-linear-models.html#cb42-2"></a></span>
-<span id="cb42-3"><a href="t-tests-and-linear-models.html#cb42-3"></a>continuous_x &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
-<span id="cb42-4"><a href="t-tests-and-linear-models.html#cb42-4"></a><span class="kw">its_plot_xy_time</span>(continuous_x)</span>
-<span id="cb42-5"><a href="t-tests-and-linear-models.html#cb42-5"></a></span>
-<span id="cb42-6"><a href="t-tests-and-linear-models.html#cb42-6"></a>categoric_x &lt;-<span class="st"> </span><span class="kw">its_bardata_time</span>()</span>
-<span id="cb42-7"><a href="t-tests-and-linear-models.html#cb42-7"></a><span class="kw">its_barplot_time</span>(categoric_x)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="t-tests-and-linear-models.html#cb43-1"></a><span class="kw">library</span>(itssl)</span>
+<span id="cb43-2"><a href="t-tests-and-linear-models.html#cb43-2"></a></span>
+<span id="cb43-3"><a href="t-tests-and-linear-models.html#cb43-3"></a>continuous_x &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
+<span id="cb43-4"><a href="t-tests-and-linear-models.html#cb43-4"></a><span class="kw">its_plot_xy_time</span>(continuous_x)</span>
+<span id="cb43-5"><a href="t-tests-and-linear-models.html#cb43-5"></a></span>
+<span id="cb43-6"><a href="t-tests-and-linear-models.html#cb43-6"></a>categoric_x &lt;-<span class="st"> </span><span class="kw">its_bardata_time</span>()</span>
+<span id="cb43-7"><a href="t-tests-and-linear-models.html#cb43-7"></a><span class="kw">its_barplot_time</span>(categoric_x)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-41-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-41-2.png" width="50%" /></p>
 <p>Rest assured, the problem isn’t insurmountable. We need to do a couple of numeric tricks to get this to work like the continuous data, and they’re fairly easy, so let’s run through them,</p>
 <p>The first step is to realise that although we are used to thinking of the each of the bars representing a single number, that single number is (almost always) a summary, like a mean of replicate values, so let’s go back to those source numbers as a first step and plot those</p>
@@ -373,11 +373,11 @@ y = b
 </table>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>plotting gives us something a lot more like the scatterplot we need for the model as we’ve been thinking about it, but it isn’t quite clear how the categorical <span class="math inline">\(x\)</span> becomes numeric. To do this we simply select a number for each group, so our data will look like this</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="t-tests-and-linear-models.html#cb43-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb43-2"><a href="t-tests-and-linear-models.html#cb43-2"></a>long_x &lt;-<span class="st"> </span><span class="kw">its_wide_to_long_time</span>(categoric_x) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb43-3"><a href="t-tests-and-linear-models.html#cb43-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">x =</span> <span class="kw">if_else</span>(group <span class="op">==</span><span class="st"> &quot;group1&quot;</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb43-4"><a href="t-tests-and-linear-models.html#cb43-4"></a></span>
-<span id="cb43-5"><a href="t-tests-and-linear-models.html#cb43-5"></a><span class="kw">its_table_time</span>(long_x)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="t-tests-and-linear-models.html#cb44-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb44-2"><a href="t-tests-and-linear-models.html#cb44-2"></a>long_x &lt;-<span class="st"> </span><span class="kw">its_wide_to_long_time</span>(categoric_x) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb44-3"><a href="t-tests-and-linear-models.html#cb44-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">x =</span> <span class="kw">if_else</span>(group <span class="op">==</span><span class="st"> &quot;group1&quot;</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb44-4"><a href="t-tests-and-linear-models.html#cb44-4"></a></span>
+<span id="cb44-5"><a href="t-tests-and-linear-models.html#cb44-5"></a><span class="kw">its_table_time</span>(long_x)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -450,8 +450,8 @@ y = b
 </tbody>
 </table>
 <p>So now we can make a plot with two numeric axes, that looks a lot more like the one we’re expecting for our model</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="t-tests-and-linear-models.html#cb44-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb44-2"><a href="t-tests-and-linear-models.html#cb44-2"></a>  <span class="kw">ggplot</span>(long_x) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(x, value) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="t-tests-and-linear-models.html#cb45-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb45-2"><a href="t-tests-and-linear-models.html#cb45-2"></a>  <span class="kw">ggplot</span>(long_x) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(x, value) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>albeit with the <span class="math inline">\(x\)</span>-values in two places on the <span class="math inline">\(x\)</span>-axis - its enough for us to make a slope on the line between the two groups and that means that we can use the linear model for the categoric data, as we did for the continuous.</p>
 <p>If this seems like a bit of a ‘hack’ then thats fair, this is part of the numeric bookkeeping that we often have to do in statistics. Its not wrong and hacks are usually just pragmatic and useful solutions to problems, this one is completely mathematically legitimate as well as useful.</p>
@@ -462,8 +462,8 @@ y = b
 <div id="the-plantgrowth-data" class="section level2">
 <h2><span class="header-section-number">6.3</span> The PlantGrowth data</h2>
 <p>R comes with lots of datasets built in. One if these is <code>PlantGrowth</code>, which describes the dry weight of plants in grams in replicated measurements in a control and two treatments. We can load it with <code>data()</code> and get a <code>summary()</code></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="t-tests-and-linear-models.html#cb45-1"></a><span class="kw">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span>
-<span id="cb45-2"><a href="t-tests-and-linear-models.html#cb45-2"></a><span class="kw">summary</span>(PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="t-tests-and-linear-models.html#cb46-1"></a><span class="kw">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span>
+<span id="cb46-2"><a href="t-tests-and-linear-models.html#cb46-2"></a><span class="kw">summary</span>(PlantGrowth)</span></code></pre></div>
 <pre><code>##      weight       group   
 ##  Min.   :3.590   ctrl:10  
 ##  1st Qu.:4.550   trt1:10  
@@ -471,7 +471,7 @@ y = b
 ##  Mean   :5.073            
 ##  3rd Qu.:5.530            
 ##  Max.   :6.310</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="t-tests-and-linear-models.html#cb47-1"></a><span class="kw">head</span>(PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="t-tests-and-linear-models.html#cb48-1"></a><span class="kw">head</span>(PlantGrowth)</span></code></pre></div>
 <pre><code>##   weight group
 ## 1   4.17  ctrl
 ## 2   5.58  ctrl
@@ -482,8 +482,8 @@ y = b
 <p>We have three groups and one measurement, in our linear model this means that the <span class="math inline">\(x\)</span> values would come from the <code>group</code> column - and we know know that because it is categoric rather than continuous we needn’t worry, the model functions will just do the conversion for us. And of course the <span class="math inline">\(y\)</span> values would come from the <code>weight</code> column.</p>
 <p>In linear modelling jargon, the <span class="math inline">\(x\)</span> values are called the independent or explanatory variable, simply because this is the one we changed over the course of the experiment. The <span class="math inline">\(y\)</span> values are called the dependent or response variables as this is the one that responds or changes according to the changes in the independent variable.</p>
 <p>For simplicity at this stage we’ll work with two groups only. Let’s remove <code>trt2</code>.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="t-tests-and-linear-models.html#cb49-1"></a>two_groups &lt;-<span class="st"> </span><span class="kw">its_remove_a_group_time</span>(PlantGrowth)</span>
-<span id="cb49-2"><a href="t-tests-and-linear-models.html#cb49-2"></a><span class="kw">summary</span>(two_groups)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="t-tests-and-linear-models.html#cb50-1"></a>two_groups &lt;-<span class="st"> </span><span class="kw">its_remove_a_group_time</span>(PlantGrowth)</span>
+<span id="cb50-2"><a href="t-tests-and-linear-models.html#cb50-2"></a><span class="kw">summary</span>(two_groups)</span></code></pre></div>
 <pre><code>##      weight       group   
 ##  Min.   :3.590   ctrl:10  
 ##  1st Qu.:4.388   trt1:10  
@@ -492,17 +492,17 @@ y = b
 ##  3rd Qu.:5.218            
 ##  Max.   :6.110</code></pre>
 <p>With that done, we can look at the categorical scatter plot.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="t-tests-and-linear-models.html#cb51-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb51-2"><a href="t-tests-and-linear-models.html#cb51-2"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(two_groups) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(group, weight) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
-<span id="cb51-3"><a href="t-tests-and-linear-models.html#cb51-3"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="t-tests-and-linear-models.html#cb52-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb52-2"><a href="t-tests-and-linear-models.html#cb52-2"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(two_groups) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(group, weight) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
+<span id="cb52-3"><a href="t-tests-and-linear-models.html#cb52-3"></a>p</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <p>We can clearly see the weight spread in each group. By eye we can see that the groups overlap in the <span class="math inline">\(y\)</span>-axis (weight) quite considerably, though <code>trt1</code> seems to have a couple of data points that are lower.</p>
 </div>
 <div id="a-linear-model-with-a-categoric-x-axis" class="section level2">
 <h2><span class="header-section-number">6.4</span> A linear model with a categoric <span class="math inline">\(x\)</span>-axis</h2>
 <p>Let’s make the linear model and get the intercept and coefficient of the line. This can be done with <code>lm()</code> as we did before.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="t-tests-and-linear-models.html#cb52-1"></a>two_groups_model &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> two_groups)</span>
-<span id="cb52-2"><a href="t-tests-and-linear-models.html#cb52-2"></a>two_groups_model</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="t-tests-and-linear-models.html#cb53-1"></a>two_groups_model &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> two_groups)</span>
+<span id="cb53-2"><a href="t-tests-and-linear-models.html#cb53-2"></a>two_groups_model</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ group, data = two_groups)
@@ -515,7 +515,7 @@ y = b
 <div id="using-the-statistics-of-the-linear-model-to-test-for-differences" class="section level2">
 <h2><span class="header-section-number">6.5</span> Using the statistics of the linear model to test for differences</h2>
 <p>Now we have a categoric linear model built we can start to look at how to use it to check for differences between the groups.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="t-tests-and-linear-models.html#cb54-1"></a><span class="kw">summary</span>(two_groups_model)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="t-tests-and-linear-models.html#cb55-1"></a><span class="kw">summary</span>(two_groups_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ group, data = two_groups)
@@ -535,25 +535,25 @@ y = b
 ## Multiple R-squared:  0.07308,	Adjusted R-squared:  0.02158 
 ## F-statistic: 1.419 on 1 and 18 DF,  p-value: 0.249</code></pre>
 <p>From the output we can see the coefficient isn’t huge, only about 1/3 of a gram <em>decrease</em> as we change along the <span class="math inline">\(x\)</span> axis by one unit. Saying change along the axis by one unit in categoric axes sounds a bit strange, but in the categoric data it just means switching from one group to the next. Lets add the line to the plot and have a look.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="t-tests-and-linear-models.html#cb56-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">5.03</span>, <span class="dt">slope =</span> <span class="fl">-0.371</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="t-tests-and-linear-models.html#cb57-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">5.03</span>, <span class="dt">slope =</span> <span class="fl">-0.371</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <p>Just looking at the plot makes the line look seem substantial than it is. Looking at the <span class="math inline">\(y\)</span>-axis and the places where the line intercepts with the categories then we can see the difference is close to the coefficient.</p>
 <div id="the-coefficient-and-the-mean-difference-between-groups-are-equivalent" class="section level3">
 <h3><span class="header-section-number">6.5.1</span> The coefficient and the mean difference between groups are equivalent</h3>
 <p>Before we move along with our model, we should look at that coefficient of the group variable a bit more. As we’re moving from the <code>ctrl</code> to <code>treatment</code> groups the coefficient tells us the size of the change. So does this mean that the coefficient is equivalent to other measures by which we can tell the difference in two groups - is it, for example equivalent to calculating the difference in the means of the groups? Short answer is yes! Let’s look at that, recalling that the coefficient is <code>-0.371</code>.</p>
 <p>First get the means of the groups</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="t-tests-and-linear-models.html#cb57-1"></a>mean_two_groups &lt;-<span class="st"> </span>two_groups <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb57-2"><a href="t-tests-and-linear-models.html#cb57-2"></a><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb57-3"><a href="t-tests-and-linear-models.html#cb57-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(weight))</span>
-<span id="cb57-4"><a href="t-tests-and-linear-models.html#cb57-4"></a></span>
-<span id="cb57-5"><a href="t-tests-and-linear-models.html#cb57-5"></a>mean_two_groups</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="t-tests-and-linear-models.html#cb58-1"></a>mean_two_groups &lt;-<span class="st"> </span>two_groups <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb58-2"><a href="t-tests-and-linear-models.html#cb58-2"></a><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb58-3"><a href="t-tests-and-linear-models.html#cb58-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(weight))</span>
+<span id="cb58-4"><a href="t-tests-and-linear-models.html#cb58-4"></a></span>
+<span id="cb58-5"><a href="t-tests-and-linear-models.html#cb58-5"></a>mean_two_groups</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   group mean_wt
 ##   &lt;fct&gt;   &lt;dbl&gt;
 ## 1 ctrl     5.03
 ## 2 trt1     4.66</code></pre>
 <p>Now calculate the difference</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="t-tests-and-linear-models.html#cb59-1"></a><span class="fl">5.03</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.66</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="t-tests-and-linear-models.html#cb60-1"></a><span class="fl">5.03</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.66</span></span></code></pre></div>
 <pre><code>## [1] 0.37</code></pre>
 <p>There you have it, the absolute values of each are very similar. You can use the coefficient as a way of finding the difference between the groups. Another handy feature of the linear model.</p>
 </div>
@@ -561,7 +561,7 @@ y = b
 <h3><span class="header-section-number">6.5.2</span> The <span class="math inline">\(p\)</span>-value of the co-efficient tests the same thing as a <span class="math inline">\(t\)</span>-test</h3>
 <p>We already know that the <span class="math inline">\(Pr(&gt;|t|)\)</span> value (<span class="math inline">\(p\)</span>-value of the coefficient) tells us the probability that we would see the slope observed or greater in random samples if the real difference were 0. The two-sample <span class="math inline">\(t\)</span>-test reports the probability that we would see the difference in means observed if the real difference were 0. So the two are very similar.</p>
 <p>The <span class="math inline">\(p\)</span>-value for the coefficient in the linear model was 0.249. How does this compare with a <span class="math inline">\(t\)</span>-test?</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="t-tests-and-linear-models.html#cb61-1"></a><span class="kw">t.test</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> two_groups)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="t-tests-and-linear-models.html#cb62-1"></a><span class="kw">t.test</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> two_groups)</span></code></pre></div>
 <pre><code>## 
 ## 	Welch Two Sample t-test
 ## 

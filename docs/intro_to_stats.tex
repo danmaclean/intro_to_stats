@@ -167,7 +167,7 @@ fonttitle=\bfseries] }
 
 \title{Understanding Statistical Thinking With Linear Models}
 \author{Dan MacLean}
-\date{2020-09-11}
+\date{2020-11-05}
 
 \begin{document}
 \maketitle
@@ -196,7 +196,7 @@ You need to install the following stuff for this book:
 \item
   RStudio
 \item
-  Two R packages: \texttt{devtools} and \texttt{itssl}
+  Some R packages: \texttt{devtools}, \texttt{gradethis} and \texttt{itssl}
 \end{enumerate}
 
 \hypertarget{installing-r}{%
@@ -223,8 +223,27 @@ Follow this link and install the right version for your operating system \url{ht
 \caption{Installing Packages}
 \end{figure}
 
-\hypertarget{development-packages---itssl}{%
-\subsection{\texorpdfstring{Development packages - \texttt{itssl}}{Development packages - itssl}}\label{development-packages---itssl}}
+\hypertarget{development-packages---gradethis-and-itssl}{%
+\subsection{\texorpdfstring{Development packages - \texttt{gradethis} and \texttt{itssl}}{Development packages - gradethis and itssl}}\label{development-packages---gradethis-and-itssl}}
+
+\texttt{gradethis} is a development package that allows us to use interactive tutorials, but it is somewhat new and still under development so we need to install it manually using \texttt{devtools}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In the \texttt{Console} tab in the lower left panel of RStudio type \texttt{devtools::install\_github("rstudio-education/gradethis")}
+\item
+  When you are asked
+\end{enumerate}
+
+\begin{verbatim}
+>These packages have more recent versions available.
+  It is recommended to update all of them.
+  Which would you like to update?
+\end{verbatim}
+
+Select \texttt{1:\ All}
 
 \texttt{itssl} is a new package that contains all the materials including the exercises for this handbook. As it isn't fully certified yet you need to install it using \texttt{devtools}.
 
@@ -387,17 +406,17 @@ One way of examining a difference is to think about the slopes of straight lines
 \hline
 group1 & group2\\
 \hline
-6.483648 & 7.235023\\
+5.104740 & 6.509604\\
 \hline
-4.061651 & 7.279269\\
+4.754867 & 5.853053\\
 \hline
-6.504544 & 7.936115\\
+6.912606 & 6.508250\\
 \hline
-5.294270 & 6.011036\\
+4.684426 & 5.966652\\
 \hline
-6.064701 & 6.541008\\
+6.292570 & 7.818577\\
 \hline
-6.809183 & 7.592450\\
+6.306387 & 5.932551\\
 \hline
 \end{tabular}
 
