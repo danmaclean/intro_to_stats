@@ -49,8 +49,8 @@ Follow this link and install the right version for your operating system [https:
   2. When you are asked 
     
     >These packages have more recent versions available.
-It is recommended to update all of them.
-Which would you like to update?
+      It is recommended to update all of them.
+      Which would you like to update?
 
   Select `1: All`
   

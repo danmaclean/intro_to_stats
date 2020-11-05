@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2020-09-11" />
+<meta name="date" content="2020-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
-<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>itssl</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---gradethis-and-itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>gradethis</code> and <code>itssl</code></a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#using-the-itssl-package"><i class="fa fa-check"></i><b>1.5</b> Using the <code>itssl</code> package</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
@@ -312,18 +312,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.2</span> Straight line relationships are described using two parameters</h2>
 <p>Its all about <span class="math inline">\(y = ax + b\)</span> (or <span class="math inline">\(y = mx + c\)</span>, depending on where you went to school). These two equivalent formulae are the standard high-school equations for describing a straight line. They represent how the quantity <span class="math inline">\(y\)</span> changes as <span class="math inline">\(x\)</span> does.</p>
 <p>As a refresher, <span class="math inline">\(a\)</span> tells us how much <span class="math inline">\(y\)</span> increases for every unit increase in <span class="math inline">\(x\)</span>. Here’s an example for the equation <span class="math inline">\(y = 4x\)</span></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-linear-model.html#cb4-1"></a><span class="kw">library</span>(itssl)</span>
-<span id="cb4-2"><a href="the-linear-model.html#cb4-2"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-linear-model.html#cb5-1"></a><span class="kw">library</span>(itssl)</span>
+<span id="cb5-2"><a href="the-linear-model.html#cb5-2"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-10-1.png" width="480" /></p>
 <p>If we play about with that value, the slope of the line changes, the <span class="math inline">\(a\)</span> term is known as the slope, or gradient, or more often because it is just a multiplier of <span class="math inline">\(x\)</span> its called the coefficient. Here’s some different coefficients just to prove that point</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-linear-model.html#cb5-1"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>) <span class="op">+</span></span>
-<span id="cb5-2"><a href="the-linear-model.html#cb5-2"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb5-3"><a href="the-linear-model.html#cb5-3"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">6</span>, <span class="dt">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-linear-model.html#cb6-1"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb6-2"><a href="the-linear-model.html#cb6-2"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb6-3"><a href="the-linear-model.html#cb6-3"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">6</span>, <span class="dt">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-11-1.png" width="480" /></p>
 <p>The <span class="math inline">\(b\)</span> part of the formula just tells us how much we add on to <span class="math inline">\(y\)</span> after we’ve calculated the coefficient effect. It has the effect of pushing the line up and down the y-axis. When we look at the value of <span class="math inline">\(y\)</span> for <span class="math inline">\(x = 0\)</span> we get the position that the graph hits the y-axis so this number is often called the intercept. Here’s a set of lines to show that.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-linear-model.html#cb6-1"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb6-2"><a href="the-linear-model.html#cb6-2"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">-2</span>, <span class="dt">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb6-3"><a href="the-linear-model.html#cb6-3"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-linear-model.html#cb7-1"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="the-linear-model.html#cb7-2"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">-2</span>, <span class="dt">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-3"><a href="the-linear-model.html#cb7-3"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-12-1.png" width="480" /></p>
 <p>That’s all we need to know about the equation of the straight line. Now we need to look at how they’re a useful tool when analysing experimental data.</p>
 </div>
@@ -332,11 +332,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A linear model is a simplification of the relationship between some sets of numbers (in the simple case we will introduce here, it is two sets, but it can be more). At its heart is a straight line, with the equation we discussed above and a certain set of values for <span class="math inline">\(a\)</span> (the coefficient) and <span class="math inline">\(b\)</span> the intercept, along with some statistics that describe the strength of the relationship.</p>
 <p>Let’s walk through building one, graphically and in R.</p>
 <p>First we need some sets of values, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Usually, these would be from an experiment, but here I’ll make some toy ones.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-linear-model.html#cb7-1"></a>df &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
-<span id="cb7-2"><a href="the-linear-model.html#cb7-2"></a><span class="kw">its_plot_xy_time</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-linear-model.html#cb8-1"></a>df &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
+<span id="cb8-2"><a href="the-linear-model.html#cb8-2"></a><span class="kw">its_plot_xy_time</span>(df)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>The graph shows 20 random <span class="math inline">\(x\)</span> values between 5 and 15 plotted against 20 <span class="math inline">\(y\)</span> values which are calculated as <span class="math inline">\(2x\)</span> with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way. Here’s where the linear equation comes in, if we could come up with a line that fitted through the data we could use the linear equation of that line to roughly describe - or model - our data. Skipping to the end a bit, then there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won’t repeat them, but you may be familiar with the general methods, its the ‘line of best fit’ according to the ordinary least squares method. Details aside, the actual linear model function we need in R is <code>lm()</code> and it works like this</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-linear-model.html#cb8-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-linear-model.html#cb9-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span></code></pre></div>
 <p>Thats it! The function <code>lm()</code> does the work, it takes a fairly odd syntax, though. The <code>y ~ x</code> bit is an R formula and describes the relationship you want to examine, you can read it as <code>y depends on x</code>. The <code>y</code> and <code>x</code> we’re referring to here are the two columns of numbers we created and plotted above, the <code>data</code> argument just says in which object to look for the data.</p>
 <p>Looking at the function output we get this</p>
 <pre><code>## 
@@ -348,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       0.778        1.955</code></pre>
 <p>These are the intercept (<span class="math inline">\(b\)</span>) and the coefficient of <span class="math inline">\(x\)</span> (<span class="math inline">\(a\)</span>) that we need to describe the line. So our data are described by the line <span class="math inline">\(y = 1.955x + 0.778\)</span>.</p>
 <p>So this line is a model of the data, it’s a model in the sense that it is something that represents our data, but isn’t it. Looking at them together we can see the model and the data it stands for.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-linear-model.html#cb10-1"></a><span class="kw">its_plot_xy_time</span>(df, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="the-linear-model.html#cb11-1"></a><span class="kw">its_plot_xy_time</span>(df, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>The line alone can be useful to teach us about our data, but there’s more to the linear model than just the line.</p>
 </div>
@@ -361,15 +361,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="not-all-lines-of-best-fit-are-equally-good" class="section level2">
 <h2><span class="header-section-number">4.5</span> Not all lines of best fit are equally good</h2>
 <p>Although a line of best fit can always be calculated, the line might not be worth much. Consider two sets of very similar numbers. Here’s two vectors of random numbers with the same mean and their plot.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="the-linear-model.html#cb11-1"></a>more_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb11-2"><a href="the-linear-model.html#cb11-2"></a>  x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>),</span>
-<span id="cb11-3"><a href="the-linear-model.html#cb11-3"></a>  y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>)</span>
-<span id="cb11-4"><a href="the-linear-model.html#cb11-4"></a>)</span>
-<span id="cb11-5"><a href="the-linear-model.html#cb11-5"></a></span>
-<span id="cb11-6"><a href="the-linear-model.html#cb11-6"></a><span class="kw">its_plot_xy_time</span>(more_df)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-linear-model.html#cb12-1"></a>more_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb12-2"><a href="the-linear-model.html#cb12-2"></a>  x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>),</span>
+<span id="cb12-3"><a href="the-linear-model.html#cb12-3"></a>  y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>)</span>
+<span id="cb12-4"><a href="the-linear-model.html#cb12-4"></a>)</span>
+<span id="cb12-5"><a href="the-linear-model.html#cb12-5"></a></span>
+<span id="cb12-6"><a href="the-linear-model.html#cb12-6"></a><span class="kw">its_plot_xy_time</span>(more_df)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>We can definitely calculate a line that fits these,</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-linear-model.html#cb12-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> more_df)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="the-linear-model.html#cb13-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> more_df)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = more_df)
@@ -384,8 +384,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="linear-models-contain-statistics-describing-the-goodness-of-the-model" class="section level2">
 <h2><span class="header-section-number">4.6</span> Linear models contain statistics describing the goodness of the model</h2>
 <p>The same function we’ve already used - <code>lm()</code> - calculates certain statistics. We can print them using the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="the-linear-model.html#cb14-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span>
-<span id="cb14-2"><a href="the-linear-model.html#cb14-2"></a><span class="kw">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="the-linear-model.html#cb15-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span>
+<span id="cb15-2"><a href="the-linear-model.html#cb15-2"></a><span class="kw">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = df)
@@ -498,10 +498,10 @@ y = b
 \end{equation}\]</span></p>
 <p>but that isn’t the usual way the linear model is written, you can’t actually translate directly from the straight line equation like I did, but it does aid our thinking to take that liberty a little. In this section at the end I wanted to take one last step and look at how the linear model is specified because the notation is, in this case at least, an aid to understanding the model. Its probably ok to skip this bit if the idea of notation doesn’t grab you.</p>
 <p>Unlike a straight line, a linear model doesn’t have to have only one slope, that is from the <span class="math inline">\(y\)</span> variable to a single <span class="math inline">\(x\)</span> independent variable, it can have many. This doesn’t mean that the line has a bend in it, like this</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="the-linear-model.html#cb16-1"></a><span class="kw">its_bendy_line_time</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="the-linear-model.html#cb17-1"></a><span class="kw">its_bendy_line_time</span>()</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>but rather that the model can take into account more than one data axis (variable) (or dimension) - more like this, where a new variable is called <span class="math inline">\(z\)</span>, so the whole thing if plotted looks more like the top 3D panel here in which the model allows us to see the combined effects of <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> on the output <span class="math inline">\(y\)</span> but we can focus on each variable individually by taking one at a time, like in the two split panels at the bottom (note how this is like looking into the front and right side of the 3D panel individually).</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="the-linear-model.html#cb17-1"></a><span class="kw">its_three_variable_plot_time</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="the-linear-model.html#cb18-1"></a><span class="kw">its_three_variable_plot_time</span>()</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>We can only see up to two extra axes in a plot, and only visualise that many without getting twitchy eyes, but going to three, four or many more dimensions is no problem for the linear model framework and they all work the same way. When it comes to notating this we run into a problem as we run out of letters. Let’s build it up…</p>
 <p>First, a one slope/coefficient/independent variable model, adding one variable at a time</p>

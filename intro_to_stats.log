@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.28)  11 SEP 2020 10:42
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.28)  5 NOV 2020 15:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1478,27 +1478,34 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
 File: fig/package_install.png Graphic file (type bmp)
 <fig/package_install.png>
 
-Overfull \hbox (138.73013pt too wide) in paragraph at lines 235--236
+Overfull \hbox (196.48013pt too wide) in paragraph at lines 235--237
+[]\TU/Alegreya(0)/m/n/10 In the \TU/lmtt/m/n/10 Console \TU/Alegreya(0)/m/n/10 
+tab in the lower left panel of RStudio type \TU/lmtt/m/n/10 devtools::install_g
+ithub("rstudio-education/gradethis") 
+ []
+
+[6]
+Overfull \hbox (138.73013pt too wide) in paragraph at lines 254--255
 []\TU/Alegreya(0)/m/n/10 In the \TU/lmtt/m/n/10 Console \TU/Alegreya(0)/m/n/10 
 tab in the lower left panel of RStudio type \TU/lmtt/m/n/10 devtools::install_g
 ithub("danmaclean/itssl") 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 239.
-[6]
-Overfull \hbox (36.24013pt too wide) in paragraph at lines 243--244
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 258.
+
+Overfull \hbox (36.24013pt too wide) in paragraph at lines 262--263
 []\TU/Alegreya(0)/m/n/10 All the functions in \TU/lmtt/m/n/10 itssl \TU/Alegrey
 a(0)/m/n/10 follow this naming scheme \TU/lmtt/m/n/10 its_<something-something>
 _time()
  []
 
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 255.
+(Font)              scaled to size 7.0pt on input line 274.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 255.
+(Font)              scaled to size 8.0pt on input line 274.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 255.
+(Font)              scaled to size 6.0pt on input line 274.
 [7] [8
 
 ]
@@ -1506,19 +1513,19 @@ Chapter 2.
 [9] [10]
 Chapter 3.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 336.
+(Font)              scaled to size 12.0pt on input line 355.
 [11
 
 ]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 15.0451pt on input line 359.
+(Font)              scaled to size 15.0451pt on input line 378.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 15.04665pt on input line 359.
+(Font)              scaled to size 15.04665pt on input line 378.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 15.04378pt on input line 359.
+(Font)              scaled to size 15.04378pt on input line 378.
 [12]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 380.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 399.
 [13]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (typ
 e pdf)
@@ -1534,7 +1541,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-9-2.pdf Graphic file (typ
 e pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-9-2.pdf>
 
-Overfull \hbox (1.34439pt too wide) in paragraph at lines 426--427
+Overfull \hbox (1.34439pt too wide) in paragraph at lines 445--446
 [][] [] 
  []
 
@@ -1582,7 +1589,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-19-2.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-19-2.pdf>
 
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 634--635
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 653--654
 [][] [] 
  []
 
@@ -1594,7 +1601,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-21-2.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-21-2.pdf>
 
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 693--694
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 712--713
 [][] [] 
  []
 
@@ -1615,7 +1622,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-23-2.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-23-2.pdf>
 
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 774--775
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 793--794
 [][] [] 
  []
 
@@ -1647,121 +1654,121 @@ H THE NOTATION \TU/Alegreya(0)/m/n/10 31
 ]
 Chapter 5.
 [33] [34]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1031--1031
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1050--1050
 []\TU/lmtt/m/n/10 ##   [1]  0.270232075 -0.112933852 -0.854887806 -1.033741090 
  0.222026624[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1032--1032
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1051--1051
 []\TU/lmtt/m/n/10 ##   [6] -1.079481969 -0.441373899  2.020634788  0.072856488 
  0.708817307[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1033--1033
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1052--1052
 []\TU/lmtt/m/n/10 ##  [11]  0.850509404 -1.486197129  0.920529800  0.148328802 
 -0.236867797[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1034--1034
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1053--1053
 []\TU/lmtt/m/n/10 ##  [16] -0.473236193 -0.669206104  1.358526687  1.412918017 
 -0.732773768[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1035--1035
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1054--1054
 []\TU/lmtt/m/n/10 ##  [21] -0.080551917  0.810196822  0.502587532  1.124022640 
 -0.171279790[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1036--1036
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1055--1055
 []\TU/lmtt/m/n/10 ##  [26]  0.118151334  0.869902623 -0.091936205  0.068898788 
 -1.682426754[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1037--1037
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1056--1056
 []\TU/lmtt/m/n/10 ##  [31]  1.116955546 -1.351357574 -0.537166518 -0.370113610 
  0.354012224[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1038--1038
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1057--1057
 []\TU/lmtt/m/n/10 ##  [36] -0.809825285 -0.179724629 -1.147659646  0.096242383 
  0.814700103[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1039--1039
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1058--1058
 []\TU/lmtt/m/n/10 ##  [41]  0.982940735  0.850843482  1.207347447 -1.433778349 
 -1.100945680[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1040--1040
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1059--1059
 []\TU/lmtt/m/n/10 ##  [46] -0.277042218 -0.641363270  0.856874779  0.313843454 
  1.222462079[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1041--1041
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1060--1060
 []\TU/lmtt/m/n/10 ##  [51] -1.126327533  0.236297412 -1.272369556  0.315682687 
  0.355610384[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1042--1042
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1061--1061
 []\TU/lmtt/m/n/10 ##  [56]  0.004052138  1.149194486 -0.496614335 -0.746796520 
 -1.282767236[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1043--1043
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1062--1062
 []\TU/lmtt/m/n/10 ##  [61] -1.031771673 -2.072046704 -0.426067161 -0.776975633 
 -0.181812198[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1044--1044
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1063--1063
 []\TU/lmtt/m/n/10 ##  [66] -0.862307391 -0.182541922  1.370695476  1.342718956 
 -1.151762060[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1045--1045
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1064--1064
 []\TU/lmtt/m/n/10 ##  [71]  0.748764659  1.522147956 -1.453019874  1.210757937 
 -0.909345650[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1046--1046
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1065--1065
 []\TU/lmtt/m/n/10 ##  [76]  1.200410172 -0.165416227 -0.494206517 -1.564569420 
 -0.354367785[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1047--1047
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1066--1066
 []\TU/lmtt/m/n/10 ##  [81] -1.021964796  1.191805557  0.229314222 -1.272579083 
  0.691872220[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1048--1048
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1067--1067
 []\TU/lmtt/m/n/10 ##  [86] -0.028754757 -1.103832089 -1.035274763  0.139952624 
  0.682728655[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1049--1049
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1068--1068
 []\TU/lmtt/m/n/10 ##  [91] -1.135559328  1.772544877 -0.093926303 -2.321188155 
  0.151039364[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1050--1050
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1069--1069
 []\TU/lmtt/m/n/10 ##  [96] -0.691147261  0.830428846  1.192598468  0.309910662 
 -1.549384356[] 
  []
@@ -1774,11 +1781,11 @@ Underfull \vbox (badness 2452) has occurred while \output is active []
 ]
 Chapter 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 21.66914pt on input line 1134.
+(Font)              scaled to size 21.66914pt on input line 1153.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 21.67136pt on input line 1134.
+(Font)              scaled to size 21.67136pt on input line 1153.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 21.66725pt on input line 1134.
+(Font)              scaled to size 21.66725pt on input line 1153.
 [39]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (ty
 pe pdf)
@@ -1787,7 +1794,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-41-2.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-41-2.pdf>
 
-Overfull \hbox (1.3454pt too wide) in paragraph at lines 1236--1237
+Overfull \hbox (1.3454pt too wide) in paragraph at lines 1255--1256
 [][] [] 
  []
 
@@ -1811,37 +1818,37 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-50-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-50-1.pdf>
 [46]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 1526--1526
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1545--1545
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
  []
 
 [47]
-Overfull \hbox (27.75pt too wide) in paragraph at lines 1586--1586
+Overfull \hbox (27.75pt too wide) in paragraph at lines 1605--1605
 []\TU/lmtt/m/n/10 ## Warning: Removed 24 rows containing non-finite values (sta
 t_smooth).[] 
  []
 
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 1590--1590
+Overfull \hbox (12.0pt too wide) in paragraph at lines 1609--1609
 []\TU/lmtt/m/n/10 ## Warning in min(x): no non-missing arguments to min; return
 ing Inf[] 
  []
 
 
-Overfull \hbox (17.25pt too wide) in paragraph at lines 1594--1594
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1613--1613
 []\TU/lmtt/m/n/10 ## Warning in max(x): no non-missing arguments to max; return
 ing -Inf[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 1598--1598
+Overfull \hbox (75.0pt too wide) in paragraph at lines 1617--1617
 []\TU/lmtt/m/n/10 ## Warning in min(diff(sort(x))): no non-missing arguments to
  min; returning Inf[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 1602--1602
+Overfull \hbox (22.5pt too wide) in paragraph at lines 1621--1621
 []\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (positio
 n_stack).[] 
  []
@@ -1878,19 +1885,19 @@ pe pdf)
 Underfull \vbox (badness 4096) has occurred while \output is active []
 
 [57] [58]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1966--1966
+Overfull \hbox (54.0pt too wide) in paragraph at lines 1985--1985
 []\TU/lmtt/m/n/10 ##                                      Estimate Std. Error t
  value Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1967--1967
+Overfull \hbox (54.0pt too wide) in paragraph at lines 1986--1986
 []\TU/lmtt/m/n/10 ## Food: Tortilla Chips - Porridge == 0   0.3384     3.5419  
  0.096    0.994[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1968--1968
+Overfull \hbox (54.0pt too wide) in paragraph at lines 1987--1987
 []\TU/lmtt/m/n/10 ## Condiment: Jam - Hummous == 0         -0.9693     3.5419  
 -0.274    0.954[] 
  []
@@ -1902,37 +1909,37 @@ pe pdf)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [59] [60]
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2031--2031
 []\TU/lmtt/m/n/10 ## lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment
 , data = food)[] 
  []
 
 
-Overfull \hbox (27.75pt too wide) in paragraph at lines 2019--2019
+Overfull \hbox (27.75pt too wide) in paragraph at lines 2038--2038
 []\TU/lmtt/m/n/10 ##                                 Estimate Std. Error t valu
 e Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2020--2020
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2039--2039
 []\TU/lmtt/m/n/10 ## (Intercept)                      60.4259     0.9553   63.2
 5   <2e-16 ***[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2021--2021
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2040--2040
 []\TU/lmtt/m/n/10 ## FoodTortilla Chips               30.2822     1.3510   22.4
 1   <2e-16 ***[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2022--2022
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2041--2041
 []\TU/lmtt/m/n/10 ## CondimentJam                     28.9745     1.3510   21.4
 5   <2e-16 ***[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2023--2023
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2042--2042
 []\TU/lmtt/m/n/10 ## FoodTortilla Chips:CondimentJam -59.8876     1.9106  -31.3
 4   <2e-16 ***[] 
  []
@@ -1951,37 +1958,37 @@ pe pdf)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [62]
-Overfull \hbox (80.25pt too wide) in paragraph at lines 2084--2084
+Overfull \hbox (80.25pt too wide) in paragraph at lines 2103--2103
 []\TU/lmtt/m/n/10 ## Warning in mcp2matrix(model, linfct = linfct): covariate i
 nteractions found --[] 
  []
 
 
-Overfull \hbox (80.25pt too wide) in paragraph at lines 2087--2087
+Overfull \hbox (80.25pt too wide) in paragraph at lines 2106--2106
 []\TU/lmtt/m/n/10 ## Warning in mcp2matrix(model, linfct = linfct): covariate i
 nteractions found --[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2098--2098
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2117--2117
 []\TU/lmtt/m/n/10 ## Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Cond
 iment, data = food)[] 
  []
 
 [63]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 2101--2101
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2120--2120
 []\TU/lmtt/m/n/10 ##                                      Estimate Std. Error t
  value Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2102--2102
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2121--2121
 []\TU/lmtt/m/n/10 ## Food: Tortilla Chips - Porridge == 0   30.282      1.351  
  22.41   <1e-10 ***[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2103--2103
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2122--2122
 []\TU/lmtt/m/n/10 ## Condiment: Jam - Hummous == 0          28.974      1.351  
  21.45   <1e-10 ***[] 
  []
@@ -1990,96 +1997,96 @@ Overfull \hbox (75.0pt too wide) in paragraph at lines 2103--2103
 Underfull \vbox (badness 4353) has occurred while \output is active []
 
 [64]
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2173--2173
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2192--2192
 []\TU/lmtt/m/n/10 ##                                                  Estimate 
 Std. Error t value[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2174--2174
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2193--2193
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Hummous - Porridge.Hummous == 0     30.282 
      1.351  22.414[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2175--2175
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2194--2194
 []\TU/lmtt/m/n/10 ## Porridge.Jam - Porridge.Hummous == 0               28.974 
      1.351  21.446[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2176--2176
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2195--2195
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Jam - Porridge.Hummous == 0         -0.631 
      1.351  -0.467[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2177--2177
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2196--2196
 []\TU/lmtt/m/n/10 ## Porridge.Jam - Tortilla Chips.Hummous == 0         -1.308 
      1.351  -0.968[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2178--2178
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2197--2197
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Jam - Tortilla Chips.Hummous == 0  -30.913 
      1.351 -22.881[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2179--2179
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2198--2198
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Jam - Porridge.Jam == 0            -29.605 
      1.351 -21.913[] 
  []
 
 [65] [66]
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2279--2279
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2298--2298
 []\TU/lmtt/m/n/10 ## [1] Tortilla Chips:Hummous Tortilla Chips:Hummous Tortilla
  Chips:Hummous[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2280--2280
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2299--2299
 []\TU/lmtt/m/n/10 ## [4] Tortilla Chips:Hummous Tortilla Chips:Hummous Tortilla
  Chips:Hummous[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2281--2281
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2300--2300
 []\TU/lmtt/m/n/10 ## 4 Levels: Porridge:Hummous Tortilla Chips:Hummous ... Tort
 illa Chips:Jam[] 
  []
 
 [67]
-Overfull \hbox (27.75pt too wide) in paragraph at lines 2293--2293
+Overfull \hbox (27.75pt too wide) in paragraph at lines 2312--2312
 []\TU/lmtt/m/n/10 ## [1] "Porridge:Hummous"       "Tortilla Chips:Hummous" "Por
 ridge:Jam"[] 
  []
 
 
-Overfull \hbox (219.74011pt too wide) in paragraph at lines 2299--2308
+Overfull \hbox (219.74011pt too wide) in paragraph at lines 2318--2327
 [][] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 2334--2334
+Overfull \hbox (1.5pt too wide) in paragraph at lines 2353--2353
 []\TU/lmtt/m/n/10 ##            Porridge:Hummous Tortilla Chips:Hummous Porridg
 e:Jam[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 2335--2335
+Overfull \hbox (1.5pt too wide) in paragraph at lines 2354--2354
 []\TU/lmtt/m/n/10 ## P:J - TC:J                0                      0        
     1[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 2336--2336
+Overfull \hbox (1.5pt too wide) in paragraph at lines 2355--2355
 []\TU/lmtt/m/n/10 ## P:H - TC:H                1                     -1        
     0[] 
  []
 
 [68]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2354--2354
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2373--2373
 []\TU/lmtt/m/n/10 ## Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Cond
 iment, data = food)[] 
  []
@@ -2093,13 +2100,13 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-88-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-88-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 2504--2505
+Underfull \hbox (badness 10000) in paragraph at lines 2523--2524
 []\TU/Alegreya(0)/m/n/10 By using numbers for our score, then we have been able
  to use
  []
 
 
-Underfull \hbox (badness 3219) in paragraph at lines 2504--2505
+Underfull \hbox (badness 3219) in paragraph at lines 2523--2524
 \TU/lmtt/m/n/10 geom_jitter() \TU/Alegreya(0)/m/n/10 as a representation and it
  has generated additions to
  []
@@ -2116,7 +2123,7 @@ Underfull \vbox (badness 2828) has occurred while \output is active []
 
 [74] [75] [76] [77]
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/bx/it' will be
-(Font)              scaled to size 12.0pt on input line 2676.
+(Font)              scaled to size 12.0pt on input line 2695.
 [78]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (ty
 pe pdf)
@@ -2153,7 +2160,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-105-1.pdf Graphic file (t
 ype pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-105-1.pdf>
 [85] [86]
-Overfull \hbox (80.25pt too wide) in paragraph at lines 2959--2959
+Overfull \hbox (80.25pt too wide) in paragraph at lines 2978--2978
 []\TU/lmtt/m/n/10 ## Warning in wilcox.test.default(x = c(1, 2, 1), y = c(3, 3,
  3)): cannot compute[] 
  []
@@ -2163,49 +2170,49 @@ Overfull \hbox (80.25pt too wide) in paragraph at lines 2959--2959
 ]
 Chapter 9.
 [89] [90] [91] [92] [93] [94]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3378--3378
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3397--3397
 []\TU/lmtt/m/n/10 ##            Comparison p.Fisher p.adj.Fisher  p.Gtest p.adj
 .Gtest  p.Chisq[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3379--3379
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3398--3398
 []\TU/lmtt/m/n/10 ## 1     curious : tense 8.97e-16     1.35e-15 2.22e-16    3.
 33e-16 1.07e-14[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3380--3380
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3399--3399
 []\TU/lmtt/m/n/10 ## 2 curious : whimsical 8.98e-29     2.69e-28 0.00e+00    0.
 00e+00 5.47e-21[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3381--3381
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3400--3400
 []\TU/lmtt/m/n/10 ## 3   tense : whimsical 5.98e-01     5.98e-01 6.07e-01    6.
 07e-01 6.11e-01[] 
  []
 
 [95]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3430--3430
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3449--3449
 []\TU/lmtt/m/n/10 ##             Comparison p.Fisher p.adj.Fisher p.Gtest p.adj
 .Gtest  p.Chisq[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3431--3431
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3450--3450
 []\TU/lmtt/m/n/10 ## 1   carpenter : cooper 5.26e-20     7.89e-20  0.0000      
 0.0000 3.38e-15[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3432--3432
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3451--3451
 []\TU/lmtt/m/n/10 ## 2 carpenter : milliner 7.81e-02     7.81e-02  0.0773      
 0.0773 7.81e-02[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3433--3433
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3452--3452
 []\TU/lmtt/m/n/10 ## 3    cooper : milliner 1.66e-28     4.98e-28  0.0000      
 0.0000 1.89e-21[] 
  []
@@ -2246,12 +2253,12 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-132-2.pdf Graphic file (t
 ype pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-132-2.pdf>
 
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 3605--3606
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 3624--3625
 [][] [] 
  []
 
 
-Overfull \vbox (0.13544pt too high) detected at line 3617
+Overfull \vbox (0.13544pt too high) detected at line 3636
  []
 
 [103]
@@ -2262,7 +2269,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-133-2.pdf Graphic file (t
 ype pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-133-2.pdf>
 
-Overfull \hbox (1.34155pt too wide) in paragraph at lines 3619--3620
+Overfull \hbox (1.34155pt too wide) in paragraph at lines 3638--3639
 [][] [] 
  []
 
@@ -2273,7 +2280,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-134-2.pdf Graphic file (t
 ype pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-134-2.pdf>
 
-Overfull \hbox (1.34398pt too wide) in paragraph at lines 3639--3640
+Overfull \hbox (1.34398pt too wide) in paragraph at lines 3658--3659
 [][] [] 
  []
 
@@ -2301,19 +2308,19 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-137-1.pdf Graphic file (t
 ype pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-137-1.pdf>
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 3701--3701
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3720--3720
 []\TU/lmtt/m/n/10 ##  [1]  5.824327  5.895516  7.105123  7.179086  7.375033  7.
 855269  7.912222[] 
  []
 
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 3702--3702
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3721--3721
 []\TU/lmtt/m/n/10 ##  [8]  8.319600  8.729459  8.852362  9.532381 10.989182 11.
 510336 12.167571[] 
  []
 
 
-Overfull \hbox (6.75pt too wide) in paragraph at lines 3703--3703
+Overfull \hbox (6.75pt too wide) in paragraph at lines 3722--3722
 []\TU/lmtt/m/n/10 ## [15] 12.329553 12.551050 12.883979 13.216811 13.431172 13.
 521335[] 
  []
@@ -2323,49 +2330,49 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-145-1.pdf Graphic file (t
 ype pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-145-1.pdf>
 [108]
-Underfull \hbox (badness 1297) in paragraph at lines 3876--3877
+Underfull \hbox (badness 1297) in paragraph at lines 3895--3896
 \TU/Alegreya(0)/m/n/10 is especially useful for hypothesis generation or findin
 g out possible parameter
  []
 
 [109]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3888--3888
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3907--3907
 []\TU/lmtt/m/n/10 ##  $ city     : chr [1:8602] "Abilene" "Abilene" "Abilene" "
 Abilene" ...[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 3889--3889
+Overfull \hbox (90.75pt too wide) in paragraph at lines 3908--3908
 []\TU/lmtt/m/n/10 ##  $ year     : int [1:8602] 2000 2000 2000 2000 2000 2000 2
 000 2000 2000 2000 ...[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 3891--3891
+Overfull \hbox (22.5pt too wide) in paragraph at lines 3910--3910
 []\TU/lmtt/m/n/10 ##  $ sales    : num [1:8602] 72 98 130 98 141 156 152 131 10
 4 101 ...[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 3892--3892
+Overfull \hbox (43.5pt too wide) in paragraph at lines 3911--3911
 []\TU/lmtt/m/n/10 ##  $ volume   : num [1:8602] 5380000 6505000 9285000 9730000
  10590000 ...[] 
  []
 
 
-Overfull \hbox (143.25pt too wide) in paragraph at lines 3893--3893
+Overfull \hbox (143.25pt too wide) in paragraph at lines 3912--3912
 []\TU/lmtt/m/n/10 ##  $ median   : num [1:8602] 71400 58700 58100 68600 67300 6
 6900 73500 75000 64500 59300 ...[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3894--3894
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3913--3913
 []\TU/lmtt/m/n/10 ##  $ listings : num [1:8602] 701 746 784 785 794 780 742 765
  771 764 ...[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3895--3895
+Overfull \hbox (38.25pt too wide) in paragraph at lines 3914--3914
 []\TU/lmtt/m/n/10 ##  $ inventory: num [1:8602] 6.3 6.6 6.8 6.9 6.8 6.6 6.2 6.4
  6.5 6.6 ...[] 
  []
@@ -2373,19 +2380,19 @@ Overfull \hbox (38.25pt too wide) in paragraph at lines 3895--3895
 [110]
 No file intro_to_stats.bbl.
 [111]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3937.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3937.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3956.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3956.
 (./intro_to_stats.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3937.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3937.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3956.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3956.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  37578 strings out of 492916
- 727439 string characters out of 6133345
- 911514 words of memory out of 5000000
+ 727453 string characters out of 6133345
+ 911545 words of memory out of 5000000
  41072 multiletter control sequences out of 15000+600000
  545632 words of font info for 112 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
