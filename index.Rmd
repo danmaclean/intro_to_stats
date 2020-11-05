@@ -23,7 +23,7 @@ You need to install the following stuff for this book:
 
  1. R
  2. RStudio
- 3. Two R packages: `devtools` and `itssl`
+ 3. Some R packages: `devtools`, `gradethis` and `itssl`
  
 
 ## Installing R
@@ -41,11 +41,22 @@ Follow this link and install the right version for your operating system [https:
 
 ![Installing Packages](fig/package_install.png)
 
-### Development packages - `itssl`
+### Development packages - `gradethis` and `itssl`
 
+`gradethis` is a development package that allows us to use interactive tutorials, but it is somewhat new and still under development so we need to install it manually using `devtools`.
+
+  1. In the `Console` tab in the lower left panel of RStudio type `devtools::install_github("rstudio-education/gradethis")`
+  2. When you are asked 
+    
+    >These packages have more recent versions available.
+It is recommended to update all of them.
+Which would you like to update?
+
+  Select `1: All`
+  
 `itssl` is a new package that contains all the materials including the exercises for this handbook. As it isn't fully certified yet you need to install it using `devtools`.
 
-1. In the `Console` tab in the lower left panel of RStudio type `devtools::install_github("danmaclean/itssl")`
+  1. In the `Console` tab in the lower left panel of RStudio type `devtools::install_github("danmaclean/itssl")`
 
 ## Using the `itssl` package
 
