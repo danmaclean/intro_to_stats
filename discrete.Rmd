@@ -12,27 +12,36 @@
   * Ranking data makes it possible to analyse ordered categoric data in a linear model
 
 
-So far we've looked at test where the dependent or response measurement has been continuous, so a measurable number on a continuous scale, like mass or fluorescence. In this section we'll look at how straight lines can be used to understand differences when we have a discrete or categorical response variable. A discrete response variable is one where we have certain categories of result, 'tall' or 'short', 'dead' or 'alive' or 'infected' or 'not'. You'll likely be familiar with these approaches from such things as the chi-squared ($\chi^2$) test or other so-called 'non-parametric' test like the Mann-Whitney. 
+So far we've looked at tests where the dependent or response measurement has been continuous, that is a measurable number on a continuous scale, like mass or fluorescence. In this section we'll look at how straight lines can be used to understand differences when we have a discrete or categorical response output. A discrete response variable is one where we have certain categories of result, 'tall' or 'short', 'dead' or 'alive' or 'infected' or 'not'. You'll likely be familiar with these approaches from such things as the chi-squared ($\chi^2$) test or other so-called 'non-parametric' test like the Mann-Whitney. 
 
 We'll start by looking at how these data really are different from the data we've used already, common mistakes are always enlightening.
 
 ## Common misrepresentations of discrete data
 
-A common place where analysing discrete data goes wrong is when the analyst confuses the categoric with the continuous, this is often caused by a bad naming scheme as much as a lack of appreciation of the real nature of the data. Often using numbers as the names for categories can lead an unthinking analyst to make a critical mistake. Let's consider a plant infection assay, often called an HR assay. Here a large-ish leaf of a plant is infected at points on its surface with either different strains or varieties of some pathogen and controls. After a period of incubation the severity of disease at each patch is assessed by eye and a score of disease applied. Sometimes that score will be a numeric one that may be like this:
+A common place where analysing discrete data goes wrong is when the analyst confuses the categoric with the continuous, this is often caused by a bad naming scheme as much as a lack of appreciation of the real nature of the data. Often, using numbers as the names for categories can lead the unaware analyst to make a critical mistake. Let's consider a plant infection assay (sometimes called an HR assay). Here a large-ish leaf of a plant is infected at points on its surface with either different strains or varieties of some pathogen and controls. After a period of incubation the severity of disease at each patch is assessed by eye and a score of disease applied. Sometimes that score will be a numeric one that may be like this example from Supplemental Figure 1 A in a 2020 PNAS paper by Gao et al. @Gao9613
+
+
+![An HR index picture](fig/dong_figs1A.png)
+In the figure we can see that a number has been attached to a category, roughly an amount of disease. The numbers increase as disease does but it is a very rough and therefore discontinuous fit. The change in size in numbers don't relate to each other in the same way that the changes in disease do. The unit difference from 0 to 1 doesn't seem to be copied in any of the other units and 5 doesnt have just 5 times more apparent disease than 1. The scale has numbers in it, but it isn't continuous.
+
+
+We can see what the scale represents if we try and use words to express the categories.
 
 ```{r}
 library(itssl)
 its_hr_score_scheme_time()
 ```
 
-Which looks fine at first glance. Typically this will be used in a replicated infection experiment and give data that look like this when collected, which is where the problem arises.
+Which looks fine at first glance, but again isn't continuous. 
+
+Typically this will be used in a replicated infection experiment and give data that look like this when collected, which is where the problem arises.
 
 ```{r}
 scores <- its_hr_scores_time()
 scores %>% its_table_time()
 ```
 
-We now have a table that looks to computers and humans alike as if it is full of numbers, which it isn't, its full of numbers in the place of words. A simple mental test is to try and use the categories as numbers and see if they behave. For example, is a score of '2' twice that of '1', in this case, is 'Ill' twice the effect of 'No Effect', clearly it isn't confirming that these numbers aren't numbers at all, merely place holders for other text. 
+We now have a table that looks to computers and humans alike as if it is full of numbers, which it isn't, its full of numbers in the place of words. A simple mental test is to try and use the categories as numbers and see if they behave. For example, is a score of '2' twice that of '1', in this case, is 'Ill' twice the effect of 'No Effect'? Clearly it isn't, confirming that these numbers aren't continuous numbers at all, merely place holders for some other conception of the severity of the disease. 
 
 The problem is exacerbated by not paying attention to this and jumping straight to a plot. Consider this:
 
@@ -50,7 +59,7 @@ No. By the sweet warmth of the first suns of spring, no.
 These data are misrepresented by this plot. There are some alarm bells that should ring when we look at this. The first is that scale for replicate. The scale shows replicate values like 1.5 and 2.5 - we didn't do a replicate 1.5 (not least because it doesn't make sense to do a replicate .5). So why has `ggplot` drawn that scale - because it saw numbers and assumed the data in this column are continuous and not discrete. This needs fixing, the replicate is a category, really, not a number. We wouldn't lose any meaning if we used `A,B,C` or `one,two,three` and while the computer is good at recognising text as categories, it just thinks the numbers are real numbers. So we'll need to avoid doing this, or be prepared to correct it.
 
 ```{block2, type="sidenote"}
-By using numbers for our score, then we have been able to use `geom_jitter()` as a representation and it has generated additions to the scores that leave it with decimal points and that isn't correct either. It seems defensible on the grounds that if we didn't use `geom_jitter()` all the points would be in one place but to avoid the problem we should be doing something very different.
+By using numbers for our score, then we have been able to use 'geom_jitter()' as a representation and it has generated additions to the scores that leave it with decimal points and that isn't correct either. It seems defensible on the grounds that if we didn't use geom_jitter() all the points would be in one place but to avoid the problem we should be doing something very different in the first place.
 ```
 
 ### Twisting names into numbers confuses the mind
@@ -81,6 +90,11 @@ The use of boxplots to show categories is seductive, it gives an impression of t
 
 With these plots as a base the analysts next move is to run statistical analysis in the way we have learned and, sadly, generate results that are worse than meaningless. 
 
+And indeed this does happen in published results, see this figure from the same Gao et al @Gao9613 paper .
+
+![An HR Barchart using categoric data](fig/dong_fig1A.png)
+A barchart with all the errors we mentioned, the bars represent means, the error bars represent standard errors and the legend reports an ANOVA done on these data that concludes a significant reduction in the one low sample. 
+
 ### Build a strong foundation
 
 We must avoid these category confusions. There are some key places we can do this in our analysis workflow
@@ -88,13 +102,13 @@ We must avoid these category confusions. There are some key places we can do thi
   * Know and declare the proper data type to R
   * Use a statistical test/model type appropriate to the datatype
   
-When we load our data into R, we'll need to make sure that we use the right data types. As a result of this we'll find that the plots we try to make will come out more appropriately - R will adapt to the data as far as it can. Second, when it comes to doing hypothesis tests we will have to use the proper test for the data type. As we are using the linear model as our basis for our interpretations we'll need to learn the adaptations to that. 
+When we load our data into R, we'll need to make sure that we use the right data types. As a result of this we'll find that the plots we try to make will come out more appropriately - R will adapt to the data as far as it can. Second, when it comes to doing hypothesis tests we will have to use the proper test for the data type. As we are using the linear model as the basis for our interpretations we'll need to learn the adaptations to that. 
 
-In the rest of this chapter we'll look at correctly describing data to R, creating an appropriate plot for some data and then back to our main thread, using the linear model as a basis for our understanding of statistical tests, this time with categorical response variable.
+In the rest of this chapter we'll look at correctly describing data to R, creating an appropriate plot for some data and then back to our main thread - using the linear model as a basis for our understanding of statistical tests - this time with categorical response variable.
 
 ## Setting type properly
 
-At the start of an analysis, when we're loading data into R is our best opportunity to correct type, before we've done any work on it and before it starts to get in the way. In a lot of everyday cases we'll be loading text in from an Excel file or something similar like a `.csv` or `.txt` file, so that will be our example case.
+At the start of an analysis, when we're loading data into R is our best opportunity to correct datatype, before we've done any work on it and before it starts to get in the way. In a lot of everyday cases we'll be loading text in from an Excel file or something similar like a `.csv` or `.txt` file, so that will be our example case.
 
 ```{block2, type="sidenote"}
 Base R provides the 'read.csv()'  (_read dot csv_) function for us to load '.csv' files and no option for loading Excel files. The tidyverse packages readr and readxl provide the read_csv() and read_excel() (_read underscore csv_) options respectively. You'll see read.csv() a lot in older code and quick tutorials, but it is a bit clunky. Some of read.csv()'s default behaviours can be a bit unpredictable and we have to undo some of its work sometimes. So we'll look at the more consistent tidyverse offerings.
@@ -162,7 +176,7 @@ scores %>% transmute(
 )
 ```
 
-Note that `transmute()` will drop any columns you don't explicitly mention, so any uncoverted columns like genuine continuous data should be included in the argument.
+Note that `transmute()` will drop any columns you don't explicitly mention, so any unconverted columns like genuine continuous data should be included in the argument.
 
 ```{r, eval = FALSE}
 scores %>% transmute(
@@ -221,18 +235,18 @@ It is possible to get a prettier and more descriptive plot with the different re
 
 ## Linear models and a categoric $y$ variable
 
-How can we now apply our knowledge of linear models to find differences between $x$ categories now that our $y$ is also categoric and not numeric.
+After all that exposition about the difference of categories and plotting them properly, how can we apply our knowledge of linear models to find differences between $x$ categories now that our $y$ is also categoric and not continuous?
 
-One thing we haven't considered up to now with our categories is that, although categories don't behave like numbers, they can behave like a queue, they often do have an intrinsic and meaningful order. A category like our HR score definitely has an order: $score\ 1 < score\ 2 < score\ 3 < score\ 4$ even if the intervals are not smooth or equal or (as in an HR experiment, defined in any other way). Conversely, some categories don't have an order, e.g species 1 and species 2 aren't greater or lesser than each other. We need to treat ordered and unordered categories differently.
+One thing we haven't considered up to now with our categories is that, although categories don't behave like numbers, they can behave like a queue. They often do have an intrinsic and meaningful order. A category like our HR score definitely has an order: $score\ 1 < score\ 2 < score\ 3 < score\ 4$ even if the intervals are not smooth or equal or defined in any other way. Conversely, some categories don't have an order, e.g species 1 and species 2 aren't greater or lesser than each other. We need to treat ordered and unordered categories differently.
 
 ### Ordered categoric response variables
 
 The steps for working with an ordered categoric response variable are as follows
 
-  1. Convert the ordered categoric response variable to a rank
+  1. Convert the values observed in the ordered categoric response variable to a rank
   2. Proceed as before
   
-It's that easy! Let's look at how to rank an ordered categoric variable
+It's that easy! Ranks are continuous and work as if they were a continuous scale, so we can use them as we did before. Let's look at how to rank an ordered categoric variable
 
 The first step is to tell R that the factor is in fact an ordered one, and what that order is
 
@@ -298,7 +312,7 @@ Great, some clear answers. The strains are likely not the same as the control, b
 
 ## Hypothesis Tests
 
-As we mentioned at the start of the chapter there are hypothesis tests that we can use instead of the linear model approach for the ordered categoric response variable case. These are the Mann-Whitney U test (also called the Wilcoxon Signed Rank test) which is for a two group situation (like a $t$-test) and the Kruskal Wallis test, which is for a multi-group situation (like the ANOVA).
+As we mentioned at the start of the chapter there are hypothesis tests that we can use instead of the linear model approach for the ordered categoric response variable case. These are the Mann-Whitney U test (also called the Wilcoxon Signed Rank test) which is for a two group situation (like a $t$-test) and the Kruskal-Wallis test, which is for a multi-group situation (like the ANOVA).
 
 However, we run into some problems when doing these tests, especially for multiple categories. The Mann-Whitney U only works on two groups, which is a limitation. It is used as below, though first we'll need to extract the two groups we want. We will do this by filtering but then we'll need to extract any unused levels in the filtered factor `strain` with `droplevels()`
 
@@ -316,17 +330,25 @@ wilcox.test(score ~ strain, data = two_groups)
 
 ```
 
-So the Mann-Whitney U (Wilcoxon) test tells us that the difference between the scores between the two strains is not likely to be 0. Scaling this up to more than two groups takes a Kruskal Wallis test
+So the Mann-Whitney U (Wilcoxon) test tells us that the difference between the scores between the two strains is not likely to be 0. Scaling this up to more than two groups takes a Kruskal-Wallis test
 
 ```{r}
 kruskal.test(rank_score ~ strain, data = scores)
 ```
 
-Now this is dissappointing, as the Kruskal Wallis test tells us that at least one of the groups is different from the others, but crucially it doesn't tell us which ones! So we end up doing a multiple `wilcox.test()` and applying a correction to the $p$value. The linear model and ANOVA approach, proves to be more that a little more straightforward now that we have the knack.  
+Now this is disappointing, as the Kruskal-Wallis test tells us that at least one of the groups is different from the others, but crucially it doesn't tell us which ones! So we end up doing a multiple `wilcox.test()` and applying a correction to the $p$-value. The linear model and ANOVA approach, proves to be a little more straightforward now that we have the knack.  
 
 ### But aren't the tests just easier?
 
-As with the $t$-test, then in practice, often, yes, these tests are easier. But the same reason for using the linear model applies as with the $t$-test - it gives us a general framework in which to work and develop us a good intuition about the data we are studying and a good conceptual tool with which to think about it. As ever the individual hypothesis tests are just easier. But as we've seen they run into limitations of their own.
+As with the $t$-test, then in practice, sometimes, yes, these tests are easier. But the same reason for using the linear model applies as with the $t$-test - it gives us a general framework in which to work and develop a good intuition about the data we are studying and a good conceptual tool with which to think about it. As ever the individual hypothesis tests are just easier. But as we've seen they run into limitations of their own.
 
 
+```{block2, type="roundup"}
+  * It is easy to mistake categories for continuous data when numbers are use as names. 
+  * Using numbers as names does not make data quantitative
+  * Ranking data makes it possible to analyse ordered categoric data in a linear model
 
+```
+
+```{block2, type="task"}
+```

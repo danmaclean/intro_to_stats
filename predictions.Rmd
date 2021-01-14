@@ -1,3 +1,5 @@
+# More fun with linear models
+
 1. Questions
   * How do I know whether my model is any good?
   * How can I use the model to make predictions?
@@ -9,16 +11,12 @@
   * Data should be normally distributed, but linear models are quite robust to deviation from this
   * Models can be used to make new hypotheses
   * Linear models are one member of a larger family of models for many types of data
-  
-# More fun with linear models
 
 In this section we'll take a look at some extra features of linear models that it will be good to know about things that a linear model can do beyond looking for significant differences. We'll look at assessing whether a linear model is a good one, from a model fit point of view, we'll briefly discuss how to make predictions from linear models to guide hypothesis building and we'll briefly discuss the next level of linear model, the generalised linear model.
-
 
 ## Assessing a linear model
 
 A decent linear model fit to the data is essential for good statistical analysis with a linear model. The quality of fit to a linear model can be used to assess whether the data are appropriate for a particular test, even if we intend to just use the test. If we don't get a reliable fit we don't get a result we can be confident in from either the linear model and crucially, neither would we if we did the corresponding tests, like the $t$-test and ANOVA. Let's examine some model fits. 
-
 
 ### The terror of normality
 
@@ -28,10 +26,9 @@ Scientists that have done at least a little statistics often seem concerned that
   2. have a linear pattern in the residual 
   3. show a reasonable correlation in a qq-plot
 
-
 ### Checking whether the mean is a good summary
 
-The first thing to check, whether you intend to do a simple $t$-test or a multi-way ANOVA is whether the mean is actually a good summary of the whole of the data. If you have multiple variables you'll need to check the means of each one. A mean is a good summary of a set of data if it sits nicely in the middle and there are no other peaks or skew in a histogram of that data. This is easier to think about if we draw some pictures. In this set of panels of histograms with density plots the mean (the vertical line) is an increasingly poor summary of the data. 
+The first thing to check, whether you intend to do a simple $t$-test or a multi-way ANOVA is whether the mean is actually a good summary of the whole of the data. If you have multiple variables you'll need to check the means of each one. A mean is a good summary of a set of data if it sits nicely in the middle and there are no other peaks or skew in a histogram of that data. This is easier to think about if we draw some pictures. In this set of panels of histograms with density plots the mean (the vertical line) is an increasingly poor summary of the data as we go from left to right along the panels. 
 
 ```{r}
 library(itssl)
@@ -73,7 +70,7 @@ plot(far_fit_model, which = 1)
 
 Here we see the $x$-axis value is the value from the model, so the $x$-axis value of a data point, the $y$-axis value is the residual itself the distance between the line $y$ value and the observed $y$ value. The first plot shows a nice even scatter and flat line and a range of -2 to 2. The second shows a more erratic scatter with the red line having a little wobble and a much higher range, from - 6 to 4.
 
-Together they show us that the second model doesn't fit as the data as closely as the first, the increased residual size and the more wobbly line mean it isn't as good. Its still not useless though, a wobbly line is still ok, we would be more worried if we had these data, which have some hidden structure in. Here's a non-linear data set and its residual plot
+Together they show us that the second model doesn't fit as the data as closely as the first, the increased residual size and the more wobbly line mean it isn't as good. Its still not useless though, a wobbly line is still sometimes useable, we would be more worried if we had these data, which have some hidden structure in. Here's a non-linear data set and its residual plot
 
 ```{r, fig.show="hold", out.width="50%"}
 non_linear_data <- tibble::tibble(
@@ -88,7 +85,7 @@ plot(non_linear_model, which = 1)
 ```
 
 
-Which has quite the pattern in the residual plot!! The data were actually a $y = x^2$ relationship with some noise added. By viewing the $x$ vs $y$ plot we don't easily see that relationship, but the residuals very definitely show that the linear model doesn't fit the data well, the structure in the residual plot indicates that the model is failing to capture some part of our data. As you might imagine, linear models (and related tests) performed with non-linear data will not give good results. 
+Initially, the line seems to fit the data quite well, but the giveaway is in the residual plot, which has quite the pattern!! The data are actually a $y = x^2$ relationship with some noise added. By viewing the $x$ vs $y$ plot we don't easily see that relationship, but the residuals very definitely show that the linear model doesn't fit the data well, the structure in the residual plot indicates that the model is failing to capture some part of our data. As you might imagine, linear models (and related tests) performed with non-linear data will not give good results. 
 
 ### Checking qq-plots for a normal distribution 
 
@@ -133,20 +130,19 @@ We can peek into $x$ to see what values we _actually_ used
 sort(df$x)
 ```
 
-```{r,eval=TRUE}
+```{r,eval=TRUE, echo=FALSE}
 model <- lm(y ~ x, data = df)
 b <- coefficients(model)[1]
 a <- coefficients(model)[2]
-predict(model, newdata = data.frame(x = c(10)))
+#predict(model, newdata = data.frame(x = c(10)))
 ```
-Ok, so we don't have a real $x = 10$ in our data. Imagine asking the question "what $y$ would we get for $x = 10$?". We can intuitively tell what the $y$-value would be simply by reading off the line at $x = 10$, which is about 20 `r v <- (a * 10) + b` or from the formula, $y = (1.9555 * 10) + 0.7780 = `r round(v, digits = 2)`$. This is the intuition behind how a linear model prediction works with continuous $x$ and $y$ - we're just reading off the line. 
+Although we don't have a real $x = 10$ in our data, imagine asking the question "what $y$ would we get for $x = 10$?". We can intuitively tell what the $y$-value would be simply by reading off the line at $x = 10$, which is about 20 `r v <- (a * 10) + b` or from the formula, $y = (1.9555 * 10) + 0.7780 = `r round(v, digits = 2)`$. This is the intuition behind how a linear model prediction works with continuous $x$ and $y$ - we're just reading off the line. 
 
 If we build the model, we can ask it to work this out for us directly using the `predict()` function. `predict()` takes the model and the new values to be predicted in a `data.frame`.
 
-```{r,eval=TRUE, echo=FALSE}
+```{r,eval=TRUE}
 model <- lm(y ~ x, data = df)
-vals_to_predict = data.frame(x = c(10) )
-
+predict(model, newdata = data.frame(x = c(10)))
 ```
 
 We see that we get the same value (given a little rounding error). 
@@ -204,7 +200,7 @@ predict(model,newdata = data.frame(feed = c("sunflower")))
 
 Note that this time we have to use the a level of a factor, because that was the only term in this model. It doesn't make sense to give it a number. The model returns the fitted value of `weight` for the level of the factor.
 
-Do the numbers return remind you of anything? Aren't they awfully close to where we expect the mean of each group to be. Let's check that out by doing a prediction for each feed and comparing with the group mean.
+Do the numbers returned remind you of anything? Aren't they awfully close to where we expect the mean of each group to be. Let's check that out by doing a prediction for each feed and comparing with the group mean.
 
 ```{r,eval=TRUE}
 #first get a vector of the chickwts feed names
@@ -231,13 +227,13 @@ Yep, they're the same. This gives us the intuition that for the model of categor
 
 A significant use of predictions is when we have a mixture of variables that we can't easily just see the mean for and want to know what the model thinks of those. This is especially useful for hypothesis generation or finding out possible parameter ranges for new experiments. As the last thing we'll do with predictions we'll look at the `txhousing` data, a data set about housing in Texas. This data has a mixture of continuous and categoric variables. We'll see that this it isn't more complicated than prediction for a single variable but does give us a much more convenient and powerful way to predict an outcome from provided values.
 
-First a quick look at `txhousing`.
+First a quick look at `txhousing`
 
 ```{r}
 str(txhousing)
 ```
 
-Now let's build a linear model of property sale price predicted by the city it's in and the year and month of sale.
+Now let's build a linear model of property sale price predicted by the city it is in and the year and month of sale.
 
 ```{r,eval=TRUE}
 model <- lm(median ~ city + year + month, data = txhousing)
@@ -253,15 +249,20 @@ This shows how the linear model can be used to make predictions and hypothesis f
 
 ## Generalized Linear Models
 
-Generalized Linear Models (GLMs) are, as the name might suggest, a generalization of the linear model that can be used when the residuals are not normally distributed. We went to quite a lot of trouble in this chapter to learn how to identify normally distributed residuals and input data and to press home the idea that if we do have data that look mostly normal then the linear model is still a useful tool. However, there are many situations where your data isn't going to be anything like normal and thats where a GLM is helpful. GLMs are particularly useful instance in non-linear situations like exponentially changing data or count data, indeed in earlier chapters we did see some data that definitely didn't fit a normal (though we didn't point it out explicitly at the time) the frequency data in the $\chi^2$ test section wasn't usable in a linear model without a great deal of fiddling. 
+Generalized Linear Models (GLMs) are, as the name might suggest, a generalization of the linear model that can be used when the residuals are not normally distributed. We went to quite a lot of trouble in this chapter to learn how to identify normally distributed residuals and input data and to press home the idea that if we do have data that look mostly normal then the linear model is still a useful tool. However, there are many situations where your data isn't going to be anything like normal and that's where a GLM is helpful. GLMs are particularly useful instance in non-linear situations like exponentially changing data or count data, indeed in earlier chapters we did see some data that definitely didn't fit a normal (though we didn't point it out explicitly at the time) the frequency data in the $\chi^2$ test section wasn't usable in a linear model without a great deal of fiddling. 
 
 ```{block2, type="sidenote"}
-Actually, with a lot of non-normal data like exponential data we can 'hack' our data to be more normal by applying a transformation, like taking logs, and then proceed as before. Often we can't or shouldn't and that's where Generalized Linear Models come in.
+Actually, with a lot of non-normal data, e.g exponential data, we can 'hack' our data to be more normal by applying a transformation such as taking logs, and then proceed as before. Often we can't or shouldn't and that's where Generalized Linear Models come in.
 ```
 
-GLMs can be thought of as clever linear models that you can specify the type of distribution the residual has, this means the mathematics is a lot more complicated, but in practice it's just another function in R `glm()` which is related to `lm()` and functions much like it but has some extra options to set.
+GLMs can be thought of as clever linear models that you can specify the type of distribution the residual has, this means the mathematics is a lot more complicated, but in practice it's just another function in R - `glm()` which is related to `lm()` and works much like it with some extra options to set.
 
 GLMs are a powerful thing and great to know about, and once you've got the hang of linear models not terribly hard to use, keep them in mind as you work through your analyses and if you come across a data set that doesn't seem to fit well with linear models, maybe you need to move over to a GLM.
 
+```{block2, type="roundup"}
+  * Linear models work best when the residuals are normally distributed, but linear models are somewhat robust to deviation from this
+  * Models can be used to make new hypotheses
+  * Linear models are one member of a larger family of models for many types of data, Generalized Linear models are the general class of tool.
 
 
+```

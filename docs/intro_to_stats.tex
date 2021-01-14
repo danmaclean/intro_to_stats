@@ -140,9 +140,9 @@ title=huh?,coltitle=white,
 fonttitle=\bfseries] }
 {  \end{tcolorbox} }
 
-\newenvironment{roundup}
-{ \begin{tcolorbox}[colbacktitle=yellow!50!white,title=Round Up,coltitle=black, title filled] }
-{  \end{tcolorbox} }
+% \newenvironment{roundup}
+% { \begin{tcolorbox}[colbacktitle=yellow!50!white,title=Round Up,title filled] }
+%{  \end{tcolorbox} }
 
 \newenvironment{myquote}
 {\begin{large}
@@ -162,12 +162,18 @@ fonttitle=\bfseries] }
 title=huh?,coltitle=white,
 fonttitle=\bfseries] }
 {  \end{tcolorbox} }
+
+\newenvironment{roundup}
+{ \begin{tcolorbox}[colbacktitle=yellow!50!white,
+title=Round Up,coltitle=black,
+fonttitle=\bfseries] }
+{  \end{tcolorbox} }
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
 \title{Understanding Statistical Thinking With Linear Models}
 \author{Dan MacLean}
-\date{2020-11-05}
+\date{2021-01-14}
 
 \begin{document}
 \maketitle
@@ -281,13 +287,13 @@ This handbook would not have been possible without helpful inspiration from thes
 \hypertarget{motivation}{%
 \chapter{Motivation}\label{motivation}}
 
-Statistics is a word that rhymes with sadistics. Many people haven noted this similarity and have felt that sadistics is what was really meant. Admittedly, statistics is hard, even statisticians find it hard. So why on earth would we want to do it? The main reason is because we want to be able to trust in our results as objectively as possible and applying some statistics can help us to do that.
+Statistics is a word that rhymes with sadistics. Many people have noted this similarity and have felt that sadistics is what was really meant. Admittedly, statistics is hard, even statisticians find it hard. So why on earth would we want to do it? The main reason is because we want to be able to trust in our results as objectively as possible and applying some statistics can help us to do that.
 
-For reasons beyond their control, during their education a lot of biologists with a molecular or biochemistry or genetics or field background develop only a vague conceptual framework about statistics, one that leaves them with the idea that it is all about picking the right test and then they're ok. Often they have gone through a graduate course that introduced them to a lot of tests and a lot of conditions that must be fulfilled and gained the impression that there is one `right' test to use in any given situation, which isn't true. Later, this misaprehension is reinforced by the good intentions of colleagues and reviewers with apparently eidetic memories that seem to remember all the conditions and can suggest the `right' test to them in lab meetings or during manuscript revision. Never is there a sense of working through a statistical problem logically or a discussion of ways of thinking about the problem.
+For reasons beyond their control, during their education a lot of biologists with a molecular or biochemistry or genetics or field background develop only a vague conceptual framework about statistics, one that leaves them with the idea that it is all about picking the right test and then they're ok. Often they have gone through a graduate course that introduced them to a lot of tests and a lot of conditions that must be fulfilled and they have gained the impression that there is one `right' test to use in any given situation, which isn't true. Later on this misapprehension is reinforced by the good intentions of colleagues and reviewers with apparently eidetic memories that seem to remember all the conditions and can suggest the `right' test to them in lab meetings or during manuscript revision. Many don't get an experience where there is a sense of working through a statistical problem logically or a discussion of ways of thinking about the problem.
 
 As a result many of us get the sense that everything to do with statistics is arbitrary and dislocated without any logical binding thread. If your prior experience has left you feeling that statistics is a bit of an incomprehensible mess, then this course is for you.
 
-The aim of this course is to introduce a simple new tool and a way of thinking about statistics that can enlighten and simplify all the tests we commonly use as biologists. It may suprise you that this tool will be based on a simple formula for a straight line, something you probably already know. We will look at the bare bones of this and see how it relates to signifcance tests and see how by thinking of straight lines in your work then you can apply complicated analyses quickly and importantly come to a clearer understanding of the hypotheses you are testing.
+The aim of this course is to introduce a simple new tool and a way of thinking about statistics that can enlighten and simplify all the tests we commonly use as biologists. It may surprise you that this tool will be based on a simple formula for a straight line, something you probably already know. We will look at the bare bones of this and see how it relates to significance tests and see how by thinking of straight lines in your work then you can apply complicated analyses quickly and importantly come to a clearer understanding of the hypotheses you are testing.
 
 Happy \sout{sadisticating} statistics-ing!
 
@@ -369,7 +375,7 @@ A Null Model will always have some way of incorporating variability, if you ask 
 Either way, for our purposes the basic idea is that we look inside the null model and see how likely it would be. Usually we ask a very specific question of a Null Model
 
 \begin{myquote}
-What is the likelihood of getting a difference observed if the true difference were 0, given the observed amount of variablility?
+What is the likelihood of getting the difference we observed if the true difference were 0, given the observed amount of variablility?
 \end{myquote}
 
 The likelihood of the difference under the Null Model is expressed as a very misunderstood and abused quantity - the \(p\)-value.
@@ -406,17 +412,17 @@ One way of examining a difference is to think about the slopes of straight lines
 \hline
 group1 & group2\\
 \hline
-5.104740 & 6.509604\\
+5.268602 & 7.983835\\
 \hline
-4.754867 & 5.853053\\
+5.099570 & 7.941177\\
 \hline
-6.912606 & 6.508250\\
+5.472474 & 6.204316\\
 \hline
-4.684426 & 5.966652\\
+6.891644 & 7.584074\\
 \hline
-6.292570 & 7.818577\\
+5.443401 & 7.364379\\
 \hline
-6.306387 & 5.932551\\
+4.039980 & 6.095724\\
 \hline
 \end{tabular}
 
@@ -444,7 +450,23 @@ The slope of that line tells us about the difference in the means. If it is flat
 
 \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-9-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-9-2}
 
-Now we have a conceptual tool for thinking about differences, like differences in means of samples as a slope between the means from one group to another. And that is the logic we will be following in this little book. All we will do is learn to look for a slope of a line. We'll look at using a statistical tool called a linear model, which tries to create a straight line that matches the data, so is contains the equation of a straight line but elaborates on the equation alone by providing measures of believability about the slope and other things. The technique we will learn will give us a framework for thinking about performing hypothesis testing in all sorts of comparisons including \(t\)-tests, ANOVA etc and with elaborations we'll be able to see how to use the same framework for the other class of tests that we often use, the non-parametric tests.
+Now we have a conceptual tool for thinking about differences (like differences in means of samples) as a slope between the means from one group to another. And that is the logic we will be following in this little book. All we will do is learn to look for a slope of a line. We'll look at using a statistical tool called a linear model, which tries to create a straight line that matches the data, so it contains the equation of a straight line but elaborates on the equation alone by providing measures of believability about the slope and other things. The technique we will learn will give us a framework for thinking about performing hypothesis testing in all sorts of comparisons including \(t\)-tests, ANOVA, etc. and with elaborations we'll be able to see how to use the same framework for the other class of tests that we often use, the non-parametric tests.
+
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  We do statistics to be reasonably certain that differences we observe don't occur by chance.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A \(p\) value doesn't tell us the probability of a result. It tells us how often we would see the observed result in an idealised and simplisitic situation.
+  \item
+    The slope of a line can help us think about whether two numbers are different.
+  \end{itemize}
+\end{itemize}
+\end{roundup}
 
 \hypertarget{the-linear-model}{%
 \chapter{The Linear Model}\label{the-linear-model}}
@@ -521,7 +543,7 @@ As a refresher, \(a\) tells us how much \(y\) increases for every unit increase 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 If we play about with that value, the slope of the line changes, the \(a\) term is known as the slope, or gradient, or more often because it is just a multiplier of \(x\) its called the coefficient. Here's some different coefficients just to prove that point
 
@@ -533,7 +555,7 @@ If we play about with that value, the slope of the line changes, the \(a\) term 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-11-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-12-1.pdf}
 
 The \(b\) part of the formula just tells us how much we add on to \(y\) after we've calculated the coefficient effect. It has the effect of pushing the line up and down the y-axis. When we look at the value of \(y\) for \(x = 0\) we get the position that the graph hits the y-axis so this number is often called the intercept. Here's a set of lines to show that.
 
@@ -545,7 +567,7 @@ The \(b\) part of the formula just tells us how much we add on to \(y\) after we
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-12-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 That's all we need to know about the equation of the straight line. Now we need to look at how they're a useful tool when analysing experimental data.
 
@@ -565,9 +587,9 @@ First we need some sets of values, \(x\) and \(y\). Usually, these would be from
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-13-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-14-1.pdf}
 
-The graph shows 20 random \(x\) values between 5 and 15 plotted against 20 \(y\) values which are calculated as \(2x\) with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way. Here's where the linear equation comes in, if we could come up with a line that fitted through the data we could use the linear equation of that line to roughly describe - or model - our data. Skipping to the end a bit, then there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won't repeat them, but you may be familiar with the general methods, its the `line of best fit' according to the ordinary least squares method. Details aside, the actual linear model function we need in R is \texttt{lm()} and it works like this
+The graph shows 20 random \(x\) values between 5 and 15 plotted against 20 \(y\) values which are calculated as \(2x\) with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way. Here's where the linear equation comes in, if we could come up with a line that fitted through the data we could use the linear equation of that line to roughly describe - or model - our data. Skipping to the end a bit, then there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won't repeat them, but you may be familiar with the general methods, it's the `line of best fit' according to the ordinary least squares method. Details aside, the actual linear model function we need in R is \texttt{lm()} and it works like this
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -575,7 +597,7 @@ The graph shows 20 random \(x\) values between 5 and 15 plotted against 20 \(y\)
 \end{Highlighting}
 \end{Shaded}
 
-Thats it! The function \texttt{lm()} does the work, it takes a fairly odd syntax, though. The \texttt{y\ \textasciitilde{}\ x} bit is an R formula and describes the relationship you want to examine, you can read it as \texttt{y\ depends\ on\ x}. The \texttt{y} and \texttt{x} we're referring to here are the two columns of numbers we created and plotted above, the \texttt{data} argument just says in which object to look for the data.
+That's it! The function \texttt{lm()} does the work, it takes a fairly odd syntax, though. The \texttt{y\ \textasciitilde{}\ x} bit is an R formula and describes the relationship you want to examine, you can read it as \texttt{y\ depends\ on\ x}. The \texttt{y} and \texttt{x} we're referring to here are the two columns of numbers we created and plotted above, the \texttt{data} argument just says in which object to look for the data.
 
 Looking at the function output we get this
 
@@ -599,7 +621,7 @@ So this line is a model of the data, it's a model in the sense that it is someth
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-16-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 The line alone can be useful to teach us about our data, but there's more to the linear model than just the line.
 
@@ -628,7 +650,7 @@ Although a line of best fit can always be calculated, the line might not be wort
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-17-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 We can definitely calculate a line that fits these,
 
@@ -650,7 +672,7 @@ We can definitely calculate a line that fits these,
 
 and it would be \(y = 0.1103x + 10.6495\). But if we compare the fit of those lines, like in these plots
 
-\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-19-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-19-2}
+\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-20-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-20-2}
 
 we can clearly see that not all lines are created equal. The first line fits the data much more closely than the second one. We can also see that the relationship between \(x\) and \(y\) is much weaker in the second set than in the first (the coefficient/slope/\(a\) is weaker. So a sensible linear model of our data would give us not just the equation but also measures of the closeness of fit and therefore believability of the value of slope of the line. In terms of our Null Model flat line/sloped line model this means that when we have a significant coefficient, we are not likely to have a flat line. Let's look at the statistics in the linear model that show us what a significant coefficient is.
 
@@ -707,9 +729,9 @@ Let's start at the bottom and look at model level summary.
 \hypertarget{residual-standard-error}{%
 \subsection{Residual Standard Error}\label{residual-standard-error}}
 
-This is a measure of how well the line fits the data. In essence its the distance from each real data point to the line all added together, the further the points are from the line (the worse the fit) the bigger the Residual Standard Error. If you look at the plots again with those distance drawn in you can see quite clearly the residual error for the second model is much bigger than for the first.
+This is a measure of how well the line fits the data. In essence Residual Standard Error is the average distance from each real data point to the line, the further the points are from the line (the worse the fit) the bigger the Residual Standard Error. If you look at the plots again with those distances drawn in you can see quite clearly the residual error for the second model is much bigger than for the first.
 
-\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-21-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-21-2}
+\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-22-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-22-2}
 
 \begin{sidenote}
 We're working hard here to avoid using too much mathematical notation and examination of the mechanics of the linear model, but the residuals are quite an important aspect, so Im going to use this aside to delve just a little deeper. Unlike the linear equation, the linear model has an extra error term, \(e\) which represents the residuals by quantifying the average distance from the actual measurments to the line in the y-axis.
@@ -720,7 +742,7 @@ The \(e\) term adds something onto the y value of the whole equation; the bigger
 \hypertarget{r2}{%
 \subsection{\texorpdfstring{\(R^2\)}{R\^{}2}}\label{r2}}
 
-\(R^2\) is another measure of how well the model fits the data. If you're thinking correlation coefficient here, then you're in the right area. \(R^2\) describes the proportion of variance in the \(y\) values that can be explained by the \(x\) values. The \(R^2\) always falls between 0 and 1. Closer to 1 is usually better, but it is very domain and dataset dependent. With small and biological data sets, we don't always see values close to that because of the noise of the system.
+\(R^2\) is another measure of how well the model fits the data. If you're thinking correlation coefficient here, then you're in the right area. \(R^2\) describes the proportion of variance in the \(y\) values that can be explained by the \(x\) values. The \(R^2\) always falls between 0 and 1. Closer to 1 is usually better, but it is very domain and dataset dependent. With small and biological data sets, we don't always see values close to 1 because of the noise of the system.
 
 The proper one to use in \sout{most} all cases is the \texttt{Adjusted\ R-squared}.
 
@@ -732,12 +754,12 @@ So what's the difference between these two - at first glance they do the same th
 \hypertarget{f-statistic}{%
 \subsection{\texorpdfstring{\(F\)-Statistic}{F-Statistic}}\label{f-statistic}}
 
-The \(F\)-Statistic is an indicator of a relationship between the \(x\) and \(y\) values of the model. In effect its testing how much better the relationship is in your model relative to a model in which the relationship is completely random, its a sort of ratio. When the \(F\)-statistic is at 1, the relationship is no stronger than a random relationship. The further above 1 this value is, the more it is likely there is a real relationship in the model. The \(p\) value here is the \(p\) that this size of \(F\) would occur in a random relationship with a similar dataset size. As with the other statistics, the significance of the actual size of \(F\) is dependent on the domain and data being analysed.
+The \(F\)-Statistic is an indicator of a relationship between the \(x\) and \(y\) values of the model. In effect \(F\) tests how much better the relationship is in your model than a model in which the relationship is completely random. It's actually a ratio such that when the \(F\)-statistic is at 1, the relationship is no stronger than a random relationship. The further above 1 \(F\) is, the more it is likely there is a real relationship in the model. The \(p\) value here is the \(p\) that this size of \(F\) would occur in a random relationship with a similar dataset size. As with the other statistics, the significance of the actual size of \(F\) is dependent on the domain and data being analysed.
 
 \hypertarget{coefficients-have-statistics}{%
 \section{Coefficients have statistics}\label{coefficients-have-statistics}}
 
-Along with these model level statistics, linear modelling with \texttt{lm()} gives us a set of statistics \emph{per coefficient}. These measure the effect that each coefficient has on the output variable \(y\). Basically a significant coeffecient, is one that has a non-zero slope and is an important determinant of the value of \(y\).
+Along with these model level statistics, linear modelling with \texttt{lm()} gives us a set of statistics \emph{per coefficient}. These measure the effect that each coefficient has on the output variable \(y\). Basically a significant coefficient, is one that has a non-zero slope and is an important determinant of the value of \(y\).
 
 \hypertarget{estimate}{%
 \subsection{Estimate}\label{estimate}}
@@ -752,12 +774,12 @@ A measure of the variability of the strength of the effect, so if some \(x\) poi
 \hypertarget{t-value}{%
 \subsection{\texorpdfstring{\(t\)-value}{t-value}}\label{t-value}}
 
-An estimate of how extreme the coefficient value is, basically how many Standard Deviations away the estimate is from the centre of a presumed normal distribution with mean 0. It is absolutely a \(t\)-test \(t\)-value, and like in a \(t\)-test we want it to be high. The higher \(t\) is, then the more likely that the coefficient is not at 0.
+An estimate of how extreme the coefficient value is, basically how many Standard Deviations away the estimated coefficient is from the centre of a presumed Normal distribution with mean 0. It is absolutely a \(t\)-test \(t\)-value, and like in a \(t\)-test we want it to be high. The higher \(t\) is, then the more likely that the coefficient is not 0.
 
 \hypertarget{wait-what}{%
 \subsubsection{Wait, what?}\label{wait-what}}
 
-Why would we care whether the coefficient is at 0 or not? Well, because if it is 0, then it's having no effect on the model. Consider again the equation of a line
+Why would we care whether the coefficient is 0 or not? Well, because if it is 0, then it's having no effect on the model. Consider again the equation of a line
 
 \begin{equation}
 y = ax + b
@@ -770,11 +792,11 @@ y = 0 x + b\\
 y = b
 \end{equation}
 
-The coefficient disappears, its having no effect!
+The coefficient disappears, it's having no effect!
 
-If the coefficient is not many standard deviations away from 0, its probably not having much effect on the relationship. The \(t\) value tries to work out whether, given the data, the coefficient is in anyway different to 0.
+If the coefficient is not many standard deviations away from 0, it's probably not having much effect on the relationship. The \(t\) value tries to work out whether, given the data, the coefficient is in anyway different to 0.
 
-In English, we are really saying that the size if the slope is not likely to be 0. That it is not likely that there is no relationship. Which is weak inference, but is \emph{exactly} the same sort of inference that all the other hypothesis test make and is exactly the same interpretation
+In plainer English, we are really saying that the size if the slope is not likely to be 0. That it is not likely that there is no relationship. Which is weak inference, but is \emph{exactly} the same sort of inference that all the other hypothesis tests make and is exactly the same interpretation.
 
 Of course, this will depend on the size of the standard deviation. The noisier the data or the smaller the sample size then the larger this value will need to be to be important.
 
@@ -790,11 +812,74 @@ By looking at the \(p\)-value of the coefficient then, we can see whether there 
 
 We can really emphasise by looking at the plots of lines we looked at earlier.
 
-\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-23-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-23-2}
+\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-24-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-24-2}
 
 The slope of the second plot is weaker, it's much flatter - much closer to zero, in fact given the spread of the data we aren't that confident that it isn't a flat (zero) slope, so we aren't that confident that there is a significant relationship.
 
-It is this feature that will help us in our overall goal of using the linear model in doing the work of all the other statistical tests we commonly use. If we have a good model and a good fit, then we can make really flexible use of the slope by looking at the significance of the coefficient.
+We can quickly see that definitively using \texttt{lm()} if we compare two models based on those two datasets.
+
+We already built the model for the first slope.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(model)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y ~ x, data = df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.17560 -1.00570 -0.01092  1.17016  1.83047 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   0.7780     1.1442    0.68    0.505    
+## x             1.9555     0.1122   17.42 1.03e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.303 on 18 degrees of freedom
+## Multiple R-squared:  0.944,	Adjusted R-squared:  0.9409 
+## F-statistic: 303.6 on 1 and 18 DF,  p-value: 1.027e-12
+\end{verbatim}
+
+Let's also build the model for the second slope, it is in a dataframe called \texttt{more\_df}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{x, }\DataTypeTok{data =}\NormalTok{ more_df)}
+\KeywordTok{summary}\NormalTok{(model_}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = y ~ x, data = more_df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.1924 -1.5007  0.1171  1.7748  3.8260 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  10.4695     2.0315   5.154 6.67e-05 ***
+## x             0.1103     0.2127   0.519     0.61    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.296 on 18 degrees of freedom
+## Multiple R-squared:  0.01472,	Adjusted R-squared:  -0.04001 
+## F-statistic: 0.269 on 1 and 18 DF,  p-value: 0.6103
+\end{verbatim}
+
+We can clearly see that the second model is a poorer fit to the data. The model level statistics are less convincing: \(F\) is reduced to 0.269 (from 303.6), the \(p-value\) shows the difference occurs by chance 61 \% of the time and the \texttt{Adjusted\ R-squared} is close to 0, indicating a poor relationship. The coefficient was measurable, but it is not significant (and not coincidentally) occurring by chance 61 \% of the time. The slope therefore is not significantly different from 0 and \(x\) in \texttt{model\_2} appears to have no effect on \(y\).
+
+It is this slope assessing feature of the linear models that will help us in our overall goal of using the linear model to do the work of all the other statistical tests we commonly use. If we have a good model and a good fit, then we can make really flexible use of the slope by looking at the significance of the coefficient.
 
 \hypertarget{major-points}{%
 \section{Major points}\label{major-points}}
@@ -815,15 +900,22 @@ After all that inspection of the linear model, here's what you need to remember:
 \hypertarget{extra-credit-understanding-linear-models-through-the-notation}{%
 \section{Extra credit: Understanding linear models through the notation}\label{extra-credit-understanding-linear-models-through-the-notation}}
 
-At the start of this topic we wrote the linear model like this
+In this section at the end I wanted to take one last step and look at how the linear model is specified because the notation is an aid to understanding the model a bit more deeply. It's probably OK to skip this bit if the idea of notation doesn't grab you.
+At the start of this chapter we wrote the linear equation like this
+
+\begin{equation}
+ y = ax + b
+\end{equation}
+
+and through the chapter we developed the idea that the linear model is the line with some statistics and noise built in, such that we can try to render it like this
 
 \begin{equation}
  y = ax + b + e
 \end{equation}
 
-but that isn't the usual way the linear model is written, you can't actually translate directly from the straight line equation like I did, but it does aid our thinking to take that liberty a little. In this section at the end I wanted to take one last step and look at how the linear model is specified because the notation is, in this case at least, an aid to understanding the model. Its probably ok to skip this bit if the idea of notation doesn't grab you.
+with \(e\) being a measure of \texttt{error} (or random measurement differences) added on, somehow, and it does aid our thinking to take that liberty a little, because of the way we can see the relationship of the error now.
 
-Unlike a straight line, a linear model doesn't have to have only one slope, that is from the \(y\) variable to a single \(x\) independent variable, it can have many. This doesn't mean that the line has a bend in it, like this
+But unlike a straight line, a linear model doesn't have to have only one slope, it can have many. This doesn't mean that the line has a bend in it, like this
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -831,7 +923,7 @@ Unlike a straight line, a linear model doesn't have to have only one slope, that
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-27-1.pdf}
 
 but rather that the model can take into account more than one data axis (variable) (or dimension) - more like this, where a new variable is called \(z\), so the whole thing if plotted looks more like the top 3D panel here in which the model allows us to see the combined effects of \(x\) and \(z\) on the output \(y\) but we can focus on each variable individually by taking one at a time, like in the two split panels at the bottom (note how this is like looking into the front and right side of the 3D panel individually).
 
@@ -841,9 +933,9 @@ but rather that the model can take into account more than one data axis (variabl
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-25-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-28-1.pdf}
 
-We can only see up to two extra axes in a plot, and only visualise that many without getting twitchy eyes, but going to three, four or many more dimensions is no problem for the linear model framework and they all work the same way. When it comes to notating this we run into a problem as we run out of letters. Let's build it up\ldots{}
+We can only see up to two extra axes in a plot, and only visualise three without getting twitchy eyes, but going to three, four or many more dimensions is no problem for the linear model framework and they all work the same way. When it comes to notating this we run into a problem as we run out of letters. Let's build it up\ldots{}
 
 First, a one slope/coefficient/independent variable model, adding one variable at a time
 
@@ -851,34 +943,48 @@ First, a one slope/coefficient/independent variable model, adding one variable a
 y = ax + e
 \end{equation}
 
-The first thing that happens is the linear model disposes of the intercept term \(b\), that's ok, it is still computed, but we don't have it in the model notation now. Next we build up the number of variables/dimensions
+The first thing that happens is the linear model disposes of the intercept term \(b\), that's OK, it is still computed, but we don't have it in the model notation now. Next we build up the number of variables/dimensions. We've already used \(a\) and \(x\) so for the next slope we can use \(z\) for the variable and \(b\) for its coefficient. We can go further for a third slope and use \(w\) and \(c\)
 
 \begin{align*}
 y &= ax + bz + e\\
 y &= ax + bz + cw + e
 \end{align*}
 
-It's already got confusing, \(cw\) is a bit hard to follow and it only gets worse. To get around this proliferation the notation of a linear model usually uses subscript numbers, all coeffcients are given the Greek letter beta \(\beta\), all variables are given \(x\) and each is written with a little number after that distinguishes them
+Hold on though, this is already getting very confusing, \(cw\) is a bit hard to follow and it only gets worse. To get around this proliferation the notation of a linear model usually uses subscript numbers, all coefficients are given the Greek letter beta \(\beta\), all variables are given \(x\) and each is written with a little number after that distinguishes them
 
 \begin{equation}
 y = \beta_1 x_1 + e
 \end{equation}
 
-then that can be extended easily to \(n\) sets of variables. Finally, because \(y\) in a linear model isn't specified \emph{exactly} by the model, the \textasciitilde{} operator is used
+then that can be extended easily to \(n\) sets of variables. Finally, because the relationship between \(y\) and the variables in a linear model isn't strictly speaking a mathematical equality we use the \textasciitilde{} operator.
 
 \begin{equation}
 y \sim \beta_1 x_1 + \beta_2 x_2 \dotsc + \beta_n x_n + e
 \end{equation}
 
-We can see from this equation that a linear model is really just a load of variables added together to give some outcome \(y\). Let's consider a plant growth experiement, in which we varied light, water and fertilizer and measured weight. The model in words looks like this
+We can see from this equation that a linear model is really just a load of variables added together to give some outcome \(y\). This makes much more sense when we put words in. Let's consider a plant growth experiment, in which we varied light, water and fertilizer and measured weight. The model in words looks like this
 
 \begin{equation}
 \mbox{weight} \sim \beta_1 \mbox{light} + \beta_2 \mbox{water} + \beta_3 \mbox{fertilizer} + e 
 \end{equation}
 
-We can see that what the linear model is looking for is all those values of \(\beta\) - its going to calculate slopes for us. Its the job of the linear model to work out the coefficients and intercepts from the data we put into it and to tell us which of the slopes are non-zero ones and therefore important in determining the size of the output variable. With this information we can tell not only significant differences between the variables, but whether any are more important than others in affecting the outcome.
+We can see that what the linear model is looking for is all those values of \(\beta\) - it is going to calculate slopes for us. It is the job of the linear model to work out the coefficients and intercepts from the data we put into it and to tell us which of the slopes are non-zero ones and therefore important in determining the size of the output variable. With this information we can tell not only significant differences between the variables, but whether any are more important than others in affecting the outcome.
 
 At the very least knowing notation like this will be useful later when we are looking at comparing multiple variables with linear models, but the linear model also gives us a lot of ways of talking about our experiment that we might not otherwise have had. The model gives us a way of assessing and quantifying the effects of the experimental variables on the outcome and a way of making quantitative predictions or hypotheses about the experiment, we can use expected values of the coefficients to say how we believe a model will work, when it proves to be different from the data we can validate or falsify our hypotheses.
+
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  Straight lines are described by an equation with two parameters
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Linear models contain information about the data and can tell us whether a slope is likely flat or not given the data
+  \end{itemize}
+\end{itemize}
+\end{roundup}
 
 \hypertarget{r-fundamentals}{%
 \chapter{R Fundamentals}\label{r-fundamentals}}
@@ -936,7 +1042,11 @@ At the very least knowing notation like this will be useful later when we are lo
 \hypertarget{working-with-r}{%
 \section{Working with R}\label{working-with-r}}
 
-In this workshop we'll use R in the extremely useful RStudio software For the most part we'll work interactively, meaning we'll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the consoled or in a window on the right). That's what you see in panels like the ones below - first the thing to type into R, and below it, the calculated result from R. Let's look at how R works by using it for it's most basic job - as a calculator:
+In this workshop we'll use R in the extremely useful RStudio software. For the most part we'll work interactively, meaning we'll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the console or in a window on the right).
+
+Panels like the ones below mimic the interaction with R and first show the thing to type into R, and below the calculated result from R.
+
+Let's look at how R works by using it for it's most basic job - as a calculator:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -980,7 +1090,7 @@ In this workshop we'll use R in the extremely useful RStudio software For the mo
 
 Fairly straightforward, we type in the expression and we get a result. That's how this whole book will work, you type the stuff in, and get answers out. It'll be easiest to learn if you go ahead and copy the examples one by one. Try to resist the urge to use copy and paste. Typing longhand really encourages you to look at what you're entering.
 
-As far as the R output itself goes, it's really straightforward - its just the answer with a \texttt{{[}1{]}} stuck on the front. This \texttt{{[}1{]}} tells us how far through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information
+As far as the R output itself goes, it's really straightforward - its just the answer with a \texttt{{[}1{]}} stuck on the front. This \texttt{{[}1{]}} tells us how many items through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information.
 
 \hypertarget{variables}{%
 \section{Variables}\label{variables}}
@@ -1122,7 +1232,7 @@ Many of the tools we use in will come in R packages, little nuggets of code that
 \hypertarget{using-r-help}{%
 \section{Using R Help}\label{using-r-help}}
 
-R provides a function, called \texttt{?} that will display the documentation for other functions. For example \texttt{?mean} will display the help for the \texttt{mean()} function.
+R provides a command, called \texttt{?} that will display the documentation for functions. For example \texttt{?mean} will display the help for the \texttt{mean()} function.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1131,6 +1241,14 @@ R provides a function, called \texttt{?} that will display the documentation for
 \end{Shaded}
 
 As in all programming languages the internal documentation in R is written with some assumption that the reader is familiar with the language. This can be a pain when you are starting out as the help will seem a bit obscure at times. Don't worry about this, usually the \texttt{Examples} section will give you a good idea of how to use the function and as your experience grows then the more things will make more sense.
+
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  R is an excellent and powerful statistical computing environment
+\end{itemize}
+\end{roundup}
 
 \begin{task}
 Use the interactive tutorial \texttt{r-start} in the package \texttt{itssl} to get to grips with R
@@ -1233,7 +1351,7 @@ y = b
 
 So the logical conclusion is that if we have a coefficient that is non-zero, we have a relationship/effect of \(x\) on \(y\).
 
-It is this property that let's us use the linear model to work out whether there is a significant difference between groups! That is to say we can use it as a \(t\)-test.
+It is this property that lets us use the linear model to work out whether there is a significant difference between groups. That is to say we can use it as a \(t\)-test!
 
 \hypertarget{using-two-different-samples-instead-of-a-continuous-x-variable}{%
 \section{\texorpdfstring{Using two different samples instead of a continuous \(x\) variable}{Using two different samples instead of a continuous x variable}}\label{using-two-different-samples-instead-of-a-continuous-x-variable}}
@@ -1252,11 +1370,11 @@ The second we try to apply what we've learned with the linear model to a two-sam
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-41-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-41-2}
+\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-46-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-46-2}
 
 Rest assured, the problem isn't insurmountable. We need to do a couple of numeric tricks to get this to work like the continuous data, and they're fairly easy, so let's run through them,
 
-The first step is to realise that although we are used to thinking of the each of the bars representing a single number, that single number is (almost always) a summary, like a mean of replicate values, so let's go back to those source numbers as a first step and plot those
+The first step is to realise that although we are used to thinking of the each of the bars representing a single number, that single number is (almost always) a summary, like a mean of replicate values, so let's go back to those source numbers as a first step and plot those, here are some examples
 
 \begin{tabular}{c|c}
 \hline
@@ -1276,9 +1394,9 @@ group1 & group2\\
 \hline
 \end{tabular}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-47-1.pdf}
 
-plotting gives us something a lot more like the scatterplot we need for the model as we've been thinking about it, but it isn't quite clear how the categorical \(x\) becomes numeric. To do this we simply select a number for each group, so our data will look like this
+plotting gives us something a lot more like the scatter plot we need for the model as we've been thinking about it, but it isn't quite clear how the categorical \(x\) becomes numeric. To do this we simply select a number for each group, so our data will look like this
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1329,15 +1447,15 @@ So now we can make a plot with two numeric axes, that looks a lot more like the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-44-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-49-1.pdf}
 
 albeit with the \(x\)-values in two places on the \(x\)-axis - its enough for us to make a slope on the line between the two groups and that means that we can use the linear model for the categoric data, as we did for the continuous.
 
-If this seems like a bit of a `hack' then thats fair, this is part of the numeric bookkeeping that we often have to do in statistics. Its not wrong and hacks are usually just pragmatic and useful solutions to problems, this one is completely mathematically legitimate as well as useful.
+If this seems like a bit of a `hack' then I'd agree. However, this is part of the numeric bookkeeping that we often have to do in statistics. Its not wrong and `hacks' are usually just pragmatic and useful solutions to problems, this one is completely mathematically legitimate as well as useful.
 
 And if this change in the data reminds you of tidy data we've used in other courses, like dplyr, then that is no accident. Tidy data is designed to make this sort of analysis easy to work through, at least as far as organising the data goes.
 
-The good news is that once we have our data setup, the \texttt{lm()} function just deals with these issues for us, we don't have to worry, the problem of continuous or categoric \(x\)-axes just disappears! All you need to know is that under the hood the linear model uses numbers for categories instead of words to make things easy.
+The good news is that once we have our data set up with a category and value column, the \texttt{lm()} function just deals with assigning the numbers for us, we don't have to worry, the problem of continuous or categoric \(x\)-axes just disappears! All you need to know is that under the hood the linear model uses numbers for categories instead of words to make things easy.
 
 Now that we understand how we can use categoric data in a linear model, let's get to the point of this chapter and work through an example of a linear model based hypothesis test for differences between two groups that functions as a \(t\)-test.
 
@@ -1379,7 +1497,7 @@ R comes with lots of datasets built in. One if these is \texttt{PlantGrowth}, wh
 ## 6   4.61  ctrl
 \end{verbatim}
 
-We have three groups and one measurement, in our linear model this means that the \(x\) values would come from the \texttt{group} column - and we know know that because it is categoric rather than continuous we needn't worry, the model functions will just do the conversion for us. And of course the \(y\) values would come from the \texttt{weight} column.
+We have three groups and one measurement. The \(x\) values would come from the \texttt{group} column (and we now know that because it is categoric rather than continuous we needn't worry, the model functions will just do the conversion for us). And of course the \(y\) values would come from the \texttt{weight} column.
 
 In linear modelling jargon, the \(x\) values are called the independent or explanatory variable, simply because this is the one we changed over the course of the experiment. The \(y\) values are called the dependent or response variables as this is the one that responds or changes according to the changes in the independent variable.
 
@@ -1412,7 +1530,7 @@ With that done, we can look at the categorical scatter plot.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-47-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-52-1.pdf}
 
 We can clearly see the weight spread in each group. By eye we can see that the groups overlap in the \(y\)-axis (weight) quite considerably, though \texttt{trt1} seems to have a couple of data points that are lower.
 
@@ -1472,7 +1590,7 @@ Now we have a categoric linear model built we can start to look at how to use it
 ## F-statistic: 1.419 on 1 and 18 DF,  p-value: 0.249
 \end{verbatim}
 
-From the output we can see the coefficient isn't huge, only about 1/3 of a gram \emph{decrease} as we change along the \(x\) axis by one unit. Saying change along the axis by one unit in categoric axes sounds a bit strange, but in the categoric data it just means switching from one group to the next. Lets add the line to the plot and have a look.
+From the output we can see the coefficient isn't huge, only about 1/3 of a gram \emph{decrease} as we change along the \(x\) axis by one unit. Saying change along the axis by one unit in categoric axes sounds a bit strange, but in the categoric data it just means switching from one group to the next. Recall that we put one group at 0 and the second at 1 when we were doing the numeric `hack' above, the distance between the groups is defined as 1, so it all makes sense to say 'a change along the \(x\) by one unit. Lets add the line to the plot and have a look.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1480,16 +1598,16 @@ From the output we can see the coefficient isn't huge, only about 1/3 of a gram 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-50-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-55-1.pdf}
 
-Just looking at the plot makes the line look seem substantial than it is. Looking at the \(y\)-axis and the places where the line intercepts with the categories then we can see the difference is close to the coefficient.
+Just looking at the plot makes the line seem more substantial than it is. Looking at the \(y\)-axis and the places where the line intercepts with the categories then we can see the difference is close to the coefficient.
 
 \hypertarget{the-coefficient-and-the-mean-difference-between-groups-are-equivalent}{%
 \subsection{The coefficient and the mean difference between groups are equivalent}\label{the-coefficient-and-the-mean-difference-between-groups-are-equivalent}}
 
 Before we move along with our model, we should look at that coefficient of the group variable a bit more. As we're moving from the \texttt{ctrl} to \texttt{treatment} groups the coefficient tells us the size of the change. So does this mean that the coefficient is equivalent to other measures by which we can tell the difference in two groups - is it, for example equivalent to calculating the difference in the means of the groups? Short answer is yes! Let's look at that, recalling that the coefficient is \texttt{-0.371}.
 
-First get the means of the groups
+First get the means of the groups using a little \texttt{dplyr}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1526,7 +1644,7 @@ There you have it, the absolute values of each are very similar. You can use the
 \hypertarget{the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test}{%
 \subsection{\texorpdfstring{The \(p\)-value of the co-efficient tests the same thing as a \(t\)-test}{The p-value of the co-efficient tests the same thing as a t-test}}\label{the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test}}
 
-We already know that the \(Pr(>|t|)\) value (\(p\)-value of the coefficient) tells us the probability that we would see the slope observed or greater in random samples if the real difference were 0. The two-sample \(t\)-test reports the probability that we would see the difference in means observed if the real difference were 0. So the two are very similar.
+We already know that the \(Pr(>|t|)\) value (\(p\)-value of the coefficient) tells us the probability that we would see the slope observed or greater in random samples if the real difference were 0. The two-sample \(t\)-test reports the probability that we would see the difference in means observed if the real difference were 0. So the two are very similar, the question is are they similar enough as a replacement?
 
 The \(p\)-value for the coefficient in the linear model was 0.249. How does this compare with a \(t\)-test?
 
@@ -1550,9 +1668,9 @@ The \(p\)-value for the coefficient in the linear model was 0.249. How does this
 ##              5.032              4.661
 \end{verbatim}
 
-It is extremely close! In fact, as the sample size increases and gets over about 15 it gets to be exact. So this is useful, we can use the linear model slope and \(p\)-value as a mental and practical alternative for thinking about the more complicated \(t\)-test.
+It is extremely close! In fact, as the sample size increases and gets over about 15 it gets to be exact. So this is useful, we can use the linear model slope and \(p\)-value as a mental and practical alternative for thinking about the more complicated to understand \(t\)-test. We can use the linear model \emph{instead} of the \(t\)-test if we want to.
 
-All you have to understand is that you are looking at the slope of the line between the groups. If you don't see a slope of that size very often, then you can say its not likely that there's no difference \footnote{Again this is weak inference, but thats this type of statistics for you!}
+All you have to understand is that you are looking at the slope of the line between the groups. If you don't see a slope of that size very often, then you can say its not likely that there's no difference \footnote{Again this is weak inference, but that's this type of statistics for you!}
 
 \hypertarget{summary}{%
 \section{Summary}\label{summary}}
@@ -1595,48 +1713,34 @@ In a hypothesis test way, what we're asking amounts to the following two hypothe
 
 and it can be summarised verbally as in this diagram
 
-\begin{verbatim}
-## Warning in FUN(X[[i]], ...): NAs introduced by coercion
-
-## Warning in FUN(X[[i]], ...): NAs introduced by coercion
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 24 rows containing non-finite values (stat_smooth).
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in min(x): no non-missing arguments to min; returning Inf
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in max(x): no non-missing arguments to max; returning -Inf
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in min(diff(sort(x))): no non-missing arguments to min; returning Inf
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 2 rows containing missing values (position_stack).
-\end{verbatim}
-
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-54-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-59-1.pdf}
 
 \hypertarget{but-wasnt-the-t-test-just-easier}{%
 \section{\texorpdfstring{But wasn't the \(t\)-test just easier?}{But wasn't the t-test just easier?}}\label{but-wasnt-the-t-test-just-easier}}
 
-In the process we've been learning we used the \texttt{t.test()} function to calculate the \(p\)-value that tested the hypothesis that the true difference in the means was 0. This was pretty easy and we didn't have to think too hard, we just got the result. Why wouldn't we stick to just using that, if it's equivalent to the linear model? There's no definitive reason, the \(t\)-test is a perfectly good tool, and it's a great one to use. Don't feel like I'm telling you not to use the \(t\)-test.
+In the sloped line / linear model process we've been learning we used the \texttt{t.test()} function to calculate the \(p\)-value that tested the hypothesis that the true difference in the means between groups was 0. This was pretty easy and we didn't have to think too hard, we just got the result. Why wouldn't we stick to just using that, especially if it's equivalent to the linear model? There's no definitive reason, the \(t\)-test is a perfectly good tool, and it's a great one to use. Don't feel like I'm telling you not to use the \(t\)-test.
 
-The focus of this whole tutorial is to give you a way to think of statistical techniques that is generally useful. Because the linear model provides a general answer to all these sorts of questions - one small set of techniques is re-useable lots of times, so the idea goes that in lots of experiments the statistics become a lot easier to understand. I hope I'm not confusing the two intents. If you've followed the logic of the straight line and slope and the linear model and can use it to inform your \(t\)-test usage in the future, then we're in good shape.
+The focus of this whole tutorial is to give you a way to think of statistical techniques that is generally useful. Because the linear model provides a general answer to all these sorts of questions - one small set of techniques is re-usable lots of times, so the idea goes that in lots of experiments the statistics become a lot easier to understand. I hope I'm not confusing the two intents. If you've followed the logic of the straight line and slope and the linear model and can use it to inform your \(t\)-test usage in the future, then we're in good shape.
 
-The general applicability of the straight line and linear model concept comes in handy when comparing more than two groups. Looking at effects in these experiments is basically the same thing as doing just two, though traditionally we'd use a different seemingly very different sort of test - ANOVA. We'll look at that in the next section.
+The general applicability of the straight line and linear model concept comes in handy when comparing more than two groups. Looking at effects in these experiments is basically the same thing as doing just two, though traditionally we'd use a seemingly very different sort of test - ANOVA. We'll look at that in the next section.
 
-\hypertarget{task}{%
-\section{Task}\label{task}}
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  A linear model can be used as a \(t\)-test
 
-Make the PlantGrowth plot using \texttt{geom\_smooth()} with the error area.
-geom\_smooth( aes(x = as.numeric(group), y = measurement), method = lm, colour = ``red'', linetype = ``dashed'')
+  \begin{itemize}
+  \tightlist
+  \item
+    Using the linear model rather than the \(t\)-test gives us a more consistent and flexible framework to think about differences between groups
+  \end{itemize}
+\end{itemize}
+\end{roundup}
+
+\begin{task}
+Do th thing
+\end{task}
 
 \hypertarget{anova-and-linear-models}{%
 \chapter{ANOVA and linear models}\label{anova-and-linear-models}}
@@ -1710,7 +1814,7 @@ We can visualise the process as simply being a case where we have more than one 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-55-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-62-1.pdf}
 
 So we'll need to know how to read the linear model for each of the given lines.
 Let's jump in and work through that. First let's build a linear model with a variable with multiple groups.
@@ -1822,7 +1926,7 @@ It seems to do the job, though the `flavour' of ANOVA it does is sometimes limit
 A scary thing that statisticians often say is that such-and-such a method is only applicable when certain assumptions are met. This can make scientists nervy about applying any methods in case it is wrong. I would like to encourage you to relax about this aspect. Most statistical tests are pretty robust to against violations, and if anything tend to get more conservative (IE, generate fewer significant results) in these cases. There are a few assumptions and even a few types of data that we need to be aware of. I dedicate some space in the last chapter to understanding where these trip-ups might happen.
 \end{sidenote}
 
-A better alternative (in the sense of flexibility for the user) is the \texttt{multcomp} package function \texttt{glht()} (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.
+A better alternative than the quick and dirty ANOVA approach above (in the sense of flexibility for the user) is the \texttt{multcomp} package function \texttt{glht()} (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1882,7 +1986,7 @@ Two-Way comparisons are pretty similar in practice to One-Way comparisons. So si
 \hypertarget{interactions-between-variables}{%
 \section{Interactions between variables}\label{interactions-between-variables}}
 
-Working with multiple variables is complicated over the single case as we have the possibility of an interaction between the variables to consider. That is to say that the response in an experiment may be stronger under conditions \texttt{a\ and\ b} than in \texttt{a} or \texttt{b} alone even if \texttt{a} or \texttt{b} alone is greater than \texttt{c}. We can visualise this as straight lines like in the diagrams below
+Working with multiple variables is complicated over the single case as we have the possibility of an interaction between the variables to consider. That is to say that the response in an experiment may be stronger under conditions \texttt{a\ and\ b} than in \texttt{a} or \texttt{b} alone whether \texttt{a} or \texttt{b} alone is greater than a \texttt{control} or not. We can visualise this as straight lines like in the diagrams below.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1890,7 +1994,7 @@ Working with multiple variables is complicated over the single case as we have t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 We can see the effect of interaction quite clearly in the two types of data, whenever \texttt{a\ \&\ b} is used then we have greater responses, either in greater means or in steeper gradients.
 
@@ -1899,25 +2003,18 @@ Let's work through an example that highlights how we identify and investigate th
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{food <-}\StringTok{ }\KeywordTok{its_food_data_time}\NormalTok{()}
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(dplyr}\OperatorTok{::}\KeywordTok{sample_n}\NormalTok{(food, }\DecValTok{5}\NormalTok{))                                             }
+\CommentTok{#look at specific rows 1,21,41,61}
+\NormalTok{food[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{21}\NormalTok{,}\DecValTok{41}\NormalTok{,}\DecValTok{61}\NormalTok{),]                                      }
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tabular}{l|l|r}
-\hline
-Food & Condiment & Enjoyment\\
-\hline
-Tortilla Chips & Jam & 55.89598\\
-\hline
-Tortilla Chips & Jam & 53.25323\\
-\hline
-Tortilla Chips & Jam & 58.81971\\
-\hline
-Tortilla Chips & Hummous & 92.30458\\
-\hline
-Tortilla Chips & Jam & 63.35115\\
-\hline
-\end{tabular}
+\begin{verbatim}
+##              Food Condiment Enjoyment
+## 1  Tortilla Chips   Hummous  87.19762
+## 21 Tortilla Chips       Jam  55.72871
+## 41       Porridge   Hummous  57.22117
+## 61       Porridge       Jam  91.89820
+\end{verbatim}
 
 Looking at those in the way we have already - each variable individually - then we would generate the following plots and lines to examine.
 
@@ -1927,7 +2024,7 @@ Looking at those in the way we have already - each variable individually - then 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-65-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-72-1.pdf}
 
 Without rushing ahead to do the modelling, we see that hummous has a slightly greater effect on enjoyment than jam, whereas the enjoyment of the two food types is much more similar. So without a hypothesis test the dangerously thin conclusion would be `use hummous to enhance your enjoyment of Porridge or Tortilla Chips'. We might be suspect of this conclusion not only because it seems not to line up with our intuitive sense of what's going on, but also because of those strange splits in the data. Look within each column and you can see that there is a definite clustering that is not a good sign, we possibly don't have a good specification of our data here.
 
@@ -1996,7 +2093,7 @@ Neither factor seems to be significant. Hmm. This seems like a slightly strange 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-68-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-75-1.pdf}
 
 Ok! That's very different and very much clearer. The enjoyment is very much dependent on the combination of food and condiment. This is a classic case of interaction between variables. You get results that are conditional on the combined values of the variables.
 
@@ -2048,7 +2145,9 @@ and when we print the \texttt{summary()} we get the book-keeping issue of not al
 ## F-statistic: 327.9 on 3 and 76 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
-This seems much more like what we expect from the graph, significance everywhere! Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? They are not, these seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract them. First we must decide what the contrasts we're going to check must be. In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
+This seems much more like what we expect from the graph, significance everywhere! Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? These seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract the ones we're interested in.
+
+In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
 
 Let's see whether food alone or condiment alone has an effect. This would be like the first situation we looked at,
 
@@ -2058,7 +2157,7 @@ Let's see whether food alone or condiment alone has an effect. This would be lik
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-72-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-79-1.pdf}
 
 in the way that the output we've seen so far has it, this would be
 
@@ -2082,11 +2181,11 @@ Porridge:Hummous - Tortilla Chips:Hummous == 0
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-73-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-80-1.pdf}
 
 So we have four lines of interest to look at - four contrasts.
 
-For the two main non-interaction effects we could think to look at these as we've done before, using the \texttt{mcp()} function with the model with the explicit interaction in it, like this
+For the two main non-interaction effects we could think to look at these as we've done before, using the \texttt{mcp()} function with the \texttt{interaction\_model} with the explicit interaction in it, like this
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2139,25 +2238,21 @@ Although we're interested in only two specific interactions, usually it's easier
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{food_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\NormalTok{food }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{FoodCondiment =} \KeywordTok{interaction}\NormalTok{(Food, Condiment))}
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(dplyr}\OperatorTok{::}\KeywordTok{sample_n}\NormalTok{(food_}\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{), }\DataTypeTok{align =} \StringTok{"c"}\NormalTok{)}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{( food_}\DecValTok{2}\NormalTok{[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{21}\NormalTok{,}\DecValTok{41}\NormalTok{,}\DecValTok{61}\NormalTok{),] , }\DataTypeTok{align =} \StringTok{"c"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tabular}{c|c|c|c}
+\begin{tabular}{l|c|c|c|c}
 \hline
-Food & Condiment & Enjoyment & FoodCondiment\\
+  & Food & Condiment & Enjoyment & FoodCondiment\\
 \hline
-Tortilla Chips & Hummous & 92.48925 & Tortilla Chips.Hummous\\
+1 & Tortilla Chips & Hummous & 87.19762 & Tortilla Chips.Hummous\\
 \hline
-Porridge & Jam & 84.90712 & Porridge.Jam\\
+21 & Tortilla Chips & Jam & 55.72871 & Tortilla Chips.Jam\\
 \hline
-Tortilla Chips & Jam & 62.21567 & Tortilla Chips.Jam\\
+41 & Porridge & Hummous & 57.22117 & Porridge.Hummous\\
 \hline
-Porridge & Hummous & 53.80499 & Porridge.Hummous\\
-\hline
-Tortilla Chips & Hummous & 87.63604 & Tortilla Chips.Hummous\\
-\hline
-Tortilla Chips & Jam & 63.28632 & Tortilla Chips.Jam\\
+61 & Porridge & Jam & 91.89820 & Porridge.Jam\\
 \hline
 \end{tabular}
 
@@ -2169,7 +2264,7 @@ We can see that all we've done is add a column that describes the interaction. W
 \end{Highlighting}
 \end{Shaded}
 
-To do the contrasts we can use the single interaction column as the target of Tukey's.
+To do the contrasts we can use the single interaction column as the target of Tukey.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2315,15 +2410,17 @@ We can see that this is just a factor object with all the combinations of \textt
 
 Now we can make the matrix, our eventual matrix will look like this
 
-\begin{tabular}{l|r|r|r|r}
-\hline
-  & Porridge:Hummous & Tortilla Chips:Hummous & Porridge:Jam & Tortilla Chips:Jam\\
-\hline
-Porridge:Jam - Tortilla Chips:Jam & 0 & 0 & 1 & -1\\
-\hline
-Porridge:Hummous - Tortilla Chips:Hummous & 1 & -1 & 0 & 0\\
-\hline
-\end{tabular}
+\begin{verbatim}
+##                                           Porridge:Hummous
+## Porridge:Jam - Tortilla Chips:Jam                        0
+## Porridge:Hummous - Tortilla Chips:Hummous                1
+##                                           Tortilla Chips:Hummous Porridge:Jam
+## Porridge:Jam - Tortilla Chips:Jam                              0            1
+## Porridge:Hummous - Tortilla Chips:Hummous                     -1            0
+##                                           Tortilla Chips:Jam
+## Porridge:Jam - Tortilla Chips:Jam                         -1
+## Porridge:Hummous - Tortilla Chips:Hummous                  0
+\end{verbatim}
 
 We can see that there is a row per comparison and a column per possible interaction. At the intersection we write a zero if we don't want to include that possible interaction in the contrast, a 1 if we want it to be the first part and a -1 if we want it to be the second part (IE, the part after the minus sign).
 
@@ -2383,6 +2480,19 @@ Now we can do the test using the custom matrix.
 
 And there we have the specific interaction contrasts. Note how in doing this we don't generate any warnings even though we used the model with the explicit interaction term, this is because when we generate our own contrast matrix like this we get an appropriate orthogonality for the test.
 
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  Working with multiple variables goes the same as working with just one
+\item
+  ANOVA is a flexible tool for specifying comparisons between variables in linear models
+\end{itemize}
+\end{roundup}
+
+\begin{task}
+\end{task}
+
 \hypertarget{non-parametric-tests-and-linear-models}{%
 \chapter{Non-parametric tests and linear models}\label{non-parametric-tests-and-linear-models}}
 
@@ -2435,14 +2545,19 @@ And there we have the specific interaction contrasts. Note how in doing this we 
   Ranking data makes it possible to analyse ordered categoric data in a linear model
 \end{itemize}
 
-So far we've looked at test where the dependent or response measurement has been continuous, so a measurable number on a continuous scale, like mass or fluorescence. In this section we'll look at how straight lines can be used to understand differences when we have a discrete or categorical response variable. A discrete response variable is one where we have certain categories of result, `tall' or `short', `dead' or `alive' or `infected' or `not'. You'll likely be familiar with these approaches from such things as the chi-squared (\(\chi^2\)) test or other so-called `non-parametric' test like the Mann-Whitney.
+So far we've looked at tests where the dependent or response measurement has been continuous, that is a measurable number on a continuous scale, like mass or fluorescence. In this section we'll look at how straight lines can be used to understand differences when we have a discrete or categorical response output. A discrete response variable is one where we have certain categories of result, `tall' or `short', `dead' or `alive' or `infected' or `not'. You'll likely be familiar with these approaches from such things as the chi-squared (\(\chi^2\)) test or other so-called `non-parametric' test like the Mann-Whitney.
 
 We'll start by looking at how these data really are different from the data we've used already, common mistakes are always enlightening.
 
 \hypertarget{common-misrepresentations-of-discrete-data}{%
 \section{Common misrepresentations of discrete data}\label{common-misrepresentations-of-discrete-data}}
 
-A common place where analysing discrete data goes wrong is when the analyst confuses the categoric with the continuous, this is often caused by a bad naming scheme as much as a lack of appreciation of the real nature of the data. Often using numbers as the names for categories can lead an unthinking analyst to make a critical mistake. Let's consider a plant infection assay, often called an HR assay. Here a large-ish leaf of a plant is infected at points on its surface with either different strains or varieties of some pathogen and controls. After a period of incubation the severity of disease at each patch is assessed by eye and a score of disease applied. Sometimes that score will be a numeric one that may be like this:
+A common place where analysing discrete data goes wrong is when the analyst confuses the categoric with the continuous, this is often caused by a bad naming scheme as much as a lack of appreciation of the real nature of the data. Often, using numbers as the names for categories can lead the unaware analyst to make a critical mistake. Let's consider a plant infection assay (sometimes called an HR assay). Here a large-ish leaf of a plant is infected at points on its surface with either different strains or varieties of some pathogen and controls. After a period of incubation the severity of disease at each patch is assessed by eye and a score of disease applied. Sometimes that score will be a numeric one that may be like this example from Supplemental Figure 1 A in a 2020 PNAS paper by Gao et al.~\citet{Gao9613}
+
+\includegraphics{fig/dong_figs1A.png}
+In the figure we can see that a number has been attached to a category, roughly an amount of disease. The numbers increase as disease does but it is a very rough and therefore discontinuous fit. The change in size in numbers don't relate to each other in the same way that the changes in disease do. The unit difference from 0 to 1 doesn't seem to be copied in any of the other units and 5 doesnt have just 5 times more apparent disease than 1. The scale has numbers in it, but it isn't continuous.
+
+We can see what the scale represents if we try and use words to express the categories.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2465,7 +2580,9 @@ No Effect & 1\\
 \hline
 \end{tabular}
 
-Which looks fine at first glance. Typically this will be used in a replicated infection experiment and give data that look like this when collected, which is where the problem arises.
+Which looks fine at first glance, but again isn't continuous.
+
+Typically this will be used in a replicated infection experiment and give data that look like this when collected, which is where the problem arises.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2498,7 +2615,7 @@ deadly & 3 & 3\\
 \hline
 \end{tabular}
 
-We now have a table that looks to computers and humans alike as if it is full of numbers, which it isn't, its full of numbers in the place of words. A simple mental test is to try and use the categories as numbers and see if they behave. For example, is a score of `2' twice that of `1', in this case, is `Ill' twice the effect of `No Effect', clearly it isn't confirming that these numbers aren't numbers at all, merely place holders for other text.
+We now have a table that looks to computers and humans alike as if it is full of numbers, which it isn't, its full of numbers in the place of words. A simple mental test is to try and use the categories as numbers and see if they behave. For example, is a score of `2' twice that of `1', in this case, is `Ill' twice the effect of `No Effect'? Clearly it isn't, confirming that these numbers aren't continuous numbers at all, merely place holders for some other conception of the severity of the disease.
 
 The problem is exacerbated by not paying attention to this and jumping straight to a plot. Consider this:
 
@@ -2511,7 +2628,7 @@ The problem is exacerbated by not paying attention to this and jumping straight 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 Looks good?
 
@@ -2520,7 +2637,7 @@ No.~By the sweet warmth of the first suns of spring, no.
 These data are misrepresented by this plot. There are some alarm bells that should ring when we look at this. The first is that scale for replicate. The scale shows replicate values like 1.5 and 2.5 - we didn't do a replicate 1.5 (not least because it doesn't make sense to do a replicate .5). So why has \texttt{ggplot} drawn that scale - because it saw numbers and assumed the data in this column are continuous and not discrete. This needs fixing, the replicate is a category, really, not a number. We wouldn't lose any meaning if we used \texttt{A,B,C} or \texttt{one,two,three} and while the computer is good at recognising text as categories, it just thinks the numbers are real numbers. So we'll need to avoid doing this, or be prepared to correct it.
 
 \begin{sidenote}
-By using numbers for our score, then we have been able to use \texttt{geom\_jitter()} as a representation and it has generated additions to the scores that leave it with decimal points and that isn't correct either. It seems defensible on the grounds that if we didn't use \texttt{geom\_jitter()} all the points would be in one place but to avoid the problem we should be doing something very different.
+By using numbers for our score, then we have been able to use `geom\_jitter()' as a representation and it has generated additions to the scores that leave it with decimal points and that isn't correct either. It seems defensible on the grounds that if we didn't use geom\_jitter() all the points would be in one place but to avoid the problem we should be doing something very different in the first place.
 \end{sidenote}
 
 \hypertarget{twisting-names-into-numbers-confuses-the-mind}{%
@@ -2537,7 +2654,7 @@ The next level of mistake that follows from believing that the scores are number
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-90-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 What the cuss? This is a dreadful misrepresentation of the data!
 
@@ -2557,6 +2674,11 @@ The use of boxplots to show categories is seductive, it gives an impression of t
 
 With these plots as a base the analysts next move is to run statistical analysis in the way we have learned and, sadly, generate results that are worse than meaningless.
 
+And indeed this does happen in published results, see this figure from the same Gao et al \citet{Gao9613} paper .
+
+\includegraphics{fig/dong_fig1A.png}
+A barchart with all the errors we mentioned, the bars represent means, the error bars represent standard errors and the legend reports an ANOVA done on these data that concludes a significant reduction in the one low sample.
+
 \hypertarget{build-a-strong-foundation}{%
 \subsection{Build a strong foundation}\label{build-a-strong-foundation}}
 
@@ -2570,14 +2692,14 @@ We must avoid these category confusions. There are some key places we can do thi
   Use a statistical test/model type appropriate to the datatype
 \end{itemize}
 
-When we load our data into R, we'll need to make sure that we use the right data types. As a result of this we'll find that the plots we try to make will come out more appropriately - R will adapt to the data as far as it can. Second, when it comes to doing hypothesis tests we will have to use the proper test for the data type. As we are using the linear model as our basis for our interpretations we'll need to learn the adaptations to that.
+When we load our data into R, we'll need to make sure that we use the right data types. As a result of this we'll find that the plots we try to make will come out more appropriately - R will adapt to the data as far as it can. Second, when it comes to doing hypothesis tests we will have to use the proper test for the data type. As we are using the linear model as the basis for our interpretations we'll need to learn the adaptations to that.
 
-In the rest of this chapter we'll look at correctly describing data to R, creating an appropriate plot for some data and then back to our main thread, using the linear model as a basis for our understanding of statistical tests, this time with categorical response variable.
+In the rest of this chapter we'll look at correctly describing data to R, creating an appropriate plot for some data and then back to our main thread - using the linear model as a basis for our understanding of statistical tests - this time with categorical response variable.
 
 \hypertarget{setting-type-properly}{%
 \section{Setting type properly}\label{setting-type-properly}}
 
-At the start of an analysis, when we're loading data into R is our best opportunity to correct type, before we've done any work on it and before it starts to get in the way. In a lot of everyday cases we'll be loading text in from an Excel file or something similar like a \texttt{.csv} or \texttt{.txt} file, so that will be our example case.
+At the start of an analysis, when we're loading data into R is our best opportunity to correct datatype, before we've done any work on it and before it starts to get in the way. In a lot of everyday cases we'll be loading text in from an Excel file or something similar like a \texttt{.csv} or \texttt{.txt} file, so that will be our example case.
 
 \begin{sidenote}
 Base R provides the `read.csv()' (\emph{read dot csv}) function for us to load `.csv' files and no option for loading Excel files. The tidyverse packages readr and readxl provide the read\_csv() and read\_excel() (\emph{read underscore csv}) options respectively. You'll see read.csv() a lot in older code and quick tutorials, but it is a bit clunky. Some of read.csv()'s default behaviours can be a bit unpredictable and we have to undo some of its work sometimes. So we'll look at the more consistent tidyverse offerings.
@@ -2596,7 +2718,8 @@ On loading data with \texttt{read\_csv()}, we get a column specification - this 
 \end{Shaded}
 
 \begin{verbatim}
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   strain = col_character(),
 ##   replicate = col_double(),
@@ -2723,7 +2846,7 @@ Often our data won't come straight from a file, it'll come from some other funct
 ## 9 deadly  3         3
 \end{verbatim}
 
-Note that \texttt{transmute()} will drop any columns you don't explicitly mention, so any uncoverted columns like genuine continuous data should be included in the argument.
+Note that \texttt{transmute()} will drop any columns you don't explicitly mention, so any unconverted columns like genuine continuous data should be included in the argument.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2749,7 +2872,7 @@ Now we have our data in the right format we can get to plotting, let's try and r
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-107-1.pdf}
 
 Better but not perfect. We get the replicate labelled properly - as discrete categories rather than a continuous scale, and the strain is in a sensible order. But the jitter still leaves us with the impression that we have numeric data. We can fix this but first let's jump to repeating our earlier mistake with boxplots
 
@@ -2762,7 +2885,7 @@ Better but not perfect. We get the replicate labelled properly - as discrete cat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 OK, weird. The boxplot clearly fails, there isn't the proper data to draw a boxplot, coding our data as factors has saved us this error too. Though not explictly! At least it sends some sort of signal that something isn't right with our plot.
 
@@ -2776,7 +2899,7 @@ Moving on to evolve our plot, lets remove the jitter and go to a \texttt{geom\_p
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-109-1.pdf}
 
 this leaves us with the problem that some of our points are overlapped by others. We need a way to show them without moving them off the spot. We can do that by changing the spot size according to the number of points making it up, \texttt{geom\_count()} does that for us.
 
@@ -2788,7 +2911,7 @@ this leaves us with the problem that some of our points are overlapped by others
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-101-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-110-1.pdf}
 
 And with that we can see the number of datum that make up each point. This is a clearer representation of the categoric data than the early attempts and doesn't lead us to the same poor mental models.
 
@@ -2797,9 +2920,9 @@ It is possible to get a prettier and more descriptive plot with the different re
 \hypertarget{linear-models-and-a-categoric-y-variable}{%
 \section{\texorpdfstring{Linear models and a categoric \(y\) variable}{Linear models and a categoric y variable}}\label{linear-models-and-a-categoric-y-variable}}
 
-How can we now apply our knowledge of linear models to find differences between \(x\) categories now that our \(y\) is also categoric and not numeric.
+After all that exposition about the difference of categories and plotting them properly, how can we apply our knowledge of linear models to find differences between \(x\) categories now that our \(y\) is also categoric and not continuous?
 
-One thing we haven't considered up to now with our categories is that, although categories don't behave like numbers, they can behave like a queue, they often do have an intrinsic and meaningful order. A category like our HR score definitely has an order: \(score\ 1 < score\ 2 < score\ 3 < score\ 4\) even if the intervals are not smooth or equal or (as in an HR experiment, defined in any other way). Conversely, some categories don't have an order, e.g species 1 and species 2 aren't greater or lesser than each other. We need to treat ordered and unordered categories differently.
+One thing we haven't considered up to now with our categories is that, although categories don't behave like numbers, they can behave like a queue. They often do have an intrinsic and meaningful order. A category like our HR score definitely has an order: \(score\ 1 < score\ 2 < score\ 3 < score\ 4\) even if the intervals are not smooth or equal or defined in any other way. Conversely, some categories don't have an order, e.g species 1 and species 2 aren't greater or lesser than each other. We need to treat ordered and unordered categories differently.
 
 \hypertarget{ordered-categoric-response-variables}{%
 \subsection{Ordered categoric response variables}\label{ordered-categoric-response-variables}}
@@ -2810,12 +2933,12 @@ The steps for working with an ordered categoric response variable are as follows
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Convert the ordered categoric response variable to a rank
+  Convert the values observed in the ordered categoric response variable to a rank
 \item
   Proceed as before
 \end{enumerate}
 
-It's that easy! Let's look at how to rank an ordered categoric variable
+It's that easy! Ranks are continuous and work as if they were a continuous scale, so we can use them as we did before. Let's look at how to rank an ordered categoric variable
 
 The first step is to tell R that the factor is in fact an ordered one, and what that order is
 
@@ -2876,7 +2999,7 @@ Let's calculate the rank score and add it to the score data frame with \texttt{t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-105-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-114-1.pdf}
 
 We can see the ranks and replicates in the scatter plot that we are used to, we have a similar view as to that we saw with the categoric scatter plot.
 
@@ -2931,9 +3054,9 @@ Now we can move on to the modelling and the ANOVA
 ## 
 ## Linear Hypotheses:
 ##                       Estimate Std. Error t value Pr(>|t|)   
-## mild - control == 0     3.5000     0.9129   3.834  0.01990 * 
-## deadly - control == 0   5.5000     0.9129   6.025  0.00235 **
-## deadly - mild == 0      2.0000     0.9129   2.191  0.15126   
+## mild - control == 0     3.5000     0.9129   3.834  0.02030 * 
+## deadly - control == 0   5.5000     0.9129   6.025  0.00196 **
+## deadly - mild == 0      2.0000     0.9129   2.191  0.15142   
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## (Adjusted p values reported -- single-step method)
@@ -2944,7 +3067,7 @@ Great, some clear answers. The strains are likely not the same as the control, b
 \hypertarget{hypothesis-tests}{%
 \section{Hypothesis Tests}\label{hypothesis-tests}}
 
-As we mentioned at the start of the chapter there are hypothesis tests that we can use instead of the linear model approach for the ordered categoric response variable case. These are the Mann-Whitney U test (also called the Wilcoxon Signed Rank test) which is for a two group situation (like a \(t\)-test) and the Kruskal Wallis test, which is for a multi-group situation (like the ANOVA).
+As we mentioned at the start of the chapter there are hypothesis tests that we can use instead of the linear model approach for the ordered categoric response variable case. These are the Mann-Whitney U test (also called the Wilcoxon Signed Rank test) which is for a two group situation (like a \(t\)-test) and the Kruskal-Wallis test, which is for a multi-group situation (like the ANOVA).
 
 However, we run into some problems when doing these tests, especially for multiple categories. The Mann-Whitney U only works on two groups, which is a limitation. It is used as below, though first we'll need to extract the two groups we want. We will do this by filtering but then we'll need to extract any unused levels in the filtered factor \texttt{strain} with \texttt{droplevels()}
 
@@ -2988,7 +3111,7 @@ However, we run into some problems when doing these tests, especially for multip
 ## alternative hypothesis: true location shift is not equal to 0
 \end{verbatim}
 
-So the Mann-Whitney U (Wilcoxon) test tells us that the difference between the scores between the two strains is not likely to be 0. Scaling this up to more than two groups takes a Kruskal Wallis test
+So the Mann-Whitney U (Wilcoxon) test tells us that the difference between the scores between the two strains is not likely to be 0. Scaling this up to more than two groups takes a Kruskal-Wallis test
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3004,12 +3127,31 @@ So the Mann-Whitney U (Wilcoxon) test tells us that the difference between the s
 ## Kruskal-Wallis chi-squared = 6.8889, df = 2, p-value = 0.03192
 \end{verbatim}
 
-Now this is dissappointing, as the Kruskal Wallis test tells us that at least one of the groups is different from the others, but crucially it doesn't tell us which ones! So we end up doing a multiple \texttt{wilcox.test()} and applying a correction to the \(p\)value. The linear model and ANOVA approach, proves to be more that a little more straightforward now that we have the knack.
+Now this is disappointing, as the Kruskal-Wallis test tells us that at least one of the groups is different from the others, but crucially it doesn't tell us which ones! So we end up doing a multiple \texttt{wilcox.test()} and applying a correction to the \(p\)-value. The linear model and ANOVA approach, proves to be a little more straightforward now that we have the knack.
 
 \hypertarget{but-arent-the-tests-just-easier}{%
 \subsection{But aren't the tests just easier?}\label{but-arent-the-tests-just-easier}}
 
-As with the \(t\)-test, then in practice, often, yes, these tests are easier. But the same reason for using the linear model applies as with the \(t\)-test - it gives us a general framework in which to work and develop us a good intuition about the data we are studying and a good conceptual tool with which to think about it. As ever the individual hypothesis tests are just easier. But as we've seen they run into limitations of their own.
+As with the \(t\)-test, then in practice, sometimes, yes, these tests are easier. But the same reason for using the linear model applies as with the \(t\)-test - it gives us a general framework in which to work and develop a good intuition about the data we are studying and a good conceptual tool with which to think about it. As ever the individual hypothesis tests are just easier. But as we've seen they run into limitations of their own.
+
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  It is easy to mistake categories for continuous data when numbers are use as names.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Using numbers as names does not make data quantitative
+  \item
+    Ranking data makes it possible to analyse ordered categoric data in a linear model
+  \end{itemize}
+\end{itemize}
+\end{roundup}
+
+\begin{task}
+\end{task}
 
 \hypertarget{chi-2-tests-and-linear-models}{%
 \chapter{\texorpdfstring{\(\chi ^2\) tests and linear models}{\textbackslash chi \^{}2 tests and linear models}}\label{chi-2-tests-and-linear-models}}
@@ -3056,7 +3198,7 @@ As with the \(t\)-test, then in practice, often, yes, these tests are easier. Bu
 \begin{itemize}
 \tightlist
 \item
-  Linear models applied in the place of \(\chi^2\) tests are fiddly and in practice we are better off using the hypothesis tests
+  Linear models applied in the place of \(\chi^2\) tests are fiddly and in practice we are usually better off using the hypothesis tests
 \end{itemize}
 
 In the last chapter we looked at discrete data that was ordered and got around it, as hypothesis tests do, by working on ranked data with a linear model. In this section we'll look at discrete data that isn't ordered, or is nominal, things like \texttt{agree,\ disagree,\ don\textquotesingle{}t\ know}, or \texttt{yellow,\ green,\ wrinkled,\ smooth}. We'll also look at discrete data in the form of counts or frequencies.
@@ -3064,7 +3206,7 @@ In the last chapter we looked at discrete data that was ordered and got around i
 \hypertarget{the-problem-with-unordered-response-data}{%
 \section{The problem with unordered response data}\label{the-problem-with-unordered-response-data}}
 
-If we have unordered categoric response data (\(y\)-axis) we find ourselves in a bit of a pickle if we want to use try and apply a linear model to understand relationships, because there are no numbers \emph{at all}. In every other example we've looked at the \(y\) response data has been numeric or at least coercible into numbers.
+If we have unordered categoric response data (\(y\)-axis) we find ourselves in a bit of a pickle if we want to try to apply a linear model to understand relationships, because there are no numbers \emph{at all}. In every other example we've looked at the \(y\) response data has been numeric or at least coercible into numbers.
 
 We'll put ourselves in the shoes of Gregor Mendel and work through his monohybrid cross experiment on flower colour. Mendel's first step would have been to work out the flower colours after a cross with different coloured true breeding parents, leaving him with a raw dataframe like this:
 
@@ -3079,20 +3221,20 @@ We'll put ourselves in the shoes of Gregor Mendel and work through his monohybri
 ## # A tibble: 600 x 2
 ##    cross result
 ##    <chr> <chr> 
-##  1 PP    P     
+##  1 WP    P     
 ##  2 WP    P     
-##  3 WW    W     
+##  3 WP    P     
 ##  4 PW    P     
-##  5 PP    P     
-##  6 PP    P     
-##  7 WP    P     
-##  8 WP    P     
-##  9 PP    P     
+##  5 WP    P     
+##  6 PW    P     
+##  7 PW    P     
+##  8 PW    P     
+##  9 WP    P     
 ## 10 PP    P     
 ## # ... with 590 more rows
 \end{verbatim}
 
-Which isn't very helpful at this stage, how on earth do we get two columns of text into a linear model? Perservering, Mendel would've gone on to count the numbers of each colour.
+Which isn't very helpful at this stage, how on earth do we get two columns of text into a linear model? Persevering, Mendel would've gone on to count the numbers of each colour.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3104,8 +3246,8 @@ Which isn't very helpful at this stage, how on earth do we get two columns of te
 ## # A tibble: 2 x 2
 ##   colour count
 ##   <chr>  <int>
-## 1 P        458
-## 2 W        142
+## 1 P        459
+## 2 W        141
 \end{verbatim}
 
 Mendel famously went on to calculate the ratios, or relative frequencies of each.
@@ -3120,10 +3262,14 @@ Mendel famously went on to calculate the ratios, or relative frequencies of each
 ## # A tibble: 1 x 6
 ##       P     W ratio_p ratio_w freq_p freq_w
 ##   <int> <int>   <dbl>   <dbl>  <dbl>  <dbl>
-## 1   451   149    3.03       1  0.752  0.248
+## 1   459   141    3.26       1  0.765  0.235
 \end{verbatim}
 
-But that doesn't get us any nearer. The problem is that we have just got count (or frequency) data and nothing else. It seems that it isn't far from the ordered data case, we can imagine plotting the data as we did with HR score, but the response variable is colour and there's no clear explanatory (\(x\)) variable, so what would go on that axis? If we had more categories we could get something but there isn't an order so we can't meaningfully apply the rank to create a proxy for order. We can't look at slopes again because there's no sense in the order of the response variable. In short it's a mess.
+But that doesn't get us any nearer. The problem is that we have just got count (or frequency) data and nothing else. It seems that it isn't far from the ordered data case, we can imagine plotting the data as we did with HR score, but the response variable is colour and there's no clear explanatory (\(x\)) variable, so what would go on that axis? Perhaps the colour of the parents in the cross as categories would do? There isn't an order to this so we can't meaningfully apply the rank to create a proxy for order. We can't look at slopes again because there's no sense in the order of the response variable. In short it's a mess.
+
+\begin{sidenote}
+Why isn't colour an explanatory variable? And why can't then frequency or count be the \(y\)-axis? Well, at a push they sort of might nearly be. But maybe not really. Remember the values of an explanatory variable should be something we can change as an experimenter, they are the values that we change deliberately to see what the effect on the response is. Even in our categoric \(x\)-experiments we know what the values will be beforehand. Here, arguably we didn't, crosses happened and phenotypes popped out, so it's a bit muddier. If we do use that approach we end up with lots of observations condensed into one number as a further issue.
+\end{sidenote}
 
 \hypertarget{we-have-to-compare-models-not-groups.}{%
 \section{We have to compare models, not groups.}\label{we-have-to-compare-models-not-groups.}}
@@ -3157,7 +3303,7 @@ The log-linear model and the tests give closely equivalent results in most cases
 In the \(\chi^2\) test we ask `does one set of counts differ from another?'. This might be a hypothetical `expected' set of counts for the response of interest compared to some standard.
 For example, in genetics data we might ask whether the observed ratio of phenotypes matches an expected \texttt{9:3:3:1}. More generally, we might ask whether the counts in one subset of categories matches another, so in a survey to ask whether respondents agree that broccoli is a nice food, with response `agree, disagree, don't know', we might compare responses between adults and children.
 
-The basic calculation in the \(\chi^2\) test is the difference between observed and expected numbers in each category subset. In Mendel's data this would be the difference between the observed number of ``P'' and ``W'', from the expected number - given we did 600 plants, then for a \(3:1\) we'd expect 450 ``P'' and 150 ``W''. This difference is then compared to values of the \(\chi^2\) distribution and returns a \(p\)-value that represents how far away from the mean the difference is. If it is an extreme value (in the tails) the \(p\)-value is lower.
+The basic calculation in the \(\chi^2\) test is the difference between observed and expected numbers in each category subset. In Mendel's data this would be the difference between the observed number of ``P'' and ``W'', from the expected number - given we did 600 plants, then for a \(3:1\) we'd expect 450 ``P'' and 150 ``W''. This difference is then compared to values of the dev\(\chi^2\) distribution and returns a \(p\)-value that represents how far away from the mean the difference is. If it is an extreme value (in the tails) the \(p\)-value is lower.
 
 The hypotheses are set as follows:
 
@@ -3186,7 +3332,7 @@ To do the test for the simplest case - Mendel's flower data, we need to get a da
 ## # A tibble: 1 x 2
 ##       P     W
 ##   <int> <int>
-## 1   452   148
+## 1   459   141
 \end{verbatim}
 
 We then need to make the equivalent row for the expected counts - recall we had 600 plants, so calculate the expected number of ``P'' and ``W''
@@ -3231,7 +3377,7 @@ We then need to stick those rows together
 ## # A tibble: 2 x 2
 ##       P     W
 ## * <dbl> <dbl>
-## 1   452   148
+## 1   459   141
 ## 2   450   150
 \end{verbatim}
 
@@ -3248,7 +3394,7 @@ Finally we can do the test with the function \texttt{chisq.test()}
 ## 	Pearson's Chi-squared test with Yates' continuity correction
 ## 
 ## data:  chi_sq_input
-## X-squared = 0.0044644, df = 1, p-value = 0.9467
+## X-squared = 0.29034, df = 1, p-value = 0.59
 \end{verbatim}
 
 The test shows us that the \(p\)-value of the \(\chi^2\) test is greater than 0.05 so we conclude that there is no evidence that the observed number of each flower colour differs from the expected and that we do indeed have a \(3:1\) ratio. Note that the test automatically does the necessary correction for small sample sizes if the data need it.
@@ -3478,7 +3624,7 @@ In previous chapters we've seen how to plot the data we've been working on and u
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-127-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-139-1.pdf}
 
 This plot shows circles whose size is proportional to the count at each combination.
 
@@ -3491,7 +3637,7 @@ This plot shows circles whose size is proportional to the count at each combinat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-140-1.pdf}
 
 This plot shows tiles whose filled colour represents the count at each combination
 
@@ -3504,7 +3650,24 @@ This plot shows tiles whose filled colour represents the count at each combinati
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-141-1.pdf}
+
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  Categoric explanatory (\(x\)) and response (\(y\)) variables are not amenable to use in linear models
+
+  \begin{itemize}
+  \tightlist
+  \item
+    In practice we are usually better off using the hypothesis tests
+  \end{itemize}
+\end{itemize}
+\end{roundup}
+
+\hypertarget{more-fun-with-linear-models}{%
+\chapter{More fun with linear models}\label{more-fun-with-linear-models}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3557,9 +3720,6 @@ This plot shows tiles whose filled colour represents the count at each combinati
   Linear models are one member of a larger family of models for many types of data
 \end{itemize}
 
-\hypertarget{more-fun-with-linear-models}{%
-\chapter{More fun with linear models}\label{more-fun-with-linear-models}}
-
 In this section we'll take a look at some extra features of linear models that it will be good to know about things that a linear model can do beyond looking for significant differences. We'll look at assessing whether a linear model is a good one, from a model fit point of view, we'll briefly discuss how to make predictions from linear models to guide hypothesis building and we'll briefly discuss the next level of linear model, the generalised linear model.
 
 \hypertarget{assessing-a-linear-model}{%
@@ -3586,7 +3746,7 @@ Scientists that have done at least a little statistics often seem concerned that
 \hypertarget{checking-whether-the-mean-is-a-good-summary}{%
 \subsection{Checking whether the mean is a good summary}\label{checking-whether-the-mean-is-a-good-summary}}
 
-The first thing to check, whether you intend to do a simple \(t\)-test or a multi-way ANOVA is whether the mean is actually a good summary of the whole of the data. If you have multiple variables you'll need to check the means of each one. A mean is a good summary of a set of data if it sits nicely in the middle and there are no other peaks or skew in a histogram of that data. This is easier to think about if we draw some pictures. In this set of panels of histograms with density plots the mean (the vertical line) is an increasingly poor summary of the data.
+The first thing to check, whether you intend to do a simple \(t\)-test or a multi-way ANOVA is whether the mean is actually a good summary of the whole of the data. If you have multiple variables you'll need to check the means of each one. A mean is a good summary of a set of data if it sits nicely in the middle and there are no other peaks or skew in a histogram of that data. This is easier to think about if we draw some pictures. In this set of panels of histograms with density plots the mean (the vertical line) is an increasingly poor summary of the data as we go from left to right along the panels.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3595,7 +3755,7 @@ The first thing to check, whether you intend to do a simple \(t\)-test or a mult
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 The first two, a normal distribution and a normal distribution with a very wide standard deviation are summarised quite well by the mean. They have the mean at the peak, with the rest of the data falling evenly away. The third, the uniform distribution (in which all outcomes are equally likely) has no peak because the central outcome isn't more likely than the others so is less good, but still quite well summarised by the mean. The final two aren't nearly as well summarised well by the mean, the skew-normal distribution has the mean away from the peak because of the long tail and the multimodal has more than one peak. The take-home here is that the model fit and assumptions are increasingly poor as we move along, not that the tests and models become completely useless. In practice our conclusions must become more circumspect and a single test is less convincing.
 
@@ -3621,7 +3781,7 @@ Another thing you can do to assess your linear model is check out the residuals.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-132-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-132-2}
+\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-145-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-145-2}
 
 We can see the first has a fairly good slope and the points are all relatively close to the line, while in the second the slope is weak because the points are further away. The \texttt{lm()} function calculates the residuals and we can plot them.
 
@@ -3635,11 +3795,11 @@ We can see the first has a fairly good slope and the points are all relatively c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-133-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-133-2}
+\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-146-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-146-2}
 
 Here we see the \(x\)-axis value is the value from the model, so the \(x\)-axis value of a data point, the \(y\)-axis value is the residual itself the distance between the line \(y\) value and the observed \(y\) value. The first plot shows a nice even scatter and flat line and a range of -2 to 2. The second shows a more erratic scatter with the red line having a little wobble and a much higher range, from - 6 to 4.
 
-Together they show us that the second model doesn't fit as the data as closely as the first, the increased residual size and the more wobbly line mean it isn't as good. Its still not useless though, a wobbly line is still ok, we would be more worried if we had these data, which have some hidden structure in. Here's a non-linear data set and its residual plot
+Together they show us that the second model doesn't fit as the data as closely as the first, the increased residual size and the more wobbly line mean it isn't as good. Its still not useless though, a wobbly line is still sometimes useable, we would be more worried if we had these data, which have some hidden structure in. Here's a non-linear data set and its residual plot
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3655,9 +3815,9 @@ Together they show us that the second model doesn't fit as the data as closely a
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-134-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-134-2}
+\includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-147-1} \includegraphics[width=0.5\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-147-2}
 
-Which has quite the pattern in the residual plot!! The data were actually a \(y = x^2\) relationship with some noise added. By viewing the \(x\) vs \(y\) plot we don't easily see that relationship, but the residuals very definitely show that the linear model doesn't fit the data well, the structure in the residual plot indicates that the model is failing to capture some part of our data. As you might imagine, linear models (and related tests) performed with non-linear data will not give good results.
+Initially, the line seems to fit the data quite well, but the giveaway is in the residual plot, which has quite the pattern!! The data are actually a \(y = x^2\) relationship with some noise added. By viewing the \(x\) vs \(y\) plot we don't easily see that relationship, but the residuals very definitely show that the linear model doesn't fit the data well, the structure in the residual plot indicates that the model is failing to capture some part of our data. As you might imagine, linear models (and related tests) performed with non-linear data will not give good results.
 
 \hypertarget{checking-qq-plots-for-a-normal-distribution}{%
 \subsection{Checking qq-plots for a normal distribution}\label{checking-qq-plots-for-a-normal-distribution}}
@@ -3673,7 +3833,7 @@ The qq-plot tests the question of whether data are normally distributed directly
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-135-1} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-135-2} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-135-3}
+\includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-148-1} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-148-2} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-148-3}
 
 These often deviate at the ends of the scatter plot, but the centre parts should fall along the line with random deviation. Here, with these particular data sets, the \texttt{close\_fit} and \texttt{far\_fit} appear to be matching marginally better overall than the \texttt{non\_linear} which is veering around the line quite a lot.
 
@@ -3687,7 +3847,7 @@ and again, we can also do this with the residual data which should also be norma
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-136-1} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-136-2} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-136-3}
+\includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-149-1} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-149-2} \includegraphics[width=0.33\linewidth]{intro_to_stats_files/figure-latex/unnamed-chunk-149-3}
 
 \hypertarget{predictions}{%
 \section{Predictions}\label{predictions}}
@@ -3706,7 +3866,7 @@ The intuition behind this is more straightforward than you might initially think
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-150-1.pdf}
 
 We can peek into \(x\) to see what values we \emph{actually} used
 
@@ -3722,11 +3882,13 @@ We can peek into \(x\) to see what values we \emph{actually} used
 ## [15] 12.329553 12.551050 12.883979 13.216811 13.431172 13.521335
 \end{verbatim}
 
+Although we don't have a real \(x = 10\) in our data, imagine asking the question ``what \(y\) would we get for \(x = 10\)?''. We can intuitively tell what the \(y\)-value would be simply by reading off the line at \(x = 10\), which is about 20 or from the formula, \(y = (1.9555 * 10) + 0.7780 = 20.33\). This is the intuition behind how a linear model prediction works with continuous \(x\) and \(y\) - we're just reading off the line.
+
+If we build the model, we can ask it to work this out for us directly using the \texttt{predict()} function. \texttt{predict()} takes the model and the new values to be predicted in a \texttt{data.frame}.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{model <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\NormalTok{x, }\DataTypeTok{data =}\NormalTok{ df)}
-\NormalTok{b <-}\StringTok{ }\KeywordTok{coefficients}\NormalTok{(model)[}\DecValTok{1}\NormalTok{]}
-\NormalTok{a <-}\StringTok{ }\KeywordTok{coefficients}\NormalTok{(model)[}\DecValTok{2}\NormalTok{]}
 \KeywordTok{predict}\NormalTok{(model, }\DataTypeTok{newdata =} \KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
@@ -3735,10 +3897,6 @@ We can peek into \(x\) to see what values we \emph{actually} used
 ##        1 
 ## 20.33266
 \end{verbatim}
-
-Ok, so we don't have a real \(x = 10\) in our data. Imagine asking the question ``what \(y\) would we get for \(x = 10\)?''. We can intuitively tell what the \(y\)-value would be simply by reading off the line at \(x = 10\), which is about 20 or from the formula, \(y = (1.9555 * 10) + 0.7780 = 20.33\). This is the intuition behind how a linear model prediction works with continuous \(x\) and \(y\) - we're just reading off the line.
-
-If we build the model, we can ask it to work this out for us directly using the \texttt{predict()} function. \texttt{predict()} takes the model and the new values to be predicted in a \texttt{data.frame}.
 
 We see that we get the same value (given a little rounding error).
 
@@ -3816,7 +3974,7 @@ Consider the \texttt{chickwts} data.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-145-1.pdf}
+\includegraphics{intro_to_stats_files/figure-latex/unnamed-chunk-158-1.pdf}
 
 We can see that in this data set there is a single categorical variable called \texttt{feed} which is the type of food the chick was raised on, and the resulting continuous output variable of \texttt{weight}. If we model that and do a prediction we can get an intuition on what the \texttt{prediction()} means for each category.
 
@@ -3845,7 +4003,7 @@ We can see that in this data set there is a single categorical variable called \
 
 Note that this time we have to use the a level of a factor, because that was the only term in this model. It doesn't make sense to give it a number. The model returns the fitted value of \texttt{weight} for the level of the factor.
 
-Do the numbers return remind you of anything? Aren't they awfully close to where we expect the mean of each group to be. Let's check that out by doing a prediction for each feed and comparing with the group mean.
+Do the numbers returned remind you of anything? Aren't they awfully close to where we expect the mean of each group to be. Let's check that out by doing a prediction for each feed and comparing with the group mean.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3894,7 +4052,7 @@ Yep, they're the same. This gives us the intuition that for the model of categor
 
 A significant use of predictions is when we have a mixture of variables that we can't easily just see the mean for and want to know what the model thinks of those. This is especially useful for hypothesis generation or finding out possible parameter ranges for new experiments. As the last thing we'll do with predictions we'll look at the \texttt{txhousing} data, a data set about housing in Texas. This data has a mixture of continuous and categoric variables. We'll see that this it isn't more complicated than prediction for a single variable but does give us a much more convenient and powerful way to predict an outcome from provided values.
 
-First a quick look at \texttt{txhousing}.
+First a quick look at \texttt{txhousing}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3915,7 +4073,7 @@ First a quick look at \texttt{txhousing}.
 ##  $ date     : num [1:8602] 2000 2000 2000 2000 2000 ...
 \end{verbatim}
 
-Now let's build a linear model of property sale price predicted by the city it's in and the year and month of sale.
+Now let's build a linear model of property sale price predicted by the city it is in and the year and month of sale.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3941,16 +4099,32 @@ This shows how the linear model can be used to make predictions and hypothesis f
 \hypertarget{generalized-linear-models}{%
 \section{Generalized Linear Models}\label{generalized-linear-models}}
 
-Generalized Linear Models (GLMs) are, as the name might suggest, a generalization of the linear model that can be used when the residuals are not normally distributed. We went to quite a lot of trouble in this chapter to learn how to identify normally distributed residuals and input data and to press home the idea that if we do have data that look mostly normal then the linear model is still a useful tool. However, there are many situations where your data isn't going to be anything like normal and thats where a GLM is helpful. GLMs are particularly useful instance in non-linear situations like exponentially changing data or count data, indeed in earlier chapters we did see some data that definitely didn't fit a normal (though we didn't point it out explicitly at the time) the frequency data in the \(\chi^2\) test section wasn't usable in a linear model without a great deal of fiddling.
+Generalized Linear Models (GLMs) are, as the name might suggest, a generalization of the linear model that can be used when the residuals are not normally distributed. We went to quite a lot of trouble in this chapter to learn how to identify normally distributed residuals and input data and to press home the idea that if we do have data that look mostly normal then the linear model is still a useful tool. However, there are many situations where your data isn't going to be anything like normal and that's where a GLM is helpful. GLMs are particularly useful instance in non-linear situations like exponentially changing data or count data, indeed in earlier chapters we did see some data that definitely didn't fit a normal (though we didn't point it out explicitly at the time) the frequency data in the \(\chi^2\) test section wasn't usable in a linear model without a great deal of fiddling.
 
 \begin{sidenote}
-Actually, with a lot of non-normal data like exponential data we can `hack' our data to be more normal by applying a transformation, like taking logs, and then proceed as before. Often we can't or shouldn't and that's where Generalized Linear Models come in.
+Actually, with a lot of non-normal data, e.g exponential data, we can `hack' our data to be more normal by applying a transformation such as taking logs, and then proceed as before. Often we can't or shouldn't and that's where Generalized Linear Models come in.
 \end{sidenote}
 
-GLMs can be thought of as clever linear models that you can specify the type of distribution the residual has, this means the mathematics is a lot more complicated, but in practice it's just another function in R \texttt{glm()} which is related to \texttt{lm()} and functions much like it but has some extra options to set.
+GLMs can be thought of as clever linear models that you can specify the type of distribution the residual has, this means the mathematics is a lot more complicated, but in practice it's just another function in R - \texttt{glm()} which is related to \texttt{lm()} and works much like it with some extra options to set.
 
 GLMs are a powerful thing and great to know about, and once you've got the hang of linear models not terribly hard to use, keep them in mind as you work through your analyses and if you come across a data set that doesn't seem to fit well with linear models, maybe you need to move over to a GLM.
 
-  \bibliography{book.bib,packages.bib}
+\begin{roundup}
+\begin{itemize}
+\tightlist
+\item
+  Linear models work best when the residuals are normally distributed, but linear models are somewhat robust to deviation from this
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Models can be used to make new hypotheses
+  \item
+    Linear models are one member of a larger family of models for many types of data, Generalized Linear models are the general class of tool.
+  \end{itemize}
+\end{itemize}
+\end{roundup}
+
+  \bibliography{book.bib,packages.bib,citations.bib}
 
 \end{document}

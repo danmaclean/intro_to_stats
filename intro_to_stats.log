@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.28)  5 NOV 2020 15:01
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.3.28)  14 JAN 2021 14:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1074,34 +1074,34 @@ LaTeX Warning: Label `summary' multiply defined.
 )
 \openout1 = `intro_to_stats.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 172.
-LaTeX Font Info:    ... okay on input line 172.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 178.
+LaTeX Font Info:    ... okay on input line 178.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 172.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 178.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 172.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 178.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 172.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 178.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 172.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 178.
 
 Package fontspec Info: latinmodern-math scale = 1.044806344261134.
 
@@ -1130,7 +1130,7 @@ t=math;language=DFLT;"
 (fontspec)             - 'bold small caps'  (bx/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.448pt on input line 172.
+(Font)              scaled to size 10.448pt on input line 178.
 
 Package fontspec Info: latinmodern-math scale = 1.044806344261134.
 
@@ -1169,18 +1169,18 @@ t=math;language=DFLT;"
 (fontspec)             - 'bold small caps'  (bx/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.448pt on input line 172.
+(Font)              scaled to size 10.448pt on input line 178.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 172.
+(Font)              `operators' in the math version `normal' on input line 178.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 172.
+ line 178.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 172.
+(Font)              `operators' in the math version `bold' on input line 178.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/bx/n on inp
-ut line 172.
+ut line 178.
 
 Package fontspec Info: latinmodern-math scale = 1.044806344261134.
 
@@ -1267,15 +1267,15 @@ f]/OT:script=math;language=DFLT;+ssty=1;"
 (fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 172.
+(Font)              `symbols' in the math version `normal' on input line 178.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 172.
+t line 178.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 172.
+(Font)              `symbols' in the math version `bold' on input line 178.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/bx/n on inp
-ut line 172.
+ut line 178.
 
 Package fontspec Info: latinmodern-math scale = 1.044806344261134.
 
@@ -1345,17 +1345,17 @@ t=math;language=DFLT;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 (Font)              `largesymbols' in the math version `normal' on input line 1
-72.
+78.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 172.
+t line 178.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 172
+(Font)              `largesymbols' in the math version `bold' on input line 178
 .
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/bx/n on inp
-ut line 172.
-LaTeX Info: Redefining \microtypecontext on input line 172.
+ut line 178.
+LaTeX Info: Redefining \microtypecontext on input line 178.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1366,7 +1366,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 \AtBeginShipoutBox=\box74
-Package hyperref Info: Link coloring OFF on input line 172.
+Package hyperref Info: Link coloring OFF on input line 178.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1374,44 +1374,44 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 172.
-LaTeX Info: Redefining \pageref on input line 172.
-LaTeX Info: Redefining \nameref on input line 172.
+LaTeX Info: Redefining \ref on input line 178.
+LaTeX Info: Redefining \pageref on input line 178.
+LaTeX Info: Redefining \nameref on input line 178.
 ABD: EveryShipout initializing macros
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 174.
+(Font)              scaled to size 17.28pt on input line 180.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 174.
+(Font)              scaled to size 12.0pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.5376pt on input line 174.
+(Font)              scaled to size 12.5376pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.3584pt on input line 174.
+(Font)              scaled to size 8.3584pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.2688pt on input line 174.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 174.
+(Font)              scaled to size 6.2688pt on input line 180.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 180.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.53888pt on input line 174.
+(Font)              scaled to size 12.53888pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.35925pt on input line 174.
+(Font)              scaled to size 8.35925pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.26944pt on input line 174.
+(Font)              scaled to size 6.26944pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 12.5365pt on input line 174.
+(Font)              scaled to size 12.5365pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.35767pt on input line 174.
+(Font)              scaled to size 8.35767pt on input line 180.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.26825pt on input line 174.
-LaTeX Font Info:    Try loading font information for U+msa on input line 174.
+(Font)              scaled to size 6.26825pt on input line 180.
+LaTeX Font Info:    Try loading font information for U+msa on input line 180.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 174.
+LaTeX Font Info:    Try loading font information for U+msb on input line 180.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -1423,22 +1423,22 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/sl' in size <10> not available
 
 (Font)              Font shape `TU/Alegreya(0)/m/it' tried instead on input lin
-e 177.
+e 183.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 177.
+(Font)              scaled to size 10.0pt on input line 183.
 [2
 
 ]
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 177.
-LaTeX Font Info:    Try loading font information for T1+pbk on input line 177.
+(Font)              scaled to size 20.74pt on input line 183.
+LaTeX Font Info:    Try loading font information for T1+pbk on input line 183.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1pbk.fd
 File: t1pbk.fd 2001/06/04 font definitions for T1/pbk.
 )
 LaTeX Font Info:    Font shape `T1/pbk/b/n' in size <20.74> not available
-(Font)              Font shape `T1/pbk/db/n' tried instead on input line 177.
+(Font)              Font shape `T1/pbk/db/n' tried instead on input line 183.
 LaTeX Font Info:    Font shape `T1/pbk/b/n' in size <100> not available
-(Font)              Font shape `T1/pbk/db/n' tried instead on input line 177.
+(Font)              Font shape `T1/pbk/db/n' tried instead on input line 183.
 (./intro_to_stats.toc
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/bx/n' will be
 (Font)              scaled to size 10.0pt on input line 1.
@@ -1465,47 +1465,50 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 [4]
 Chapter 1.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 185.
+(Font)              scaled to size 14.4pt on input line 191.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/bx/n' will be
-(Font)              scaled to size 14.4pt on input line 185.
+(Font)              scaled to size 14.4pt on input line 191.
 [5
 
 ]
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/bx/n' will be
-(Font)              scaled to size 12.0pt on input line 216.
+(Font)              scaled to size 12.0pt on input line 222.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 216.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 222.
 File: fig/package_install.png Graphic file (type bmp)
 <fig/package_install.png>
 
-Overfull \hbox (196.48013pt too wide) in paragraph at lines 235--237
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[6]
+Overfull \hbox (196.48013pt too wide) in paragraph at lines 241--243
 []\TU/Alegreya(0)/m/n/10 In the \TU/lmtt/m/n/10 Console \TU/Alegreya(0)/m/n/10 
 tab in the lower left panel of RStudio type \TU/lmtt/m/n/10 devtools::install_g
 ithub("rstudio-education/gradethis") 
  []
 
-[6]
-Overfull \hbox (138.73013pt too wide) in paragraph at lines 254--255
+
+Overfull \hbox (138.73013pt too wide) in paragraph at lines 260--261
 []\TU/Alegreya(0)/m/n/10 In the \TU/lmtt/m/n/10 Console \TU/Alegreya(0)/m/n/10 
 tab in the lower left panel of RStudio type \TU/lmtt/m/n/10 devtools::install_g
 ithub("danmaclean/itssl") 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 258.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 264.
 
-Overfull \hbox (36.24013pt too wide) in paragraph at lines 262--263
+Overfull \hbox (36.24013pt too wide) in paragraph at lines 268--269
 []\TU/Alegreya(0)/m/n/10 All the functions in \TU/lmtt/m/n/10 itssl \TU/Alegrey
 a(0)/m/n/10 follow this naming scheme \TU/lmtt/m/n/10 its_<something-something>
 _time()
  []
 
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 274.
+(Font)              scaled to size 7.0pt on input line 280.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 274.
+(Font)              scaled to size 8.0pt on input line 280.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 274.
+(Font)              scaled to size 6.0pt on input line 280.
 [7] [8
 
 ]
@@ -1513,19 +1516,19 @@ Chapter 2.
 [9] [10]
 Chapter 3.
 LaTeX Font Info:    Font shape `TU/Alegreya(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 355.
+(Font)              scaled to size 12.0pt on input line 361.
 [11
 
 ]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 15.0451pt on input line 378.
+(Font)              scaled to size 15.0451pt on input line 384.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 15.04665pt on input line 378.
+(Font)              scaled to size 15.04665pt on input line 384.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 15.04378pt on input line 378.
+(Font)              scaled to size 15.04378pt on input line 384.
 [12]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 399.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 405.
 [13]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (typ
 e pdf)
@@ -1541,7 +1544,7 @@ File: intro_to_stats_files/figure-latex/unnamed-chunk-9-2.pdf Graphic file (typ
 e pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-9-2.pdf>
 
-Overfull \hbox (1.34439pt too wide) in paragraph at lines 445--446
+Overfull \hbox (1.34439pt too wide) in paragraph at lines 451--452
 [][] [] 
  []
 
@@ -1556,52 +1559,52 @@ DIFFERENCES BETWEEN THINGS \TU/Alegreya(0)/m/n/10 15
 ]
 Chapter 4.
 [17]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-10-1.pdf>
-[18]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-11-1.pdf>
+[18]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-12-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-13-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [19] [20]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (ty
+File: intro_to_stats_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-13-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-14-1.pdf>
 [21]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-16-1.pdf>
-[22]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-17-1.pdf>
+[22]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-18-1.pdf>
 [23]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (ty
+File: intro_to_stats_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-19-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-19-2.pdf Graphic file (ty
+<use intro_to_stats_files/figure-latex/unnamed-chunk-20-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-20-2.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-19-2.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-20-2.pdf>
 
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 653--654
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 675--676
 [][] [] 
  []
 
 [24]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (ty
+File: intro_to_stats_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-21-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-21-2.pdf Graphic file (ty
+<use intro_to_stats_files/figure-latex/unnamed-chunk-22-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-22-2.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-21-2.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-22-2.pdf>
 
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 712--713
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 734--735
 [][] [] 
  []
 
@@ -1615,787 +1618,778 @@ OODNESS OF THE MODEL \TU/Alegreya(0)/m/n/10 25
  []
 
 [25] [26] [27]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-23-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-23-2.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-23-2.pdf>
-
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 793--794
-[][] [] 
- []
-
-[28]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-24-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-24-2.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-24-2.pdf>
 
-Overfull \hbox (15.1629pt too wide) has occurred while \output is active
-\TU/Alegreya(0)/m/it/10 4.10.  EXTRA CREDIT: UNDERSTANDING LINEAR MODELS THROUG
-H THE NOTATION \TU/Alegreya(0)/m/n/10 29
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 815--816
+[][] [] 
  []
 
-[29]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (ty
+[28] [29]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-25-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-27-1.pdf>
 
-Underfull \vbox (badness 6461) has occurred while \output is active []
+Underfull \vbox (badness 6032) has occurred while \output is active []
 
 [30]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-28-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (13.5529pt too wide) has occurred while \output is active
 \TU/Alegreya(0)/m/it/10 4.10.  EXTRA CREDIT: UNDERSTANDING LINEAR MODELS THROUG
 H THE NOTATION \TU/Alegreya(0)/m/n/10 31
  []
 
-[31] [32
+[31] [32]
+Overfull \hbox (14.1629pt too wide) has occurred while \output is active
+\TU/Alegreya(0)/m/it/10 4.10.  EXTRA CREDIT: UNDERSTANDING LINEAR MODELS THROUG
+H THE NOTATION \TU/Alegreya(0)/m/n/10 33
+ []
 
-]
-Chapter 5.
 [33] [34]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1050--1050
+Chapter 5.
+[35
+
+] [36]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1160--1160
 []\TU/lmtt/m/n/10 ##   [1]  0.270232075 -0.112933852 -0.854887806 -1.033741090 
  0.222026624[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1051--1051
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1161--1161
 []\TU/lmtt/m/n/10 ##   [6] -1.079481969 -0.441373899  2.020634788  0.072856488 
  0.708817307[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1052--1052
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1162--1162
 []\TU/lmtt/m/n/10 ##  [11]  0.850509404 -1.486197129  0.920529800  0.148328802 
 -0.236867797[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1053--1053
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1163--1163
 []\TU/lmtt/m/n/10 ##  [16] -0.473236193 -0.669206104  1.358526687  1.412918017 
 -0.732773768[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1054--1054
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1164--1164
 []\TU/lmtt/m/n/10 ##  [21] -0.080551917  0.810196822  0.502587532  1.124022640 
 -0.171279790[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1055--1055
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1165--1165
 []\TU/lmtt/m/n/10 ##  [26]  0.118151334  0.869902623 -0.091936205  0.068898788 
 -1.682426754[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1056--1056
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1166--1166
 []\TU/lmtt/m/n/10 ##  [31]  1.116955546 -1.351357574 -0.537166518 -0.370113610 
  0.354012224[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1057--1057
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1167--1167
 []\TU/lmtt/m/n/10 ##  [36] -0.809825285 -0.179724629 -1.147659646  0.096242383 
  0.814700103[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1058--1058
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1168--1168
 []\TU/lmtt/m/n/10 ##  [41]  0.982940735  0.850843482  1.207347447 -1.433778349 
 -1.100945680[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1059--1059
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1169--1169
 []\TU/lmtt/m/n/10 ##  [46] -0.277042218 -0.641363270  0.856874779  0.313843454 
  1.222462079[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1060--1060
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1170--1170
 []\TU/lmtt/m/n/10 ##  [51] -1.126327533  0.236297412 -1.272369556  0.315682687 
  0.355610384[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1061--1061
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1171--1171
 []\TU/lmtt/m/n/10 ##  [56]  0.004052138  1.149194486 -0.496614335 -0.746796520 
 -1.282767236[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1062--1062
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1172--1172
 []\TU/lmtt/m/n/10 ##  [61] -1.031771673 -2.072046704 -0.426067161 -0.776975633 
 -0.181812198[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1063--1063
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1173--1173
 []\TU/lmtt/m/n/10 ##  [66] -0.862307391 -0.182541922  1.370695476  1.342718956 
 -1.151762060[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1064--1064
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1174--1174
 []\TU/lmtt/m/n/10 ##  [71]  0.748764659  1.522147956 -1.453019874  1.210757937 
 -0.909345650[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1065--1065
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1175--1175
 []\TU/lmtt/m/n/10 ##  [76]  1.200410172 -0.165416227 -0.494206517 -1.564569420 
 -0.354367785[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1066--1066
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1176--1176
 []\TU/lmtt/m/n/10 ##  [81] -1.021964796  1.191805557  0.229314222 -1.272579083 
  0.691872220[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1067--1067
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1177--1177
 []\TU/lmtt/m/n/10 ##  [86] -0.028754757 -1.103832089 -1.035274763  0.139952624 
  0.682728655[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1068--1068
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1178--1178
 []\TU/lmtt/m/n/10 ##  [91] -1.135559328  1.772544877 -0.093926303 -2.321188155 
  0.151039364[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 1069--1069
+Overfull \hbox (38.25pt too wide) in paragraph at lines 1179--1179
 []\TU/lmtt/m/n/10 ##  [96] -0.691147261  0.830428846  1.192598468  0.309910662 
 -1.549384356[] 
  []
 
-[35]
-Underfull \vbox (badness 2452) has occurred while \output is active []
-
-[36] [37] [38
+[37] [38] [39] [40
 
 ]
 Chapter 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 21.66914pt on input line 1153.
+(Font)              scaled to size 21.66914pt on input line 1271.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 21.67136pt on input line 1153.
+(Font)              scaled to size 21.67136pt on input line 1271.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 21.66725pt on input line 1153.
-[39]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-41-1.pdf Graphic file (ty
+(Font)              scaled to size 21.66725pt on input line 1271.
+[41]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-46-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-41-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-41-2.pdf Graphic file (ty
+<use intro_to_stats_files/figure-latex/unnamed-chunk-46-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-46-2.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-41-2.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-46-2.pdf>
 
-Overfull \hbox (1.3454pt too wide) in paragraph at lines 1255--1256
+Overfull \hbox (1.3454pt too wide) in paragraph at lines 1373--1374
 [][] [] 
  []
 
-[40]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-42-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-42-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[41]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-44-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-44-1.pdf>
-[42] [43]
+[42]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-47-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-47-1.pdf>
-[44] [45]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-50-1.pdf Graphic file (ty
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[43]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-50-1.pdf>
-[46]
-Overfull \hbox (17.25pt too wide) in paragraph at lines 1545--1545
+<use intro_to_stats_files/figure-latex/unnamed-chunk-49-1.pdf>
+[44] [45]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-52-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-52-1.pdf>
+[46] [47]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-55-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-55-1.pdf>
+[48]
+Overfull \hbox (17.25pt too wide) in paragraph at lines 1663--1663
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means is not eq
 ual to 0[] 
  []
 
-[47]
-Overfull \hbox (27.75pt too wide) in paragraph at lines 1605--1605
-[]\TU/lmtt/m/n/10 ## Warning: Removed 24 rows containing non-finite values (sta
-t_smooth).[] 
- []
-
-
-Overfull \hbox (12.0pt too wide) in paragraph at lines 1609--1609
-[]\TU/lmtt/m/n/10 ## Warning in min(x): no non-missing arguments to min; return
-ing Inf[] 
- []
-
-
-Overfull \hbox (17.25pt too wide) in paragraph at lines 1613--1613
-[]\TU/lmtt/m/n/10 ## Warning in max(x): no non-missing arguments to max; return
-ing -Inf[] 
- []
-
-
-Overfull \hbox (75.0pt too wide) in paragraph at lines 1617--1617
-[]\TU/lmtt/m/n/10 ## Warning in min(diff(sort(x))): no non-missing arguments to
- min; returning Inf[] 
- []
-
-
-Overfull \hbox (22.5pt too wide) in paragraph at lines 1621--1621
-[]\TU/lmtt/m/n/10 ## Warning: Removed 2 rows containing missing values (positio
-n_stack).[] 
- []
-
-File: intro_to_stats_files/figure-latex/unnamed-chunk-54-1.pdf Graphic file (ty
+[49]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-59-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-54-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-59-1.pdf>
 
-Underfull \vbox (badness 8094) has occurred while \output is active []
-
-[48]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[49] [50]
+[50]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[51] [52]
 Chapter 7.
-[51
+[53
 
 ]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-55-1.pdf Graphic file (ty
+File: intro_to_stats_files/figure-latex/unnamed-chunk-62-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-55-1.pdf>
-[52] [53] [54] [55]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-64-1.pdf Graphic file (ty
+<use intro_to_stats_files/figure-latex/unnamed-chunk-62-1.pdf>
+[54] [55] [56] [57]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-71-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-64-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-71-1.pdf>
 
-Underfull \vbox (badness 5578) has occurred while \output is active []
+Underfull \vbox (badness 5036) has occurred while \output is active []
 
-[56]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-65-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-65-1.pdf>
-
-Underfull \vbox (badness 4096) has occurred while \output is active []
-
-[57] [58]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1985--1985
-[]\TU/lmtt/m/n/10 ##                                      Estimate Std. Error t
- value Pr(>|t|)[] 
- []
-
-
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1986--1986
-[]\TU/lmtt/m/n/10 ## Food: Tortilla Chips - Porridge == 0   0.3384     3.5419  
- 0.096    0.994[] 
- []
-
-
-Overfull \hbox (54.0pt too wide) in paragraph at lines 1987--1987
-[]\TU/lmtt/m/n/10 ## Condiment: Jam - Hummous == 0         -0.9693     3.5419  
--0.274    0.954[] 
- []
-
-File: intro_to_stats_files/figure-latex/unnamed-chunk-68-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-68-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[59] [60]
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2031--2031
-[]\TU/lmtt/m/n/10 ## lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment
-, data = food)[] 
- []
-
-
-Overfull \hbox (27.75pt too wide) in paragraph at lines 2038--2038
-[]\TU/lmtt/m/n/10 ##                                 Estimate Std. Error t valu
-e Pr(>|t|)[] 
- []
-
-
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2039--2039
-[]\TU/lmtt/m/n/10 ## (Intercept)                      60.4259     0.9553   63.2
-5   <2e-16 ***[] 
- []
-
-
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2040--2040
-[]\TU/lmtt/m/n/10 ## FoodTortilla Chips               30.2822     1.3510   22.4
-1   <2e-16 ***[] 
- []
-
-
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2041--2041
-[]\TU/lmtt/m/n/10 ## CondimentJam                     28.9745     1.3510   21.4
-5   <2e-16 ***[] 
- []
-
-
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2042--2042
-[]\TU/lmtt/m/n/10 ## FoodTortilla Chips:CondimentJam -59.8876     1.9106  -31.3
-4   <2e-16 ***[] 
- []
-
+[58]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-72-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-72-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[61]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-73-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-73-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[62]
-Overfull \hbox (80.25pt too wide) in paragraph at lines 2103--2103
-[]\TU/lmtt/m/n/10 ## Warning in mcp2matrix(model, linfct = linfct): covariate i
-nteractions found --[] 
- []
-
-
-Overfull \hbox (80.25pt too wide) in paragraph at lines 2106--2106
-[]\TU/lmtt/m/n/10 ## Warning in mcp2matrix(model, linfct = linfct): covariate i
-nteractions found --[] 
- []
-
-
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2117--2117
-[]\TU/lmtt/m/n/10 ## Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Cond
-iment, data = food)[] 
- []
-
-[63]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 2120--2120
+[59] [60]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2082--2082
 []\TU/lmtt/m/n/10 ##                                      Estimate Std. Error t
  value Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2121--2121
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2083--2083
+[]\TU/lmtt/m/n/10 ## Food: Tortilla Chips - Porridge == 0   0.3384     3.5419  
+ 0.096    0.994[] 
+ []
+
+
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2084--2084
+[]\TU/lmtt/m/n/10 ## Condiment: Jam - Hummous == 0         -0.9693     3.5419  
+-0.274    0.954[] 
+ []
+
+File: intro_to_stats_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-75-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[61] [62]
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2128--2128
+[]\TU/lmtt/m/n/10 ## lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment
+, data = food)[] 
+ []
+
+
+Overfull \hbox (27.75pt too wide) in paragraph at lines 2135--2135
+[]\TU/lmtt/m/n/10 ##                                 Estimate Std. Error t valu
+e Pr(>|t|)[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2136--2136
+[]\TU/lmtt/m/n/10 ## (Intercept)                      60.4259     0.9553   63.2
+5   <2e-16 ***[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2137--2137
+[]\TU/lmtt/m/n/10 ## FoodTortilla Chips               30.2822     1.3510   22.4
+1   <2e-16 ***[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2138--2138
+[]\TU/lmtt/m/n/10 ## CondimentJam                     28.9745     1.3510   21.4
+5   <2e-16 ***[] 
+ []
+
+
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2139--2139
+[]\TU/lmtt/m/n/10 ## FoodTortilla Chips:CondimentJam -59.8876     1.9106  -31.3
+4   <2e-16 ***[] 
+ []
+
+File: intro_to_stats_files/figure-latex/unnamed-chunk-79-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-79-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[63]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-80-1.pdf Graphic file (ty
+pe pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-80-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[64]
+Overfull \hbox (80.25pt too wide) in paragraph at lines 2202--2202
+[]\TU/lmtt/m/n/10 ## Warning in mcp2matrix(model, linfct = linfct): covariate i
+nteractions found --[] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 2205--2205
+[]\TU/lmtt/m/n/10 ## Warning in mcp2matrix(model, linfct = linfct): covariate i
+nteractions found --[] 
+ []
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2216--2216
+[]\TU/lmtt/m/n/10 ## Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Cond
+iment, data = food)[] 
+ []
+
+[65]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 2219--2219
+[]\TU/lmtt/m/n/10 ##                                      Estimate Std. Error t
+ value Pr(>|t|)[] 
+ []
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2220--2220
 []\TU/lmtt/m/n/10 ## Food: Tortilla Chips - Porridge == 0   30.282      1.351  
  22.41   <1e-10 ***[] 
  []
 
 
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2122--2122
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2221--2221
 []\TU/lmtt/m/n/10 ## Condiment: Jam - Hummous == 0          28.974      1.351  
  21.45   <1e-10 ***[] 
  []
 
 
-Underfull \vbox (badness 4353) has occurred while \output is active []
+Underfull \vbox (badness 4366) has occurred while \output is active []
 
-[64]
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2192--2192
+[66]
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2287--2287
 []\TU/lmtt/m/n/10 ##                                                  Estimate 
 Std. Error t value[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2193--2193
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2288--2288
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Hummous - Porridge.Hummous == 0     30.282 
      1.351  22.414[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2194--2194
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2289--2289
 []\TU/lmtt/m/n/10 ## Porridge.Jam - Porridge.Hummous == 0               28.974 
      1.351  21.446[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2195--2195
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2290--2290
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Jam - Porridge.Hummous == 0         -0.631 
      1.351  -0.467[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2196--2196
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2291--2291
 []\TU/lmtt/m/n/10 ## Porridge.Jam - Tortilla Chips.Hummous == 0         -1.308 
      1.351  -0.968[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2197--2197
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2292--2292
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Jam - Tortilla Chips.Hummous == 0  -30.913 
      1.351 -22.881[] 
  []
 
 
-Overfull \hbox (69.75pt too wide) in paragraph at lines 2198--2198
+Overfull \hbox (69.75pt too wide) in paragraph at lines 2293--2293
 []\TU/lmtt/m/n/10 ## Tortilla Chips.Jam - Porridge.Jam == 0            -29.605 
      1.351 -21.913[] 
  []
 
-[65] [66]
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2298--2298
+[67] [68]
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2393--2393
 []\TU/lmtt/m/n/10 ## [1] Tortilla Chips:Hummous Tortilla Chips:Hummous Tortilla
  Chips:Hummous[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2299--2299
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2394--2394
 []\TU/lmtt/m/n/10 ## [4] Tortilla Chips:Hummous Tortilla Chips:Hummous Tortilla
  Chips:Hummous[] 
  []
 
 
-Overfull \hbox (48.75pt too wide) in paragraph at lines 2300--2300
+Overfull \hbox (48.75pt too wide) in paragraph at lines 2395--2395
 []\TU/lmtt/m/n/10 ## 4 Levels: Porridge:Hummous Tortilla Chips:Hummous ... Tort
 illa Chips:Jam[] 
  []
 
-[67]
-Overfull \hbox (27.75pt too wide) in paragraph at lines 2312--2312
+[69]
+Overfull \hbox (27.75pt too wide) in paragraph at lines 2407--2407
 []\TU/lmtt/m/n/10 ## [1] "Porridge:Hummous"       "Tortilla Chips:Hummous" "Por
 ridge:Jam"[] 
  []
 
 
-Overfull \hbox (219.74011pt too wide) in paragraph at lines 2318--2327
-[][] 
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2417--2417
+[]\TU/lmtt/m/n/10 ##                                           Tortilla Chips:H
+ummous Porridge:Jam[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 2353--2353
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2418--2418
+[]\TU/lmtt/m/n/10 ## Porridge:Jam - Tortilla Chips:Jam                         
+     0            1[] 
+ []
+
+
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2419--2419
+[]\TU/lmtt/m/n/10 ## Porridge:Hummous - Tortilla Chips:Hummous                 
+    -1            0[] 
+ []
+
+
+Overfull \hbox (1.5pt too wide) in paragraph at lines 2450--2450
 []\TU/lmtt/m/n/10 ##            Porridge:Hummous Tortilla Chips:Hummous Porridg
 e:Jam[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 2354--2354
+Overfull \hbox (1.5pt too wide) in paragraph at lines 2451--2451
 []\TU/lmtt/m/n/10 ## P:J - TC:J                0                      0        
     1[] 
  []
 
 
-Overfull \hbox (1.5pt too wide) in paragraph at lines 2355--2355
+Overfull \hbox (1.5pt too wide) in paragraph at lines 2452--2452
 []\TU/lmtt/m/n/10 ## P:H - TC:H                1                     -1        
     0[] 
  []
 
-[68]
-Overfull \hbox (75.0pt too wide) in paragraph at lines 2373--2373
+[70]
+Overfull \hbox (75.0pt too wide) in paragraph at lines 2470--2470
 []\TU/lmtt/m/n/10 ## Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Cond
 iment, data = food)[] 
  []
 
-[69] [70
+[71] [72
 
 ]
 Chapter 8.
-[71] [72]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-88-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-88-1.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 2523--2524
-[]\TU/Alegreya(0)/m/n/10 By using numbers for our score, then we have been able
- to use
- []
-
-
-Underfull \hbox (badness 3219) in paragraph at lines 2523--2524
-\TU/lmtt/m/n/10 geom_jitter() \TU/Alegreya(0)/m/n/10 as a representation and it
- has generated additions to
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [73]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-90-1.pdf Graphic file (ty
+File: fig/dong_figs1A.png Graphic file (type bmp)
+<fig/dong_figs1A.png>
+
+Underfull \vbox (badness 2486) has occurred while \output is active []
+
+[74]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-97-1.pdf Graphic file (ty
 pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-90-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-97-1.pdf>
 
-Underfull \vbox (badness 2828) has occurred while \output is active []
+Underfull \vbox (badness 2600) has occurred while \output is active []
 
-[74] [75] [76] [77]
-LaTeX Font Info:    Font shape `TU/Alegreya(0)/bx/it' will be
-(Font)              scaled to size 12.0pt on input line 2695.
-[78]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (ty
-pe pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-98-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[79]
+[75]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-99-1.pdf Graphic file (ty
 pe pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-99-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[80]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-100-1.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-100-1.pdf>
+[76] [77]
+File: fig/dong_fig1A.png Graphic file (type bmp)
+<fig/dong_fig1A.png>
+[78]
+Overfull \hbox (90.75pt too wide) in paragraph at lines 2722--2722
+[]\TU/lmtt/m/n/10 ## -- Column specification ----------------------------------
+----------------------[] 
+ []
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+[79] [80]
+LaTeX Font Info:    Font shape `TU/Alegreya(0)/bx/it' will be
+(Font)              scaled to size 12.0pt on input line 2818.
 [81]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-101-1.pdf Graphic file (t
+File: intro_to_stats_files/figure-latex/unnamed-chunk-107-1.pdf Graphic file (t
 ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-101-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-107-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [82]
-Underfull \vbox (badness 6001) has occurred while \output is active []
-
-[83] [84]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-105-1.pdf Graphic file (t
+File: intro_to_stats_files/figure-latex/unnamed-chunk-108-1.pdf Graphic file (t
 ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-105-1.pdf>
-[85] [86]
-Overfull \hbox (80.25pt too wide) in paragraph at lines 2978--2978
+<use intro_to_stats_files/figure-latex/unnamed-chunk-108-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[83]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-109-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-109-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[84]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-110-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-110-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[85]
+Underfull \vbox (badness 2343) has occurred while \output is active []
+
+[86] [87]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-114-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-114-1.pdf>
+[88] [89]
+Overfull \hbox (80.25pt too wide) in paragraph at lines 3101--3101
 []\TU/lmtt/m/n/10 ## Warning in wilcox.test.default(x = c(1, 2, 1), y = c(3, 3,
  3)): cannot compute[] 
  []
 
-[87] [88
+[90] [91] [92
 
 ]
 Chapter 9.
-[89] [90] [91] [92] [93] [94]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3397--3397
+[93] [94] [95] [96] [97] [98]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3543--3543
 []\TU/lmtt/m/n/10 ##            Comparison p.Fisher p.adj.Fisher  p.Gtest p.adj
 .Gtest  p.Chisq[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3398--3398
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3544--3544
 []\TU/lmtt/m/n/10 ## 1     curious : tense 8.97e-16     1.35e-15 2.22e-16    3.
 33e-16 1.07e-14[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3399--3399
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3545--3545
 []\TU/lmtt/m/n/10 ## 2 curious : whimsical 8.98e-29     2.69e-28 0.00e+00    0.
 00e+00 5.47e-21[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3400--3400
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3546--3546
 []\TU/lmtt/m/n/10 ## 3   tense : whimsical 5.98e-01     5.98e-01 6.07e-01    6.
 07e-01 6.11e-01[] 
  []
 
-[95]
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3449--3449
+[99]
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3595--3595
 []\TU/lmtt/m/n/10 ##             Comparison p.Fisher p.adj.Fisher p.Gtest p.adj
 .Gtest  p.Chisq[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3450--3450
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3596--3596
 []\TU/lmtt/m/n/10 ## 1   carpenter : cooper 5.26e-20     7.89e-20  0.0000      
 0.0000 3.38e-15[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3451--3451
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3597--3597
 []\TU/lmtt/m/n/10 ## 2 carpenter : milliner 7.81e-02     7.81e-02  0.0773      
 0.0773 7.81e-02[] 
  []
 
 
-Overfull \hbox (54.0pt too wide) in paragraph at lines 3452--3452
+Overfull \hbox (54.0pt too wide) in paragraph at lines 3598--3598
 []\TU/lmtt/m/n/10 ## 3    cooper : milliner 1.66e-28     4.98e-28  0.0000      
 0.0000 1.89e-21[] 
  []
 
-File: intro_to_stats_files/figure-latex/unnamed-chunk-127-1.pdf Graphic file (t
+[100]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-139-1.pdf Graphic file (t
 ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-127-1.pdf>
-
-Underfull \vbox (badness 1033) has occurred while \output is active []
-
-[96]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-128-1.pdf Graphic file (t
+<use intro_to_stats_files/figure-latex/unnamed-chunk-139-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-140-1.pdf Graphic file (t
 ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-128-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-140-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[97]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-129-1.pdf Graphic file (t
+[101]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-141-1.pdf Graphic file (t
 ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-129-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-141-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[98] [99] [100
+[102] [103] [104
 
 ]
 Chapter 10.
-[101]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-130-1.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-130-1.pdf>
-[102]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-132-1.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-132-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-132-2.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-132-2.pdf>
-
-Overfull \hbox (1.3424pt too wide) in paragraph at lines 3624--3625
-[][] [] 
- []
-
-
-Overfull \vbox (0.13544pt too high) detected at line 3636
- []
-
-[103]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-133-1.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-133-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-133-2.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-133-2.pdf>
-
-Overfull \hbox (1.34155pt too wide) in paragraph at lines 3638--3639
-[][] [] 
- []
-
-File: intro_to_stats_files/figure-latex/unnamed-chunk-134-1.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-134-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-134-2.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-134-2.pdf>
-
-Overfull \hbox (1.34398pt too wide) in paragraph at lines 3658--3659
-[][] [] 
- []
-
-[104]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-135-1.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-135-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-135-2.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-135-2.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-135-3.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-135-3.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-136-1.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-136-1.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-136-2.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-136-2.pdf>
-File: intro_to_stats_files/figure-latex/unnamed-chunk-136-3.pdf Graphic file (t
-ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-136-3.pdf>
 [105]
-File: intro_to_stats_files/figure-latex/unnamed-chunk-137-1.pdf Graphic file (t
+File: intro_to_stats_files/figure-latex/unnamed-chunk-143-1.pdf Graphic file (t
 ype pdf)
-<use intro_to_stats_files/figure-latex/unnamed-chunk-137-1.pdf>
+<use intro_to_stats_files/figure-latex/unnamed-chunk-143-1.pdf>
 
-Overfull \hbox (59.25pt too wide) in paragraph at lines 3720--3720
-[]\TU/lmtt/m/n/10 ##  [1]  5.824327  5.895516  7.105123  7.179086  7.375033  7.
-855269  7.912222[] 
- []
-
-
-Overfull \hbox (59.25pt too wide) in paragraph at lines 3721--3721
-[]\TU/lmtt/m/n/10 ##  [8]  8.319600  8.729459  8.852362  9.532381 10.989182 11.
-510336 12.167571[] 
- []
-
-
-Overfull \hbox (6.75pt too wide) in paragraph at lines 3722--3722
-[]\TU/lmtt/m/n/10 ## [15] 12.329553 12.551050 12.883979 13.216811 13.431172 13.
-521335[] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [106] [107]
 File: intro_to_stats_files/figure-latex/unnamed-chunk-145-1.pdf Graphic file (t
 ype pdf)
 <use intro_to_stats_files/figure-latex/unnamed-chunk-145-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-145-2.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-145-2.pdf>
+
+Overfull \hbox (1.3424pt too wide) in paragraph at lines 3784--3785
+[][] [] 
+ []
+
+File: intro_to_stats_files/figure-latex/unnamed-chunk-146-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-146-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-146-2.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-146-2.pdf>
+
+Overfull \hbox (1.34155pt too wide) in paragraph at lines 3798--3799
+[][] [] 
+ []
+
 [108]
-Underfull \hbox (badness 1297) in paragraph at lines 3895--3896
+File: intro_to_stats_files/figure-latex/unnamed-chunk-147-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-147-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-147-2.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-147-2.pdf>
+
+Overfull \hbox (1.34398pt too wide) in paragraph at lines 3818--3819
+[][] [] 
+ []
+
+File: intro_to_stats_files/figure-latex/unnamed-chunk-148-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-148-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-148-2.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-148-2.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-148-3.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-148-3.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[109]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-149-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-149-1.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-149-2.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-149-2.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-149-3.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-149-3.pdf>
+File: intro_to_stats_files/figure-latex/unnamed-chunk-150-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-150-1.pdf>
+
+Underfull \vbox (badness 6268) has occurred while \output is active []
+
+[110]
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3880--3880
+[]\TU/lmtt/m/n/10 ##  [1]  5.824327  5.895516  7.105123  7.179086  7.375033  7.
+855269  7.912222[] 
+ []
+
+
+Overfull \hbox (59.25pt too wide) in paragraph at lines 3881--3881
+[]\TU/lmtt/m/n/10 ##  [8]  8.319600  8.729459  8.852362  9.532381 10.989182 11.
+510336 12.167571[] 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 3882--3882
+[]\TU/lmtt/m/n/10 ## [15] 12.329553 12.551050 12.883979 13.216811 13.431172 13.
+521335[] 
+ []
+
+[111] [112]
+File: intro_to_stats_files/figure-latex/unnamed-chunk-158-1.pdf Graphic file (t
+ype pdf)
+<use intro_to_stats_files/figure-latex/unnamed-chunk-158-1.pdf>
+[113]
+Underfull \hbox (badness 1297) in paragraph at lines 4053--4054
 \TU/Alegreya(0)/m/n/10 is especially useful for hypothesis generation or findin
 g out possible parameter
  []
 
-[109]
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3907--3907
+[114]
+Overfull \hbox (38.25pt too wide) in paragraph at lines 4065--4065
 []\TU/lmtt/m/n/10 ##  $ city     : chr [1:8602] "Abilene" "Abilene" "Abilene" "
 Abilene" ...[] 
  []
 
 
-Overfull \hbox (90.75pt too wide) in paragraph at lines 3908--3908
+Overfull \hbox (90.75pt too wide) in paragraph at lines 4066--4066
 []\TU/lmtt/m/n/10 ##  $ year     : int [1:8602] 2000 2000 2000 2000 2000 2000 2
 000 2000 2000 2000 ...[] 
  []
 
 
-Overfull \hbox (22.5pt too wide) in paragraph at lines 3910--3910
+Overfull \hbox (22.5pt too wide) in paragraph at lines 4068--4068
 []\TU/lmtt/m/n/10 ##  $ sales    : num [1:8602] 72 98 130 98 141 156 152 131 10
 4 101 ...[] 
  []
 
 
-Overfull \hbox (43.5pt too wide) in paragraph at lines 3911--3911
+Overfull \hbox (43.5pt too wide) in paragraph at lines 4069--4069
 []\TU/lmtt/m/n/10 ##  $ volume   : num [1:8602] 5380000 6505000 9285000 9730000
  10590000 ...[] 
  []
 
 
-Overfull \hbox (143.25pt too wide) in paragraph at lines 3912--3912
+Overfull \hbox (143.25pt too wide) in paragraph at lines 4070--4070
 []\TU/lmtt/m/n/10 ##  $ median   : num [1:8602] 71400 58700 58100 68600 67300 6
 6900 73500 75000 64500 59300 ...[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3913--3913
+Overfull \hbox (38.25pt too wide) in paragraph at lines 4071--4071
 []\TU/lmtt/m/n/10 ##  $ listings : num [1:8602] 701 746 784 785 794 780 742 765
  771 764 ...[] 
  []
 
 
-Overfull \hbox (38.25pt too wide) in paragraph at lines 3914--3914
+Overfull \hbox (38.25pt too wide) in paragraph at lines 4072--4072
 []\TU/lmtt/m/n/10 ##  $ inventory: num [1:8602] 6.3 6.6 6.8 6.9 6.8 6.6 6.2 6.4
  6.5 6.6 ...[] 
  []
 
-[110]
-No file intro_to_stats.bbl.
-[111]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3956.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3956.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[115] (./intro_to_stats.bbl [116]) [117
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4130.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4130.
 (./intro_to_stats.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3956.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3956.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 4130.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 4130.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 37578 strings out of 492916
- 727453 string characters out of 6133345
- 911545 words of memory out of 5000000
- 41072 multiletter control sequences out of 15000+600000
+ 37604 strings out of 492916
+ 727947 string characters out of 6133345
+ 911547 words of memory out of 5000000
+ 41094 multiletter control sequences out of 15000+600000
  545632 words of font info for 112 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  65i,9n,118p,1031b,517s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on intro_to_stats.pdf (111 pages).
+Output written on intro_to_stats.pdf (117 pages).

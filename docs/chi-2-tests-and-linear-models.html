@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2020-11-05" />
+<meta name="date" content="2021-01-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -195,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>6.6</b> Summary</a></li>
 <li class="chapter" data-level="6.7" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#but-wasnt-the-t-test-just-easier"><i class="fa fa-check"></i><b>6.7</b> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</a></li>
-<li class="chapter" data-level="6.8" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#task"><i class="fa fa-check"></i><b>6.8</b> Task</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a><ul>
 <li class="chapter" data-level="7.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.1</b> Comparing groups in a single variable</a></li>
@@ -298,43 +299,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Keypoints</li>
 </ol>
 <ul>
-<li>Linear models applied in the place of <span class="math inline">\(\chi^2\)</span> tests are fiddly and in practice we are better off using the hypothesis tests</li>
+<li>Linear models applied in the place of <span class="math inline">\(\chi^2\)</span> tests are fiddly and in practice we are usually better off using the hypothesis tests</li>
 </ul>
 <p>In the last chapter we looked at discrete data that was ordered and got around it, as hypothesis tests do, by working on ranked data with a linear model. In this section we’ll look at discrete data that isn’t ordered, or is nominal, things like <code>agree, disagree, don't know</code>, or <code>yellow, green, wrinkled, smooth</code>. We’ll also look at discrete data in the form of counts or frequencies.</p>
 <div id="the-problem-with-unordered-response-data" class="section level2">
 <h2><span class="header-section-number">9.1</span> The problem with unordered response data</h2>
-<p>If we have unordered categoric response data (<span class="math inline">\(y\)</span>-axis) we find ourselves in a bit of a pickle if we want to use try and apply a linear model to understand relationships, because there are no numbers <em>at all</em>. In every other example we’ve looked at the <span class="math inline">\(y\)</span> response data has been numeric or at least coercible into numbers.</p>
+<p>If we have unordered categoric response data (<span class="math inline">\(y\)</span>-axis) we find ourselves in a bit of a pickle if we want to try to apply a linear model to understand relationships, because there are no numbers <em>at all</em>. In every other example we’ve looked at the <span class="math inline">\(y\)</span> response data has been numeric or at least coercible into numbers.</p>
 <p>We’ll put ourselves in the shoes of Gregor Mendel and work through his monohybrid cross experiment on flower colour. Mendel’s first step would have been to work out the flower colours after a cross with different coloured true breeding parents, leaving him with a raw dataframe like this:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="chi-2-tests-and-linear-models.html#cb145-1"></a><span class="kw">library</span>(itssl)</span>
-<span id="cb145-2"><a href="chi-2-tests-and-linear-models.html#cb145-2"></a><span class="kw">its_mendel_data_time</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="chi-2-tests-and-linear-models.html#cb146-1"></a><span class="kw">library</span>(itssl)</span>
+<span id="cb146-2"><a href="chi-2-tests-and-linear-models.html#cb146-2"></a><span class="kw">its_mendel_data_time</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 600 x 2
 ##    cross result
 ##    &lt;chr&gt; &lt;chr&gt; 
-##  1 PP    P     
+##  1 WP    P     
 ##  2 WP    P     
-##  3 WW    W     
+##  3 WP    P     
 ##  4 PW    P     
-##  5 PP    P     
-##  6 PP    P     
-##  7 WP    P     
-##  8 WP    P     
-##  9 PP    P     
+##  5 WP    P     
+##  6 PW    P     
+##  7 PW    P     
+##  8 PW    P     
+##  9 WP    P     
 ## 10 PP    P     
 ## # … with 590 more rows</code></pre>
-<p>Which isn’t very helpful at this stage, how on earth do we get two columns of text into a linear model? Perservering, Mendel would’ve gone on to count the numbers of each colour.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="chi-2-tests-and-linear-models.html#cb147-1"></a><span class="kw">its_mendel_count_data_time</span>()</span></code></pre></div>
+<p>Which isn’t very helpful at this stage, how on earth do we get two columns of text into a linear model? Persevering, Mendel would’ve gone on to count the numbers of each colour.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="chi-2-tests-and-linear-models.html#cb148-1"></a><span class="kw">its_mendel_count_data_time</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   colour count
 ##   &lt;chr&gt;  &lt;int&gt;
-## 1 P        458
-## 2 W        142</code></pre>
+## 1 P        459
+## 2 W        141</code></pre>
 <p>Mendel famously went on to calculate the ratios, or relative frequencies of each.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="chi-2-tests-and-linear-models.html#cb149-1"></a><span class="kw">its_mendel_frequency_time</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="chi-2-tests-and-linear-models.html#cb150-1"></a><span class="kw">its_mendel_frequency_time</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
 ##       P     W ratio_p ratio_w freq_p freq_w
 ##   &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1   451   149    3.03       1  0.752  0.248</code></pre>
-<p>But that doesn’t get us any nearer. The problem is that we have just got count (or frequency) data and nothing else. It seems that it isn’t far from the ordered data case, we can imagine plotting the data as we did with HR score, but the response variable is colour and there’s no clear explanatory (<span class="math inline">\(x\)</span>) variable, so what would go on that axis? If we had more categories we could get something but there isn’t an order so we can’t meaningfully apply the rank to create a proxy for order. We can’t look at slopes again because there’s no sense in the order of the response variable. In short it’s a mess.</p>
+## 1   459   141    3.26       1  0.765  0.235</code></pre>
+<p>But that doesn’t get us any nearer. The problem is that we have just got count (or frequency) data and nothing else. It seems that it isn’t far from the ordered data case, we can imagine plotting the data as we did with HR score, but the response variable is colour and there’s no clear explanatory (<span class="math inline">\(x\)</span>) variable, so what would go on that axis? Perhaps the colour of the parents in the cross as categories would do? There isn’t an order to this so we can’t meaningfully apply the rank to create a proxy for order. We can’t look at slopes again because there’s no sense in the order of the response variable. In short it’s a mess.</p>
+
+<div class="sidenote">
+Why isn’t colour an explanatory variable? And why can’t then frequency or count be the <span class="math inline">\(y\)</span>-axis? Well, at a push they sort of might nearly be. But maybe not really. Remember the values of an explanatory variable should be something we can change as an experimenter, they are the values that we change deliberately to see what the effect on the response is. Even in our categoric <span class="math inline">\(x\)</span>-experiments we know what the values will be beforehand. Here, arguably we didn’t, crosses happened and phenotypes popped out, so it’s a bit muddier. If we do use that approach we end up with lots of observations condensed into one number as a further issue.
+</div>
+
 </div>
 <div id="we-have-to-compare-models-not-groups." class="section level2">
 <h2><span class="header-section-number">9.2</span> We have to compare models, not groups.</h2>
@@ -353,7 +359,7 @@ log(yi) ~ log(N) + log(ai) + log(bi) + log(ci)</code></pre>
 <h2><span class="header-section-number">9.3</span> The <span class="math inline">\(\chi^2\)</span> test</h2>
 <p>In the <span class="math inline">\(\chi^2\)</span> test we ask ‘does one set of counts differ from another?’. This might be a hypothetical ‘expected’ set of counts for the response of interest compared to some standard.
 For example, in genetics data we might ask whether the observed ratio of phenotypes matches an expected <code>9:3:3:1</code>. More generally, we might ask whether the counts in one subset of categories matches another, so in a survey to ask whether respondents agree that broccoli is a nice food, with response ‘agree, disagree, don’t know’, we might compare responses between adults and children.</p>
-<p>The basic calculation in the <span class="math inline">\(\chi^2\)</span> test is the difference between observed and expected numbers in each category subset. In Mendel’s data this would be the difference between the observed number of “P” and “W”, from the expected number - given we did 600 plants, then for a <span class="math inline">\(3:1\)</span> we’d expect 450 “P” and 150 “W”. This difference is then compared to values of the <span class="math inline">\(\chi^2\)</span> distribution and returns a <span class="math inline">\(p\)</span>-value that represents how far away from the mean the difference is. If it is an extreme value (in the tails) the <span class="math inline">\(p\)</span>-value is lower.</p>
+<p>The basic calculation in the <span class="math inline">\(\chi^2\)</span> test is the difference between observed and expected numbers in each category subset. In Mendel’s data this would be the difference between the observed number of “P” and “W”, from the expected number - given we did 600 plants, then for a <span class="math inline">\(3:1\)</span> we’d expect 450 “P” and 150 “W”. This difference is then compared to values of the dev<span class="math inline">\(\chi^2\)</span> distribution and returns a <span class="math inline">\(p\)</span>-value that represents how far away from the mean the difference is. If it is an extreme value (in the tails) the <span class="math inline">\(p\)</span>-value is lower.</p>
 <p>The hypotheses are set as follows:</p>
 <ul>
 <li><span class="math inline">\(H_{0}\)</span> the observed counts show no evidence that they are different from the expected counts</li>
@@ -362,49 +368,49 @@ For example, in genetics data we might ask whether the observed ratio of phenoty
 <div id="performing-the-test" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Performing the test</h3>
 <p>To do the test for the simplest case - Mendel’s flower data, we need to get a dataframe with the observed counts on one row and the expected counts on another.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="chi-2-tests-and-linear-models.html#cb153-1"></a>observed_counts &lt;-<span class="st"> </span><span class="kw">its_mendel_count_data_time</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb153-2"><a href="chi-2-tests-and-linear-models.html#cb153-2"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(<span class="st">&quot;colour&quot;</span>), <span class="dt">values_from =</span> <span class="kw">c</span>(<span class="st">&quot;count&quot;</span>) )</span>
-<span id="cb153-3"><a href="chi-2-tests-and-linear-models.html#cb153-3"></a>observed_counts</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="chi-2-tests-and-linear-models.html#cb154-1"></a>observed_counts &lt;-<span class="st"> </span><span class="kw">its_mendel_count_data_time</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb154-2"><a href="chi-2-tests-and-linear-models.html#cb154-2"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="kw">c</span>(<span class="st">&quot;colour&quot;</span>), <span class="dt">values_from =</span> <span class="kw">c</span>(<span class="st">&quot;count&quot;</span>) )</span>
+<span id="cb154-3"><a href="chi-2-tests-and-linear-models.html#cb154-3"></a>observed_counts</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##       P     W
 ##   &lt;int&gt; &lt;int&gt;
-## 1   452   148</code></pre>
+## 1   459   141</code></pre>
 <p>We then need to make the equivalent row for the expected counts - recall we had 600 plants, so calculate the expected number of “P” and “W”</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="chi-2-tests-and-linear-models.html#cb155-1"></a>expected_counts &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
-<span id="cb155-2"><a href="chi-2-tests-and-linear-models.html#cb155-2"></a>   <span class="dt">P =</span> <span class="dv">600</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span><span class="op">/</span><span class="dv">4</span>,</span>
-<span id="cb155-3"><a href="chi-2-tests-and-linear-models.html#cb155-3"></a>   <span class="dt">W =</span>  <span class="dv">600</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">4</span></span>
-<span id="cb155-4"><a href="chi-2-tests-and-linear-models.html#cb155-4"></a>)</span>
-<span id="cb155-5"><a href="chi-2-tests-and-linear-models.html#cb155-5"></a>expected_counts</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="chi-2-tests-and-linear-models.html#cb156-1"></a>expected_counts &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
+<span id="cb156-2"><a href="chi-2-tests-and-linear-models.html#cb156-2"></a>   <span class="dt">P =</span> <span class="dv">600</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span><span class="op">/</span><span class="dv">4</span>,</span>
+<span id="cb156-3"><a href="chi-2-tests-and-linear-models.html#cb156-3"></a>   <span class="dt">W =</span>  <span class="dv">600</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">4</span></span>
+<span id="cb156-4"><a href="chi-2-tests-and-linear-models.html#cb156-4"></a>)</span>
+<span id="cb156-5"><a href="chi-2-tests-and-linear-models.html#cb156-5"></a>expected_counts</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##       P     W
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1   450   150</code></pre>
 <p>We then need to stick those rows together</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="chi-2-tests-and-linear-models.html#cb157-1"></a>chi_sq_input &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">bind_rows</span>(observed_counts, expected_counts)</span>
-<span id="cb157-2"><a href="chi-2-tests-and-linear-models.html#cb157-2"></a><span class="kw">rownames</span>(chi_sq_input) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;observed&quot;</span>, <span class="st">&quot;expected&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="chi-2-tests-and-linear-models.html#cb158-1"></a>chi_sq_input &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">bind_rows</span>(observed_counts, expected_counts)</span>
+<span id="cb158-2"><a href="chi-2-tests-and-linear-models.html#cb158-2"></a><span class="kw">rownames</span>(chi_sq_input) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;observed&quot;</span>, <span class="st">&quot;expected&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Setting row names on a tibble is deprecated.</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="chi-2-tests-and-linear-models.html#cb159-1"></a>chi_sq_input</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="chi-2-tests-and-linear-models.html#cb160-1"></a>chi_sq_input</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##       P     W
 ## * &lt;dbl&gt; &lt;dbl&gt;
-## 1   452   148
+## 1   459   141
 ## 2   450   150</code></pre>
 <p>Finally we can do the test with the function <code>chisq.test()</code></p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="chi-2-tests-and-linear-models.html#cb161-1"></a><span class="kw">chisq.test</span>(chi_sq_input)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="chi-2-tests-and-linear-models.html#cb162-1"></a><span class="kw">chisq.test</span>(chi_sq_input)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  chi_sq_input
-## X-squared = 0.0044644, df = 1, p-value = 0.9467</code></pre>
+## X-squared = 0.29034, df = 1, p-value = 0.59</code></pre>
 <p>The test shows us that the <span class="math inline">\(p\)</span>-value of the <span class="math inline">\(\chi^2\)</span> test is greater than 0.05 so we conclude that there is no evidence that the observed number of each flower colour differs from the expected and that we do indeed have a <span class="math inline">\(3:1\)</span> ratio. Note that the test automatically does the necessary correction for small sample sizes if the data need it.</p>
 </div>
 <div id="more-than-one-variable" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> More than one variable</h3>
 <p>The data we had above only had one variable, flower colour. What if we have multiple categoric variables to compare? Largely, the process is the same but making the table is more difficult.</p>
 <p>Consider this data frame of voting intentions between generations</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="chi-2-tests-and-linear-models.html#cb163-1"></a><span class="co">##Turn into function in the package</span></span>
-<span id="cb163-2"><a href="chi-2-tests-and-linear-models.html#cb163-2"></a>voting_data &lt;-<span class="st"> </span><span class="kw">its_voting_data_time</span>()</span>
-<span id="cb163-3"><a href="chi-2-tests-and-linear-models.html#cb163-3"></a>voting_data</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="chi-2-tests-and-linear-models.html#cb164-1"></a><span class="co">##Turn into function in the package</span></span>
+<span id="cb164-2"><a href="chi-2-tests-and-linear-models.html#cb164-2"></a>voting_data &lt;-<span class="st"> </span><span class="kw">its_voting_data_time</span>()</span>
+<span id="cb164-3"><a href="chi-2-tests-and-linear-models.html#cb164-3"></a>voting_data</span></code></pre></div>
 <pre><code>##   generation alignment count
 ## 1     boomer   fascist   279
 ## 2  millenial   fascist   165
@@ -413,21 +419,21 @@ For example, in genetics data we might ask whether the observed ratio of phenoty
 ## 5     boomer   marxist   225
 ## 6  millenial   marxist   191</code></pre>
 <p>This time we have two variables, with two or three levels of each. To make the contingency table for <code>chisq.test()</code> we can use <code>xtabs()</code> which takes an R formula as a description of how to make the table. Luckily, these are exactly the same formula we used to make linear models.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="chi-2-tests-and-linear-models.html#cb165-1"></a>tabulated &lt;-<span class="st"> </span><span class="kw">xtabs</span>(count <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> voting_data)</span>
-<span id="cb165-2"><a href="chi-2-tests-and-linear-models.html#cb165-2"></a>tabulated</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="chi-2-tests-and-linear-models.html#cb166-1"></a>tabulated &lt;-<span class="st"> </span><span class="kw">xtabs</span>(count <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> voting_data)</span>
+<span id="cb166-2"><a href="chi-2-tests-and-linear-models.html#cb166-2"></a>tabulated</span></code></pre></div>
 <pre><code>##            alignment
 ## generation  fascist instagram marxist
 ##   boomer        279        74     225
 ##   millenial     165        47     191</code></pre>
 <p>Here we make a formula that says <code>count</code> is the output variable, and <code>.</code> are the independent or row and column variables (<code>.</code> in formula like this just means everything else). The table comes out as we expect and we can go on to do the <code>chisq.test()</code> as before on the new table.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="chi-2-tests-and-linear-models.html#cb167-1"></a><span class="kw">chisq.test</span>(tabulated)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="chi-2-tests-and-linear-models.html#cb168-1"></a><span class="kw">chisq.test</span>(tabulated)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test
 ## 
 ## data:  tabulated
 ## X-squared = 7.0811, df = 2, p-value = 0.029</code></pre>
 <p>Here the <span class="math inline">\(p\)</span> value tells us that the pattern of voting intention is significant, but the numbers are hard to interpret … do <code>millenial</code>s vote less for <code>instagram</code> than <code>boomer</code>s? We can make things easier to interpret if we have a proportion table. The function <code>prop.table()</code> can make one of those.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="chi-2-tests-and-linear-models.html#cb169-1"></a><span class="kw">prop.table</span>(tabulated, <span class="dt">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="chi-2-tests-and-linear-models.html#cb170-1"></a><span class="kw">prop.table</span>(tabulated, <span class="dt">margin =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>##            alignment
 ## generation    fascist instagram   marxist
 ##   boomer    0.4826990 0.1280277 0.3892734
@@ -437,31 +443,31 @@ For example, in genetics data we might ask whether the observed ratio of phenoty
 <div id="more-than-one-pairwise-comparison" class="section level3">
 <h3><span class="header-section-number">9.3.3</span> More than one pairwise comparison</h3>
 <p>If we have more than two levels in our comparison category (that is, a larger contingency table than 2 x 2), we run into a problem. Look at these data</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="chi-2-tests-and-linear-models.html#cb171-1"></a>job_mood &lt;-<span class="st"> </span><span class="kw">its_job_mood_time</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="chi-2-tests-and-linear-models.html#cb172-1"></a>tab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(Freq <span class="op">~</span>., <span class="dt">data =</span> job_mood)</span>
-<span id="cb172-2"><a href="chi-2-tests-and-linear-models.html#cb172-2"></a>tab</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="chi-2-tests-and-linear-models.html#cb172-1"></a>job_mood &lt;-<span class="st"> </span><span class="kw">its_job_mood_time</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="chi-2-tests-and-linear-models.html#cb173-1"></a>tab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(Freq <span class="op">~</span>., <span class="dt">data =</span> job_mood)</span>
+<span id="cb173-2"><a href="chi-2-tests-and-linear-models.html#cb173-2"></a>tab</span></code></pre></div>
 <pre><code>##            role
 ## mood        carpenter cooper milliner
 ##   curious          70      0      100
 ##   tense            32     30       30
 ##   whimsical       120    142      110</code></pre>
 <p>we have data on the reported mood of people in different jobs. Note that there are three levels of each of the categoric variables. We can make the table and can go straight to the <span class="math inline">\(\chi^2\)</span> test.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="chi-2-tests-and-linear-models.html#cb174-1"></a>tab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(Freq <span class="op">~</span>., <span class="dt">data =</span> job_mood)</span>
-<span id="cb174-2"><a href="chi-2-tests-and-linear-models.html#cb174-2"></a>tab</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="chi-2-tests-and-linear-models.html#cb175-1"></a>tab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(Freq <span class="op">~</span>., <span class="dt">data =</span> job_mood)</span>
+<span id="cb175-2"><a href="chi-2-tests-and-linear-models.html#cb175-2"></a>tab</span></code></pre></div>
 <pre><code>##            role
 ## mood        carpenter cooper milliner
 ##   curious          70      0      100
 ##   tense            32     30       30
 ##   whimsical       120    142      110</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="chi-2-tests-and-linear-models.html#cb176-1"></a><span class="kw">chisq.test</span>(tab)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="chi-2-tests-and-linear-models.html#cb177-1"></a><span class="kw">chisq.test</span>(tab)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s Chi-squared test
 ## 
 ## data:  tab
 ## X-squared = 93.67, df = 4, p-value &lt; 2.2e-16</code></pre>
 <p>Umm, it’s significant. But weren’t we expecting to see significances between groups? As with the ANOVA it’s done the overall result. We need to do a <em>post-hoc</em> operation to do the full set of pairwise comparisons. The package <code>rcompanion</code> has a nice function for this, <code>pairwiseNominalIndependence()</code>, we set the option <code>method</code> to decide which correction for multiple comparisons to do, <code>fdr</code> is a good choice.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="chi-2-tests-and-linear-models.html#cb178-1"></a><span class="kw">library</span>(rcompanion)</span>
-<span id="cb178-2"><a href="chi-2-tests-and-linear-models.html#cb178-2"></a><span class="kw">pairwiseNominalIndependence</span>(tab, <span class="dt">method =</span> <span class="st">&quot;fdr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="chi-2-tests-and-linear-models.html#cb179-1"></a><span class="kw">library</span>(rcompanion)</span>
+<span id="cb179-2"><a href="chi-2-tests-and-linear-models.html#cb179-2"></a><span class="kw">pairwiseNominalIndependence</span>(tab, <span class="dt">method =</span> <span class="st">&quot;fdr&quot;</span>)</span></code></pre></div>
 <pre><code>##            Comparison p.Fisher p.adj.Fisher  p.Gtest p.adj.Gtest  p.Chisq
 ## 1     curious : tense 8.97e-16     1.35e-15 2.22e-16    3.33e-16 1.07e-14
 ## 2 curious : whimsical 8.98e-29     2.69e-28 0.00e+00    0.00e+00 5.47e-21
@@ -472,21 +478,21 @@ For example, in genetics data we might ask whether the observed ratio of phenoty
 ## 3    6.11e-01</code></pre>
 <p>Better. But not quite! The groups compared are the different <code>moods</code>, presumably we wanted to look at the differences between the different <code>roles</code>. The table is in the wrong orientation in that case.</p>
 <p>We can explicitly state the orientation of the table by manipulating the formula in <code>xtabs()</code>. Compare the results of these two calls</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="chi-2-tests-and-linear-models.html#cb180-1"></a><span class="kw">xtabs</span>(Freq <span class="op">~</span><span class="st"> </span>role <span class="op">+</span><span class="st"> </span>mood, <span class="dt">data =</span> job_mood)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="chi-2-tests-and-linear-models.html#cb181-1"></a><span class="kw">xtabs</span>(Freq <span class="op">~</span><span class="st"> </span>role <span class="op">+</span><span class="st"> </span>mood, <span class="dt">data =</span> job_mood)</span></code></pre></div>
 <pre><code>##            mood
 ## role        curious tense whimsical
 ##   carpenter      70    32       120
 ##   cooper          0    30       142
 ##   milliner      100    30       110</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="chi-2-tests-and-linear-models.html#cb182-1"></a><span class="kw">xtabs</span>(Freq <span class="op">~</span><span class="st"> </span>mood <span class="op">+</span><span class="st"> </span>role, <span class="dt">data =</span> job_mood)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="chi-2-tests-and-linear-models.html#cb183-1"></a><span class="kw">xtabs</span>(Freq <span class="op">~</span><span class="st"> </span>mood <span class="op">+</span><span class="st"> </span>role, <span class="dt">data =</span> job_mood)</span></code></pre></div>
 <pre><code>##            role
 ## mood        carpenter cooper milliner
 ##   curious          70      0      100
 ##   tense            32     30       30
 ##   whimsical       120    142      110</code></pre>
 <p>We usually want the form with the variable we’re comparing in the rows, that’s the <code>Freq ~ role + mood</code>. We can then do the pairwise <span class="math inline">\(\chi^2\)</span>.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="chi-2-tests-and-linear-models.html#cb184-1"></a>tab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(Freq <span class="op">~</span><span class="st"> </span>role <span class="op">+</span><span class="st"> </span>mood, <span class="dt">data =</span> job_mood)</span>
-<span id="cb184-2"><a href="chi-2-tests-and-linear-models.html#cb184-2"></a><span class="kw">pairwiseNominalIndependence</span>(tab, <span class="dt">method =</span> <span class="st">&quot;fdr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="chi-2-tests-and-linear-models.html#cb185-1"></a>tab &lt;-<span class="st"> </span><span class="kw">xtabs</span>(Freq <span class="op">~</span><span class="st"> </span>role <span class="op">+</span><span class="st"> </span>mood, <span class="dt">data =</span> job_mood)</span>
+<span id="cb185-2"><a href="chi-2-tests-and-linear-models.html#cb185-2"></a><span class="kw">pairwiseNominalIndependence</span>(tab, <span class="dt">method =</span> <span class="st">&quot;fdr&quot;</span>)</span></code></pre></div>
 <pre><code>##             Comparison p.Fisher p.adj.Fisher p.Gtest p.adj.Gtest  p.Chisq
 ## 1   carpenter : cooper 5.26e-20     7.89e-20  0.0000      0.0000 3.38e-15
 ## 2 carpenter : milliner 7.81e-02     7.81e-02  0.0773      0.0773 7.81e-02
@@ -507,45 +513,22 @@ For example, in genetics data we might ask whether the observed ratio of phenoty
 <p>In previous chapters we’ve seen how to plot the data we’ve been working on and usually the sort of plot we want has been quite obvious. With the unordered categoric only data we have here, it isn’t so obvious. Often just the table will do! But if you would like some plots here are some rough examples to build from.</p>
 <div id="balloon-plot" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> Balloon plot</h3>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="chi-2-tests-and-linear-models.html#cb186-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb186-2"><a href="chi-2-tests-and-linear-models.html#cb186-2"></a><span class="kw">ggplot</span>(job_mood) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(mood, role) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Freq))</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chi-2-tests-and-linear-models.html#cb187-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb187-2"><a href="chi-2-tests-and-linear-models.html#cb187-2"></a><span class="kw">ggplot</span>(job_mood) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(mood, role) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> Freq))</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>This plot shows circles whose size is proportional to the count at each combination.</p>
 </div>
 <div id="heatmap" class="section level3">
 <h3><span class="header-section-number">9.5.2</span> Heatmap</h3>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chi-2-tests-and-linear-models.html#cb187-1"></a><span class="kw">ggplot</span>(job_mood) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(mood, role) <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>Freq))</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="chi-2-tests-and-linear-models.html#cb188-1"></a><span class="kw">ggplot</span>(job_mood) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(mood, role) <span class="op">+</span><span class="st"> </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>Freq))</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <p>This plot shows tiles whose filled colour represents the count at each combination</p>
 </div>
 <div id="stacked-bar" class="section level3">
 <h3><span class="header-section-number">9.5.3</span> Stacked bar</h3>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="chi-2-tests-and-linear-models.html#cb188-1"></a><span class="kw">ggplot</span>(job_mood) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(role, Freq) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> mood))</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="chi-2-tests-and-linear-models.html#cb189-1"></a><span class="kw">ggplot</span>(job_mood) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(role, Freq) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> mood))</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 
-<ol style="list-style-type: decimal">
-<li>Questions</li>
-</ol>
-<ul>
-<li>How do I know whether my model is any good?</li>
-<li>How can I use the model to make predictions?</li>
-<li>What can I use when linear models don’t work well?</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Objectives</li>
-</ol>
-<ul>
-<li>Learn how to tell whether the data you have are suitable for linear models</li>
-<li>Learn how to make predictions from a model</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Keypoints</li>
-</ol>
-<ul>
-<li>Data should be normally distributed, but linear models are quite robust to deviation from this</li>
-<li>Models can be used to make new hypotheses</li>
-<li>Linear models are one member of a larger family of models for many types of data</li>
-</ul>
 </div>
 </div>
 </div>

@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2020-11-05" />
+<meta name="date" content="2021-01-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -195,7 +197,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>6.6</b> Summary</a></li>
 <li class="chapter" data-level="6.7" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#but-wasnt-the-t-test-just-easier"><i class="fa fa-check"></i><b>6.7</b> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</a></li>
-<li class="chapter" data-level="6.8" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#task"><i class="fa fa-check"></i><b>6.8</b> Task</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a><ul>
 <li class="chapter" data-level="7.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.1</b> Comparing groups in a single variable</a></li>
@@ -323,7 +324,7 @@ Just because the overall answer is usually the same one, that doesn’t mean tha
 <p>Either way, for our purposes the basic idea is that we look inside the null model and see how likely it would be. Usually we ask a very specific question of a Null Model</p>
 
 <div class="myquote">
-What is the likelihood of getting a difference observed if the true difference were 0, given the observed amount of variablility?
+What is the likelihood of getting the difference we observed if the true difference were 0, given the observed amount of variablility?
 </div>
 
 <p>The likelihood of the difference under the Null Model is expressed as a very misunderstood and abused quantity - the <span class="math inline">\(p\)</span>-value.</p>
@@ -355,28 +356,28 @@ What is the likelihood of getting a difference observed if the true difference w
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">6.220506</td>
-<td align="center">6.042315</td>
+<td align="center">5.510567</td>
+<td align="center">5.349417</td>
 </tr>
 <tr class="even">
-<td align="center">5.333389</td>
-<td align="center">5.970920</td>
+<td align="center">5.992293</td>
+<td align="center">7.795630</td>
 </tr>
 <tr class="odd">
-<td align="center">5.408205</td>
-<td align="center">6.509703</td>
+<td align="center">5.013341</td>
+<td align="center">6.496354</td>
 </tr>
 <tr class="even">
-<td align="center">4.226192</td>
-<td align="center">6.360268</td>
+<td align="center">4.453679</td>
+<td align="center">6.999706</td>
 </tr>
 <tr class="odd">
-<td align="center">5.596229</td>
-<td align="center">7.740088</td>
+<td align="center">5.623742</td>
+<td align="center">5.397276</td>
 </tr>
 <tr class="even">
-<td align="center">6.862056</td>
-<td align="center">6.527493</td>
+<td align="center">4.374313</td>
+<td align="center">5.160301</td>
 </tr>
 </tbody>
 </table>
@@ -388,7 +389,16 @@ What is the likelihood of getting a difference observed if the true difference w
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>The slope of that line tells us about the difference in the means. If it is flat there’s no difference, if it isn’t flat maybe there is a difference.</p>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-9-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-9-2.png" width="50%" /></p>
-<p>Now we have a conceptual tool for thinking about differences, like differences in means of samples as a slope between the means from one group to another. And that is the logic we will be following in this little book. All we will do is learn to look for a slope of a line. We’ll look at using a statistical tool called a linear model, which tries to create a straight line that matches the data, so is contains the equation of a straight line but elaborates on the equation alone by providing measures of believability about the slope and other things. The technique we will learn will give us a framework for thinking about performing hypothesis testing in all sorts of comparisons including <span class="math inline">\(t\)</span>-tests, ANOVA etc and with elaborations we’ll be able to see how to use the same framework for the other class of tests that we often use, the non-parametric tests.</p>
+<p>Now we have a conceptual tool for thinking about differences (like differences in means of samples) as a slope between the means from one group to another. And that is the logic we will be following in this little book. All we will do is learn to look for a slope of a line. We’ll look at using a statistical tool called a linear model, which tries to create a straight line that matches the data, so it contains the equation of a straight line but elaborates on the equation alone by providing measures of believability about the slope and other things. The technique we will learn will give us a framework for thinking about performing hypothesis testing in all sorts of comparisons including <span class="math inline">\(t\)</span>-tests, ANOVA, etc. and with elaborations we’ll be able to see how to use the same framework for the other class of tests that we often use, the non-parametric tests.</p>
+
+<div class="roundup">
+<ul>
+<li>We do statistics to be reasonably certain that differences we observe don’t occur by chance.</li>
+<li>A <span class="math inline">\(p\)</span> value doesn’t tell us the probability of a result. It tells us how often we would see the observed result in an idealised and simplisitic situation.</li>
+<li>The slope of a line can help us think about whether two numbers are different.</li>
+</ul>
+</div>
+
 
 </div>
 </div>

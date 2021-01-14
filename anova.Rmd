@@ -76,7 +76,7 @@ A scary thing that statisticians often say is that such-and-such a method is onl
 
 ```
 
-A better alternative (in the sense of flexibility for the user) is the `multcomp` package function `glht()` (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.
+A better alternative than the quick and dirty ANOVA approach above (in the sense of flexibility for the user) is the `multcomp` package function `glht()` (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.
 
 ```{r,message = FALSE, warning=FALSE, echo=FALSE }
 #load the thing quietly
@@ -114,7 +114,7 @@ Two-Way comparisons are pretty similar in practice to One-Way comparisons. So si
 
 ## Interactions between variables
 
-Working with multiple variables is complicated over the single case as we have the possibility of an interaction between the variables to consider. That is to say that the response in an experiment may be stronger under conditions `a and b` than in `a` or `b` alone even if `a` or `b` alone is greater than `c`. We can visualise this as straight lines like in the diagrams below
+Working with multiple variables is complicated over the single case as we have the possibility of an interaction between the variables to consider. That is to say that the response in an experiment may be stronger under conditions `a and b` than in `a` or `b` alone whether `a` or `b` alone is greater than a `control` or not. We can visualise this as straight lines like in the diagrams below.
 
 ```{r, message=FALSE}
 its_interaction_example_time()
@@ -126,7 +126,8 @@ Let's work through an example that highlights how we identify and investigate th
 
 ```{r, load_food, message=FALSE}
 food <- its_food_data_time()
-knitr::kable(dplyr::sample_n(food, 5))                                             
+#look at specific rows 1,21,41,61
+food[c(1,21,41,61),]                                      
 ```
 
 Looking at those in the way we have already - each variable individually - then we would generate the following plots and lines to examine.
@@ -183,7 +184,9 @@ and when we print the `summary()` we get the book-keeping issue of not all the r
 summary(interaction_model)
 ```
 
-This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? They are not, these seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract them. First we must decide what the contrasts we're going to check must be. In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
+This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? These seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract the ones we're interested in. 
+
+In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
 
 Let's see whether food alone or condiment alone has an effect. This would be like the first situation we looked at, 
 
@@ -212,7 +215,7 @@ its_food_two_ways_time()
 So we have four lines of interest to look at - four contrasts. 
 
 
-For the two main non-interaction effects we could think to look at these as we've done before, using the `mcp()` function with the model with the explicit interaction in it, like this
+For the two main non-interaction effects we could think to look at these as we've done before, using the `mcp()` function with the `interaction_model` with the explicit interaction in it, like this
 
 ```{r}
 summary(
@@ -236,7 +239,7 @@ Although we're interested in only two specific interactions, usually it's easier
 
 ```{r}
 food_2 <- food %>% dplyr::mutate(FoodCondiment = interaction(Food, Condiment))
-knitr::kable(dplyr::sample_n(food_2, 6), align = "c")
+knitr::kable( food_2[c(1,21,41,61),] , align = "c")
 ```
 
 We can see that all we've done is add a column that describes the interaction. We can use this in the place of the individual variables as before and now don't need to explicitly mention the interaction in the specification because it is modelled implicitly in the new column. That means our model looks like this
@@ -245,7 +248,7 @@ We can see that all we've done is add a column that describes the interaction. W
 interaction_model2 <- lm(Enjoyment ~ FoodCondiment, data = food_2)
 ```
 
-To do the contrasts we can use the single interaction column as the target of Tukey's.
+To do the contrasts we can use the single interaction column as the target of Tukey.
 
 ```{r}
 summary(
@@ -308,7 +311,8 @@ m <- matrix(c(0,0,1,-1, 1,-1,0,0), nrow=2, byrow = TRUE)
 rownames(m) <- c("Porridge:Jam - Tortilla Chips:Jam",
           "Porridge:Hummous - Tortilla Chips:Hummous")
 colnames(m) <- levels(f_c_interactions)
-knitr::kable(m)
+#knitr::kable(m)
+m
 ```
 
 We can see that there is a row per comparison and a column per possible interaction. At the intersection we write a zero if we don't want to include that possible interaction in the contrast, a 1 if we want it to be the first part and a -1 if we want it to be the second part (IE, the part after the minus sign). 
@@ -339,3 +343,15 @@ summary(glht( interaction_model, linfct = contr_of_interest))
 ```
 
 And there we have the specific interaction contrasts. Note how in doing this we don't generate any warnings even though we used the model with the explicit interaction term, this is because when we generate our own contrast matrix like this we get an appropriate orthogonality for the test.
+
+
+```{block2, type="roundup"}
+
+* Working with multiple variables goes the same as working with just one
+* ANOVA is a flexible tool for specifying comparisons between variables in linear models
+
+```
+
+```{block2, type="task"}
+
+```

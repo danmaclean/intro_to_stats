@@ -4,7 +4,7 @@ author: "Dan MacLean"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-bibliography: [book.bib, packages.bib]
+bibliography: [book.bib, packages.bib, citations.bib]
 biblio-style: apalike
 link-citations: yes
 description: ""

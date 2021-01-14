@@ -14,7 +14,11 @@
 
 ## Working with R 
 
-In this workshop we'll use R in the extremely useful RStudio software For the most part we'll work interactively, meaning we'll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the consoled or in a window on the right). That's what you see in panels like the ones below - first the thing to type into R, and below it, the calculated result from R. Let's look at how R works by using it for it's most basic job - as a calculator:
+In this workshop we'll use R in the extremely useful RStudio software. For the most part we'll work interactively, meaning we'll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the console or in a window on the right). 
+
+Panels like the ones below mimic the interaction with R and first show the thing to type into R, and below the calculated result from R. 
+
+Let's look at how R works by using it for it's most basic job - as a calculator:
 
 ```{r}
  3 + 5
@@ -32,7 +36,7 @@ In this workshop we'll use R in the extremely useful RStudio software For the mo
 
 Fairly straightforward, we type in the expression and we get a result. That's how this whole book will work, you type the stuff in, and get answers out. It'll be easiest to learn if you go ahead and copy the examples one by one. Try to resist the urge to use copy and paste. Typing longhand really encourages you to look at what you're entering.
 
-As far as the R output itself goes, it's really straightforward - its just the answer with a `[1]` stuck on the front. This `[1]` tells us how far through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information
+As far as the R output itself goes, it's really straightforward - its just the answer with a `[1]` stuck on the front. This `[1]` tells us how many items through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information.
 
 ##  Variables
 
@@ -112,7 +116,7 @@ library(somepackage)
 
 ## Using R Help
 
-R provides a function, called `?` that will display the documentation for other functions. For example `?mean` will display the help for the `mean()` function.
+R provides a command, called `?` that will display the documentation for functions. For example `?mean` will display the help for the `mean()` function.
 
 ```{r}
 ?mean
@@ -120,6 +124,11 @@ R provides a function, called `?` that will display the documentation for other 
 
 As in all programming languages the internal documentation in R is written with some assumption that the reader is familiar with the language. This can be a pain when you are starting out as the help will seem a bit obscure at times. Don't worry about this, usually the `Examples` section will give you a good idea of how to use the function and as your experience grows then the more things will make more sense.
 
+
+```{block2, type="roundup"}
+    * R is an excellent and powerful statistical computing environment
+
+```
 
 
 ```{block2, type = "task"}

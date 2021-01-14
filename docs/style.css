@@ -13,7 +13,7 @@ pre code {
   white-space: inherit;
 }
 
-.task, .roundup {
+.task, .roundup, .keypoints {
     border-radius: 12px;
     border: 4px solid #505050;
     padding: 20px; 
@@ -33,6 +33,7 @@ pre code {
     content: "Round Up";
     font-size: 20px;
 }
+
 
 .reader {
     border-radius: 12px;
