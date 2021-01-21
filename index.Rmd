@@ -10,20 +10,26 @@ link-citations: yes
 description: ""
 ---
 
-# Introduction to statistics
+# Setting up
 
-The primary purpose of this handbook is to help you to understand how to use statistics that will help with your research. The handbook will try to explain statistics using the same path through the topic that statistic students are educated along, but without the rigorous mathematical background necessary for those students. Instead this book will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.
+The primary purpose of this course is to help you to understand how to use statistics that will help with your research. The course will try to explain statistics using the same path through the topic that statistics students are educated along, but without the rigorous mathematical background necessary for those students. Instead this course will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.
+
+Statistics is a computationally heavy topic, so we'll be making use of the R statistical programming environment to do that side of the work. The rest of this chapter will help you get that set up on your own computer.
 
 ## Prerequisites
 
-There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like `t`, `ANOVA` and regression.
+### Knowledge prerequisites
 
+There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like `t`, `ANOVA` and regression. It'll also be helpful for following some of the code examples if you are familiar with basic R use.
+
+
+### Software prerequisites
 
 You need to install the following stuff for this book: 
 
  1. R
  2. RStudio
- 3. Some R packages: `devtools`, `gradethis` and `itssl`
+ 3. Some R packages: `devtools` and `itssl`
  
 
 ## Installing R
@@ -41,26 +47,19 @@ Follow this link and install the right version for your operating system [https:
 
 ![Installing Packages](fig/package_install.png)
 
-### Development packages - `gradethis` and `itssl`
+### Development packages - itssl
 
-`gradethis` is a development package that allows us to use interactive tutorials, but it is somewhat new and still under development so we need to install it manually using `devtools`.
-
-  1. In the `Console` tab in the lower left panel of RStudio type `devtools::install_github("rstudio-education/gradethis")`
-  2. When you are asked 
-    
-    >These packages have more recent versions available.
-      It is recommended to update all of them.
-      Which would you like to update?
-
-  Select `1: All`
-  
-`itssl` is a new package that contains all the materials including the exercises for this handbook. As it isn't fully certified yet you need to install it using `devtools`.
+`itssl` is a new package that contains all the materials including the exercises for this handbook. As it is a development package you need to install it using `devtools`.
 
   1. In the `Console` tab in the lower left panel of RStudio type `devtools::install_github("danmaclean/itssl")`
+  
+You may get asked to install newer versions of packages, select `1. All` for these questions.
+
+You may get asked whether you wish to install the newest version from source, decline this option and install binaries by selecting the appropriate option
 
 ## Using the `itssl` package
 
-`itssl` is a package developed solely to accompany this course, the initialism stands for `intro to stats SL`. Once it is installed you can load it as usual - `library(itssl)`
+`itssl` is a package developed solely to accompany this course. Once it is installed you can load it as usual - `library(itssl)`
 
 All the functions in `itssl` follow this naming scheme `its_<something-something>_time()` so you'll be able to spot them as you read along. The main purpose of the functions is to make the course easier to follow and stop us from getting bogged down in a lot of circumstantial code that isn't directly related to our current point, which will usually be statistical rather than related to programming, hence you'll be able to get a lot out of this course even if you haven't used much R before. 
 

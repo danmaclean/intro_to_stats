@@ -184,7 +184,9 @@ and when we print the `summary()` we get the book-keeping issue of not all the r
 summary(interaction_model)
 ```
 
-This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. But are the contrasts presented here really all the ones we're interested in? These seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract the ones we're interested in. 
+This seems much more like what we expect from the graph, significance everywhere!  Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. This is a bit confusing, because the previous model said that the main effects (Food, Condiment) _weren't_ significant. The issue is the way the two models separate the data. The point is that in the second model the significance for the main effect is reliant on the interaction, so we can't generalise to say that Food or Condiment alone has significant effect on enjoyment. We must ignore these main effects in our interpretation.
+
+But are the contrasts presented here really all the ones we're interested in? These seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract the ones we're interested in. 
 
 In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let's define which we'll look at before we begin.
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2021-01-14" />
+<meta name="date" content="2021-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,13 +136,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Statistics Primer</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to statistics</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#knowledge-prerequisites"><i class="fa fa-check"></i><b>1.1.1</b> Knowledge prerequisites</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#software-prerequisites"><i class="fa fa-check"></i><b>1.1.2</b> Software prerequisites</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
-<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---gradethis-and-itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>gradethis</code> and <code>itssl</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - itssl</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#using-the-itssl-package"><i class="fa fa-check"></i><b>1.5</b> Using the <code>itssl</code> package</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
@@ -282,20 +285,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Understanding Statistical Thinking With Linear Models</h1>
 <p class="author"><em>Dan MacLean</em></p>
-<p class="date"><em>2021-01-14</em></p>
+<p class="date"><em>2021-01-21</em></p>
 </div>
-<div id="introduction-to-statistics" class="section level1">
-<h1><span class="header-section-number">Topic 1</span> Introduction to statistics</h1>
-<p>The primary purpose of this handbook is to help you to understand how to use statistics that will help with your research. The handbook will try to explain statistics using the same path through the topic that statistic students are educated along, but without the rigorous mathematical background necessary for those students. Instead this book will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.</p>
+<div id="setting-up" class="section level1">
+<h1><span class="header-section-number">Topic 1</span> Setting up</h1>
+<p>The primary purpose of this course is to help you to understand how to use statistics that will help with your research. The course will try to explain statistics using the same path through the topic that statistics students are educated along, but without the rigorous mathematical background necessary for those students. Instead this course will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.</p>
+<p>Statistics is a computationally heavy topic, so we’ll be making use of the R statistical programming environment to do that side of the work. The rest of this chapter will help you get that set up on your own computer.</p>
 <div id="prerequisites" class="section level2">
 <h2><span class="header-section-number">1.1</span> Prerequisites</h2>
-<p>There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like <code>t</code>, <code>ANOVA</code> and regression.</p>
+<div id="knowledge-prerequisites" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Knowledge prerequisites</h3>
+<p>There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like <code>t</code>, <code>ANOVA</code> and regression. It’ll also be helpful for following some of the code examples if you are familiar with basic R use.</p>
+</div>
+<div id="software-prerequisites" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Software prerequisites</h3>
 <p>You need to install the following stuff for this book:</p>
 <ol style="list-style-type: decimal">
 <li>R</li>
 <li>RStudio</li>
-<li>Some R packages: <code>devtools</code>, <code>gradethis</code> and <code>itssl</code></li>
+<li>Some R packages: <code>devtools</code> and <code>itssl</code></li>
 </ol>
+</div>
 </div>
 <div id="installing-r" class="section level2">
 <h2><span class="header-section-number">1.2</span> Installing R</h2>
@@ -315,26 +325,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Installing Packages</p>
 </div>
 </div>
-<div id="development-packages---gradethis-and-itssl" class="section level3">
-<h3><span class="header-section-number">1.4.2</span> Development packages - <code>gradethis</code> and <code>itssl</code></h3>
-<p><code>gradethis</code> is a development package that allows us to use interactive tutorials, but it is somewhat new and still under development so we need to install it manually using <code>devtools</code>.</p>
-<ol style="list-style-type: decimal">
-<li>In the <code>Console</code> tab in the lower left panel of RStudio type <code>devtools::install_github("rstudio-education/gradethis")</code></li>
-<li>When you are asked</li>
-</ol>
-<pre><code>&gt;These packages have more recent versions available.
-  It is recommended to update all of them.
-  Which would you like to update?</code></pre>
-<p>Select <code>1: All</code></p>
-<p><code>itssl</code> is a new package that contains all the materials including the exercises for this handbook. As it isn’t fully certified yet you need to install it using <code>devtools</code>.</p>
+<div id="development-packages---itssl" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Development packages - itssl</h3>
+<p><code>itssl</code> is a new package that contains all the materials including the exercises for this handbook. As it is a development package you need to install it using <code>devtools</code>.</p>
 <ol style="list-style-type: decimal">
 <li>In the <code>Console</code> tab in the lower left panel of RStudio type <code>devtools::install_github("danmaclean/itssl")</code></li>
 </ol>
+<p>You may get asked to install newer versions of packages, select <code>1. All</code> for these questions.</p>
+<p>You may get asked whether you wish to install the newest version from source, decline this option and install binaries by selecting the appropriate option</p>
 </div>
 </div>
 <div id="using-the-itssl-package" class="section level2">
 <h2><span class="header-section-number">1.5</span> Using the <code>itssl</code> package</h2>
-<p><code>itssl</code> is a package developed solely to accompany this course, the initialism stands for <code>intro to stats SL</code>. Once it is installed you can load it as usual - <code>library(itssl)</code></p>
+<p><code>itssl</code> is a package developed solely to accompany this course. Once it is installed you can load it as usual - <code>library(itssl)</code></p>
 <p>All the functions in <code>itssl</code> follow this naming scheme <code>its_&lt;something-something&gt;_time()</code> so you’ll be able to spot them as you read along. The main purpose of the functions is to make the course easier to follow and stop us from getting bogged down in a lot of circumstantial code that isn’t directly related to our current point, which will usually be statistical rather than related to programming, hence you’ll be able to get a lot out of this course even if you haven’t used much R before.</p>
 <p>If you do have a desire to see the code inside the <code>itssl</code> functions it is available at <a href="https://github.com/danmaclean/itssl/tree/master/R">https://github.com/danmaclean/itssl/tree/master/R</a></p>
 </div>

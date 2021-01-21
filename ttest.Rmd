@@ -226,13 +226,14 @@ The focus of this whole tutorial is to give you a way to think of statistical te
 The general applicability of the straight line and linear model concept comes in handy when comparing more than two groups. Looking at effects in these experiments is basically the same thing as doing just two, though traditionally we'd use a seemingly very different sort of test - ANOVA. We'll look at that in the next section.
 
 ```{block2, type="roundup"}
-    * A linear model can be used as a $t$-test
-    * Using the linear model rather than the $t$-test gives us a more consistent and flexible framework to think about differences between groups
+* A linear model can be used as a $t$-test
+* Using the linear model rather than the $t$-test gives us a more consistent and flexible framework to think about differences between groups
       
 ```
 
+
 ```{block2, type="task"}
-Do th thing
+
 
 ```
 

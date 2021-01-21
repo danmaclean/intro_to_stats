@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2021-01-14" />
+<meta name="date" content="2021-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,13 +136,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Statistics Primer</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to statistics</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#knowledge-prerequisites"><i class="fa fa-check"></i><b>1.1.1</b> Knowledge prerequisites</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#software-prerequisites"><i class="fa fa-check"></i><b>1.1.2</b> Software prerequisites</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
-<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---gradethis-and-itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>gradethis</code> and <code>itssl</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - itssl</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#using-the-itssl-package"><i class="fa fa-check"></i><b>1.5</b> Using the <code>itssl</code> package</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
@@ -310,13 +313,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this workshop we’ll use R in the extremely useful RStudio software. For the most part we’ll work interactively, meaning we’ll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the console or in a window on the right).</p>
 <p>Panels like the ones below mimic the interaction with R and first show the thing to type into R, and below the calculated result from R.</p>
 <p>Let’s look at how R works by using it for it’s most basic job - as a calculator:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-fundamentals.html#cb23-1"></a> <span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-fundamentals.html#cb22-1"></a> <span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r-fundamentals.html#cb25-1"></a> <span class="dv">12</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-fundamentals.html#cb24-1"></a> <span class="dv">12</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r-fundamentals.html#cb27-1"></a> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r-fundamentals.html#cb26-1"></a> <span class="dv">1</span> <span class="op">/</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 0.3333333</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r-fundamentals.html#cb29-1"></a> <span class="dv">12</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r-fundamentals.html#cb28-1"></a> <span class="dv">12</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
 <p>Fairly straightforward, we type in the expression and we get a result. That’s how this whole book will work, you type the stuff in, and get answers out. It’ll be easiest to learn if you go ahead and copy the examples one by one. Try to resist the urge to use copy and paste. Typing longhand really encourages you to look at what you’re entering.</p>
 <p>As far as the R output itself goes, it’s really straightforward - its just the answer with a <code>[1]</code> stuck on the front. This <code>[1]</code> tells us how many items through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information.</p>
@@ -325,22 +328,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.3</span> Variables</h2>
 <p>We can save the output of operations for later use by giving it a name using the assignment symbol <code>&lt;-</code>. Read this symbol as ‘gets’, so <code>x &lt;- 5</code> reads as ‘x gets 5’. These names are called variables, because the value they are associated with can change.</p>
 <p>Let’s give five a name, <code>x</code> then refer to the value 5 by it’s name. We can then use the name in place of the value. In the jargon of computing we say we are assigning a value to a variable.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="r-fundamentals.html#cb31-1"></a> x &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb31-2"><a href="r-fundamentals.html#cb31-2"></a> x</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r-fundamentals.html#cb30-1"></a> x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb30-2"><a href="r-fundamentals.html#cb30-2"></a> x</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-fundamentals.html#cb33-1"></a> x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-fundamentals.html#cb32-1"></a> x <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-fundamentals.html#cb35-1"></a>y &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb35-2"><a href="r-fundamentals.html#cb35-2"></a>x <span class="op">*</span><span class="st"> </span>y</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-fundamentals.html#cb34-1"></a>y &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb34-2"><a href="r-fundamentals.html#cb34-2"></a>x <span class="op">*</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] 15</code></pre>
 <p>This is of course of limited value with just numbers but is of great value when we have large datasets, as the whole thing can be referred to by the variable.</p>
 <div id="using-objects-and-functions" class="section level3">
 <h3><span class="header-section-number">5.3.1</span> Using objects and functions</h3>
 <p>At the top level, R is a simple language with two types of thing: functions and objects. As a user you will use functions to do stuff, and get back objects as an answer. Functions are easy to spot, they are a name followed by a pair of brackets. A function like <code>mean()</code> is the function for calculating a mean. The options (or arguments) for the function go inside the brackets:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-fundamentals.html#cb37-1"></a><span class="kw">sqrt</span>(<span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-fundamentals.html#cb36-1"></a><span class="kw">sqrt</span>(<span class="dv">16</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Often the result from a function will be more complicated than a simple number object, often it will be a vector (simple list), like from the <code>rnorm()</code> function that returns lists of random numbers</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-fundamentals.html#cb39-1"></a><span class="kw">rnorm</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-fundamentals.html#cb38-1"></a><span class="kw">rnorm</span>(<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>##   [1]  0.270232075 -0.112933852 -0.854887806 -1.033741090  0.222026624
 ##   [6] -1.079481969 -0.441373899  2.020634788  0.072856488  0.708817307
 ##  [11]  0.850509404 -1.486197129  0.920529800  0.148328802 -0.236867797
@@ -362,8 +365,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [91] -1.135559328  1.772544877 -0.093926303 -2.321188155  0.151039364
 ##  [96] -0.691147261  0.830428846  1.192598468  0.309910662 -1.549384356</code></pre>
 <p>We can combine objects, variables and functions to do more complex stuff in R, here’s how we get the mean of 100 random numbers.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-fundamentals.html#cb41-1"></a>numbers &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb41-2"><a href="r-fundamentals.html#cb41-2"></a><span class="kw">mean</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-fundamentals.html#cb40-1"></a>numbers &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb40-2"><a href="r-fundamentals.html#cb40-2"></a><span class="kw">mean</span>(numbers)</span></code></pre></div>
 <pre><code>## [1] 0.06927728</code></pre>
 <p>Here we created a vector object with <code>rnorm(100)</code> and assigned it to the variable <code>numbers</code>. We than used the <code>mean()</code> function, passing it the variable <code>numbers</code>. The <code>mean()</code> function returned the mean of the hundred random numbers.</p>
 </div>
@@ -376,21 +379,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Marty  45 93.90205
 ## 3  Alan  11 80.16470</code></pre>
 <p>Usually we get a dataframe by loading in data from an external source or as a result from functions, occasionally we’ll want to hand make one, which can be done with various functions, <code>data.frame</code> being the most common.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-fundamentals.html#cb44-1"></a><span class="kw">data.frame</span>(</span>
-<span id="cb44-2"><a href="r-fundamentals.html#cb44-2"></a>  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;Guido&quot;</span>, <span class="st">&quot;Marty&quot;</span>, <span class="st">&quot;Alan&quot;</span>),</span>
-<span id="cb44-3"><a href="r-fundamentals.html#cb44-3"></a>  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">24</span>,<span class="dv">45</span>,<span class="dv">11</span>),</span>
-<span id="cb44-4"><a href="r-fundamentals.html#cb44-4"></a>  <span class="dt">score =</span> <span class="kw">runif</span>(<span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb44-5"><a href="r-fundamentals.html#cb44-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-fundamentals.html#cb43-1"></a><span class="kw">data.frame</span>(</span>
+<span id="cb43-2"><a href="r-fundamentals.html#cb43-2"></a>  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;Guido&quot;</span>, <span class="st">&quot;Marty&quot;</span>, <span class="st">&quot;Alan&quot;</span>),</span>
+<span id="cb43-3"><a href="r-fundamentals.html#cb43-3"></a>  <span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">24</span>,<span class="dv">45</span>,<span class="dv">11</span>),</span>
+<span id="cb43-4"><a href="r-fundamentals.html#cb43-4"></a>  <span class="dt">score =</span> <span class="kw">runif</span>(<span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span>
+<span id="cb43-5"><a href="r-fundamentals.html#cb43-5"></a>)</span></code></pre></div>
 </div>
 <div id="packages" class="section level2">
 <h2><span class="header-section-number">5.5</span> Packages</h2>
 <p>Many of the tools we use in will come in R packages, little nuggets of code that group related functions together. Installing new packages can be done using the <code>Packages</code> pane of RStudio or the <code>install.packages()</code> function. When we wish to use that code we use the <code>library()</code> function</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-fundamentals.html#cb45-1"></a><span class="kw">library</span>(somepackage)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-fundamentals.html#cb44-1"></a><span class="kw">library</span>(somepackage)</span></code></pre></div>
 </div>
 <div id="using-r-help" class="section level2">
 <h2><span class="header-section-number">5.6</span> Using R Help</h2>
 <p>R provides a command, called <code>?</code> that will display the documentation for functions. For example <code>?mean</code> will display the help for the <code>mean()</code> function.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-fundamentals.html#cb46-1"></a>?mean</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-fundamentals.html#cb45-1"></a>?mean</span></code></pre></div>
 <p>As in all programming languages the internal documentation in R is written with some assumption that the reader is familiar with the language. This can be a pain when you are starting out as the help will seem a bit obscure at times. Don’t worry about this, usually the <code>Examples</code> section will give you a good idea of how to use the function and as your experience grows then the more things will make more sense.</p>
 
 <div class="roundup">
@@ -399,13 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <div class="task">
-<p>Use the interactive tutorial <code>r-start</code> in the package <code>itssl</code> to get to grips with R</p>
-<p>At the R-Studio Console</p>
-<ol style="list-style-type: decimal">
-<li>Type <code>library(learnr)</code> and press <code>Enter</code></li>
-<li>Type <code>library(itssl)</code> and press <code>Enter</code></li>
-<li>Type `run_tutorial(“r-start”, “itssl”) and follow the tutorial that pops up.</li>
-</ol>
+<p>Complete the interactive tutorial online <a href="https://danmaclean.shinyapps.io/r-start">https://danmaclean.shinyapps.io/r-start</a></p>
 </div>
 
 

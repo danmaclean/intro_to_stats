@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2021-01-14" />
+<meta name="date" content="2021-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,13 +136,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Statistics Primer</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction to statistics</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#knowledge-prerequisites"><i class="fa fa-check"></i><b>1.1.1</b> Knowledge prerequisites</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#software-prerequisites"><i class="fa fa-check"></i><b>1.1.2</b> Software prerequisites</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
-<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---gradethis-and-itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - <code>gradethis</code> and <code>itssl</code></a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - itssl</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#using-the-itssl-package"><i class="fa fa-check"></i><b>1.5</b> Using the <code>itssl</code> package</a></li>
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
@@ -320,9 +323,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="checking-whether-the-mean-is-a-good-summary" class="section level3">
 <h3><span class="header-section-number">10.1.2</span> Checking whether the mean is a good summary</h3>
 <p>The first thing to check, whether you intend to do a simple <span class="math inline">\(t\)</span>-test or a multi-way ANOVA is whether the mean is actually a good summary of the whole of the data. If you have multiple variables you’ll need to check the means of each one. A mean is a good summary of a set of data if it sits nicely in the middle and there are no other peaks or skew in a histogram of that data. This is easier to think about if we draw some pictures. In this set of panels of histograms with density plots the mean (the vertical line) is an increasingly poor summary of the data as we go from left to right along the panels.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="more-fun-with-linear-models.html#cb190-1"></a><span class="kw">library</span>(itssl)</span>
-<span id="cb190-2"><a href="more-fun-with-linear-models.html#cb190-2"></a><span class="kw">its_is_the_mean_a_good_summary_time</span>(<span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;hist&quot;</span>)</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="more-fun-with-linear-models.html#cb189-1"></a><span class="kw">library</span>(itssl)</span>
+<span id="cb189-2"><a href="more-fun-with-linear-models.html#cb189-2"></a><span class="kw">its_is_the_mean_a_good_summary_time</span>(<span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;hist&quot;</span>)</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>The first two, a normal distribution and a normal distribution with a very wide standard deviation are summarised quite well by the mean. They have the mean at the peak, with the rest of the data falling evenly away. The third, the uniform distribution (in which all outcomes are equally likely) has no peak because the central outcome isn’t more likely than the others so is less good, but still quite well summarised by the mean. The final two aren’t nearly as well summarised well by the mean, the skew-normal distribution has the mean away from the peak because of the long tail and the multimodal has more than one peak. The take-home here is that the model fit and assumptions are increasingly poor as we move along, not that the tests and models become completely useless. In practice our conclusions must become more circumspect and a single test is less convincing.</p>
 
 <div class="task">
@@ -333,50 +336,50 @@ Use the tutorial to examine the effect of sample size on how these data look and
 <div id="spotting-a-good-fit-to-the-data" class="section level3">
 <h3><span class="header-section-number">10.1.3</span> Spotting a good fit to the data</h3>
 <p>Another thing you can do to assess your linear model is check out the residuals. Remember we described these as the distance between the actual data and the fitted line. The distribution of these tells us a lot. Let’s think about these two data sets,</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="more-fun-with-linear-models.html#cb191-1"></a>close_fit &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
-<span id="cb191-2"><a href="more-fun-with-linear-models.html#cb191-2"></a>far_fit &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb191-3"><a href="more-fun-with-linear-models.html#cb191-3"></a>  x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>),</span>
-<span id="cb191-4"><a href="more-fun-with-linear-models.html#cb191-4"></a>  y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>)</span>
-<span id="cb191-5"><a href="more-fun-with-linear-models.html#cb191-5"></a>)</span>
-<span id="cb191-6"><a href="more-fun-with-linear-models.html#cb191-6"></a></span>
-<span id="cb191-7"><a href="more-fun-with-linear-models.html#cb191-7"></a><span class="kw">its_plot_xy_time</span>(close_fit, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb191-8"><a href="more-fun-with-linear-models.html#cb191-8"></a><span class="kw">its_plot_xy_time</span>(far_fit, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-142-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-142-2.png" width="50%" /></p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="more-fun-with-linear-models.html#cb190-1"></a>close_fit &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
+<span id="cb190-2"><a href="more-fun-with-linear-models.html#cb190-2"></a>far_fit &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb190-3"><a href="more-fun-with-linear-models.html#cb190-3"></a>  x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>),</span>
+<span id="cb190-4"><a href="more-fun-with-linear-models.html#cb190-4"></a>  y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>)</span>
+<span id="cb190-5"><a href="more-fun-with-linear-models.html#cb190-5"></a>)</span>
+<span id="cb190-6"><a href="more-fun-with-linear-models.html#cb190-6"></a></span>
+<span id="cb190-7"><a href="more-fun-with-linear-models.html#cb190-7"></a><span class="kw">its_plot_xy_time</span>(close_fit, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb190-8"><a href="more-fun-with-linear-models.html#cb190-8"></a><span class="kw">its_plot_xy_time</span>(far_fit, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-147-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-147-2.png" width="50%" /></p>
 <p>We can see the first has a fairly good slope and the points are all relatively close to the line, while in the second the slope is weak because the points are further away. The <code>lm()</code> function calculates the residuals and we can plot them.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="more-fun-with-linear-models.html#cb192-1"></a>close_fit_model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> close_fit)</span>
-<span id="cb192-2"><a href="more-fun-with-linear-models.html#cb192-2"></a>far_fit_model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> far_fit)</span>
-<span id="cb192-3"><a href="more-fun-with-linear-models.html#cb192-3"></a></span>
-<span id="cb192-4"><a href="more-fun-with-linear-models.html#cb192-4"></a><span class="kw">plot</span>(close_fit_model, <span class="dt">which =</span> <span class="dv">1</span>)</span>
-<span id="cb192-5"><a href="more-fun-with-linear-models.html#cb192-5"></a><span class="kw">plot</span>(far_fit_model, <span class="dt">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-143-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-143-2.png" width="50%" /></p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="more-fun-with-linear-models.html#cb191-1"></a>close_fit_model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> close_fit)</span>
+<span id="cb191-2"><a href="more-fun-with-linear-models.html#cb191-2"></a>far_fit_model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> far_fit)</span>
+<span id="cb191-3"><a href="more-fun-with-linear-models.html#cb191-3"></a></span>
+<span id="cb191-4"><a href="more-fun-with-linear-models.html#cb191-4"></a><span class="kw">plot</span>(close_fit_model, <span class="dt">which =</span> <span class="dv">1</span>)</span>
+<span id="cb191-5"><a href="more-fun-with-linear-models.html#cb191-5"></a><span class="kw">plot</span>(far_fit_model, <span class="dt">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-148-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-148-2.png" width="50%" /></p>
 <p>Here we see the <span class="math inline">\(x\)</span>-axis value is the value from the model, so the <span class="math inline">\(x\)</span>-axis value of a data point, the <span class="math inline">\(y\)</span>-axis value is the residual itself the distance between the line <span class="math inline">\(y\)</span> value and the observed <span class="math inline">\(y\)</span> value. The first plot shows a nice even scatter and flat line and a range of -2 to 2. The second shows a more erratic scatter with the red line having a little wobble and a much higher range, from - 6 to 4.</p>
 <p>Together they show us that the second model doesn’t fit as the data as closely as the first, the increased residual size and the more wobbly line mean it isn’t as good. Its still not useless though, a wobbly line is still sometimes useable, we would be more worried if we had these data, which have some hidden structure in. Here’s a non-linear data set and its residual plot</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="more-fun-with-linear-models.html#cb193-1"></a>non_linear_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
-<span id="cb193-2"><a href="more-fun-with-linear-models.html#cb193-2"></a>  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,</span>
-<span id="cb193-3"><a href="more-fun-with-linear-models.html#cb193-3"></a>  <span class="dt">y =</span> (x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> ) <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">3</span>, <span class="dv">60</span>)</span>
-<span id="cb193-4"><a href="more-fun-with-linear-models.html#cb193-4"></a>)</span>
-<span id="cb193-5"><a href="more-fun-with-linear-models.html#cb193-5"></a></span>
-<span id="cb193-6"><a href="more-fun-with-linear-models.html#cb193-6"></a><span class="kw">its_plot_xy_time</span>(non_linear_data, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb193-7"><a href="more-fun-with-linear-models.html#cb193-7"></a></span>
-<span id="cb193-8"><a href="more-fun-with-linear-models.html#cb193-8"></a>non_linear_model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> non_linear_data)</span>
-<span id="cb193-9"><a href="more-fun-with-linear-models.html#cb193-9"></a><span class="kw">plot</span>(non_linear_model, <span class="dt">which =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-144-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-144-2.png" width="50%" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="more-fun-with-linear-models.html#cb192-1"></a>non_linear_data &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tibble</span>(</span>
+<span id="cb192-2"><a href="more-fun-with-linear-models.html#cb192-2"></a>  <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,</span>
+<span id="cb192-3"><a href="more-fun-with-linear-models.html#cb192-3"></a>  <span class="dt">y =</span> (x <span class="op">^</span><span class="st"> </span><span class="dv">2</span> ) <span class="op">+</span><span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">3</span>, <span class="dv">60</span>)</span>
+<span id="cb192-4"><a href="more-fun-with-linear-models.html#cb192-4"></a>)</span>
+<span id="cb192-5"><a href="more-fun-with-linear-models.html#cb192-5"></a></span>
+<span id="cb192-6"><a href="more-fun-with-linear-models.html#cb192-6"></a><span class="kw">its_plot_xy_time</span>(non_linear_data, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb192-7"><a href="more-fun-with-linear-models.html#cb192-7"></a></span>
+<span id="cb192-8"><a href="more-fun-with-linear-models.html#cb192-8"></a>non_linear_model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> non_linear_data)</span>
+<span id="cb192-9"><a href="more-fun-with-linear-models.html#cb192-9"></a><span class="kw">plot</span>(non_linear_model, <span class="dt">which =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-149-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-149-2.png" width="50%" /></p>
 <p>Initially, the line seems to fit the data quite well, but the giveaway is in the residual plot, which has quite the pattern!! The data are actually a <span class="math inline">\(y = x^2\)</span> relationship with some noise added. By viewing the <span class="math inline">\(x\)</span> vs <span class="math inline">\(y\)</span> plot we don’t easily see that relationship, but the residuals very definitely show that the linear model doesn’t fit the data well, the structure in the residual plot indicates that the model is failing to capture some part of our data. As you might imagine, linear models (and related tests) performed with non-linear data will not give good results.</p>
 </div>
 <div id="checking-qq-plots-for-a-normal-distribution" class="section level3">
 <h3><span class="header-section-number">10.1.4</span> Checking qq-plots for a normal distribution</h3>
 <p>The qq-plot tests the question of whether data are normally distributed directly. Here the <span class="math inline">\(x\)</span> values are basically random numbers drawn from a normal distribution with mean and standard deviation the same as the model data and the <span class="math inline">\(y\)</span> values are the real data. This is easy to do with <code>ggplot()</code></p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="more-fun-with-linear-models.html#cb194-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb194-2"><a href="more-fun-with-linear-models.html#cb194-2"></a><span class="kw">ggplot</span>(close_fit) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> y) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</span>
-<span id="cb194-3"><a href="more-fun-with-linear-models.html#cb194-3"></a><span class="kw">ggplot</span>(far_fit) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> y) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</span>
-<span id="cb194-4"><a href="more-fun-with-linear-models.html#cb194-4"></a><span class="kw">ggplot</span>(non_linear_data) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> y) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-145-1.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-145-2.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-145-3.png" width="33%" /></p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="more-fun-with-linear-models.html#cb193-1"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb193-2"><a href="more-fun-with-linear-models.html#cb193-2"></a><span class="kw">ggplot</span>(close_fit) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> y) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</span>
+<span id="cb193-3"><a href="more-fun-with-linear-models.html#cb193-3"></a><span class="kw">ggplot</span>(far_fit) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> y) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</span>
+<span id="cb193-4"><a href="more-fun-with-linear-models.html#cb193-4"></a><span class="kw">ggplot</span>(non_linear_data) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">sample =</span> y) <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span><span class="kw">stat_qq_line</span>()</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-150-1.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-150-2.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-150-3.png" width="33%" /></p>
 <p>These often deviate at the ends of the scatter plot, but the centre parts should fall along the line with random deviation. Here, with these particular data sets, the <code>close_fit</code> and <code>far_fit</code> appear to be matching marginally better overall than the <code>non_linear</code> which is veering around the line quite a lot.</p>
 <p>and again, we can also do this with the residual data which should also be normally distributed, here the <code>lm()</code> function does a lot of the work for us.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="more-fun-with-linear-models.html#cb195-1"></a><span class="kw">plot</span>(close_fit_model, <span class="dt">which =</span> <span class="dv">2</span>)</span>
-<span id="cb195-2"><a href="more-fun-with-linear-models.html#cb195-2"></a><span class="kw">plot</span>(far_fit_model, <span class="dt">which =</span> <span class="dv">2</span>)</span>
-<span id="cb195-3"><a href="more-fun-with-linear-models.html#cb195-3"></a><span class="kw">plot</span>(non_linear_model, <span class="dt">which =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-146-1.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-146-2.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-146-3.png" width="33%" /></p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="more-fun-with-linear-models.html#cb194-1"></a><span class="kw">plot</span>(close_fit_model, <span class="dt">which =</span> <span class="dv">2</span>)</span>
+<span id="cb194-2"><a href="more-fun-with-linear-models.html#cb194-2"></a><span class="kw">plot</span>(far_fit_model, <span class="dt">which =</span> <span class="dv">2</span>)</span>
+<span id="cb194-3"><a href="more-fun-with-linear-models.html#cb194-3"></a><span class="kw">plot</span>(non_linear_model, <span class="dt">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-151-1.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-151-2.png" width="33%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-151-3.png" width="33%" /></p>
 </div>
 </div>
 <div id="predictions" class="section level2">
@@ -385,29 +388,29 @@ Use the tutorial to examine the effect of sample size on how these data look and
 <div id="intuition-on-prediction-from-continuous-variables" class="section level3">
 <h3><span class="header-section-number">10.2.1</span> Intuition on prediction from continuous variables</h3>
 <p>The intuition behind this is more straightforward than you might initially think, consider the straight lines from our first section. We had a continuous <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axis</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="more-fun-with-linear-models.html#cb196-1"></a>df &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
-<span id="cb196-2"><a href="more-fun-with-linear-models.html#cb196-2"></a><span class="kw">its_plot_xy_time</span>(df, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="more-fun-with-linear-models.html#cb195-1"></a>df &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
+<span id="cb195-2"><a href="more-fun-with-linear-models.html#cb195-2"></a><span class="kw">its_plot_xy_time</span>(df, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
 <p>We can peek into <span class="math inline">\(x\)</span> to see what values we <em>actually</em> used</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="more-fun-with-linear-models.html#cb197-1"></a><span class="kw">sort</span>(df<span class="op">$</span>x)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="more-fun-with-linear-models.html#cb196-1"></a><span class="kw">sort</span>(df<span class="op">$</span>x)</span></code></pre></div>
 <pre><code>##  [1]  5.824327  5.895516  7.105123  7.179086  7.375033  7.855269  7.912222
 ##  [8]  8.319600  8.729459  8.852362  9.532381 10.989182 11.510336 12.167571
 ## [15] 12.329553 12.551050 12.883979 13.216811 13.431172 13.521335</code></pre>
 <p>Although we don’t have a real <span class="math inline">\(x = 10\)</span> in our data, imagine asking the question “what <span class="math inline">\(y\)</span> would we get for <span class="math inline">\(x = 10\)</span>?”. We can intuitively tell what the <span class="math inline">\(y\)</span>-value would be simply by reading off the line at <span class="math inline">\(x = 10\)</span>, which is about 20 or from the formula, <span class="math inline">\(y = (1.9555 * 10) + 0.7780 = 20.33\)</span>. This is the intuition behind how a linear model prediction works with continuous <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> - we’re just reading off the line.</p>
 <p>If we build the model, we can ask it to work this out for us directly using the <code>predict()</code> function. <code>predict()</code> takes the model and the new values to be predicted in a <code>data.frame</code>.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="more-fun-with-linear-models.html#cb199-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span>
-<span id="cb199-2"><a href="more-fun-with-linear-models.html#cb199-2"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">10</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="more-fun-with-linear-models.html#cb198-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span>
+<span id="cb198-2"><a href="more-fun-with-linear-models.html#cb198-2"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">10</span>)))</span></code></pre></div>
 <pre><code>##        1 
 ## 20.33266</code></pre>
 <p>We see that we get the same value (given a little rounding error).</p>
 <p>What happens when we give the <code>predict()</code> function a value we did have data for? Let’s pull out whatever the fifth value of our data was and look at that</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="more-fun-with-linear-models.html#cb201-1"></a>df<span class="op">$</span>x[<span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="more-fun-with-linear-models.html#cb200-1"></a>df<span class="op">$</span>x[<span class="dv">5</span>]</span></code></pre></div>
 <pre><code>## [1] 12.88398</code></pre>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="more-fun-with-linear-models.html#cb203-1"></a>df<span class="op">$</span>y[<span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="more-fun-with-linear-models.html#cb202-1"></a>df<span class="op">$</span>y[<span class="dv">5</span>]</span></code></pre></div>
 <pre><code>## [1] 24.32715</code></pre>
 <p>This shows us that the <span class="math inline">\(x\)</span> axis value of 12.88 had the corresponding <span class="math inline">\(y\)</span> value of 24.33. Now let’s use the model to predict the <span class="math inline">\(y\)</span> from the <span class="math inline">\(x\)</span></p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="more-fun-with-linear-models.html#cb205-1"></a>vals_to_predict &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(df<span class="op">$</span>x[<span class="dv">5</span>]))</span>
-<span id="cb205-2"><a href="more-fun-with-linear-models.html#cb205-2"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> vals_to_predict)</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="more-fun-with-linear-models.html#cb204-1"></a>vals_to_predict &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(df<span class="op">$</span>x[<span class="dv">5</span>]))</span>
+<span id="cb204-2"><a href="more-fun-with-linear-models.html#cb204-2"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> vals_to_predict)</span></code></pre></div>
 <pre><code>##        1 
 ## 25.97217</code></pre>
 <p>The result from the model is quite different from the actual observed data value! This isn’t an error. Its because we’re asking the model to predict using the ‘line’ it came up with. Note that this is because the prediction comes from the model which takes into account the whole data. This is the process of ‘best fitting’ which ensures the ‘line’ matches all the points as well as possible, but doesn’t guarantee matching any particular point well.</p>
@@ -419,8 +422,8 @@ It is possible to over-complicate models to make them fit all the points by allo
 <div id="prediction-intervals" class="section level4">
 <h4><span class="header-section-number">10.2.1.1</span> Prediction intervals</h4>
 <p>If you are going to predict a value, you might want instead an interval in which that prediction might lie with certain amount of certainty. Like a confidence interval for the position of the mean in a sample, a prediction interval is a range that we are most certain a prediction will land in. This interval takes in the range of spread in the data we build the linear model with and turns it into something useless. Once the model is built, it’s easy to use the <code>predict()</code> function to get the prediction interval</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="more-fun-with-linear-models.html#cb207-1"></a>vals_to_predict &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">10</span>) )</span>
-<span id="cb207-2"><a href="more-fun-with-linear-models.html#cb207-2"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> vals_to_predict, <span class="dt">interval =</span> <span class="st">&quot;predict&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="more-fun-with-linear-models.html#cb206-1"></a>vals_to_predict &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">10</span>) )</span>
+<span id="cb206-2"><a href="more-fun-with-linear-models.html#cb206-2"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> vals_to_predict, <span class="dt">interval =</span> <span class="st">&quot;predict&quot;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 20.33266 17.52743 23.13788</code></pre>
 <p>we can see the predicted value and the lower and upper bounds of the prediction interval.</p>
@@ -430,32 +433,32 @@ It is possible to over-complicate models to make them fit all the points by allo
 <h3><span class="header-section-number">10.2.2</span> Intuition on prediction with categoric variables</h3>
 <p>In the same way we looked at the line to get an intuitive understanding of how the linear model makes predictions, we can look at the groups in a categorical variable to see how <span class="math inline">\(y\)</span> values are predicted from factors.</p>
 <p>Consider the <code>chickwts</code> data.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="more-fun-with-linear-models.html#cb209-1"></a><span class="kw">its_plot_chickwts_time</span>()</span></code></pre></div>
-<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="more-fun-with-linear-models.html#cb208-1"></a><span class="kw">its_plot_chickwts_time</span>()</span></code></pre></div>
+<p><img src="intro_to_stats_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
 <p>We can see that in this data set there is a single categorical variable called <code>feed</code> which is the type of food the chick was raised on, and the resulting continuous output variable of <code>weight</code>. If we model that and do a prediction we can get an intuition on what the <code>prediction()</code> means for each category.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="more-fun-with-linear-models.html#cb210-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>feed, <span class="dt">data =</span> chickwts)</span>
-<span id="cb210-2"><a href="more-fun-with-linear-models.html#cb210-2"></a><span class="kw">predict</span>(model,<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">feed =</span> <span class="kw">c</span>(<span class="st">&quot;casein&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="more-fun-with-linear-models.html#cb209-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>feed, <span class="dt">data =</span> chickwts)</span>
+<span id="cb209-2"><a href="more-fun-with-linear-models.html#cb209-2"></a><span class="kw">predict</span>(model,<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">feed =</span> <span class="kw">c</span>(<span class="st">&quot;casein&quot;</span>)))</span></code></pre></div>
 <pre><code>##        1 
 ## 323.5833</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="more-fun-with-linear-models.html#cb212-1"></a><span class="kw">predict</span>(model,<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">feed =</span> <span class="kw">c</span>(<span class="st">&quot;sunflower&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="more-fun-with-linear-models.html#cb211-1"></a><span class="kw">predict</span>(model,<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">feed =</span> <span class="kw">c</span>(<span class="st">&quot;sunflower&quot;</span>)))</span></code></pre></div>
 <pre><code>##        1 
 ## 328.9167</code></pre>
 <p>Note that this time we have to use the a level of a factor, because that was the only term in this model. It doesn’t make sense to give it a number. The model returns the fitted value of <code>weight</code> for the level of the factor.</p>
 <p>Do the numbers returned remind you of anything? Aren’t they awfully close to where we expect the mean of each group to be. Let’s check that out by doing a prediction for each feed and comparing with the group mean.</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="more-fun-with-linear-models.html#cb214-1"></a><span class="co">#first get a vector of the chickwts feed names</span></span>
-<span id="cb214-2"><a href="more-fun-with-linear-models.html#cb214-2"></a>feeds &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(chickwts<span class="op">$</span>feed))</span>
-<span id="cb214-3"><a href="more-fun-with-linear-models.html#cb214-3"></a><span class="co">#do the prediction</span></span>
-<span id="cb214-4"><a href="more-fun-with-linear-models.html#cb214-4"></a>preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">feed =</span> feeds) )</span>
-<span id="cb214-5"><a href="more-fun-with-linear-models.html#cb214-5"></a><span class="co">#add the names for clarity</span></span>
-<span id="cb214-6"><a href="more-fun-with-linear-models.html#cb214-6"></a><span class="kw">names</span>(preds) &lt;-<span class="st">  </span>feeds</span>
-<span id="cb214-7"><a href="more-fun-with-linear-models.html#cb214-7"></a></span>
-<span id="cb214-8"><a href="more-fun-with-linear-models.html#cb214-8"></a>preds</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="more-fun-with-linear-models.html#cb213-1"></a><span class="co">#first get a vector of the chickwts feed names</span></span>
+<span id="cb213-2"><a href="more-fun-with-linear-models.html#cb213-2"></a>feeds &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">unique</span>(chickwts<span class="op">$</span>feed))</span>
+<span id="cb213-3"><a href="more-fun-with-linear-models.html#cb213-3"></a><span class="co">#do the prediction</span></span>
+<span id="cb213-4"><a href="more-fun-with-linear-models.html#cb213-4"></a>preds &lt;-<span class="st"> </span><span class="kw">predict</span>(model,<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">feed =</span> feeds) )</span>
+<span id="cb213-5"><a href="more-fun-with-linear-models.html#cb213-5"></a><span class="co">#add the names for clarity</span></span>
+<span id="cb213-6"><a href="more-fun-with-linear-models.html#cb213-6"></a><span class="kw">names</span>(preds) &lt;-<span class="st">  </span>feeds</span>
+<span id="cb213-7"><a href="more-fun-with-linear-models.html#cb213-7"></a></span>
+<span id="cb213-8"><a href="more-fun-with-linear-models.html#cb213-8"></a>preds</span></code></pre></div>
 <pre><code>##    casein horsebean   linseed  meatmeal   soybean sunflower 
 ##  323.5833  160.2000  218.7500  276.9091  246.4286  328.9167</code></pre>
 <p>Now calculating the mean from the data.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="more-fun-with-linear-models.html#cb216-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb216-2"><a href="more-fun-with-linear-models.html#cb216-2"></a><span class="kw">group_by</span>(chickwts, feed) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb216-3"><a href="more-fun-with-linear-models.html#cb216-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(weight)) </span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="more-fun-with-linear-models.html#cb215-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb215-2"><a href="more-fun-with-linear-models.html#cb215-2"></a><span class="kw">group_by</span>(chickwts, feed) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb215-3"><a href="more-fun-with-linear-models.html#cb215-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(weight)) </span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   feed       mean
 ##   &lt;fct&gt;     &lt;dbl&gt;
@@ -471,7 +474,7 @@ It is possible to over-complicate models to make them fit all the points by allo
 <h3><span class="header-section-number">10.2.3</span> Using predictions in more complicated models</h3>
 <p>A significant use of predictions is when we have a mixture of variables that we can’t easily just see the mean for and want to know what the model thinks of those. This is especially useful for hypothesis generation or finding out possible parameter ranges for new experiments. As the last thing we’ll do with predictions we’ll look at the <code>txhousing</code> data, a data set about housing in Texas. This data has a mixture of continuous and categoric variables. We’ll see that this it isn’t more complicated than prediction for a single variable but does give us a much more convenient and powerful way to predict an outcome from provided values.</p>
 <p>First a quick look at <code>txhousing</code></p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="more-fun-with-linear-models.html#cb218-1"></a><span class="kw">str</span>(txhousing)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="more-fun-with-linear-models.html#cb217-1"></a><span class="kw">str</span>(txhousing)</span></code></pre></div>
 <pre><code>## tibble [8,602 × 9] (S3: tbl_df/tbl/data.frame)
 ##  $ city     : chr [1:8602] &quot;Abilene&quot; &quot;Abilene&quot; &quot;Abilene&quot; &quot;Abilene&quot; ...
 ##  $ year     : int [1:8602] 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...
@@ -483,9 +486,9 @@ It is possible to over-complicate models to make them fit all the points by allo
 ##  $ inventory: num [1:8602] 6.3 6.6 6.8 6.9 6.8 6.6 6.2 6.4 6.5 6.6 ...
 ##  $ date     : num [1:8602] 2000 2000 2000 2000 2000 ...</code></pre>
 <p>Now let’s build a linear model of property sale price predicted by the city it is in and the year and month of sale.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="more-fun-with-linear-models.html#cb220-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(median <span class="op">~</span><span class="st"> </span>city <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>month, <span class="dt">data =</span> txhousing)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="more-fun-with-linear-models.html#cb219-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(median <span class="op">~</span><span class="st"> </span>city <span class="op">+</span><span class="st"> </span>year <span class="op">+</span><span class="st"> </span>month, <span class="dt">data =</span> txhousing)</span></code></pre></div>
 <p>And finally get a prediction for a particular case.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="more-fun-with-linear-models.html#cb221-1"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Abilene&quot;</span>), <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2000</span>), <span class="dt">month =</span> <span class="kw">c</span>(<span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="more-fun-with-linear-models.html#cb220-1"></a><span class="kw">predict</span>(model, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Abilene&quot;</span>), <span class="dt">year =</span> <span class="kw">c</span>(<span class="dv">2000</span>), <span class="dt">month =</span> <span class="kw">c</span>(<span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>##       1 
 ## 65392.3</code></pre>
 <p>This shows how the linear model can be used to make predictions and hypothesis for further work.</p>

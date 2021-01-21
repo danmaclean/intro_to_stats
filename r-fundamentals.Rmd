@@ -132,12 +132,6 @@ As in all programming languages the internal documentation in R is written with 
 
 
 ```{block2, type = "task"}
-Use the interactive tutorial `r-start` in the package `itssl` to get to grips with R
-
-At the R-Studio Console
-
-1. Type `library(learnr)` and press `Enter`
-2. Type `library(itssl)` and press `Enter`
-3. Type `run_tutorial("r-start", "itssl") and follow the tutorial that pops up.
+Complete the interactive tutorial online [https://danmaclean.shinyapps.io/r-start](https://danmaclean.shinyapps.io/r-start)
 
 ```

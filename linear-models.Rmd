@@ -327,5 +327,9 @@ At the very least knowing notation like this will be useful later when we are lo
   * Straight lines are described by an equation with two parameters
   * Linear models contain information about the data and can tell us whether a slope is likely flat or not given the data
 
+https://danmaclean.shinyapps.io/linear-models/
+```
 
+```{block2, type="task"}
+Complete the interactive quiz online [https://danmaclean.shinyapps.io/linear-models](https://danmaclean.shinyapps.io/linear-models)
 ```
