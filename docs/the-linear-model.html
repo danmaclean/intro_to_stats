@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2021-01-21" />
+<meta name="date" content="2021-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="background.html"/>
 <link rel="next" href="r-fundamentals.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,24 +51,21 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,14 +134,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Statistics Primer</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#knowledge-prerequisites"><i class="fa fa-check"></i><b>1.1.1</b> Knowledge prerequisites</a></li>
 <li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#software-prerequisites"><i class="fa fa-check"></i><b>1.1.2</b> Software prerequisites</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - itssl</a></li>
 </ul></li>
@@ -151,23 +152,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Motivation</a></li>
-<li class="chapter" data-level="3" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3</b> Background</a><ul>
+<li class="chapter" data-level="3" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3</b> Background</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="background.html"><a href="background.html#null-models"><i class="fa fa-check"></i><b>3.1</b> Null Models</a></li>
 <li class="chapter" data-level="3.2" data-path="background.html"><a href="background.html#p-values"><i class="fa fa-check"></i><b>3.2</b> <span class="math inline">\(p\)</span>-values</a></li>
 <li class="chapter" data-level="3.3" data-path="background.html"><a href="background.html#slopes-of-straight-lines-can-help-us-think-about-differences-between-things"><i class="fa fa-check"></i><b>3.3</b> Slopes of straight lines can help us think about differences between things</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>4</b> The Linear Model</a><ul>
+<li class="chapter" data-level="4" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>4</b> The Linear Model</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="the-linear-model.html"><a href="the-linear-model.html#from-straight-lines-to-data"><i class="fa fa-check"></i><b>4.1</b> From straight lines to data</a></li>
 <li class="chapter" data-level="4.2" data-path="the-linear-model.html"><a href="the-linear-model.html#straight-line-relationships-are-described-using-two-parameters"><i class="fa fa-check"></i><b>4.2</b> Straight line relationships are described using two parameters</a></li>
 <li class="chapter" data-level="4.3" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-try-to-create-a-linear-equation-from-data"><i class="fa fa-check"></i><b>4.3</b> Linear models try to create a linear equation from data</a></li>
 <li class="chapter" data-level="4.4" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-describe-relationships-between-variables"><i class="fa fa-check"></i><b>4.4</b> Linear models describe relationships between variables</a></li>
 <li class="chapter" data-level="4.5" data-path="the-linear-model.html"><a href="the-linear-model.html#not-all-lines-of-best-fit-are-equally-good"><i class="fa fa-check"></i><b>4.5</b> Not all lines of best fit are equally good</a></li>
-<li class="chapter" data-level="4.6" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>4.6</b> Linear models contain statistics describing the goodness of the model</a><ul>
+<li class="chapter" data-level="4.6" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>4.6</b> Linear models contain statistics describing the goodness of the model</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="the-linear-model.html"><a href="the-linear-model.html#residual-standard-error"><i class="fa fa-check"></i><b>4.6.1</b> Residual Standard Error</a></li>
 <li class="chapter" data-level="4.6.2" data-path="the-linear-model.html"><a href="the-linear-model.html#r2"><i class="fa fa-check"></i><b>4.6.2</b> <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="4.6.3" data-path="the-linear-model.html"><a href="the-linear-model.html#f-statistic"><i class="fa fa-check"></i><b>4.6.3</b> <span class="math inline">\(F\)</span>-Statistic</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>4.7</b> Coefficients have statistics</a><ul>
+<li class="chapter" data-level="4.7" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>4.7</b> Coefficients have statistics</a>
+<ul>
 <li class="chapter" data-level="4.7.1" data-path="the-linear-model.html"><a href="the-linear-model.html#estimate"><i class="fa fa-check"></i><b>4.7.1</b> Estimate</a></li>
 <li class="chapter" data-level="4.7.2" data-path="the-linear-model.html"><a href="the-linear-model.html#std.-error"><i class="fa fa-check"></i><b>4.7.2</b> Std. Error</a></li>
 <li class="chapter" data-level="4.7.3" data-path="the-linear-model.html"><a href="the-linear-model.html#t-value"><i class="fa fa-check"></i><b>4.7.3</b> <span class="math inline">\(t\)</span>-value</a></li>
@@ -177,35 +182,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="the-linear-model.html"><a href="the-linear-model.html#major-points"><i class="fa fa-check"></i><b>4.9</b> Major points</a></li>
 <li class="chapter" data-level="4.10" data-path="the-linear-model.html"><a href="the-linear-model.html#extra-credit-understanding-linear-models-through-the-notation"><i class="fa fa-check"></i><b>4.10</b> Extra credit: Understanding linear models through the notation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>5</b> R Fundamentals</a><ul>
+<li class="chapter" data-level="5" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>5</b> R Fundamentals</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#about-this-chapter"><i class="fa fa-check"></i><b>5.1</b> About this chapter</a></li>
 <li class="chapter" data-level="5.2" data-path="r-fundamentals.html"><a href="r-fundamentals.html#working-with-r"><i class="fa fa-check"></i><b>5.2</b> Working with R</a></li>
-<li class="chapter" data-level="5.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>5.3</b> Variables</a><ul>
+<li class="chapter" data-level="5.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>5.3</b> Variables</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-objects-and-functions"><i class="fa fa-check"></i><b>5.3.1</b> Using objects and functions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="r-fundamentals.html"><a href="r-fundamentals.html#dataframes"><i class="fa fa-check"></i><b>5.4</b> Dataframes</a></li>
 <li class="chapter" data-level="5.5" data-path="r-fundamentals.html"><a href="r-fundamentals.html#packages"><i class="fa fa-check"></i><b>5.5</b> Packages</a></li>
 <li class="chapter" data-level="5.6" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-r-help"><i class="fa fa-check"></i><b>5.6</b> Using R Help</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>6</b> <span class="math inline">\(t\)</span>-tests and linear models</a><ul>
-<li class="chapter" data-level="6.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>6.1</b> Recap</a><ul>
+<li class="chapter" data-level="6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>6</b> <span class="math inline">\(t\)</span>-tests and linear models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>6.1</b> Recap</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-slope-of-the-model-again"><i class="fa fa-check"></i><b>6.1.1</b> The slope of the model again</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-two-different-samples-instead-of-a-continuous-x-variable"><i class="fa fa-check"></i><b>6.2</b> Using two different samples instead of a continuous <span class="math inline">\(x\)</span> variable</a></li>
 <li class="chapter" data-level="6.3" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-plantgrowth-data"><i class="fa fa-check"></i><b>6.3</b> The PlantGrowth data</a></li>
 <li class="chapter" data-level="6.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#a-linear-model-with-a-categoric-x-axis"><i class="fa fa-check"></i><b>6.4</b> A linear model with a categoric <span class="math inline">\(x\)</span>-axis</a></li>
-<li class="chapter" data-level="6.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>6.5</b> Using the statistics of the linear model to test for differences</a><ul>
+<li class="chapter" data-level="6.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>6.5</b> Using the statistics of the linear model to test for differences</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-coefficient-and-the-mean-difference-between-groups-are-equivalent"><i class="fa fa-check"></i><b>6.5.1</b> The coefficient and the mean difference between groups are equivalent</a></li>
 <li class="chapter" data-level="6.5.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test"><i class="fa fa-check"></i><b>6.5.2</b> The <span class="math inline">\(p\)</span>-value of the co-efficient tests the same thing as a <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>6.6</b> Summary</a></li>
 <li class="chapter" data-level="6.7" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#but-wasnt-the-t-test-just-easier"><i class="fa fa-check"></i><b>6.7</b> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a><ul>
+<li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.1</b> Comparing groups in a single variable</a></li>
 <li class="chapter" data-level="7.2" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#one-way-comparisons---groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.2</b> One-Way comparisons - groups in a single variable</a></li>
 <li class="chapter" data-level="7.3" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#two-way-comparisons---groups-in-multiple-variables"><i class="fa fa-check"></i><b>7.3</b> Two-Way comparisons - groups in multiple variables</a></li>
-<li class="chapter" data-level="7.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-between-variables"><i class="fa fa-check"></i><b>7.4</b> Interactions between variables</a><ul>
+<li class="chapter" data-level="7.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-between-variables"><i class="fa fa-check"></i><b>7.4</b> Interactions between variables</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#analysing-and-modelling-an-interaction-effect"><i class="fa fa-check"></i><b>7.4.1</b> Analysing and modelling an interaction effect</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#doing-all-pairwise-interactions"><i class="fa fa-check"></i><b>7.5</b> Doing all pairwise interactions</a></li>
@@ -213,48 +225,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#extra-credit-anova-model-level-p-and-as-a-hypothesis-test"><i class="fa fa-check"></i><b>7.7</b> Extra Credit: ANOVA model-level <span class="math inline">\(p\)</span> and as a hypothesis test</a></li>
 <li class="chapter" data-level="7.8" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#extra-credit-testing-specific-interactions"><i class="fa fa-check"></i><b>7.8</b> Extra Credit: Testing specific interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html"><i class="fa fa-check"></i><b>8</b> Non-parametric tests and linear models</a><ul>
-<li class="chapter" data-level="8.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#common-misrepresentations-of-discrete-data"><i class="fa fa-check"></i><b>8.1</b> Common misrepresentations of discrete data</a><ul>
+<li class="chapter" data-level="8" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html"><i class="fa fa-check"></i><b>8</b> Non-parametric tests and linear models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#common-misrepresentations-of-discrete-data"><i class="fa fa-check"></i><b>8.1</b> Common misrepresentations of discrete data</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#twisting-names-into-numbers-confuses-the-mind"><i class="fa fa-check"></i><b>8.1.1</b> Twisting names into numbers confuses the mind</a></li>
 <li class="chapter" data-level="8.1.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#this-does-not-mean-what-i-think-you-think-it-means"><i class="fa fa-check"></i><b>8.1.2</b> This does not mean what I think you think it means</a></li>
 <li class="chapter" data-level="8.1.3" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#build-a-strong-foundation"><i class="fa fa-check"></i><b>8.1.3</b> Build a strong foundation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-properly"><i class="fa fa-check"></i><b>8.2</b> Setting type properly</a><ul>
+<li class="chapter" data-level="8.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-properly"><i class="fa fa-check"></i><b>8.2</b> Setting type properly</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-with-read_csv"><i class="fa fa-check"></i><b>8.2.1</b> Setting type with <code>read_csv()</code></a></li>
 <li class="chapter" data-level="8.2.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-post-hoc-with-transmute"><i class="fa fa-check"></i><b>8.2.2</b> Setting type <em>post hoc</em> with <code>transmute()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#plots-with-categoric-x-and-y-axis"><i class="fa fa-check"></i><b>8.3</b> Plots with categoric <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axis</a></li>
-<li class="chapter" data-level="8.4" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#linear-models-and-a-categoric-y-variable"><i class="fa fa-check"></i><b>8.4</b> Linear models and a categoric <span class="math inline">\(y\)</span> variable</a><ul>
+<li class="chapter" data-level="8.4" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#linear-models-and-a-categoric-y-variable"><i class="fa fa-check"></i><b>8.4</b> Linear models and a categoric <span class="math inline">\(y\)</span> variable</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#ordered-categoric-response-variables"><i class="fa fa-check"></i><b>8.4.1</b> Ordered categoric response variables</a></li>
 <li class="chapter" data-level="8.4.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#making-linear-models-with-ranked-data"><i class="fa fa-check"></i><b>8.4.2</b> Making linear models with ranked data</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#hypothesis-tests"><i class="fa fa-check"></i><b>8.5</b> Hypothesis Tests</a><ul>
+<li class="chapter" data-level="8.5" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#hypothesis-tests"><i class="fa fa-check"></i><b>8.5</b> Hypothesis Tests</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#but-arent-the-tests-just-easier"><i class="fa fa-check"></i><b>8.5.1</b> But aren’t the tests just easier?</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html"><i class="fa fa-check"></i><b>9</b> <span class="math inline">\(\chi ^2\)</span> tests and linear models</a><ul>
+<li class="chapter" data-level="9" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html"><i class="fa fa-check"></i><b>9</b> <span class="math inline">\(\chi ^2\)</span> tests and linear models</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-problem-with-unordered-response-data"><i class="fa fa-check"></i><b>9.1</b> The problem with unordered response data</a></li>
 <li class="chapter" data-level="9.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#we-have-to-compare-models-not-groups."><i class="fa fa-check"></i><b>9.2</b> We have to compare models, not groups.</a></li>
-<li class="chapter" data-level="9.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-chi2-test"><i class="fa fa-check"></i><b>9.3</b> The <span class="math inline">\(\chi^2\)</span> test</a><ul>
+<li class="chapter" data-level="9.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-chi2-test"><i class="fa fa-check"></i><b>9.3</b> The <span class="math inline">\(\chi^2\)</span> test</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#performing-the-test"><i class="fa fa-check"></i><b>9.3.1</b> Performing the test</a></li>
 <li class="chapter" data-level="9.3.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#more-than-one-variable"><i class="fa fa-check"></i><b>9.3.2</b> More than one variable</a></li>
 <li class="chapter" data-level="9.3.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#more-than-one-pairwise-comparison"><i class="fa fa-check"></i><b>9.3.3</b> More than one pairwise comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>9.4</b> Summary</a></li>
-<li class="chapter" data-level="9.5" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#plot-ideas-for-categoric-and-count-data"><i class="fa fa-check"></i><b>9.5</b> Plot ideas for categoric and count data</a><ul>
+<li class="chapter" data-level="9.5" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#plot-ideas-for-categoric-and-count-data"><i class="fa fa-check"></i><b>9.5</b> Plot ideas for categoric and count data</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#balloon-plot"><i class="fa fa-check"></i><b>9.5.1</b> Balloon plot</a></li>
 <li class="chapter" data-level="9.5.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#heatmap"><i class="fa fa-check"></i><b>9.5.2</b> Heatmap</a></li>
 <li class="chapter" data-level="9.5.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#stacked-bar"><i class="fa fa-check"></i><b>9.5.3</b> Stacked bar</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html"><i class="fa fa-check"></i><b>10</b> More fun with linear models</a><ul>
-<li class="chapter" data-level="10.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#assessing-a-linear-model"><i class="fa fa-check"></i><b>10.1</b> Assessing a linear model</a><ul>
+<li class="chapter" data-level="10" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html"><i class="fa fa-check"></i><b>10</b> More fun with linear models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#assessing-a-linear-model"><i class="fa fa-check"></i><b>10.1</b> Assessing a linear model</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#the-terror-of-normality"><i class="fa fa-check"></i><b>10.1.1</b> The terror of normality</a></li>
 <li class="chapter" data-level="10.1.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#checking-whether-the-mean-is-a-good-summary"><i class="fa fa-check"></i><b>10.1.2</b> Checking whether the mean is a good summary</a></li>
 <li class="chapter" data-level="10.1.3" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#spotting-a-good-fit-to-the-data"><i class="fa fa-check"></i><b>10.1.3</b> Spotting a good fit to the data</a></li>
 <li class="chapter" data-level="10.1.4" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#checking-qq-plots-for-a-normal-distribution"><i class="fa fa-check"></i><b>10.1.4</b> Checking qq-plots for a normal distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#predictions"><i class="fa fa-check"></i><b>10.2</b> Predictions</a><ul>
+<li class="chapter" data-level="10.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#predictions"><i class="fa fa-check"></i><b>10.2</b> Predictions</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#intuition-on-prediction-from-continuous-variables"><i class="fa fa-check"></i><b>10.2.1</b> Intuition on prediction from continuous variables</a></li>
 <li class="chapter" data-level="10.2.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#intuition-on-prediction-with-categoric-variables"><i class="fa fa-check"></i><b>10.2.2</b> Intuition on prediction with categoric variables</a></li>
 <li class="chapter" data-level="10.2.3" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#using-predictions-in-more-complicated-models"><i class="fa fa-check"></i><b>10.2.3</b> Using predictions in more complicated models</a></li>
@@ -282,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-linear-model" class="section level1">
+<div id="the-linear-model" class="section level1" number="4">
 <h1><span class="header-section-number">Topic 4</span> The Linear Model</h1>
 <ol style="list-style-type: decimal">
 <li>Questions</li>
@@ -308,39 +331,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Linear models contain statistics</li>
 <li>Linear models can tell us whether a slope is likely flat or not given the data</li>
 </ul>
-<div id="from-straight-lines-to-data" class="section level2">
+<div id="from-straight-lines-to-data" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> From straight lines to data</h2>
 <p>Now that we’ve decided to use the straight line as our Null Model, with a flat line being the case where there is no difference and a sloped line being otherwise, we need to start to think about lines and a statistical relative called a Linear Models. Linear models are a tool that are similar to a line of best fit, with measures of the variability of the data points that go in to building them. The linear model will be how we bring statistical rigour into our conceptual tool of using straight lines to think about differences. In this section we’ll look at them in some detail, but first we’ll recap some facts about straight lines.</p>
 </div>
-<div id="straight-line-relationships-are-described-using-two-parameters" class="section level2">
+<div id="straight-line-relationships-are-described-using-two-parameters" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Straight line relationships are described using two parameters</h2>
 <p>Its all about <span class="math inline">\(y = ax + b\)</span> (or <span class="math inline">\(y = mx + c\)</span>, depending on where you went to school). These two equivalent formulae are the standard high-school equations for describing a straight line. They represent how the quantity <span class="math inline">\(y\)</span> changes as <span class="math inline">\(x\)</span> does.</p>
 <p>As a refresher, <span class="math inline">\(a\)</span> tells us how much <span class="math inline">\(y\)</span> increases for every unit increase in <span class="math inline">\(x\)</span>. Here’s an example for the equation <span class="math inline">\(y = 4x\)</span></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-linear-model.html#cb4-1"></a><span class="kw">library</span>(itssl)</span>
-<span id="cb4-2"><a href="the-linear-model.html#cb4-2"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-linear-model.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itssl)</span>
+<span id="cb4-2"><a href="the-linear-model.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">its_axplusb_time</span>(<span class="at">a =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-12-1.png" width="480" /></p>
 <p>If we play about with that value, the slope of the line changes, the <span class="math inline">\(a\)</span> term is known as the slope, or gradient, or more often because it is just a multiplier of <span class="math inline">\(x\)</span> its called the coefficient. Here’s some different coefficients just to prove that point</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-linear-model.html#cb5-1"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>) <span class="op">+</span></span>
-<span id="cb5-2"><a href="the-linear-model.html#cb5-2"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb5-3"><a href="the-linear-model.html#cb5-3"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">6</span>, <span class="dt">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="the-linear-model.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_axplusb_time</span>(<span class="at">a =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="the-linear-model.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="the-linear-model.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">6</span>, <span class="at">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-13-1.png" width="480" /></p>
 <p>The <span class="math inline">\(b\)</span> part of the formula just tells us how much we add on to <span class="math inline">\(y\)</span> after we’ve calculated the coefficient effect. It has the effect of pushing the line up and down the y-axis. When we look at the value of <span class="math inline">\(y\)</span> for <span class="math inline">\(x = 0\)</span> we get the position that the graph hits the y-axis so this number is often called the intercept. Here’s a set of lines to show that.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-linear-model.html#cb6-1"></a><span class="kw">its_axplusb_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb6-2"><a href="the-linear-model.html#cb6-2"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">-2</span>, <span class="dt">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="op">+</span></span>
-<span id="cb6-3"><a href="the-linear-model.html#cb6-3"></a><span class="st">  </span><span class="kw">its_add_line_time</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">2</span>, <span class="dt">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-linear-model.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_axplusb_time</span>(<span class="at">a =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="the-linear-model.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">colour =</span> <span class="st">&quot;deepskyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="the-linear-model.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-14-1.png" width="480" /></p>
 <p>That’s all we need to know about the equation of the straight line. Now we need to look at how they’re a useful tool when analysing experimental data.</p>
 </div>
-<div id="linear-models-try-to-create-a-linear-equation-from-data" class="section level2">
+<div id="linear-models-try-to-create-a-linear-equation-from-data" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Linear models try to create a linear equation from data</h2>
 <p>A linear model is a simplification of the relationship between some sets of numbers (in the simple case we will introduce here, it is two sets, but it can be more). At its heart is a straight line, with the equation we discussed above and a certain set of values for <span class="math inline">\(a\)</span> (the coefficient) and <span class="math inline">\(b\)</span> the intercept, along with some statistics that describe the strength of the relationship.</p>
 <p>Let’s walk through building one, graphically and in R.</p>
 <p>First we need some sets of values, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Usually, these would be from an experiment, but here I’ll make some toy ones.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-linear-model.html#cb7-1"></a>df &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
-<span id="cb7-2"><a href="the-linear-model.html#cb7-2"></a><span class="kw">its_plot_xy_time</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-linear-model.html#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">its_random_xy_time</span>(<span class="dv">20</span>)</span>
+<span id="cb7-2"><a href="the-linear-model.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">its_plot_xy_time</span>(df)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>The graph shows 20 random <span class="math inline">\(x\)</span> values between 5 and 15 plotted against 20 <span class="math inline">\(y\)</span> values which are calculated as <span class="math inline">\(2x\)</span> with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way. Here’s where the linear equation comes in, if we could come up with a line that fitted through the data we could use the linear equation of that line to roughly describe - or model - our data. Skipping to the end a bit, then there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won’t repeat them, but you may be familiar with the general methods, it’s the ‘line of best fit’ according to the ordinary least squares method. Details aside, the actual linear model function we need in R is <code>lm()</code> and it works like this</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-linear-model.html#cb8-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="the-linear-model.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span></code></pre></div>
 <p>That’s it! The function <code>lm()</code> does the work, it takes a fairly odd syntax, though. The <code>y ~ x</code> bit is an R formula and describes the relationship you want to examine, you can read it as <code>y depends on x</code>. The <code>y</code> and <code>x</code> we’re referring to here are the two columns of numbers we created and plotted above, the <code>data</code> argument just says in which object to look for the data.</p>
 <p>Looking at the function output we get this</p>
 <pre><code>## 
@@ -352,28 +375,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##       0.778        1.955</code></pre>
 <p>These are the intercept (<span class="math inline">\(b\)</span>) and the coefficient of <span class="math inline">\(x\)</span> (<span class="math inline">\(a\)</span>) that we need to describe the line. So our data are described by the line <span class="math inline">\(y = 1.955x + 0.778\)</span>.</p>
 <p>So this line is a model of the data, it’s a model in the sense that it is something that represents our data, but isn’t it. Looking at them together we can see the model and the data it stands for.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-linear-model.html#cb10-1"></a><span class="kw">its_plot_xy_time</span>(df, <span class="dt">line =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-linear-model.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_plot_xy_time</span>(df, <span class="at">line =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>The line alone can be useful to teach us about our data, but there’s more to the linear model than just the line.</p>
 </div>
-<div id="linear-models-describe-relationships-between-variables" class="section level2">
+<div id="linear-models-describe-relationships-between-variables" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Linear models describe relationships between variables</h2>
-<p>Beyond working out the equation of the line, the linear model process aims to quantify and describe relationships between the variables in the data, in our toy example the variables are <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Specifically when we say ‘relationship’, we mean whether a change in the value of <span class="math inline">\(x\)</span> appears to go along with some change in the value of <span class="math inline">\(y\)</span>.</p>
+<p>Beyond working out the equation of the line, the linear model process aims to quantify and describe relationships between the variables in the data, in our toy example the variables are <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Specifically when we say ‘relationship,’ we mean whether a change in the value of <span class="math inline">\(x\)</span> appears to go along with some change in the value of <span class="math inline">\(y\)</span>.</p>
 <p>In other words, we can think of relationship as being the slope. If <span class="math inline">\(x\)</span> causes some change in <span class="math inline">\(y\)</span> when we plot it then there must be a slope. We call the slope <span class="math inline">\(a\)</span> in our equation of a line and we call it the coefficient of the <span class="math inline">\(x\)</span> term in our linear model. These are all equivalent interpretations for our purposes, slope, relationship, coefficient.</p>
 <p>Linear models calculate statistics to help us decide whether the coefficient/slope/<span class="math inline">\(a\)</span> of the relationship we observe is important or not.</p>
 </div>
-<div id="not-all-lines-of-best-fit-are-equally-good" class="section level2">
+<div id="not-all-lines-of-best-fit-are-equally-good" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Not all lines of best fit are equally good</h2>
 <p>Although a line of best fit can always be calculated, the line might not be worth much. Consider two sets of very similar numbers. Here’s two vectors of random numbers with the same mean and their plot.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="the-linear-model.html#cb11-1"></a>more_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb11-2"><a href="the-linear-model.html#cb11-2"></a>  x &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>),</span>
-<span id="cb11-3"><a href="the-linear-model.html#cb11-3"></a>  y &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>)</span>
-<span id="cb11-4"><a href="the-linear-model.html#cb11-4"></a>)</span>
-<span id="cb11-5"><a href="the-linear-model.html#cb11-5"></a></span>
-<span id="cb11-6"><a href="the-linear-model.html#cb11-6"></a><span class="kw">its_plot_xy_time</span>(more_df)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="the-linear-model.html#cb11-1" aria-hidden="true" tabindex="-1"></a>more_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-2"><a href="the-linear-model.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>),</span>
+<span id="cb11-3"><a href="the-linear-model.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>)</span>
+<span id="cb11-4"><a href="the-linear-model.html#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="the-linear-model.html#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="the-linear-model.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">its_plot_xy_time</span>(more_df)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>We can definitely calculate a line that fits these,</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-linear-model.html#cb12-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> more_df)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-linear-model.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> more_df)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = more_df)
@@ -385,11 +408,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-21-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-21-2.png" width="50%" /></p>
 <p>we can clearly see that not all lines are created equal. The first line fits the data much more closely than the second one. We can also see that the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is much weaker in the second set than in the first (the coefficient/slope/<span class="math inline">\(a\)</span> is weaker. So a sensible linear model of our data would give us not just the equation but also measures of the closeness of fit and therefore believability of the value of slope of the line. In terms of our Null Model flat line/sloped line model this means that when we have a significant coefficient, we are not likely to have a flat line. Let’s look at the statistics in the linear model that show us what a significant coefficient is.</p>
 </div>
-<div id="linear-models-contain-statistics-describing-the-goodness-of-the-model" class="section level2">
+<div id="linear-models-contain-statistics-describing-the-goodness-of-the-model" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Linear models contain statistics describing the goodness of the model</h2>
 <p>The same function we’ve already used - <code>lm()</code> - calculates certain statistics. We can print them using the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="the-linear-model.html#cb14-1"></a>model &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> df)</span>
-<span id="cb14-2"><a href="the-linear-model.html#cb14-2"></a><span class="kw">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="the-linear-model.html#cb14-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span>
+<span id="cb14-2"><a href="the-linear-model.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = df)
@@ -416,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The model level statistics summary - some statistics that apply to the whole model.</li>
 </ol>
 <p>Let’s start at the bottom and look at model level summary.</p>
-<div id="residual-standard-error" class="section level3">
+<div id="residual-standard-error" class="section level3" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> Residual Standard Error</h3>
 <p>This is a measure of how well the line fits the data. In essence Residual Standard Error is the average distance from each real data point to the line, the further the points are from the line (the worse the fit) the bigger the Residual Standard Error. If you look at the plots again with those distances drawn in you can see quite clearly the residual error for the second model is much bigger than for the first.</p>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-23-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-23-2.png" width="50%" /></p>
@@ -425,37 +448,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We’re working hard here to avoid using too much mathematical notation and examination of the mechanics of the linear model, but the residuals are quite an important aspect, so Im going to use this aside to delve just a little deeper. Unlike the linear equation, the linear model has an extra error term, <span class="math inline">\(e\)</span> which represents the residuals by quantifying the average distance from the actual measurments to the line in the y-axis.</p>
 The <span class="math inline">\(e\)</span> term adds something onto the y value of the whole equation; the bigger <span class="math inline">\(e\)</span> is the more we need to add on to the value of the <span class="math inline">\(x\)</span> from the line to get the real <span class="math inline">\(y\)</span>. Logically, the bigger <span class="math inline">\(e\)</span> is the more the line misses the points in the model overall. The error is a major determinent of whether a model is any good or whether things are significant so it’s worth knowing how it relates to the model.
 </div>
-
 </div>
-<div id="r2" class="section level3">
+<div id="r2" class="section level3" number="4.6.2">
 <h3><span class="header-section-number">4.6.2</span> <span class="math inline">\(R^2\)</span></h3>
 <p><span class="math inline">\(R^2\)</span> is another measure of how well the model fits the data. If you’re thinking correlation coefficient here, then you’re in the right area. <span class="math inline">\(R^2\)</span> describes the proportion of variance in the <span class="math inline">\(y\)</span> values that can be explained by the <span class="math inline">\(x\)</span> values. The <span class="math inline">\(R^2\)</span> always falls between 0 and 1. Closer to 1 is usually better, but it is very domain and dataset dependent. With small and biological data sets, we don’t always see values close to 1 because of the noise of the system.</p>
 <p>The proper one to use in <del>most</del> all cases is the <code>Adjusted R-squared</code>.</p>
-<div id="r2-versus-residual-standard-error" class="section level4">
+<div id="r2-versus-residual-standard-error" class="section level4" number="4.6.2.1">
 <h4><span class="header-section-number">4.6.2.1</span> <span class="math inline">\(R^2\)</span> versus Residual Standard Error</h4>
 <p>So what’s the difference between these two - at first glance they do the same thing. The major difference is that RSE is in the units of the data and <span class="math inline">\(R^2\)</span> is in relative units, so you can use them in different situations e.g if you want to make your model work within particular tolerances or you want to compare models in different units.</p>
 </div>
 </div>
-<div id="f-statistic" class="section level3">
+<div id="f-statistic" class="section level3" number="4.6.3">
 <h3><span class="header-section-number">4.6.3</span> <span class="math inline">\(F\)</span>-Statistic</h3>
 <p>The <span class="math inline">\(F\)</span>-Statistic is an indicator of a relationship between the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values of the model. In effect <span class="math inline">\(F\)</span> tests how much better the relationship is in your model than a model in which the relationship is completely random. It’s actually a ratio such that when the <span class="math inline">\(F\)</span>-statistic is at 1, the relationship is no stronger than a random relationship. The further above 1 <span class="math inline">\(F\)</span> is, the more it is likely there is a real relationship in the model. The <span class="math inline">\(p\)</span> value here is the <span class="math inline">\(p\)</span> that this size of <span class="math inline">\(F\)</span> would occur in a random relationship with a similar dataset size. As with the other statistics, the significance of the actual size of <span class="math inline">\(F\)</span> is dependent on the domain and data being analysed.</p>
 </div>
 </div>
-<div id="coefficients-have-statistics" class="section level2">
+<div id="coefficients-have-statistics" class="section level2" number="4.7">
 <h2><span class="header-section-number">4.7</span> Coefficients have statistics</h2>
 <p>Along with these model level statistics, linear modelling with <code>lm()</code> gives us a set of statistics <em>per coefficient</em>. These measure the effect that each coefficient has on the output variable <span class="math inline">\(y\)</span>. Basically a significant coefficient, is one that has a non-zero slope and is an important determinant of the value of <span class="math inline">\(y\)</span>.</p>
-<div id="estimate" class="section level3">
+<div id="estimate" class="section level3" number="4.7.1">
 <h3><span class="header-section-number">4.7.1</span> Estimate</h3>
 <p>These are the <code>Estimate</code>, which is the actual value of the coefficient from the model. We will see that along with Intercept we can have models with more than one other coefficient. These are given in the units of the data.</p>
 </div>
-<div id="std.-error" class="section level3">
+<div id="std.-error" class="section level3" number="4.7.2">
 <h3><span class="header-section-number">4.7.2</span> Std. Error</h3>
 <p>A measure of the variability of the strength of the effect, so if some <span class="math inline">\(x\)</span> points give more pronounced <span class="math inline">\(y\)</span> values at similar coefficient values, you get a higher variability of the strength. Generally lower standard error of the coefficient is good.</p>
 </div>
-<div id="t-value" class="section level3">
+<div id="t-value" class="section level3" number="4.7.3">
 <h3><span class="header-section-number">4.7.3</span> <span class="math inline">\(t\)</span>-value</h3>
 <p>An estimate of how extreme the coefficient value is, basically how many Standard Deviations away the estimated coefficient is from the centre of a presumed Normal distribution with mean 0. It is absolutely a <span class="math inline">\(t\)</span>-test <span class="math inline">\(t\)</span>-value, and like in a <span class="math inline">\(t\)</span>-test we want it to be high. The higher <span class="math inline">\(t\)</span> is, then the more likely that the coefficient is not 0.</p>
-<div id="wait-what" class="section level4">
+<div id="wait-what" class="section level4" number="4.7.3.1">
 <h4><span class="header-section-number">4.7.3.1</span> Wait, what?</h4>
 <p>Why would we care whether the coefficient is 0 or not? Well, because if it is 0, then it’s having no effect on the model. Consider again the equation of a line</p>
 <p><span class="math display">\[\begin{equation}
@@ -472,12 +494,12 @@ y = b
 <p>Of course, this will depend on the size of the standard deviation. The noisier the data or the smaller the sample size then the larger this value will need to be to be important.</p>
 </div>
 </div>
-<div id="prt" class="section level3">
+<div id="prt" class="section level3" number="4.7.4">
 <h3><span class="header-section-number">4.7.4</span> <span class="math inline">\(Pr(&gt;|t|)\)</span></h3>
 <p>This weird shorthand expression is just giving the probability of getting a value larger than the <span class="math inline">\(t\)</span>-value. This comes from a <span class="math inline">\(t\)</span>-test within the model and takes into account the dataset size and variability, you can think of it as the <span class="math inline">\(p\)</span>-value of a test asking whether the coefficient is equal to 0. So if <span class="math inline">\(p\)</span> is less than 0.05 you can say that the value of the coefficient is not likely to be 0 and therefore is having an effect on the model.</p>
 </div>
 </div>
-<div id="a-non-zero-slope-is-what-matters" class="section level2">
+<div id="a-non-zero-slope-is-what-matters" class="section level2" number="4.8">
 <h2><span class="header-section-number">4.8</span> A non-zero slope is what matters</h2>
 <p>By looking at the <span class="math inline">\(p\)</span>-value of the coefficient then, we can see whether there is a significant relationship or, more accurately a non-zero slope</p>
 <p>We can really emphasise by looking at the plots of lines we looked at earlier.</p>
@@ -485,7 +507,7 @@ y = b
 <p>The slope of the second plot is weaker, it’s much flatter - much closer to zero, in fact given the spread of the data we aren’t that confident that it isn’t a flat (zero) slope, so we aren’t that confident that there is a significant relationship.</p>
 <p>We can quickly see that definitively using <code>lm()</code> if we compare two models based on those two datasets.</p>
 <p>We already built the model for the first slope.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="the-linear-model.html#cb16-1"></a><span class="kw">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="the-linear-model.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = df)
@@ -505,8 +527,8 @@ y = b
 ## Multiple R-squared:  0.944,	Adjusted R-squared:  0.9409 
 ## F-statistic: 303.6 on 1 and 18 DF,  p-value: 1.027e-12</code></pre>
 <p>Let’s also build the model for the second slope, it is in a dataframe called <code>more_df</code></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="the-linear-model.html#cb18-1"></a>model_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> more_df)</span>
-<span id="cb18-2"><a href="the-linear-model.html#cb18-2"></a><span class="kw">summary</span>(model_<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="the-linear-model.html#cb18-1" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> more_df)</span>
+<span id="cb18-2"><a href="the-linear-model.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = more_df)
@@ -528,7 +550,7 @@ y = b
 <p>We can clearly see that the second model is a poorer fit to the data. The model level statistics are less convincing: <span class="math inline">\(F\)</span> is reduced to 0.269 (from 303.6), the <span class="math inline">\(p-value\)</span> shows the difference occurs by chance 61 % of the time and the <code>Adjusted R-squared</code> is close to 0, indicating a poor relationship. The coefficient was measurable, but it is not significant (and not coincidentally) occurring by chance 61 % of the time. The slope therefore is not significantly different from 0 and <span class="math inline">\(x\)</span> in <code>model_2</code> appears to have no effect on <span class="math inline">\(y\)</span>.</p>
 <p>It is this slope assessing feature of the linear models that will help us in our overall goal of using the linear model to do the work of all the other statistical tests we commonly use. If we have a good model and a good fit, then we can make really flexible use of the slope by looking at the significance of the coefficient.</p>
 </div>
-<div id="major-points" class="section level2">
+<div id="major-points" class="section level2" number="4.9">
 <h2><span class="header-section-number">4.9</span> Major points</h2>
 <p>After all that inspection of the linear model, here’s what you need to remember:</p>
 <ol style="list-style-type: decimal">
@@ -537,7 +559,7 @@ y = b
 <li>A non-zero coefficient (slope) means there is not likely to be no relationship (!)</li>
 </ol>
 </div>
-<div id="extra-credit-understanding-linear-models-through-the-notation" class="section level2">
+<div id="extra-credit-understanding-linear-models-through-the-notation" class="section level2" number="4.10">
 <h2><span class="header-section-number">4.10</span> Extra credit: Understanding linear models through the notation</h2>
 <p>In this section at the end I wanted to take one last step and look at how the linear model is specified because the notation is an aid to understanding the model a bit more deeply. It’s probably OK to skip this bit if the idea of notation doesn’t grab you.
 At the start of this chapter we wrote the linear equation like this</p>
@@ -550,10 +572,10 @@ At the start of this chapter we wrote the linear equation like this</p>
 \end{equation}\]</span></p>
 <p>with <span class="math inline">\(e\)</span> being a measure of <code>error</code> (or random measurement differences) added on, somehow, and it does aid our thinking to take that liberty a little, because of the way we can see the relationship of the error now.</p>
 <p>But unlike a straight line, a linear model doesn’t have to have only one slope, it can have many. This doesn’t mean that the line has a bend in it, like this</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="the-linear-model.html#cb20-1"></a><span class="kw">its_bendy_line_time</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="the-linear-model.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_bendy_line_time</span>()</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>but rather that the model can take into account more than one data axis (variable) (or dimension) - more like this, where a new variable is called <span class="math inline">\(z\)</span>, so the whole thing if plotted looks more like the top 3D panel here in which the model allows us to see the combined effects of <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> on the output <span class="math inline">\(y\)</span> but we can focus on each variable individually by taking one at a time, like in the two split panels at the bottom (note how this is like looking into the front and right side of the 3D panel individually).</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="the-linear-model.html#cb21-1"></a><span class="kw">its_three_variable_plot_time</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="the-linear-model.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_three_variable_plot_time</span>()</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>We can only see up to two extra axes in a plot, and only visualise three without getting twitchy eyes, but going to three, four or many more dimensions is no problem for the linear model framework and they all work the same way. When it comes to notating this we run into a problem as we run out of letters. Let’s build it up…</p>
 <p>First, a one slope/coefficient/independent variable model, adding one variable at a time</p>
@@ -588,11 +610,9 @@ y \sim \beta_1 x_1 + \beta_2 x_2 \dotsc + \beta_n x_n + e
 <a href="https://danmaclean.shinyapps.io/linear-models/" class="uri">https://danmaclean.shinyapps.io/linear-models/</a>
 </div>
 
-
 <div class="task">
 Complete the interactive quiz online <a href="https://danmaclean.shinyapps.io/linear-models">https://danmaclean.shinyapps.io/linear-models</a>
 </div>
-
 
 </div>
 </div>

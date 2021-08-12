@@ -236,3 +236,9 @@ ggplot(job_mood) + aes(role, Freq) + geom_col(aes(fill = mood))
   * In practice we are usually better off using the hypothesis tests
 
 ```
+
+```{block2, type="task"}
+Complete the interactive tutorial online [http://v1068.nbi.ac.uk/datasci/chisq/](http://v1068.nbi.ac.uk/datasci/chisq/)
+
+This will only work on the NBI site.
+```

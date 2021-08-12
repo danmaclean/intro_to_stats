@@ -355,5 +355,7 @@ And there we have the specific interaction contrasts. Note how in doing this we 
 ```
 
 ```{block2, type="task"}
+Complete the interactive tutorial online [http://v1068.nbi.ac.uk/datasci/anova/](http://v1068.nbi.ac.uk/datasci/anova/)
 
+This will only work on the NBI site.
 ```

@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2021-01-21" />
+<meta name="date" content="2021-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 
 <link rel="next" href="motivation.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,24 +51,21 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,14 +134,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Statistics Primer</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#knowledge-prerequisites"><i class="fa fa-check"></i><b>1.1.1</b> Knowledge prerequisites</a></li>
 <li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#software-prerequisites"><i class="fa fa-check"></i><b>1.1.2</b> Software prerequisites</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - itssl</a></li>
 </ul></li>
@@ -151,23 +152,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Motivation</a></li>
-<li class="chapter" data-level="3" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3</b> Background</a><ul>
+<li class="chapter" data-level="3" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3</b> Background</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="background.html"><a href="background.html#null-models"><i class="fa fa-check"></i><b>3.1</b> Null Models</a></li>
 <li class="chapter" data-level="3.2" data-path="background.html"><a href="background.html#p-values"><i class="fa fa-check"></i><b>3.2</b> <span class="math inline">\(p\)</span>-values</a></li>
 <li class="chapter" data-level="3.3" data-path="background.html"><a href="background.html#slopes-of-straight-lines-can-help-us-think-about-differences-between-things"><i class="fa fa-check"></i><b>3.3</b> Slopes of straight lines can help us think about differences between things</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>4</b> The Linear Model</a><ul>
+<li class="chapter" data-level="4" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>4</b> The Linear Model</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="the-linear-model.html"><a href="the-linear-model.html#from-straight-lines-to-data"><i class="fa fa-check"></i><b>4.1</b> From straight lines to data</a></li>
 <li class="chapter" data-level="4.2" data-path="the-linear-model.html"><a href="the-linear-model.html#straight-line-relationships-are-described-using-two-parameters"><i class="fa fa-check"></i><b>4.2</b> Straight line relationships are described using two parameters</a></li>
 <li class="chapter" data-level="4.3" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-try-to-create-a-linear-equation-from-data"><i class="fa fa-check"></i><b>4.3</b> Linear models try to create a linear equation from data</a></li>
 <li class="chapter" data-level="4.4" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-describe-relationships-between-variables"><i class="fa fa-check"></i><b>4.4</b> Linear models describe relationships between variables</a></li>
 <li class="chapter" data-level="4.5" data-path="the-linear-model.html"><a href="the-linear-model.html#not-all-lines-of-best-fit-are-equally-good"><i class="fa fa-check"></i><b>4.5</b> Not all lines of best fit are equally good</a></li>
-<li class="chapter" data-level="4.6" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>4.6</b> Linear models contain statistics describing the goodness of the model</a><ul>
+<li class="chapter" data-level="4.6" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>4.6</b> Linear models contain statistics describing the goodness of the model</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="the-linear-model.html"><a href="the-linear-model.html#residual-standard-error"><i class="fa fa-check"></i><b>4.6.1</b> Residual Standard Error</a></li>
 <li class="chapter" data-level="4.6.2" data-path="the-linear-model.html"><a href="the-linear-model.html#r2"><i class="fa fa-check"></i><b>4.6.2</b> <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="4.6.3" data-path="the-linear-model.html"><a href="the-linear-model.html#f-statistic"><i class="fa fa-check"></i><b>4.6.3</b> <span class="math inline">\(F\)</span>-Statistic</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>4.7</b> Coefficients have statistics</a><ul>
+<li class="chapter" data-level="4.7" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>4.7</b> Coefficients have statistics</a>
+<ul>
 <li class="chapter" data-level="4.7.1" data-path="the-linear-model.html"><a href="the-linear-model.html#estimate"><i class="fa fa-check"></i><b>4.7.1</b> Estimate</a></li>
 <li class="chapter" data-level="4.7.2" data-path="the-linear-model.html"><a href="the-linear-model.html#std.-error"><i class="fa fa-check"></i><b>4.7.2</b> Std. Error</a></li>
 <li class="chapter" data-level="4.7.3" data-path="the-linear-model.html"><a href="the-linear-model.html#t-value"><i class="fa fa-check"></i><b>4.7.3</b> <span class="math inline">\(t\)</span>-value</a></li>
@@ -177,35 +182,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="the-linear-model.html"><a href="the-linear-model.html#major-points"><i class="fa fa-check"></i><b>4.9</b> Major points</a></li>
 <li class="chapter" data-level="4.10" data-path="the-linear-model.html"><a href="the-linear-model.html#extra-credit-understanding-linear-models-through-the-notation"><i class="fa fa-check"></i><b>4.10</b> Extra credit: Understanding linear models through the notation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>5</b> R Fundamentals</a><ul>
+<li class="chapter" data-level="5" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>5</b> R Fundamentals</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#about-this-chapter"><i class="fa fa-check"></i><b>5.1</b> About this chapter</a></li>
 <li class="chapter" data-level="5.2" data-path="r-fundamentals.html"><a href="r-fundamentals.html#working-with-r"><i class="fa fa-check"></i><b>5.2</b> Working with R</a></li>
-<li class="chapter" data-level="5.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>5.3</b> Variables</a><ul>
+<li class="chapter" data-level="5.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>5.3</b> Variables</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-objects-and-functions"><i class="fa fa-check"></i><b>5.3.1</b> Using objects and functions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="r-fundamentals.html"><a href="r-fundamentals.html#dataframes"><i class="fa fa-check"></i><b>5.4</b> Dataframes</a></li>
 <li class="chapter" data-level="5.5" data-path="r-fundamentals.html"><a href="r-fundamentals.html#packages"><i class="fa fa-check"></i><b>5.5</b> Packages</a></li>
 <li class="chapter" data-level="5.6" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-r-help"><i class="fa fa-check"></i><b>5.6</b> Using R Help</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>6</b> <span class="math inline">\(t\)</span>-tests and linear models</a><ul>
-<li class="chapter" data-level="6.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>6.1</b> Recap</a><ul>
+<li class="chapter" data-level="6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>6</b> <span class="math inline">\(t\)</span>-tests and linear models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>6.1</b> Recap</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-slope-of-the-model-again"><i class="fa fa-check"></i><b>6.1.1</b> The slope of the model again</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-two-different-samples-instead-of-a-continuous-x-variable"><i class="fa fa-check"></i><b>6.2</b> Using two different samples instead of a continuous <span class="math inline">\(x\)</span> variable</a></li>
 <li class="chapter" data-level="6.3" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-plantgrowth-data"><i class="fa fa-check"></i><b>6.3</b> The PlantGrowth data</a></li>
 <li class="chapter" data-level="6.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#a-linear-model-with-a-categoric-x-axis"><i class="fa fa-check"></i><b>6.4</b> A linear model with a categoric <span class="math inline">\(x\)</span>-axis</a></li>
-<li class="chapter" data-level="6.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>6.5</b> Using the statistics of the linear model to test for differences</a><ul>
+<li class="chapter" data-level="6.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>6.5</b> Using the statistics of the linear model to test for differences</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-coefficient-and-the-mean-difference-between-groups-are-equivalent"><i class="fa fa-check"></i><b>6.5.1</b> The coefficient and the mean difference between groups are equivalent</a></li>
 <li class="chapter" data-level="6.5.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test"><i class="fa fa-check"></i><b>6.5.2</b> The <span class="math inline">\(p\)</span>-value of the co-efficient tests the same thing as a <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>6.6</b> Summary</a></li>
 <li class="chapter" data-level="6.7" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#but-wasnt-the-t-test-just-easier"><i class="fa fa-check"></i><b>6.7</b> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a><ul>
+<li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.1</b> Comparing groups in a single variable</a></li>
 <li class="chapter" data-level="7.2" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#one-way-comparisons---groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.2</b> One-Way comparisons - groups in a single variable</a></li>
 <li class="chapter" data-level="7.3" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#two-way-comparisons---groups-in-multiple-variables"><i class="fa fa-check"></i><b>7.3</b> Two-Way comparisons - groups in multiple variables</a></li>
-<li class="chapter" data-level="7.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-between-variables"><i class="fa fa-check"></i><b>7.4</b> Interactions between variables</a><ul>
+<li class="chapter" data-level="7.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-between-variables"><i class="fa fa-check"></i><b>7.4</b> Interactions between variables</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#analysing-and-modelling-an-interaction-effect"><i class="fa fa-check"></i><b>7.4.1</b> Analysing and modelling an interaction effect</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#doing-all-pairwise-interactions"><i class="fa fa-check"></i><b>7.5</b> Doing all pairwise interactions</a></li>
@@ -213,48 +225,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#extra-credit-anova-model-level-p-and-as-a-hypothesis-test"><i class="fa fa-check"></i><b>7.7</b> Extra Credit: ANOVA model-level <span class="math inline">\(p\)</span> and as a hypothesis test</a></li>
 <li class="chapter" data-level="7.8" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#extra-credit-testing-specific-interactions"><i class="fa fa-check"></i><b>7.8</b> Extra Credit: Testing specific interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html"><i class="fa fa-check"></i><b>8</b> Non-parametric tests and linear models</a><ul>
-<li class="chapter" data-level="8.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#common-misrepresentations-of-discrete-data"><i class="fa fa-check"></i><b>8.1</b> Common misrepresentations of discrete data</a><ul>
+<li class="chapter" data-level="8" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html"><i class="fa fa-check"></i><b>8</b> Non-parametric tests and linear models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#common-misrepresentations-of-discrete-data"><i class="fa fa-check"></i><b>8.1</b> Common misrepresentations of discrete data</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#twisting-names-into-numbers-confuses-the-mind"><i class="fa fa-check"></i><b>8.1.1</b> Twisting names into numbers confuses the mind</a></li>
 <li class="chapter" data-level="8.1.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#this-does-not-mean-what-i-think-you-think-it-means"><i class="fa fa-check"></i><b>8.1.2</b> This does not mean what I think you think it means</a></li>
 <li class="chapter" data-level="8.1.3" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#build-a-strong-foundation"><i class="fa fa-check"></i><b>8.1.3</b> Build a strong foundation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-properly"><i class="fa fa-check"></i><b>8.2</b> Setting type properly</a><ul>
+<li class="chapter" data-level="8.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-properly"><i class="fa fa-check"></i><b>8.2</b> Setting type properly</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-with-read_csv"><i class="fa fa-check"></i><b>8.2.1</b> Setting type with <code>read_csv()</code></a></li>
 <li class="chapter" data-level="8.2.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-post-hoc-with-transmute"><i class="fa fa-check"></i><b>8.2.2</b> Setting type <em>post hoc</em> with <code>transmute()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#plots-with-categoric-x-and-y-axis"><i class="fa fa-check"></i><b>8.3</b> Plots with categoric <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axis</a></li>
-<li class="chapter" data-level="8.4" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#linear-models-and-a-categoric-y-variable"><i class="fa fa-check"></i><b>8.4</b> Linear models and a categoric <span class="math inline">\(y\)</span> variable</a><ul>
+<li class="chapter" data-level="8.4" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#linear-models-and-a-categoric-y-variable"><i class="fa fa-check"></i><b>8.4</b> Linear models and a categoric <span class="math inline">\(y\)</span> variable</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#ordered-categoric-response-variables"><i class="fa fa-check"></i><b>8.4.1</b> Ordered categoric response variables</a></li>
 <li class="chapter" data-level="8.4.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#making-linear-models-with-ranked-data"><i class="fa fa-check"></i><b>8.4.2</b> Making linear models with ranked data</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#hypothesis-tests"><i class="fa fa-check"></i><b>8.5</b> Hypothesis Tests</a><ul>
+<li class="chapter" data-level="8.5" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#hypothesis-tests"><i class="fa fa-check"></i><b>8.5</b> Hypothesis Tests</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#but-arent-the-tests-just-easier"><i class="fa fa-check"></i><b>8.5.1</b> But aren’t the tests just easier?</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html"><i class="fa fa-check"></i><b>9</b> <span class="math inline">\(\chi ^2\)</span> tests and linear models</a><ul>
+<li class="chapter" data-level="9" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html"><i class="fa fa-check"></i><b>9</b> <span class="math inline">\(\chi ^2\)</span> tests and linear models</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-problem-with-unordered-response-data"><i class="fa fa-check"></i><b>9.1</b> The problem with unordered response data</a></li>
 <li class="chapter" data-level="9.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#we-have-to-compare-models-not-groups."><i class="fa fa-check"></i><b>9.2</b> We have to compare models, not groups.</a></li>
-<li class="chapter" data-level="9.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-chi2-test"><i class="fa fa-check"></i><b>9.3</b> The <span class="math inline">\(\chi^2\)</span> test</a><ul>
+<li class="chapter" data-level="9.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-chi2-test"><i class="fa fa-check"></i><b>9.3</b> The <span class="math inline">\(\chi^2\)</span> test</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#performing-the-test"><i class="fa fa-check"></i><b>9.3.1</b> Performing the test</a></li>
 <li class="chapter" data-level="9.3.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#more-than-one-variable"><i class="fa fa-check"></i><b>9.3.2</b> More than one variable</a></li>
 <li class="chapter" data-level="9.3.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#more-than-one-pairwise-comparison"><i class="fa fa-check"></i><b>9.3.3</b> More than one pairwise comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>9.4</b> Summary</a></li>
-<li class="chapter" data-level="9.5" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#plot-ideas-for-categoric-and-count-data"><i class="fa fa-check"></i><b>9.5</b> Plot ideas for categoric and count data</a><ul>
+<li class="chapter" data-level="9.5" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#plot-ideas-for-categoric-and-count-data"><i class="fa fa-check"></i><b>9.5</b> Plot ideas for categoric and count data</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#balloon-plot"><i class="fa fa-check"></i><b>9.5.1</b> Balloon plot</a></li>
 <li class="chapter" data-level="9.5.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#heatmap"><i class="fa fa-check"></i><b>9.5.2</b> Heatmap</a></li>
 <li class="chapter" data-level="9.5.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#stacked-bar"><i class="fa fa-check"></i><b>9.5.3</b> Stacked bar</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html"><i class="fa fa-check"></i><b>10</b> More fun with linear models</a><ul>
-<li class="chapter" data-level="10.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#assessing-a-linear-model"><i class="fa fa-check"></i><b>10.1</b> Assessing a linear model</a><ul>
+<li class="chapter" data-level="10" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html"><i class="fa fa-check"></i><b>10</b> More fun with linear models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#assessing-a-linear-model"><i class="fa fa-check"></i><b>10.1</b> Assessing a linear model</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#the-terror-of-normality"><i class="fa fa-check"></i><b>10.1.1</b> The terror of normality</a></li>
 <li class="chapter" data-level="10.1.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#checking-whether-the-mean-is-a-good-summary"><i class="fa fa-check"></i><b>10.1.2</b> Checking whether the mean is a good summary</a></li>
 <li class="chapter" data-level="10.1.3" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#spotting-a-good-fit-to-the-data"><i class="fa fa-check"></i><b>10.1.3</b> Spotting a good fit to the data</a></li>
 <li class="chapter" data-level="10.1.4" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#checking-qq-plots-for-a-normal-distribution"><i class="fa fa-check"></i><b>10.1.4</b> Checking qq-plots for a normal distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#predictions"><i class="fa fa-check"></i><b>10.2</b> Predictions</a><ul>
+<li class="chapter" data-level="10.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#predictions"><i class="fa fa-check"></i><b>10.2</b> Predictions</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#intuition-on-prediction-from-continuous-variables"><i class="fa fa-check"></i><b>10.2.1</b> Intuition on prediction from continuous variables</a></li>
 <li class="chapter" data-level="10.2.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#intuition-on-prediction-with-categoric-variables"><i class="fa fa-check"></i><b>10.2.2</b> Intuition on prediction with categoric variables</a></li>
 <li class="chapter" data-level="10.2.3" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#using-predictions-in-more-complicated-models"><i class="fa fa-check"></i><b>10.2.3</b> Using predictions in more complicated models</a></li>
@@ -285,19 +308,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Understanding Statistical Thinking With Linear Models</h1>
 <p class="author"><em>Dan MacLean</em></p>
-<p class="date"><em>2021-01-21</em></p>
+<p class="date"><em>2021-08-12</em></p>
 </div>
-<div id="setting-up" class="section level1">
+<div id="setting-up" class="section level1" number="1">
 <h1><span class="header-section-number">Topic 1</span> Setting up</h1>
 <p>The primary purpose of this course is to help you to understand how to use statistics that will help with your research. The course will try to explain statistics using the same path through the topic that statistics students are educated along, but without the rigorous mathematical background necessary for those students. Instead this course will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.</p>
 <p>Statistics is a computationally heavy topic, so we’ll be making use of the R statistical programming environment to do that side of the work. The rest of this chapter will help you get that set up on your own computer.</p>
-<div id="prerequisites" class="section level2">
+<div id="prerequisites" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Prerequisites</h2>
-<div id="knowledge-prerequisites" class="section level3">
+<div id="knowledge-prerequisites" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> Knowledge prerequisites</h3>
 <p>There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like <code>t</code>, <code>ANOVA</code> and regression. It’ll also be helpful for following some of the code examples if you are familiar with basic R use.</p>
 </div>
-<div id="software-prerequisites" class="section level3">
+<div id="software-prerequisites" class="section level3" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> Software prerequisites</h3>
 <p>You need to install the following stuff for this book:</p>
 <ol style="list-style-type: decimal">
@@ -307,17 +330,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 </div>
 </div>
-<div id="installing-r" class="section level2">
+<div id="installing-r" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Installing R</h2>
 <p>Follow this link and install the right version for your operating system <a href="https://www.stats.bris.ac.uk/R/">https://www.stats.bris.ac.uk/R/</a></p>
 </div>
-<div id="installing-rstudio" class="section level2">
+<div id="installing-rstudio" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Installing RStudio</h2>
 <p>Follow this link and install the right version for your operating system <a href="https://www.rstudio.com/products/rstudio/download/">https://www.rstudio.com/products/rstudio/download/</a></p>
 </div>
-<div id="installing-r-packages-in-rstudio." class="section level2">
+<div id="installing-r-packages-in-rstudio." class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Installing R packages in RStudio.</h2>
-<div id="standard-packages---devtools" class="section level3">
+<div id="standard-packages---devtools" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Standard packages - <code>devtools</code></h3>
 <p><code>devtools</code> is a standard R package and can be installed like any other you may have done from CRAN. Start RStudio and use the <code>Packages</code> tab in lower right panel. Click the install button (top left of the panel) and enter the package name, then click install as in this picture</p>
 <div class="figure">
@@ -325,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Installing Packages</p>
 </div>
 </div>
-<div id="development-packages---itssl" class="section level3">
+<div id="development-packages---itssl" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Development packages - itssl</h3>
 <p><code>itssl</code> is a new package that contains all the materials including the exercises for this handbook. As it is a development package you need to install it using <code>devtools</code>.</p>
 <ol style="list-style-type: decimal">
@@ -335,13 +358,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You may get asked whether you wish to install the newest version from source, decline this option and install binaries by selecting the appropriate option</p>
 </div>
 </div>
-<div id="using-the-itssl-package" class="section level2">
+<div id="using-the-itssl-package" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Using the <code>itssl</code> package</h2>
 <p><code>itssl</code> is a package developed solely to accompany this course. Once it is installed you can load it as usual - <code>library(itssl)</code></p>
 <p>All the functions in <code>itssl</code> follow this naming scheme <code>its_&lt;something-something&gt;_time()</code> so you’ll be able to spot them as you read along. The main purpose of the functions is to make the course easier to follow and stop us from getting bogged down in a lot of circumstantial code that isn’t directly related to our current point, which will usually be statistical rather than related to programming, hence you’ll be able to get a lot out of this course even if you haven’t used much R before.</p>
 <p>If you do have a desire to see the code inside the <code>itssl</code> functions it is available at <a href="https://github.com/danmaclean/itssl/tree/master/R">https://github.com/danmaclean/itssl/tree/master/R</a></p>
 </div>
-<div id="acknowledgements" class="section level2">
+<div id="acknowledgements" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Acknowledgements</h2>
 <p>This handbook would not have been possible without helpful inspiration from these web pages and leaders in statistical education, please check out their sites.</p>
 <ul>

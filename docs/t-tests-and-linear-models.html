@@ -24,7 +24,7 @@
 <meta name="author" content="Dan MacLean" />
 
 
-<meta name="date" content="2021-01-21" />
+<meta name="date" content="2021-08-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="r-fundamentals.html"/>
 <link rel="next" href="anova-and-linear-models.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,24 +51,21 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,14 +134,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Statistics Primer</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Setting up</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#knowledge-prerequisites"><i class="fa fa-check"></i><b>1.1.1</b> Knowledge prerequisites</a></li>
 <li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#software-prerequisites"><i class="fa fa-check"></i><b>1.1.2</b> Software prerequisites</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installing-r"><i class="fa fa-check"></i><b>1.2</b> Installing R</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#installing-rstudio"><i class="fa fa-check"></i><b>1.3</b> Installing RStudio</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a><ul>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#installing-r-packages-in-rstudio."><i class="fa fa-check"></i><b>1.4</b> Installing R packages in RStudio.</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#standard-packages---devtools"><i class="fa fa-check"></i><b>1.4.1</b> Standard packages - <code>devtools</code></a></li>
 <li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#development-packages---itssl"><i class="fa fa-check"></i><b>1.4.2</b> Development packages - itssl</a></li>
 </ul></li>
@@ -151,23 +152,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.6</b> Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i><b>2</b> Motivation</a></li>
-<li class="chapter" data-level="3" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3</b> Background</a><ul>
+<li class="chapter" data-level="3" data-path="background.html"><a href="background.html"><i class="fa fa-check"></i><b>3</b> Background</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="background.html"><a href="background.html#null-models"><i class="fa fa-check"></i><b>3.1</b> Null Models</a></li>
 <li class="chapter" data-level="3.2" data-path="background.html"><a href="background.html#p-values"><i class="fa fa-check"></i><b>3.2</b> <span class="math inline">\(p\)</span>-values</a></li>
 <li class="chapter" data-level="3.3" data-path="background.html"><a href="background.html#slopes-of-straight-lines-can-help-us-think-about-differences-between-things"><i class="fa fa-check"></i><b>3.3</b> Slopes of straight lines can help us think about differences between things</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>4</b> The Linear Model</a><ul>
+<li class="chapter" data-level="4" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>4</b> The Linear Model</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="the-linear-model.html"><a href="the-linear-model.html#from-straight-lines-to-data"><i class="fa fa-check"></i><b>4.1</b> From straight lines to data</a></li>
 <li class="chapter" data-level="4.2" data-path="the-linear-model.html"><a href="the-linear-model.html#straight-line-relationships-are-described-using-two-parameters"><i class="fa fa-check"></i><b>4.2</b> Straight line relationships are described using two parameters</a></li>
 <li class="chapter" data-level="4.3" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-try-to-create-a-linear-equation-from-data"><i class="fa fa-check"></i><b>4.3</b> Linear models try to create a linear equation from data</a></li>
 <li class="chapter" data-level="4.4" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-describe-relationships-between-variables"><i class="fa fa-check"></i><b>4.4</b> Linear models describe relationships between variables</a></li>
 <li class="chapter" data-level="4.5" data-path="the-linear-model.html"><a href="the-linear-model.html#not-all-lines-of-best-fit-are-equally-good"><i class="fa fa-check"></i><b>4.5</b> Not all lines of best fit are equally good</a></li>
-<li class="chapter" data-level="4.6" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>4.6</b> Linear models contain statistics describing the goodness of the model</a><ul>
+<li class="chapter" data-level="4.6" data-path="the-linear-model.html"><a href="the-linear-model.html#linear-models-contain-statistics-describing-the-goodness-of-the-model"><i class="fa fa-check"></i><b>4.6</b> Linear models contain statistics describing the goodness of the model</a>
+<ul>
 <li class="chapter" data-level="4.6.1" data-path="the-linear-model.html"><a href="the-linear-model.html#residual-standard-error"><i class="fa fa-check"></i><b>4.6.1</b> Residual Standard Error</a></li>
 <li class="chapter" data-level="4.6.2" data-path="the-linear-model.html"><a href="the-linear-model.html#r2"><i class="fa fa-check"></i><b>4.6.2</b> <span class="math inline">\(R^2\)</span></a></li>
 <li class="chapter" data-level="4.6.3" data-path="the-linear-model.html"><a href="the-linear-model.html#f-statistic"><i class="fa fa-check"></i><b>4.6.3</b> <span class="math inline">\(F\)</span>-Statistic</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>4.7</b> Coefficients have statistics</a><ul>
+<li class="chapter" data-level="4.7" data-path="the-linear-model.html"><a href="the-linear-model.html#coefficients-have-statistics"><i class="fa fa-check"></i><b>4.7</b> Coefficients have statistics</a>
+<ul>
 <li class="chapter" data-level="4.7.1" data-path="the-linear-model.html"><a href="the-linear-model.html#estimate"><i class="fa fa-check"></i><b>4.7.1</b> Estimate</a></li>
 <li class="chapter" data-level="4.7.2" data-path="the-linear-model.html"><a href="the-linear-model.html#std.-error"><i class="fa fa-check"></i><b>4.7.2</b> Std. Error</a></li>
 <li class="chapter" data-level="4.7.3" data-path="the-linear-model.html"><a href="the-linear-model.html#t-value"><i class="fa fa-check"></i><b>4.7.3</b> <span class="math inline">\(t\)</span>-value</a></li>
@@ -177,35 +182,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="the-linear-model.html"><a href="the-linear-model.html#major-points"><i class="fa fa-check"></i><b>4.9</b> Major points</a></li>
 <li class="chapter" data-level="4.10" data-path="the-linear-model.html"><a href="the-linear-model.html#extra-credit-understanding-linear-models-through-the-notation"><i class="fa fa-check"></i><b>4.10</b> Extra credit: Understanding linear models through the notation</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>5</b> R Fundamentals</a><ul>
+<li class="chapter" data-level="5" data-path="r-fundamentals.html"><a href="r-fundamentals.html"><i class="fa fa-check"></i><b>5</b> R Fundamentals</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#about-this-chapter"><i class="fa fa-check"></i><b>5.1</b> About this chapter</a></li>
 <li class="chapter" data-level="5.2" data-path="r-fundamentals.html"><a href="r-fundamentals.html#working-with-r"><i class="fa fa-check"></i><b>5.2</b> Working with R</a></li>
-<li class="chapter" data-level="5.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>5.3</b> Variables</a><ul>
+<li class="chapter" data-level="5.3" data-path="r-fundamentals.html"><a href="r-fundamentals.html#variables"><i class="fa fa-check"></i><b>5.3</b> Variables</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-objects-and-functions"><i class="fa fa-check"></i><b>5.3.1</b> Using objects and functions</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="r-fundamentals.html"><a href="r-fundamentals.html#dataframes"><i class="fa fa-check"></i><b>5.4</b> Dataframes</a></li>
 <li class="chapter" data-level="5.5" data-path="r-fundamentals.html"><a href="r-fundamentals.html#packages"><i class="fa fa-check"></i><b>5.5</b> Packages</a></li>
 <li class="chapter" data-level="5.6" data-path="r-fundamentals.html"><a href="r-fundamentals.html#using-r-help"><i class="fa fa-check"></i><b>5.6</b> Using R Help</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>6</b> <span class="math inline">\(t\)</span>-tests and linear models</a><ul>
-<li class="chapter" data-level="6.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>6.1</b> Recap</a><ul>
+<li class="chapter" data-level="6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html"><i class="fa fa-check"></i><b>6</b> <span class="math inline">\(t\)</span>-tests and linear models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#recap"><i class="fa fa-check"></i><b>6.1</b> Recap</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-slope-of-the-model-again"><i class="fa fa-check"></i><b>6.1.1</b> The slope of the model again</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-two-different-samples-instead-of-a-continuous-x-variable"><i class="fa fa-check"></i><b>6.2</b> Using two different samples instead of a continuous <span class="math inline">\(x\)</span> variable</a></li>
 <li class="chapter" data-level="6.3" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-plantgrowth-data"><i class="fa fa-check"></i><b>6.3</b> The PlantGrowth data</a></li>
 <li class="chapter" data-level="6.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#a-linear-model-with-a-categoric-x-axis"><i class="fa fa-check"></i><b>6.4</b> A linear model with a categoric <span class="math inline">\(x\)</span>-axis</a></li>
-<li class="chapter" data-level="6.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>6.5</b> Using the statistics of the linear model to test for differences</a><ul>
+<li class="chapter" data-level="6.5" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#using-the-statistics-of-the-linear-model-to-test-for-differences"><i class="fa fa-check"></i><b>6.5</b> Using the statistics of the linear model to test for differences</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-coefficient-and-the-mean-difference-between-groups-are-equivalent"><i class="fa fa-check"></i><b>6.5.1</b> The coefficient and the mean difference between groups are equivalent</a></li>
 <li class="chapter" data-level="6.5.2" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test"><i class="fa fa-check"></i><b>6.5.2</b> The <span class="math inline">\(p\)</span>-value of the co-efficient tests the same thing as a <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>6.6</b> Summary</a></li>
 <li class="chapter" data-level="6.7" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#but-wasnt-the-t-test-just-easier"><i class="fa fa-check"></i><b>6.7</b> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a><ul>
+<li class="chapter" data-level="7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html"><i class="fa fa-check"></i><b>7</b> ANOVA and linear models</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#comparing-groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.1</b> Comparing groups in a single variable</a></li>
 <li class="chapter" data-level="7.2" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#one-way-comparisons---groups-in-a-single-variable"><i class="fa fa-check"></i><b>7.2</b> One-Way comparisons - groups in a single variable</a></li>
 <li class="chapter" data-level="7.3" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#two-way-comparisons---groups-in-multiple-variables"><i class="fa fa-check"></i><b>7.3</b> Two-Way comparisons - groups in multiple variables</a></li>
-<li class="chapter" data-level="7.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-between-variables"><i class="fa fa-check"></i><b>7.4</b> Interactions between variables</a><ul>
+<li class="chapter" data-level="7.4" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#interactions-between-variables"><i class="fa fa-check"></i><b>7.4</b> Interactions between variables</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#analysing-and-modelling-an-interaction-effect"><i class="fa fa-check"></i><b>7.4.1</b> Analysing and modelling an interaction effect</a></li>
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#doing-all-pairwise-interactions"><i class="fa fa-check"></i><b>7.5</b> Doing all pairwise interactions</a></li>
@@ -213,48 +225,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.7" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#extra-credit-anova-model-level-p-and-as-a-hypothesis-test"><i class="fa fa-check"></i><b>7.7</b> Extra Credit: ANOVA model-level <span class="math inline">\(p\)</span> and as a hypothesis test</a></li>
 <li class="chapter" data-level="7.8" data-path="anova-and-linear-models.html"><a href="anova-and-linear-models.html#extra-credit-testing-specific-interactions"><i class="fa fa-check"></i><b>7.8</b> Extra Credit: Testing specific interactions</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html"><i class="fa fa-check"></i><b>8</b> Non-parametric tests and linear models</a><ul>
-<li class="chapter" data-level="8.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#common-misrepresentations-of-discrete-data"><i class="fa fa-check"></i><b>8.1</b> Common misrepresentations of discrete data</a><ul>
+<li class="chapter" data-level="8" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html"><i class="fa fa-check"></i><b>8</b> Non-parametric tests and linear models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#common-misrepresentations-of-discrete-data"><i class="fa fa-check"></i><b>8.1</b> Common misrepresentations of discrete data</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#twisting-names-into-numbers-confuses-the-mind"><i class="fa fa-check"></i><b>8.1.1</b> Twisting names into numbers confuses the mind</a></li>
 <li class="chapter" data-level="8.1.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#this-does-not-mean-what-i-think-you-think-it-means"><i class="fa fa-check"></i><b>8.1.2</b> This does not mean what I think you think it means</a></li>
 <li class="chapter" data-level="8.1.3" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#build-a-strong-foundation"><i class="fa fa-check"></i><b>8.1.3</b> Build a strong foundation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-properly"><i class="fa fa-check"></i><b>8.2</b> Setting type properly</a><ul>
+<li class="chapter" data-level="8.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-properly"><i class="fa fa-check"></i><b>8.2</b> Setting type properly</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-with-read_csv"><i class="fa fa-check"></i><b>8.2.1</b> Setting type with <code>read_csv()</code></a></li>
 <li class="chapter" data-level="8.2.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#setting-type-post-hoc-with-transmute"><i class="fa fa-check"></i><b>8.2.2</b> Setting type <em>post hoc</em> with <code>transmute()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#plots-with-categoric-x-and-y-axis"><i class="fa fa-check"></i><b>8.3</b> Plots with categoric <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axis</a></li>
-<li class="chapter" data-level="8.4" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#linear-models-and-a-categoric-y-variable"><i class="fa fa-check"></i><b>8.4</b> Linear models and a categoric <span class="math inline">\(y\)</span> variable</a><ul>
+<li class="chapter" data-level="8.4" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#linear-models-and-a-categoric-y-variable"><i class="fa fa-check"></i><b>8.4</b> Linear models and a categoric <span class="math inline">\(y\)</span> variable</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#ordered-categoric-response-variables"><i class="fa fa-check"></i><b>8.4.1</b> Ordered categoric response variables</a></li>
 <li class="chapter" data-level="8.4.2" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#making-linear-models-with-ranked-data"><i class="fa fa-check"></i><b>8.4.2</b> Making linear models with ranked data</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#hypothesis-tests"><i class="fa fa-check"></i><b>8.5</b> Hypothesis Tests</a><ul>
+<li class="chapter" data-level="8.5" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#hypothesis-tests"><i class="fa fa-check"></i><b>8.5</b> Hypothesis Tests</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="non-parametric-tests-and-linear-models.html"><a href="non-parametric-tests-and-linear-models.html#but-arent-the-tests-just-easier"><i class="fa fa-check"></i><b>8.5.1</b> But aren’t the tests just easier?</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html"><i class="fa fa-check"></i><b>9</b> <span class="math inline">\(\chi ^2\)</span> tests and linear models</a><ul>
+<li class="chapter" data-level="9" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html"><i class="fa fa-check"></i><b>9</b> <span class="math inline">\(\chi ^2\)</span> tests and linear models</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-problem-with-unordered-response-data"><i class="fa fa-check"></i><b>9.1</b> The problem with unordered response data</a></li>
 <li class="chapter" data-level="9.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#we-have-to-compare-models-not-groups."><i class="fa fa-check"></i><b>9.2</b> We have to compare models, not groups.</a></li>
-<li class="chapter" data-level="9.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-chi2-test"><i class="fa fa-check"></i><b>9.3</b> The <span class="math inline">\(\chi^2\)</span> test</a><ul>
+<li class="chapter" data-level="9.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#the-chi2-test"><i class="fa fa-check"></i><b>9.3</b> The <span class="math inline">\(\chi^2\)</span> test</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#performing-the-test"><i class="fa fa-check"></i><b>9.3.1</b> Performing the test</a></li>
 <li class="chapter" data-level="9.3.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#more-than-one-variable"><i class="fa fa-check"></i><b>9.3.2</b> More than one variable</a></li>
 <li class="chapter" data-level="9.3.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#more-than-one-pairwise-comparison"><i class="fa fa-check"></i><b>9.3.3</b> More than one pairwise comparison</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="t-tests-and-linear-models.html"><a href="t-tests-and-linear-models.html#summary"><i class="fa fa-check"></i><b>9.4</b> Summary</a></li>
-<li class="chapter" data-level="9.5" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#plot-ideas-for-categoric-and-count-data"><i class="fa fa-check"></i><b>9.5</b> Plot ideas for categoric and count data</a><ul>
+<li class="chapter" data-level="9.5" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#plot-ideas-for-categoric-and-count-data"><i class="fa fa-check"></i><b>9.5</b> Plot ideas for categoric and count data</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#balloon-plot"><i class="fa fa-check"></i><b>9.5.1</b> Balloon plot</a></li>
 <li class="chapter" data-level="9.5.2" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#heatmap"><i class="fa fa-check"></i><b>9.5.2</b> Heatmap</a></li>
 <li class="chapter" data-level="9.5.3" data-path="chi-2-tests-and-linear-models.html"><a href="chi-2-tests-and-linear-models.html#stacked-bar"><i class="fa fa-check"></i><b>9.5.3</b> Stacked bar</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html"><i class="fa fa-check"></i><b>10</b> More fun with linear models</a><ul>
-<li class="chapter" data-level="10.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#assessing-a-linear-model"><i class="fa fa-check"></i><b>10.1</b> Assessing a linear model</a><ul>
+<li class="chapter" data-level="10" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html"><i class="fa fa-check"></i><b>10</b> More fun with linear models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#assessing-a-linear-model"><i class="fa fa-check"></i><b>10.1</b> Assessing a linear model</a>
+<ul>
 <li class="chapter" data-level="10.1.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#the-terror-of-normality"><i class="fa fa-check"></i><b>10.1.1</b> The terror of normality</a></li>
 <li class="chapter" data-level="10.1.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#checking-whether-the-mean-is-a-good-summary"><i class="fa fa-check"></i><b>10.1.2</b> Checking whether the mean is a good summary</a></li>
 <li class="chapter" data-level="10.1.3" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#spotting-a-good-fit-to-the-data"><i class="fa fa-check"></i><b>10.1.3</b> Spotting a good fit to the data</a></li>
 <li class="chapter" data-level="10.1.4" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#checking-qq-plots-for-a-normal-distribution"><i class="fa fa-check"></i><b>10.1.4</b> Checking qq-plots for a normal distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#predictions"><i class="fa fa-check"></i><b>10.2</b> Predictions</a><ul>
+<li class="chapter" data-level="10.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#predictions"><i class="fa fa-check"></i><b>10.2</b> Predictions</a>
+<ul>
 <li class="chapter" data-level="10.2.1" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#intuition-on-prediction-from-continuous-variables"><i class="fa fa-check"></i><b>10.2.1</b> Intuition on prediction from continuous variables</a></li>
 <li class="chapter" data-level="10.2.2" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#intuition-on-prediction-with-categoric-variables"><i class="fa fa-check"></i><b>10.2.2</b> Intuition on prediction with categoric variables</a></li>
 <li class="chapter" data-level="10.2.3" data-path="more-fun-with-linear-models.html"><a href="more-fun-with-linear-models.html#using-predictions-in-more-complicated-models"><i class="fa fa-check"></i><b>10.2.3</b> Using predictions in more complicated models</a></li>
@@ -282,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="t-tests-and-linear-models" class="section level1">
+<div id="t-tests-and-linear-models" class="section level1" number="6">
 <h1><span class="header-section-number">Topic 6</span> <span class="math inline">\(t\)</span>-tests and linear models</h1>
 <ol style="list-style-type: decimal">
 <li>Questions</li>
@@ -306,14 +329,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The <span class="math inline">\(p\)</span> value of the coefficient tests the same thing as a <span class="math inline">\(t\)</span>-test</li>
 </ul>
 <p>In this section we’ll look at how the linear model can be used as a conceptual tool to understand the sort of comparison a <span class="math inline">\(t\)</span>-test does and as a straightforward way to perform a hypothesis test.</p>
-<div id="recap" class="section level2">
+<div id="recap" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Recap</h2>
 <p>Because I like hammering this point home, Im going to recap two important points from our earlier work on linear models.</p>
 <ol style="list-style-type: decimal">
 <li>The slope of the model is the important thing</li>
 <li>‘Significance’ tests only test whether the difference between two things is ‘probably not 0’</li>
 </ol>
-<div id="the-slope-of-the-model-again" class="section level3">
+<div id="the-slope-of-the-model-again" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> The slope of the model again</h3>
 <p>Recall the simplified linear model equation we developed</p>
 <p><span class="math display">\[\begin{equation}
@@ -328,16 +351,16 @@ y = b
 <p>It is this property that lets us use the linear model to work out whether there is a significant difference between groups. That is to say we can use it as a <span class="math inline">\(t\)</span>-test!</p>
 </div>
 </div>
-<div id="using-two-different-samples-instead-of-a-continuous-x-variable" class="section level2">
+<div id="using-two-different-samples-instead-of-a-continuous-x-variable" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Using two different samples instead of a continuous <span class="math inline">\(x\)</span> variable</h2>
 <p>The second we try to apply what we’ve learned with the linear model to a two-sample dataset we hit an apparent problem because we’ve learned how to make linear models from datasets with a continuous, numeric <span class="math inline">\(x\)</span>-axis, but the data we have for a <span class="math inline">\(t\)</span>-test has a very different two category look, something like these here:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="t-tests-and-linear-models.html#cb47-1"></a><span class="kw">library</span>(itssl)</span>
-<span id="cb47-2"><a href="t-tests-and-linear-models.html#cb47-2"></a></span>
-<span id="cb47-3"><a href="t-tests-and-linear-models.html#cb47-3"></a>continuous_x &lt;-<span class="st"> </span><span class="kw">its_random_xy_time</span>(<span class="dv">20</span>)</span>
-<span id="cb47-4"><a href="t-tests-and-linear-models.html#cb47-4"></a><span class="kw">its_plot_xy_time</span>(continuous_x)</span>
-<span id="cb47-5"><a href="t-tests-and-linear-models.html#cb47-5"></a></span>
-<span id="cb47-6"><a href="t-tests-and-linear-models.html#cb47-6"></a>categoric_x &lt;-<span class="st"> </span><span class="kw">its_bardata_time</span>()</span>
-<span id="cb47-7"><a href="t-tests-and-linear-models.html#cb47-7"></a><span class="kw">its_barplot_time</span>(categoric_x)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="t-tests-and-linear-models.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itssl)</span>
+<span id="cb47-2"><a href="t-tests-and-linear-models.html#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="t-tests-and-linear-models.html#cb47-3" aria-hidden="true" tabindex="-1"></a>continuous_x <span class="ot">&lt;-</span> <span class="fu">its_random_xy_time</span>(<span class="dv">20</span>)</span>
+<span id="cb47-4"><a href="t-tests-and-linear-models.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">its_plot_xy_time</span>(continuous_x)</span>
+<span id="cb47-5"><a href="t-tests-and-linear-models.html#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="t-tests-and-linear-models.html#cb47-6" aria-hidden="true" tabindex="-1"></a>categoric_x <span class="ot">&lt;-</span> <span class="fu">its_bardata_time</span>()</span>
+<span id="cb47-7"><a href="t-tests-and-linear-models.html#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="fu">its_barplot_time</span>(categoric_x)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-48-1.png" width="50%" /><img src="intro_to_stats_files/figure-html/unnamed-chunk-48-2.png" width="50%" /></p>
 <p>Rest assured, the problem isn’t insurmountable. We need to do a couple of numeric tricks to get this to work like the continuous data, and they’re fairly easy, so let’s run through them,</p>
 <p>The first step is to realise that although we are used to thinking of the each of the bars representing a single number, that single number is (almost always) a summary, like a mean of replicate values, so let’s go back to those source numbers as a first step and plot those, here are some examples</p>
@@ -377,11 +400,11 @@ y = b
 </table>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>plotting gives us something a lot more like the scatter plot we need for the model as we’ve been thinking about it, but it isn’t quite clear how the categorical <span class="math inline">\(x\)</span> becomes numeric. To do this we simply select a number for each group, so our data will look like this</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="t-tests-and-linear-models.html#cb48-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb48-2"><a href="t-tests-and-linear-models.html#cb48-2"></a>long_x &lt;-<span class="st"> </span><span class="kw">its_wide_to_long_time</span>(categoric_x) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb48-3"><a href="t-tests-and-linear-models.html#cb48-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">x =</span> <span class="kw">if_else</span>(group <span class="op">==</span><span class="st"> &quot;group1&quot;</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb48-4"><a href="t-tests-and-linear-models.html#cb48-4"></a></span>
-<span id="cb48-5"><a href="t-tests-and-linear-models.html#cb48-5"></a><span class="kw">its_table_time</span>(long_x)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="t-tests-and-linear-models.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb48-2"><a href="t-tests-and-linear-models.html#cb48-2" aria-hidden="true" tabindex="-1"></a>long_x <span class="ot">&lt;-</span> <span class="fu">its_wide_to_long_time</span>(categoric_x) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="t-tests-and-linear-models.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">if_else</span>(group <span class="sc">==</span> <span class="st">&quot;group1&quot;</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb48-4"><a href="t-tests-and-linear-models.html#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="t-tests-and-linear-models.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">its_table_time</span>(long_x)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -454,8 +477,8 @@ y = b
 </tbody>
 </table>
 <p>So now we can make a plot with two numeric axes, that looks a lot more like the one we’re expecting for our model</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="t-tests-and-linear-models.html#cb49-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb49-2"><a href="t-tests-and-linear-models.html#cb49-2"></a>  <span class="kw">ggplot</span>(long_x) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(x, value) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="t-tests-and-linear-models.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb49-2"><a href="t-tests-and-linear-models.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(long_x) <span class="sc">+</span> <span class="fu">aes</span>(x, value) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_minimal</span>() </span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>albeit with the <span class="math inline">\(x\)</span>-values in two places on the <span class="math inline">\(x\)</span>-axis - its enough for us to make a slope on the line between the two groups and that means that we can use the linear model for the categoric data, as we did for the continuous.</p>
 <p>If this seems like a bit of a ‘hack’ then I’d agree. However, this is part of the numeric bookkeeping that we often have to do in statistics. Its not wrong and ‘hacks’ are usually just pragmatic and useful solutions to problems, this one is completely mathematically legitimate as well as useful.</p>
@@ -463,11 +486,11 @@ y = b
 <p>The good news is that once we have our data set up with a category and value column, the <code>lm()</code> function just deals with assigning the numbers for us, we don’t have to worry, the problem of continuous or categoric <span class="math inline">\(x\)</span>-axes just disappears! All you need to know is that under the hood the linear model uses numbers for categories instead of words to make things easy.</p>
 <p>Now that we understand how we can use categoric data in a linear model, let’s get to the point of this chapter and work through an example of a linear model based hypothesis test for differences between two groups that functions as a <span class="math inline">\(t\)</span>-test.</p>
 </div>
-<div id="the-plantgrowth-data" class="section level2">
+<div id="the-plantgrowth-data" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> The PlantGrowth data</h2>
 <p>R comes with lots of datasets built in. One if these is <code>PlantGrowth</code>, which describes the dry weight of plants in grams in replicated measurements in a control and two treatments. We can load it with <code>data()</code> and get a <code>summary()</code></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="t-tests-and-linear-models.html#cb50-1"></a><span class="kw">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span>
-<span id="cb50-2"><a href="t-tests-and-linear-models.html#cb50-2"></a><span class="kw">summary</span>(PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="t-tests-and-linear-models.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;PlantGrowth&quot;</span>)</span>
+<span id="cb50-2"><a href="t-tests-and-linear-models.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(PlantGrowth)</span></code></pre></div>
 <pre><code>##      weight       group   
 ##  Min.   :3.590   ctrl:10  
 ##  1st Qu.:4.550   trt1:10  
@@ -475,7 +498,7 @@ y = b
 ##  Mean   :5.073            
 ##  3rd Qu.:5.530            
 ##  Max.   :6.310</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="t-tests-and-linear-models.html#cb52-1"></a><span class="kw">head</span>(PlantGrowth)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="t-tests-and-linear-models.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PlantGrowth)</span></code></pre></div>
 <pre><code>##   weight group
 ## 1   4.17  ctrl
 ## 2   5.58  ctrl
@@ -486,8 +509,8 @@ y = b
 <p>We have three groups and one measurement. The <span class="math inline">\(x\)</span> values would come from the <code>group</code> column (and we now know that because it is categoric rather than continuous we needn’t worry, the model functions will just do the conversion for us). And of course the <span class="math inline">\(y\)</span> values would come from the <code>weight</code> column.</p>
 <p>In linear modelling jargon, the <span class="math inline">\(x\)</span> values are called the independent or explanatory variable, simply because this is the one we changed over the course of the experiment. The <span class="math inline">\(y\)</span> values are called the dependent or response variables as this is the one that responds or changes according to the changes in the independent variable.</p>
 <p>For simplicity at this stage we’ll work with two groups only. Let’s remove <code>trt2</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="t-tests-and-linear-models.html#cb54-1"></a>two_groups &lt;-<span class="st"> </span><span class="kw">its_remove_a_group_time</span>(PlantGrowth)</span>
-<span id="cb54-2"><a href="t-tests-and-linear-models.html#cb54-2"></a><span class="kw">summary</span>(two_groups)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="t-tests-and-linear-models.html#cb54-1" aria-hidden="true" tabindex="-1"></a>two_groups <span class="ot">&lt;-</span> <span class="fu">its_remove_a_group_time</span>(PlantGrowth)</span>
+<span id="cb54-2"><a href="t-tests-and-linear-models.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(two_groups)</span></code></pre></div>
 <pre><code>##      weight       group   
 ##  Min.   :3.590   ctrl:10  
 ##  1st Qu.:4.388   trt1:10  
@@ -496,17 +519,17 @@ y = b
 ##  3rd Qu.:5.218            
 ##  Max.   :6.110</code></pre>
 <p>With that done, we can look at the categorical scatter plot.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="t-tests-and-linear-models.html#cb56-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb56-2"><a href="t-tests-and-linear-models.html#cb56-2"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(two_groups) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(group, weight) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span>
-<span id="cb56-3"><a href="t-tests-and-linear-models.html#cb56-3"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="t-tests-and-linear-models.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb56-2"><a href="t-tests-and-linear-models.html#cb56-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(two_groups) <span class="sc">+</span> <span class="fu">aes</span>(group, weight) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb56-3"><a href="t-tests-and-linear-models.html#cb56-3" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <p>We can clearly see the weight spread in each group. By eye we can see that the groups overlap in the <span class="math inline">\(y\)</span>-axis (weight) quite considerably, though <code>trt1</code> seems to have a couple of data points that are lower.</p>
 </div>
-<div id="a-linear-model-with-a-categoric-x-axis" class="section level2">
+<div id="a-linear-model-with-a-categoric-x-axis" class="section level2" number="6.4">
 <h2><span class="header-section-number">6.4</span> A linear model with a categoric <span class="math inline">\(x\)</span>-axis</h2>
 <p>Let’s make the linear model and get the intercept and coefficient of the line. This can be done with <code>lm()</code> as we did before.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="t-tests-and-linear-models.html#cb57-1"></a>two_groups_model &lt;-<span class="st"> </span><span class="kw">lm</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> two_groups)</span>
-<span id="cb57-2"><a href="t-tests-and-linear-models.html#cb57-2"></a>two_groups_model</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="t-tests-and-linear-models.html#cb57-1" aria-hidden="true" tabindex="-1"></a>two_groups_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> group, <span class="at">data =</span> two_groups)</span>
+<span id="cb57-2"><a href="t-tests-and-linear-models.html#cb57-2" aria-hidden="true" tabindex="-1"></a>two_groups_model</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ group, data = two_groups)
@@ -516,10 +539,10 @@ y = b
 ##       5.032       -0.371</code></pre>
 <p>That calculates easily! The <code>lm()</code> isn’t worried by the fact that one of our variables is categoric. It knows all the levels of the <code>group</code> variable and gives us the intercept and coefficient as it did before.</p>
 </div>
-<div id="using-the-statistics-of-the-linear-model-to-test-for-differences" class="section level2">
+<div id="using-the-statistics-of-the-linear-model-to-test-for-differences" class="section level2" number="6.5">
 <h2><span class="header-section-number">6.5</span> Using the statistics of the linear model to test for differences</h2>
 <p>Now we have a categoric linear model built we can start to look at how to use it to check for differences between the groups.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="t-tests-and-linear-models.html#cb59-1"></a><span class="kw">summary</span>(two_groups_model)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="t-tests-and-linear-models.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(two_groups_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = weight ~ group, data = two_groups)
@@ -539,39 +562,39 @@ y = b
 ## Multiple R-squared:  0.07308,	Adjusted R-squared:  0.02158 
 ## F-statistic: 1.419 on 1 and 18 DF,  p-value: 0.249</code></pre>
 <p>From the output we can see the coefficient isn’t huge, only about 1/3 of a gram <em>decrease</em> as we change along the <span class="math inline">\(x\)</span> axis by one unit. Saying change along the axis by one unit in categoric axes sounds a bit strange, but in the categoric data it just means switching from one group to the next. Recall that we put one group at 0 and the second at 1 when we were doing the numeric ‘hack’ above, the distance between the groups is defined as 1, so it all makes sense to say ’a change along the <span class="math inline">\(x\)</span> by one unit. Lets add the line to the plot and have a look.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="t-tests-and-linear-models.html#cb61-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="fl">5.03</span>, <span class="dt">slope =</span> <span class="fl">-0.371</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="t-tests-and-linear-models.html#cb61-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">5.03</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">0.371</span>)</span></code></pre></div>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <p>Just looking at the plot makes the line seem more substantial than it is. Looking at the <span class="math inline">\(y\)</span>-axis and the places where the line intercepts with the categories then we can see the difference is close to the coefficient.</p>
-<div id="the-coefficient-and-the-mean-difference-between-groups-are-equivalent" class="section level3">
+<div id="the-coefficient-and-the-mean-difference-between-groups-are-equivalent" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> The coefficient and the mean difference between groups are equivalent</h3>
 <p>Before we move along with our model, we should look at that coefficient of the group variable a bit more. As we’re moving from the <code>ctrl</code> to <code>treatment</code> groups the coefficient tells us the size of the change. So does this mean that the coefficient is equivalent to other measures by which we can tell the difference in two groups - is it, for example equivalent to calculating the difference in the means of the groups? Short answer is yes! Let’s look at that, recalling that the coefficient is <code>-0.371</code>.</p>
 <p>First get the means of the groups using a little <code>dplyr</code></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="t-tests-and-linear-models.html#cb62-1"></a>mean_two_groups &lt;-<span class="st"> </span>two_groups <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb62-2"><a href="t-tests-and-linear-models.html#cb62-2"></a><span class="st">  </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb62-3"><a href="t-tests-and-linear-models.html#cb62-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_wt =</span> <span class="kw">mean</span>(weight))</span>
-<span id="cb62-4"><a href="t-tests-and-linear-models.html#cb62-4"></a></span>
-<span id="cb62-5"><a href="t-tests-and-linear-models.html#cb62-5"></a>mean_two_groups</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="t-tests-and-linear-models.html#cb62-1" aria-hidden="true" tabindex="-1"></a>mean_two_groups <span class="ot">&lt;-</span> two_groups <span class="sc">%&gt;%</span> </span>
+<span id="cb62-2"><a href="t-tests-and-linear-models.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span> </span>
+<span id="cb62-3"><a href="t-tests-and-linear-models.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_wt =</span> <span class="fu">mean</span>(weight))</span>
+<span id="cb62-4"><a href="t-tests-and-linear-models.html#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="t-tests-and-linear-models.html#cb62-5" aria-hidden="true" tabindex="-1"></a>mean_two_groups</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   group mean_wt
 ##   &lt;fct&gt;   &lt;dbl&gt;
 ## 1 ctrl     5.03
 ## 2 trt1     4.66</code></pre>
 <p>Now calculate the difference</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="t-tests-and-linear-models.html#cb64-1"></a><span class="fl">5.03</span> <span class="op">-</span><span class="st"> </span><span class="fl">4.66</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="t-tests-and-linear-models.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fl">5.03</span> <span class="sc">-</span> <span class="fl">4.66</span></span></code></pre></div>
 <pre><code>## [1] 0.37</code></pre>
 <p>There you have it, the absolute values of each are very similar. You can use the coefficient as a way of finding the difference between the groups. Another handy feature of the linear model.</p>
 </div>
-<div id="the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test" class="section level3">
+<div id="the-p-value-of-the-co-efficient-tests-the-same-thing-as-a-t-test" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> The <span class="math inline">\(p\)</span>-value of the co-efficient tests the same thing as a <span class="math inline">\(t\)</span>-test</h3>
 <p>We already know that the <span class="math inline">\(Pr(&gt;|t|)\)</span> value (<span class="math inline">\(p\)</span>-value of the coefficient) tells us the probability that we would see the slope observed or greater in random samples if the real difference were 0. The two-sample <span class="math inline">\(t\)</span>-test reports the probability that we would see the difference in means observed if the real difference were 0. So the two are very similar, the question is are they similar enough as a replacement?</p>
 <p>The <span class="math inline">\(p\)</span>-value for the coefficient in the linear model was 0.249. How does this compare with a <span class="math inline">\(t\)</span>-test?</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="t-tests-and-linear-models.html#cb66-1"></a><span class="kw">t.test</span>(weight <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> two_groups)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="t-tests-and-linear-models.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(weight <span class="sc">~</span> group, <span class="at">data =</span> two_groups)</span></code></pre></div>
 <pre><code>## 
 ## 	Welch Two Sample t-test
 ## 
 ## data:  weight by group
 ## t = 1.1913, df = 16.524, p-value = 0.2504
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group ctrl and group trt1 is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.2875162  1.0295162
 ## sample estimates:
@@ -581,7 +604,7 @@ y = b
 <p>All you have to understand is that you are looking at the slope of the line between the groups. If you don’t see a slope of that size very often, then you can say its not likely that there’s no difference<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 </div>
 </div>
-<div id="summary" class="section level2">
+<div id="summary" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Summary</h2>
 <p>Hopefully, this plot summarises how to look for differences between two groups using a linear model quite succinctly.</p>
 <ol style="list-style-type: decimal">
@@ -604,7 +627,7 @@ When we’re thinking of the coefficient of the linear model for differences we�
 <p>and it can be summarised verbally as in this diagram</p>
 <p><img src="intro_to_stats_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
-<div id="but-wasnt-the-t-test-just-easier" class="section level2">
+<div id="but-wasnt-the-t-test-just-easier" class="section level2" number="6.7">
 <h2><span class="header-section-number">6.7</span> But wasn’t the <span class="math inline">\(t\)</span>-test just easier?</h2>
 <p>In the sloped line / linear model process we’ve been learning we used the <code>t.test()</code> function to calculate the <span class="math inline">\(p\)</span>-value that tested the hypothesis that the true difference in the means between groups was 0. This was pretty easy and we didn’t have to think too hard, we just got the result. Why wouldn’t we stick to just using that, especially if it’s equivalent to the linear model? There’s no definitive reason, the <span class="math inline">\(t\)</span>-test is a perfectly good tool, and it’s a great one to use. Don’t feel like I’m telling you not to use the <span class="math inline">\(t\)</span>-test.</p>
 <p>The focus of this whole tutorial is to give you a way to think of statistical techniques that is generally useful. Because the linear model provides a general answer to all these sorts of questions - one small set of techniques is re-usable lots of times, so the idea goes that in lots of experiments the statistics become a lot easier to understand. I hope I’m not confusing the two intents. If you’ve followed the logic of the straight line and slope and the linear model and can use it to inform your <span class="math inline">\(t\)</span>-test usage in the future, then we’re in good shape.</p>
@@ -618,9 +641,9 @@ When we’re thinking of the coefficient of the linear model for differences we�
 </ul>
 
 <div class="task">
-
+<p>Complete the interactive tutorial online <a href="http://v1068.nbi.ac.uk/datasci/ttests/">http://v1068.nbi.ac.uk/datasci/ttests/</a></p>
+This will only work on the NBI site.
 </div>
-
 
 </div>
 </div>
