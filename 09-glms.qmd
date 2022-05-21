@@ -1,0 +1,27 @@
+# Generalized Linear Models
+
+1. Questions
+  * What can I use when linear models don't work well?
+2. Objectives
+  * Know that the linear model idea can be extended for more than the Normal Distribution
+3. Keypoints
+  * Linear models are one member of a larger family of models for many types of data
+
+
+In this section we'll briefly discuss the next level of linear model, the generalised linear model.
+
+
+Generalized Linear Models (GLMs) are, as the name might suggest, a generalization of the linear model that can be used when the residuals are not normally distributed. We went to quite a lot of trouble in this chapter to learn how to identify normally distributed residuals and input data and to press home the idea that if we do have data that look mostly normal then the linear model is still a useful tool. However, there are many situations where your data isn't going to be anything like normal and that's where a GLM is helpful. GLMs are particularly useful instance in non-linear situations like exponentially changing data or count data, indeed in earlier chapters we did see some data that definitely didn't fit a normal (though we didn't point it out explicitly at the time) the frequency data in the $\chi^2$ test section wasn't usable in a linear model without a great deal of fiddling. 
+
+:::{.callout-note}
+Actually, with a lot of non-normal data, e.g exponential data, we can 'hack' our data to be more normal by applying a transformation such as taking logs, and then proceed as before. Often we can't or shouldn't and that's where Generalized Linear Models come in.
+:::
+
+GLMs can be thought of as clever linear models that you can specify the type of distribution the residual has, this means the mathematics is a lot more complicated, but in practice it's just another function in R - `glm()` which is related to `lm()` and works much like it with some extra options to set.
+
+GLMs are a powerful thing and great to know about, and once you've got the hang of linear models not terribly hard to use, keep them in mind as you work through your analyses and if you come across a data set that doesn't seem to fit well with linear models, maybe you need to move over to a GLM.
+
+:::{.callout-tip}
+## Roundup
+  * Linear models are one member of a larger family of models for many types of data, Generalized Linear models are the general class of tool.
+:::

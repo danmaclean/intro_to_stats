@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.387">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Understanding Statistics Through Linear Models - 2&nbsp; The linear model</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<link href="./03-ttest.html" rel="next">
+<link href="./01-background.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The linear model</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Understanding Statistics Through Linear Models</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Understanding-Statistics-Through-Linear-Models.pdf" title="Download PDF" class="sidebar-tool px-1"><i class="bi bi-file-pdf"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Background</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-background.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-linear-models.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The linear model</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Common statistical tests</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="math inline">\(t\)</span>-tests and linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ANOVA and linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-discrete.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Non-parametric tests and linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-loglinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><span class="math inline">\(\chi ^2\)</span> tests and linear models</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">More applications of linear models</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-testing_model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Checking the quality of a linear model</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-predictions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Predictions</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Beyond linear models</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-glms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-fundamentals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R Fundamentals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#from-straight-lines-to-data" id="toc-from-straight-lines-to-data" class="nav-link active" data-scroll-target="#from-straight-lines-to-data"> <span class="header-section-number">2.1</span> From straight lines to data</a></li>
+  <li><a href="#straight-line-relationships-are-described-using-two-parameters" id="toc-straight-line-relationships-are-described-using-two-parameters" class="nav-link" data-scroll-target="#straight-line-relationships-are-described-using-two-parameters"> <span class="header-section-number">2.2</span> Straight line relationships are described using two parameters</a></li>
+  <li><a href="#linear-models-try-to-create-a-linear-equation-from-data" id="toc-linear-models-try-to-create-a-linear-equation-from-data" class="nav-link" data-scroll-target="#linear-models-try-to-create-a-linear-equation-from-data"> <span class="header-section-number">2.3</span> Linear models try to create a linear equation from data</a></li>
+  <li><a href="#linear-models-describe-relationships-between-variables" id="toc-linear-models-describe-relationships-between-variables" class="nav-link" data-scroll-target="#linear-models-describe-relationships-between-variables"> <span class="header-section-number">2.4</span> Linear models describe relationships between variables</a></li>
+  <li><a href="#not-all-lines-of-best-fit-are-equally-good" id="toc-not-all-lines-of-best-fit-are-equally-good" class="nav-link" data-scroll-target="#not-all-lines-of-best-fit-are-equally-good"> <span class="header-section-number">2.5</span> Not all lines of best fit are equally good</a></li>
+  <li><a href="#linear-models-contain-statistics-describing-the-goodness-of-the-model" id="toc-linear-models-contain-statistics-describing-the-goodness-of-the-model" class="nav-link" data-scroll-target="#linear-models-contain-statistics-describing-the-goodness-of-the-model"> <span class="header-section-number">2.6</span> Linear models contain statistics describing the goodness of the model</a>
+  <ul class="collapse">
+  <li><a href="#residual-standard-error" id="toc-residual-standard-error" class="nav-link" data-scroll-target="#residual-standard-error"> <span class="header-section-number">2.6.1</span> Residual Standard Error</a></li>
+  <li><a href="#r2" id="toc-r2" class="nav-link" data-scroll-target="#r2"> <span class="header-section-number">2.6.2</span> <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#f-statistic" id="toc-f-statistic" class="nav-link" data-scroll-target="#f-statistic"> <span class="header-section-number">2.6.3</span> <span class="math inline">\(F\)</span>-Statistic</a></li>
+  </ul></li>
+  <li><a href="#coefficients-have-statistics" id="toc-coefficients-have-statistics" class="nav-link" data-scroll-target="#coefficients-have-statistics"> <span class="header-section-number">2.7</span> Coefficients have statistics</a>
+  <ul class="collapse">
+  <li><a href="#estimate" id="toc-estimate" class="nav-link" data-scroll-target="#estimate"> <span class="header-section-number">2.7.1</span> Estimate</a></li>
+  <li><a href="#std.-error" id="toc-std.-error" class="nav-link" data-scroll-target="#std.-error"> <span class="header-section-number">2.7.2</span> Std. Error</a></li>
+  <li><a href="#t-value" id="toc-t-value" class="nav-link" data-scroll-target="#t-value"> <span class="header-section-number">2.7.3</span> <span class="math inline">\(t\)</span>-value</a></li>
+  <li><a href="#prt" id="toc-prt" class="nav-link" data-scroll-target="#prt"> <span class="header-section-number">2.7.4</span> <span class="math inline">\(Pr(&gt;|t|)\)</span></a></li>
+  </ul></li>
+  <li><a href="#a-non-zero-slope-is-what-matters" id="toc-a-non-zero-slope-is-what-matters" class="nav-link" data-scroll-target="#a-non-zero-slope-is-what-matters"> <span class="header-section-number">2.8</span> A non-zero slope is what matters</a></li>
+  <li><a href="#major-points" id="toc-major-points" class="nav-link" data-scroll-target="#major-points"> <span class="header-section-number">2.9</span> Major points</a></li>
+  <li><a href="#extra-credit-understanding-linear-models-through-the-notation" id="toc-extra-credit-understanding-linear-models-through-the-notation" class="nav-link" data-scroll-target="#extra-credit-understanding-linear-models-through-the-notation"> <span class="header-section-number">2.10</span> Extra credit: Understanding linear models through the notation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The linear model</span></h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<ol type="1">
+<li>Questions</li>
+</ol>
+<ul>
+<li>How do we describe a straight line?</li>
+<li>What is a linear model?</li>
+<li>How <em>exactly</em> does a straight line and a linear model help us determine differences?</li>
+</ul>
+<ol start="2" type="1">
+<li>Objectives</li>
+</ol>
+<ul>
+<li>Understand the parameters of a straight line</li>
+<li>Understand the statistical components of a linear model</li>
+<li>Understand how a sloped line implies a difference in a linear model</li>
+</ul>
+<ol start="3" type="1">
+<li>Keypoints</li>
+</ol>
+<ul>
+<li>Straight lines have two parameters</li>
+<li>Linear models contain statistics</li>
+<li>Linear models can tell us whether a slope is likely flat or not given the data</li>
+</ul>
+<section id="from-straight-lines-to-data" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="from-straight-lines-to-data"><span class="header-section-number">2.1</span> From straight lines to data</h2>
+<p>Now that we’ve decided to use the straight line as our Null Model, with a flat line being the case where there is no difference and a sloped line being otherwise, we need to start to think about lines and a statistical relative called a Linear Models. Linear models are a tool that are similar to a line of best fit, with measures of the variability of the data points that go in to building them. The linear model will be how we bring statistical rigour into our conceptual tool of using straight lines to think about differences. In this section we’ll look at them in some detail, but first we’ll recap some facts about straight lines.</p>
+</section>
+<section id="straight-line-relationships-are-described-using-two-parameters" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="straight-line-relationships-are-described-using-two-parameters"><span class="header-section-number">2.2</span> Straight line relationships are described using two parameters</h2>
+<p>Its all about <span class="math inline">\(y = ax + b\)</span> (or <span class="math inline">\(y = mx + c\)</span>, depending on where you went to school). These two equivalent formulae are the standard high-school equations for describing a straight line. They represent how the quantity <span class="math inline">\(y\)</span> changes as <span class="math inline">\(x\)</span> does.</p>
+<p>As a refresher, <span class="math inline">\(a\)</span> tells us how much <span class="math inline">\(y\)</span> increases for every unit increase in <span class="math inline">\(x\)</span>. Here’s an example for the equation <span class="math inline">\(y = 4x\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itssl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">its_axplusb_time</span>(<span class="at">a =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>If we play about with that value, the slope of the line changes, the <span class="math inline">\(a\)</span> term is known as the slope, or gradient, or more often because it is just a multiplier of <span class="math inline">\(x\)</span> its called the coefficient. Here’s some different coefficients just to prove that point</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_axplusb_time</span>(<span class="at">a =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"deepskyblue"</span>) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">6</span>, <span class="at">colour =</span> <span class="st">"darkorange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>The <span class="math inline">\(b\)</span> part of the formula just tells us how much we add on to <span class="math inline">\(y\)</span> after we’ve calculated the coefficient effect. It has the effect of pushing the line up and down the y-axis. When we look at the value of <span class="math inline">\(y\)</span> for <span class="math inline">\(x = 0\)</span> we get the position that the graph hits the y-axis so this number is often called the intercept. Here’s a set of lines to show that.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_axplusb_time</span>(<span class="at">a =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="sc">-</span><span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"deepskyblue"</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">its_add_line_time</span>(<span class="at">a =</span> <span class="dv">4</span>, <span class="at">b =</span> <span class="dv">2</span>, <span class="at">colour =</span> <span class="st">"darkorange"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="480"></p>
+</div>
+</div>
+<p>That’s all we need to know about the equation of the straight line. Now we need to look at how they’re a useful tool when analysing experimental data.</p>
+</section>
+<section id="linear-models-try-to-create-a-linear-equation-from-data" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="linear-models-try-to-create-a-linear-equation-from-data"><span class="header-section-number">2.3</span> Linear models try to create a linear equation from data</h2>
+<p>A linear model is a simplification of the relationship between some sets of numbers (in the simple case we will introduce here, it is two sets, but it can be more). At its heart is a straight line, with the equation we discussed above and a certain set of values for <span class="math inline">\(a\)</span> (the coefficient) and <span class="math inline">\(b\)</span> the intercept, along with some statistics that describe the strength of the relationship.</p>
+<p>Let’s walk through building one, graphically and in R.</p>
+<p>First we need some sets of values, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Usually, these would be from an experiment, but here I’ll make some toy ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">its_random_xy_time</span>(<span class="dv">20</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">its_plot_xy_time</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The graph shows 20 random <span class="math inline">\(x\)</span> values between 5 and 15 plotted against 20 <span class="math inline">\(y\)</span> values which are calculated as <span class="math inline">\(2x\)</span> with a little random noise added. We can see that there is definitely a relationship (not least because we engineered it that way). The objective of the linear model is to quantify and describe the relationship in some way and here’s where the linear equation comes in. If we could come up with a line that fitted through the data we could use the equation of that line to roughly describe - or model - our data. Skipping to the end a bit, then there is absolutely a way to get the line from the data. The methods are described in lots of statistics books so I won’t repeat them, but you may be familiar with the general methods, it’s the ‘line of best fit’ according to the ordinary least squares method. Details aside, the actual linear model function we need in R is <code>lm()</code> and it works like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>That’s it! The function <code>lm()</code> does the work, it takes a fairly odd syntax, though. The <code>y ~ x</code> bit is an R formula and describes the relationship you want to examine, you can read it as <code>y depends on x</code>. The <code>y</code> and <code>x</code> we’re referring to here are the two columns of numbers we created and plotted above, the <code>data</code> argument just says in which object to look for the data.</p>
+<p>Looking at the function output we get this</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = df)
+
+Coefficients:
+(Intercept)            x  
+      0.778        1.955  </code></pre>
+</div>
+</div>
+<p>These are the intercept (<span class="math inline">\(b\)</span>) and the coefficient of <span class="math inline">\(x\)</span> (<span class="math inline">\(a\)</span>) that we need to describe the line. So our data are described by the line <span class="math inline">\(y = 1.955x + 0.778\)</span>.</p>
+<p>So this line is a model of the data, it’s a model in the sense that it is something that represents our data, but isn’t it. Looking at them together we can see the model and the data it stands for.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_plot_xy_time</span>(df, <span class="at">line =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The line alone can be useful to teach us about our data, but there’s more to the linear model than just the line.</p>
+</section>
+<section id="linear-models-describe-relationships-between-variables" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="linear-models-describe-relationships-between-variables"><span class="header-section-number">2.4</span> Linear models describe relationships between variables</h2>
+<p>Beyond working out the equation of the line, the linear model process aims to quantify and describe relationships between the variables in the data, in our toy example the variables are <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Specifically when we say ‘relationship’, we mean whether a change in the value of <span class="math inline">\(x\)</span> appears to go along with some change in the value of <span class="math inline">\(y\)</span>.</p>
+<p>In other words, we can think of relationship as being the slope. If <span class="math inline">\(x\)</span> causes some change in <span class="math inline">\(y\)</span> when we plot it then there must be a slope. We call the slope <span class="math inline">\(a\)</span> in our equation of a line and we call it the coefficient of the <span class="math inline">\(x\)</span> term in our linear model. These are all equivalent interpretations for our purposes, slope, relationship, coefficient.</p>
+<p>Linear models calculate statistics to help us decide whether the coefficient/slope/<span class="math inline">\(a\)</span> of the relationship we observe is important or not.</p>
+</section>
+<section id="not-all-lines-of-best-fit-are-equally-good" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="not-all-lines-of-best-fit-are-equally-good"><span class="header-section-number">2.5</span> Not all lines of best fit are equally good</h2>
+<p>Although a line of best fit can always be calculated, the line might not be worth much. Consider two sets of very similar numbers. Here’s two vectors of random numbers with the same mean and their plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>more_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">15</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">its_plot_xy_time</span>(more_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can definitely calculate a line that fits these,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> more_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = more_df)
+
+Coefficients:
+(Intercept)            x  
+    10.4695       0.1103  </code></pre>
+</div>
+</div>
+<p>and it would be <span class="math inline">\(y = 0.1103x + 10.6495\)</span>. But if we compare the fit of those lines, like in these plots</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>we can clearly see that not all lines are created equal. The first line fits the data much more closely than the second one. We can also see that the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is much weaker in the second set than in the first (the coefficient/slope/<span class="math inline">\(a\)</span> is weaker. So a sensible linear model of our data would give us not just the equation but also measures of the closeness of fit and therefore believability of the value of slope of the line. In terms of our Null Model flat line/sloped line model this means that when we have a significant coefficient, we are not likely to have a flat line. Let’s look at the statistics in the linear model that show us what a significant coefficient is.</p>
+</section>
+<section id="linear-models-contain-statistics-describing-the-goodness-of-the-model" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="linear-models-contain-statistics-describing-the-goodness-of-the-model"><span class="header-section-number">2.6</span> Linear models contain statistics describing the goodness of the model</h2>
+<p>The same function we’ve already used - <code>lm()</code> - calculates certain statistics. We can print them using the <code>summary()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.17560 -1.00570 -0.01092  1.17016  1.83047 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   0.7780     1.1442    0.68    0.505    
+x             1.9555     0.1122   17.42 1.03e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.303 on 18 degrees of freedom
+Multiple R-squared:  0.944, Adjusted R-squared:  0.9409 
+F-statistic: 303.6 on 1 and 18 DF,  p-value: 1.027e-12</code></pre>
+</div>
+</div>
+<p>This output is verbose, there are four blocks.</p>
+<ol type="1">
+<li><code>Model Call</code> - just a restatement of the function we called</li>
+<li><code>Residuals</code> - a set of measures of the distribution of the residuals, we’ll look at this later.</li>
+<li><code>Coefficients</code> - the terms of the equation and their statistics; so the intercept (<span class="math inline">\(b\)</span>) and the coefficient of <code>x</code> (<span class="math inline">\(a\)</span>) that we’ve already seen and the <code>Estimate</code> (computed values of those). We see also columns of statistics for each.</li>
+<li>The model level statistics summary - some statistics that apply to the whole model.</li>
+</ol>
+<p>Let’s start at the bottom and look at model level summary.</p>
+<section id="residual-standard-error" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="residual-standard-error"><span class="header-section-number">2.6.1</span> Residual Standard Error</h3>
+<p>This is a measure of how well the line fits the data. In essence Residual Standard Error is the average distance from each real data point to the line, the further the points are from the line (the worse the fit) the bigger the Residual Standard Error. If you look at the plots again with those distances drawn in you can see quite clearly the residual error for the second model is much bigger than for the first.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+The error term
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We’re working hard here to avoid using too much mathematical notation and examination of the mechanics of the linear model, but the residuals are quite an important aspect, so Im going to use this aside to delve just a little deeper. Unlike the linear equation, the linear model has an extra error term, <span class="math inline">\(e\)</span> which represents the residuals by quantifying the average distance from the actual measurments to the line in the y-axis.</p>
+<p>The <span class="math inline">\(e\)</span> term adds something onto the y value of the whole equation; the bigger <span class="math inline">\(e\)</span> is the more we need to add on to the value of the <span class="math inline">\(x\)</span> from the line to get the real <span class="math inline">\(y\)</span>. Logically, the bigger <span class="math inline">\(e\)</span> is the more the line misses the points in the model overall. The error is a major determinent of whether a model is any good or whether things are significant so it’s worth knowing how it relates to the model.</p>
+</div>
+</div>
+</section>
+<section id="r2" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="r2"><span class="header-section-number">2.6.2</span> <span class="math inline">\(R^2\)</span></h3>
+<p><span class="math inline">\(R^2\)</span> is another measure of how well the model fits the data. If you’re thinking correlation coefficient here, then you’re in the right area. <span class="math inline">\(R^2\)</span> describes the proportion of variance in the <span class="math inline">\(y\)</span> values that can be explained by the <span class="math inline">\(x\)</span> values. The <span class="math inline">\(R^2\)</span> always falls between 0 and 1. Closer to 1 is usually better, but it is very domain and dataset dependent. With small and biological data sets, we don’t always see values close to 1 because of the noise of the system.</p>
+<p>The proper one to use in <del>most</del> all cases is the <code>Adjusted R-squared</code>.</p>
+<section id="r2-versus-residual-standard-error" class="level4" data-number="2.6.2.1">
+<h4 data-number="2.6.2.1" class="anchored" data-anchor-id="r2-versus-residual-standard-error"><span class="header-section-number">2.6.2.1</span> <span class="math inline">\(R^2\)</span> versus Residual Standard Error</h4>
+<p>So what’s the difference between these two - at first glance they do the same thing. The major difference is that RSE is in the units of the data and <span class="math inline">\(R^2\)</span> is in relative units, so you can use them in different situations e.g if you want to make your model work within particular tolerances or you want to compare models in different units.</p>
+</section>
+</section>
+<section id="f-statistic" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="f-statistic"><span class="header-section-number">2.6.3</span> <span class="math inline">\(F\)</span>-Statistic</h3>
+<p>The <span class="math inline">\(F\)</span>-Statistic is an indicator of a relationship between the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> values of the model. In effect <span class="math inline">\(F\)</span> tests how much better the relationship is in your model than a model in which the relationship is completely random. It’s actually a ratio such that when the <span class="math inline">\(F\)</span>-statistic is at 1, the relationship is no stronger than a random relationship. The further above 1 <span class="math inline">\(F\)</span> is, the more it is likely there is a real relationship in the model. The <span class="math inline">\(p\)</span> value here is the <span class="math inline">\(p\)</span> that this size of <span class="math inline">\(F\)</span> would occur in a random relationship with a similar dataset size. As with the other statistics, the significance of the actual size of <span class="math inline">\(F\)</span> is dependent on the domain and data being analysed.</p>
+</section>
+</section>
+<section id="coefficients-have-statistics" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="coefficients-have-statistics"><span class="header-section-number">2.7</span> Coefficients have statistics</h2>
+<p>Along with these model level statistics, linear modelling with <code>lm()</code> gives us a set of statistics <em>per coefficient</em>. These measure the effect that each coefficient has on the output variable <span class="math inline">\(y\)</span>. Basically a significant coefficient, is one that has a non-zero slope and is an important determinant of the value of <span class="math inline">\(y\)</span>.</p>
+<section id="estimate" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="estimate"><span class="header-section-number">2.7.1</span> Estimate</h3>
+<p>These are the <code>Estimate</code>, which is the actual value of the coefficient from the model. We will see that along with Intercept we can have models with more than one other coefficient. These are given in the units of the data.</p>
+</section>
+<section id="std.-error" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="std.-error"><span class="header-section-number">2.7.2</span> Std. Error</h3>
+<p>A measure of the variability of the strength of the effect, so if some <span class="math inline">\(x\)</span> points give more pronounced <span class="math inline">\(y\)</span> values at similar coefficient values, you get a higher variability of the strength. Generally lower standard error of the coefficient is good.</p>
+</section>
+<section id="t-value" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="t-value"><span class="header-section-number">2.7.3</span> <span class="math inline">\(t\)</span>-value</h3>
+<p>An estimate of how extreme the coefficient value is, basically how many Standard Deviations away the estimated coefficient is from the centre of a presumed Normal distribution with mean 0. It is absolutely a <span class="math inline">\(t\)</span>-test <span class="math inline">\(t\)</span>-value, and like in a <span class="math inline">\(t\)</span>-test we want it to be high. The higher <span class="math inline">\(t\)</span> is, then the more likely that the coefficient is not 0.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Wait, what?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Why would we care whether the coefficient is 0 or not? Well, because if it is 0, then it’s having no effect on the model. Consider again the equation of a line</p>
+<p><span class="math display">\[\begin{equation}
+y = ax + b
+\end{equation}\]</span></p>
+<p>If we let the coefficient <span class="math inline">\(a = 0\)</span>, this happens</p>
+<p><span class="math display">\[\begin{equation}
+y = 0 x + b\\
+y = b
+\end{equation}\]</span></p>
+<p>The coefficient disappears, it’s having no effect!</p>
+<p>If the coefficient is not many standard deviations away from 0, it’s probably not having much effect on the relationship. The <span class="math inline">\(t\)</span> value tries to work out whether, given the data, the coefficient is in anyway different to 0.</p>
+<p>In plainer English, we are really saying that the size if the slope is not likely to be 0. That it is not likely that there is no relationship. Which is weak inference, but is <em>exactly</em> the same sort of inference that all the other hypothesis tests make and is exactly the same interpretation.</p>
+<p>Of course, this will depend on the size of the standard deviation. The noisier the data or the smaller the sample size then the larger this value will need to be to be important.</p>
+</div>
+</div>
+</section>
+<section id="prt" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="prt"><span class="header-section-number">2.7.4</span> <span class="math inline">\(Pr(&gt;|t|)\)</span></h3>
+<p>This weird shorthand expression is just giving the probability of getting a value larger than the <span class="math inline">\(t\)</span>-value. This comes from a <span class="math inline">\(t\)</span>-test within the model and takes into account the dataset size and variability, you can think of it as the <span class="math inline">\(p\)</span>-value of a test asking whether the coefficient is equal to 0. So if <span class="math inline">\(p\)</span> is less than 0.05 you can say that the value of the coefficient is not likely to be 0 and therefore is having an effect on the model.</p>
+</section>
+</section>
+<section id="a-non-zero-slope-is-what-matters" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="a-non-zero-slope-is-what-matters"><span class="header-section-number">2.8</span> A non-zero slope is what matters</h2>
+<p>By looking at the <span class="math inline">\(p\)</span>-value of the coefficient then, we can see whether there is a significant relationship or, more accurately a non-zero slope</p>
+<p>We can really emphasise by looking at the plots of lines we looked at earlier.</p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<p>The slope of the second plot is weaker, it’s much flatter - much closer to zero, in fact given the spread of the data we aren’t that confident that it isn’t a flat (zero) slope, so we aren’t that confident that there is a significant relationship.</p>
+<p>We can quickly see that definitively using <code>lm()</code> if we compare two models based on those two datasets.</p>
+<p>We already built the model for the first slope.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.17560 -1.00570 -0.01092  1.17016  1.83047 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   0.7780     1.1442    0.68    0.505    
+x             1.9555     0.1122   17.42 1.03e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.303 on 18 degrees of freedom
+Multiple R-squared:  0.944, Adjusted R-squared:  0.9409 
+F-statistic: 303.6 on 1 and 18 DF,  p-value: 1.027e-12</code></pre>
+</div>
+</div>
+<p>Let’s also build the model for the second slope, it is in a dataframe called <code>more_df</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> more_df)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x, data = more_df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.1924 -1.5007  0.1171  1.7748  3.8260 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  10.4695     2.0315   5.154 6.67e-05 ***
+x             0.1103     0.2127   0.519     0.61    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.296 on 18 degrees of freedom
+Multiple R-squared:  0.01472,   Adjusted R-squared:  -0.04001 
+F-statistic: 0.269 on 1 and 18 DF,  p-value: 0.6103</code></pre>
+</div>
+</div>
+<p>We can clearly see that the second model is a poorer fit to the data. The model level statistics are less convincing: <span class="math inline">\(F\)</span> is reduced to 0.269 (from 303.6), the <span class="math inline">\(p-value\)</span> shows the difference occurs by chance 61 % of the time and the <code>Adjusted R-squared</code> is close to 0, indicating a poor relationship. The coefficient was measurable, but it is not significant (and not coincidentally) occurring by chance 61 % of the time. The slope therefore is not significantly different from 0 and <span class="math inline">\(x\)</span> in <code>model_2</code> appears to have no effect on <span class="math inline">\(y\)</span>.</p>
+<p>It is this slope assessing feature of the linear models that will help us in our overall goal of using the linear model to do the work of all the other statistical tests we commonly use. If we have a good model and a good fit, then we can make really flexible use of the slope by looking at the significance of the coefficient.</p>
+</section>
+<section id="major-points" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="major-points"><span class="header-section-number">2.9</span> Major points</h2>
+<p>After all that inspection of the linear model, here’s what you need to remember:</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Take-homes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Linear models describe relationships between sets of numbers (variables)</li>
+<li>The creation of the model generates statistics about the goodness of the model</li>
+<li>A non-zero coefficient (slope) means there is not likely to be no relationship (!)</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="extra-credit-understanding-linear-models-through-the-notation" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="extra-credit-understanding-linear-models-through-the-notation"><span class="header-section-number">2.10</span> Extra credit: Understanding linear models through the notation</h2>
+<p>In this section at the end I wanted to take one last step and look at how the linear model is specified because the notation is an aid to understanding the model a bit more deeply. It’s probably OK to skip this bit if the idea of notation doesn’t grab you. At the start of this chapter we wrote the linear equation like this</p>
+<p><span class="math display">\[\begin{equation}
+y = ax + b
+\end{equation}\]</span></p>
+<p>and through the chapter we developed the idea that the linear model is the line with some statistics and noise built in, such that we can try to render it like this</p>
+<p><span class="math display">\[\begin{equation}
+y = ax + b + e
+\end{equation}\]</span></p>
+<p>with <span class="math inline">\(e\)</span> being a measure of <code>error</code> (or random measurement differences) added on, somehow, and it does aid our thinking to take that liberty a little, because of the way we can see the relationship of the error now.</p>
+<p>But unlike a straight line, a linear model doesn’t have to have only one slope, it can have many. This doesn’t mean that the line has a bend in it, like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_bendy_line_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>but rather that the model can take into account more than one data axis (variable) (or dimension) - more like this, where a new variable is called <span class="math inline">\(z\)</span>, so the whole thing if plotted looks more like the top 3D panel here in which the model allows us to see the combined effects of <span class="math inline">\(x\)</span> and <span class="math inline">\(z\)</span> on the output <span class="math inline">\(y\)</span> but we can focus on each variable individually by taking one at a time, like in the two split panels at the bottom (note how this is like looking into the front and right side of the 3D panel individually).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_three_variable_plot_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-linear-models_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can only see up to two extra axes in a plot, and only visualise three without getting twitchy eyes, but going to three, four or many more dimensions is no problem for the linear model framework and they all work the same way. When it comes to notating this we run into a problem as we run out of letters. Let’s build it up…</p>
+<p>First, a one slope/coefficient/independent variable model, adding one variable at a time</p>
+<p><span class="math display">\[\begin{equation}
+y = ax + e
+\end{equation}\]</span></p>
+<p>The first thing that happens is the linear model disposes of the intercept term <span class="math inline">\(b\)</span>, that’s OK, it is still computed, but we don’t have it in the model notation now. Next we build up the number of variables/dimensions. We’ve already used <span class="math inline">\(a\)</span> and <span class="math inline">\(x\)</span> so for the next slope we can use <span class="math inline">\(z\)</span> for the variable and <span class="math inline">\(b\)</span> for its coefficient. We can go further for a third slope and use <span class="math inline">\(w\)</span> and <span class="math inline">\(c\)</span></p>
+<p><span class="math display">\[\begin{align*}
+y &amp;= ax + bz + e\\
+y &amp;= ax + bz + cw + e
+\end{align*}\]</span></p>
+<p>Hold on though, this is already getting very confusing, <span class="math inline">\(cw\)</span> is a bit hard to follow and it only gets worse. To get around this proliferation the notation of a linear model usually uses subscript numbers, all coefficients are given the Greek letter beta <span class="math inline">\(\beta\)</span>, all variables are given <span class="math inline">\(x\)</span> and each is written with a little number after that distinguishes them</p>
+<p><span class="math display">\[\begin{equation}
+y = \beta_1 x_1 + e
+\end{equation}\]</span></p>
+<p>then that can be extended easily to <span class="math inline">\(n\)</span> sets of variables. Finally, because the relationship between <span class="math inline">\(y\)</span> and the variables in a linear model isn’t strictly speaking a mathematical equality we use the ~ operator.</p>
+<p><span class="math display">\[\begin{equation}
+y \sim \beta_1 x_1 + \beta_2 x_2 \dotsc + \beta_n x_n + e
+\end{equation}\]</span></p>
+<p>We can see from this equation that a linear model is really just a load of variables added together to give some outcome <span class="math inline">\(y\)</span>. This makes much more sense when we put words in. Let’s consider a plant growth experiment, in which we varied light, water and fertilizer and measured weight. The model in words looks like this</p>
+<p><span class="math display">\[\begin{equation}
+\mbox{weight} \sim \beta_1 \mbox{light} + \beta_2 \mbox{water} + \beta_3 \mbox{fertilizer} + e
+\end{equation}\]</span></p>
+<p>We can see that what the linear model is looking for is all those values of <span class="math inline">\(\beta\)</span> - it is going to calculate slopes for us. It is the job of the linear model to work out the coefficients and intercepts from the data we put into it and to tell us which of the slopes are non-zero ones and therefore important in determining the size of the output variable. With this information we can tell not only significant differences between the variables, but whether any are more important than others in affecting the outcome.</p>
+<p>At the very least knowing notation like this will be useful later when we are looking at comparing multiple variables with linear models, but the linear model also gives us a lot of ways of talking about our experiment that we might not otherwise have had. The model gives us a way of assessing and quantifying the effects of the experimental variables on the outcome and a way of making quantitative predictions or hypotheses about the experiment, we can use expected values of the coefficients to say how we believe a model will work, when it proves to be different from the data we can validate or falsify our hypotheses.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Roundup
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Straight lines are described by an equation with two parameters</li>
+<li>Linear models contain information about the data and can tell us whether a slope is likely flat or not given the data</li>
+</ul>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+For you to do
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Complete the interactive quiz online <a href="https://danmaclean.shinyapps.io/linear-models">https://danmaclean.shinyapps.io/linear-models</a></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-background.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-ttest.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="math inline">\(t\)</span>-tests and linear models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

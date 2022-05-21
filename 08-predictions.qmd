@@ -1,0 +1,151 @@
+# Predictions
+
+1. Questions
+  * How can I use the model to make predictions?
+2. Objectives
+  * Learn how to make predictions from a model
+3. Keypoints
+  * Models can be used to make new hypotheses
+
+
+Sometimes we will want to use our existing data to build hypotheses to generate new ideas and experiments. The linear model can aid this by using it as a tool to predict what the model outputs would be given a particular set of inputs across the variables that we used to build our model. In this section we'll take a look at doing things like predicting new data on our response ($y$-axis) given some $x$ values. 
+
+### Intuition on prediction from continuous variables
+
+The intuition behind this is more straightforward than you might initially think, consider the straight lines from our first section. We had a continuous $x$ and $y$ axis
+
+```{r, message=FALSE}
+library(itssl)
+df <- its_random_xy_time(20)
+its_plot_xy_time(df, line = TRUE)
+```
+
+We can peek into $x$ to see what values we _actually_ used
+
+```{r,eval=TRUE}
+sort(df$x)
+```
+
+```{r,eval=TRUE, echo=FALSE}
+model <- lm(y ~ x, data = df)
+b <- coefficients(model)[1]
+a <- coefficients(model)[2]
+#predict(model, newdata = data.frame(x = c(10)))
+```
+Although we don't have a real $x = 10$ in our data, imagine asking the question "what $y$ would we get for $x = 10$?". We can intuitively tell what the $y$-value would be simply by reading off the line at $x = 10$, which is about 20 `r v <- (a * 10) + b` or from the formula, $y = (1.9555 * 10) + 0.7780 = `r round(v, digits = 2)`$. This is the intuition behind how a linear model prediction works with continuous $x$ and $y$ - we're just reading off the line. 
+
+If we build the model, we can ask it to work this out for us directly using the `predict()` function. `predict()` takes the model and the new values to be predicted in a `data.frame`.
+
+```{r,eval=TRUE}
+model <- lm(y ~ x, data = df)
+predict(model, newdata = data.frame(x = c(10)))
+```
+
+We see that we get the same value (given a little rounding error). 
+
+What happens when we give the `predict()` function a value we did have data for? Let's pull out whatever the fifth value of our data was and look at that
+
+```{r, eval=TRUE}
+df$x[5]
+df$y[5]
+```
+
+This shows us that the $x$ axis value of `r round(df$x[5], digits = 2)` had the corresponding $y$ value of `r round(df$y[5], digits = 2)`. Now let's use the model to predict the $y$ from the $x$
+
+```{r, eval=TRUE}
+vals_to_predict <- data.frame(x = c(df$x[5]))
+predict(model, newdata = vals_to_predict)
+```
+
+The result from the model is quite different from the actual observed data value! This isn't an error. Its because we're asking the model to predict using the 'line' it came up with. Note that this is because the prediction comes from the model which takes into account the whole data. This is the process of 'best fitting' which ensures the 'line' matches all the points as well as possible, but doesn't guarantee matching any particular point well.
+
+:::{.callout-note}
+It is possible to over-complicate models to make them fit all the points by allowing them to take extra parameters and become curves. Adding complexity in this way usually leads to bad models that only fit one particular data set well and is called 'overfitting'.
+:::
+
+#### Prediction intervals
+
+If you are going to predict a value, you might want instead an interval in which that prediction might lie with certain amount of certainty. Like a confidence interval for the position of the mean in a sample, a prediction interval is a range that we are most certain a prediction will land in. This interval takes in the range of spread in the data we build the linear model with and turns it into something useless. Once the model is built, it's easy to use the `predict()` function to get the prediction interval
+
+```{r}
+vals_to_predict <- data.frame( x = c(10) )
+predict(model, newdata = vals_to_predict, interval = "predict")
+
+```
+
+we can see the predicted value and the lower and upper bounds of the prediction interval.
+
+
+### Intuition on prediction with categoric variables
+
+In the same way we looked at the line to get an intuitive understanding of how the linear model makes predictions, we can look at the groups in a categorical variable to see how $y$ values are predicted from factors.
+
+Consider the `chickwts` data.
+
+```{r, message=FALSE, eval=TRUE}
+its_plot_chickwts_time()
+```
+
+We can see that in this data set there is a single categorical variable called `feed` which is the type of food the chick was raised on, and the resulting continuous output variable of `weight`. If we model that and do a prediction we can get an intuition on what the `prediction()` means for each category. 
+
+```{r,eval=TRUE}
+model <- lm(weight ~ feed, data = chickwts)
+predict(model,newdata = data.frame(feed = c("casein")))
+predict(model,newdata = data.frame(feed = c("sunflower")))
+```
+
+Note that this time we have to use the a level of a factor, because that was the only term in this model. It doesn't make sense to give it a number. The model returns the fitted value of `weight` for the level of the factor.
+
+Do the numbers returned remind you of anything? Aren't they awfully close to where we expect the mean of each group to be. Let's check that out by doing a prediction for each feed and comparing with the group mean.
+
+```{r,eval=TRUE}
+#first get a vector of the chickwts feed names
+feeds <- sort(unique(chickwts$feed))
+#do the prediction
+preds <- predict(model,newdata = data.frame(feed = feeds) )
+#add the names for clarity
+names(preds) <-  feeds
+
+preds
+```
+
+Now calculating the mean from the data.
+
+```{r,eval=TRUE, message=FALSE}
+library(dplyr)
+group_by(chickwts, feed) %>% 
+  summarize(mean = mean(weight)) 
+```
+
+Yep, they're the same. This gives us the intuition that for the model of categoric data the prediction for each group in the category is the centre of it. It may not always be the exact mean, but it's a useful way of thinking about it. 
+
+### Using predictions in more complicated models
+
+A significant use of predictions is when we have a mixture of variables that we can't easily just see the mean for and want to know what the model thinks of those. This is especially useful for hypothesis generation or finding out possible parameter ranges for new experiments. As the last thing we'll do with predictions we'll look at the `txhousing` data, a data set about housing in Texas. This data has a mixture of continuous and categoric variables. We'll see that this it isn't more complicated than prediction for a single variable but does give us a much more convenient and powerful way to predict an outcome from provided values.
+
+First a quick look at `txhousing` (it lives in `ggplot2`)
+
+```{r}
+library(ggplot2)
+str(txhousing)
+```
+
+Now let's build a linear model of property sale price predicted by the city it is in and the year and month of sale.
+
+```{r,eval=TRUE}
+model <- lm(median ~ city + year + month, data = txhousing)
+```
+
+And finally get a prediction for a particular case.
+
+```{r}
+predict(model, newdata = data.frame(city = c("Abilene"), year = c(2000), month = c(2)))
+```
+
+
+This shows how the linear model can be used to make predictions and hypothesis for further work.
+
+
+:::{.callout-note}
+  * Models can be used to make new hypotheses
+:::

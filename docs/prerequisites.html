@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Dan MacLean">
-<meta name="dcterms.date" content="2022-05-01">
 
-<title>Understanding Statistics Through Linear Models</title>
+<title>Understanding Statistics Through Linear Models - Appendix A — Installing what you need</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,7 +24,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
-<link href="./01-background.html" rel="next">
+<link href="./r-fundamentals.html" rel="next">
+<link href="./09-glms.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -67,7 +66,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Understanding Statistics Through Linear Models</h1>
+      <h1 class="quarto-secondary-nav-title">Appendix A — Installing what you need</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -110,7 +109,7 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Motivation</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -208,7 +207,7 @@ ul.task-list{list-style: none;}
     <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></a>
+  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -232,7 +231,19 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"> <span class="header-section-number">A.1</span> Prerequisites</a>
+  <ul class="collapse">
+  <li><a href="#knowledge-prerequisites" id="toc-knowledge-prerequisites" class="nav-link" data-scroll-target="#knowledge-prerequisites"> <span class="header-section-number">A.1.1</span> Knowledge prerequisites</a></li>
+  <li><a href="#software-prerequisites" id="toc-software-prerequisites" class="nav-link" data-scroll-target="#software-prerequisites"> <span class="header-section-number">A.1.2</span> Software prerequisites</a></li>
+  </ul></li>
+  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"> <span class="header-section-number">A.2</span> Installing R</a></li>
+  <li><a href="#installing-rstudio" id="toc-installing-rstudio" class="nav-link" data-scroll-target="#installing-rstudio"> <span class="header-section-number">A.3</span> Installing RStudio</a></li>
+  <li><a href="#installing-r-packages-in-rstudio." id="toc-installing-r-packages-in-rstudio." class="nav-link" data-scroll-target="#installing-r-packages-in-rstudio."> <span class="header-section-number">A.4</span> Installing R packages in RStudio.</a>
+  <ul class="collapse">
+  <li><a href="#standard-packages---devtools" id="toc-standard-packages---devtools" class="nav-link" data-scroll-target="#standard-packages---devtools"> <span class="header-section-number">A.4.1</span> Standard packages - <code>devtools</code></a></li>
+  <li><a href="#development-packages---itssl" id="toc-development-packages---itssl" class="nav-link" data-scroll-target="#development-packages---itssl"> <span class="header-section-number">A.4.2</span> Development packages - itssl</a></li>
+  </ul></li>
+  <li><a href="#using-the-itssl-package" id="toc-using-the-itssl-package" class="nav-link" data-scroll-target="#using-the-itssl-package"> <span class="header-section-number">A.5</span> Using the <code>itssl</code> package</a></li>
   </ul>
 </nav>
     </div>
@@ -241,7 +252,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Understanding Statistics Through Linear Models</h1>
+<h1 class="title d-none d-lg-block">Appendix A — Installing what you need</h1>
 </div>
 
 
@@ -250,32 +261,66 @@ ul.task-list{list-style: none;}
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Dan MacLean </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">May 1, 2022</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="motivation" class="level1 unnumbered">
-<h1 class="unnumbered">Motivation</h1>
-<p>Statistics is a word that rhymes with sadistics. Many people have noted this similarity and have felt that sadistics is what was really meant. Admittedly, statistics is hard, even statisticians find it hard. So why on earth would we want to do it? The main reason is because we want to be able to trust in our results as objectively as possible and applying some statistics can help us to do that.</p>
-<p>For reasons beyond their control, during their education a lot of biologists with a molecular or biochemistry or genetics or field background develop only a vague conceptual framework about statistics, one that leaves them with the idea that it is all about picking the right test and then they’re ok. Often they have gone through a graduate course that introduced them to a lot of tests and a lot of conditions that must be fulfilled and they have gained the impression that there is one ‘right’ test to use in any given situation, which isn’t true. Later on this misapprehension is reinforced by the good intentions of colleagues and reviewers with apparently eidetic memories that seem to remember all the conditions and can suggest the ‘right’ test to them in lab meetings or during manuscript revision. Many don’t get an experience where there is a sense of working through a statistical problem logically or a discussion of ways of thinking about the problem.</p>
-<p>As a result, many of us get the sense that everything to do with statistics is arbitrary and dislocated without any logical binding thread. If your prior experience has left you feeling that statistics is a bit of an incomprehensible mess, then this course is for you.</p>
-<p>The aim of this course is to introduce a simple new tool and a way of thinking about statistics that can enlighten and simplify all the tests we commonly use as biologists. It may surprise you that this tool will be based on a simple formula for a straight line, something you probably already know. We will look at the bare bones of this and see how it relates to significance tests and see how by thinking of straight lines in your work then you can apply complicated analyses quickly and importantly come to a clearer understanding of the hypotheses you are testing.</p>
-<p>Happy <del>sadistics</del> statistics!</p>
+<p>The primary purpose of this course is to help you to understand how to use statistics that will help with your research. The course will try to explain statistics using the same path through the topic that statistics students are educated along, but without the rigorous mathematical background necessary for those students. Instead this course will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.</p>
+<p>Statistics is a computationally heavy topic, so we’ll be making use of the R statistical programming environment to do that side of the work. The rest of this chapter will help you get that set up on your own computer.</p>
+<section id="prerequisites" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">A.1</span> Prerequisites</h2>
+<section id="knowledge-prerequisites" class="level3" data-number="A.1.1">
+<h3 data-number="A.1.1" class="anchored" data-anchor-id="knowledge-prerequisites"><span class="header-section-number">A.1.1</span> Knowledge prerequisites</h3>
+<p>There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like <code>t</code>, <code>ANOVA</code> and regression. It’ll also be helpful for following some of the code examples if you are familiar with basic R use.</p>
+</section>
+<section id="software-prerequisites" class="level3" data-number="A.1.2">
+<h3 data-number="A.1.2" class="anchored" data-anchor-id="software-prerequisites"><span class="header-section-number">A.1.2</span> Software prerequisites</h3>
+<p>You need to install the following stuff for this book:</p>
+<ol type="1">
+<li>R</li>
+<li>RStudio</li>
+<li>Some R packages: <code>devtools</code> and <code>itssl</code></li>
+</ol>
+</section>
+</section>
+<section id="installing-r" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">A.2</span> Installing R</h2>
+<p>Follow this link and install the right version for your operating system <a href="https://www.stats.bris.ac.uk/R/">https://www.stats.bris.ac.uk/R/</a></p>
+</section>
+<section id="installing-rstudio" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="installing-rstudio"><span class="header-section-number">A.3</span> Installing RStudio</h2>
+<p>Follow this link and install the right version for your operating system <a href="https://www.rstudio.com/products/rstudio/download/">https://www.rstudio.com/products/rstudio/download/</a></p>
+</section>
+<section id="installing-r-packages-in-rstudio." class="level2" data-number="A.4">
+<h2 data-number="A.4" class="anchored" data-anchor-id="installing-r-packages-in-rstudio."><span class="header-section-number">A.4</span> Installing R packages in RStudio.</h2>
+<section id="standard-packages---devtools" class="level3" data-number="A.4.1">
+<h3 data-number="A.4.1" class="anchored" data-anchor-id="standard-packages---devtools"><span class="header-section-number">A.4.1</span> Standard packages - <code>devtools</code></h3>
+<p><code>devtools</code> is a standard R package and can be installed like any other you may have done from CRAN. Start RStudio and use the <code>Packages</code> tab in lower right panel. Click the install button (top left of the panel) and enter the package name, then click install as in this picture</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/package_install.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Installing Packages</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="development-packages---itssl" class="level3" data-number="A.4.2">
+<h3 data-number="A.4.2" class="anchored" data-anchor-id="development-packages---itssl"><span class="header-section-number">A.4.2</span> Development packages - itssl</h3>
+<p><code>itssl</code> is a new package that contains all the materials including the exercises for this handbook. As it is a development package you need to install it using <code>devtools</code>.</p>
+<ol type="1">
+<li>In the <code>Console</code> tab in the lower left panel of RStudio type <code>devtools::install_github("danmaclean/itssl")</code></li>
+</ol>
+<p>You may get asked to install newer versions of packages, select <code>1. All</code> for these questions.</p>
+<p>You may get asked whether you wish to install the newest version from source, decline this option and install binaries by selecting the appropriate option</p>
+</section>
+</section>
+<section id="using-the-itssl-package" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="using-the-itssl-package"><span class="header-section-number">A.5</span> Using the <code>itssl</code> package</h2>
+<p><code>itssl</code> is a package developed solely to accompany this course. Once it is installed you can load it as usual - <code>library(itssl)</code></p>
+<p>All the functions in <code>itssl</code> follow this naming scheme <code>its_&lt;something-something&gt;_time()</code> so you’ll be able to spot them as you read along. The main purpose of the functions is to make the course easier to follow and stop us from getting bogged down in a lot of circumstantial code that isn’t directly related to our current point, which will usually be statistical rather than related to programming, hence you’ll be able to get a lot out of this course even if you haven’t used much R before.</p>
+<p>If you do have a desire to see the code inside the <code>itssl</code> functions it is available at <a href="https://github.com/danmaclean/itssl/tree/master/R">https://github.com/danmaclean/itssl/tree/master/R</a></p>
 
 
 </section>
@@ -362,10 +407,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./09-glms.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-background.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./r-fundamentals.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R Fundamentals</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
