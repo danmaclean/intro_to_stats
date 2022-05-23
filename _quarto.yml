@@ -1,0 +1,44 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Understanding Statistics Through Linear Models"
+  author: "Dan MacLean"
+  date: "May 2022"
+  search: true
+  downloads: [pdf]
+  sharing: [twitter, facebook]
+  chapters: 
+    - index.qmd
+    - part: "Background"
+      chapters:
+        - 01-background.qmd
+        - 02-linear-models.qmd
+    - part: "Common statistical tests"
+      chapters:
+        - 03-ttest.qmd
+        - 04-anova.qmd
+        - 05-discrete.qmd
+        - 06-loglinear.qmd
+    - part: "More applications of linear models"
+      chapters:
+        - 07-testing_model.qmd
+        - 08-predictions.qmd
+    - part: "Beyond linear models"
+      chapters:
+        - 09-glms.qmd
+  appendices:
+    - prerequisites.qmd
+    - r-fundamentals.qmd
+    - acknowledgements.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+comments:
+  hypothesis: true

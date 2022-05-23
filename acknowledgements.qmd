@@ -1,0 +1,7 @@
+# Acknowledgements {.unnumbered}
+
+This handbook would not have been possible without helpful inspiration from these web pages and leaders in statistical education, please check out their sites.
+
+ * [Danielle Navarro - Learning Statistics with R](https://learningstatisticswithr.com/)
+ * [Jim Frost - Statistics By Jim](https://statisticsbyjim.com/)
+ * [Jonas Kristoffer Linedlov](https://lindeloev.github.io/tests-as-linear/)

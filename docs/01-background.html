@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Understanding Statistics Through Linear Models - Appendix B — R Fundamentals</title>
+<title>Understanding Statistics Through Linear Models - 1&nbsp; The essence of statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,8 +87,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
-<link href="./acknowledgements.html" rel="next">
-<link href="./prerequisites.html" rel="prev">
+<link href="./02-linear-models.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -129,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Appendix B — R Fundamentals</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-background.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></a>
+  <a href="./01-background.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -275,7 +275,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r-fundamentals.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R Fundamentals</span></a>
+  <a href="./r-fundamentals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R Fundamentals</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -294,15 +294,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about-this-chapter" id="toc-about-this-chapter" class="nav-link active" data-scroll-target="#about-this-chapter"> <span class="header-section-number">B.1</span> About this chapter</a></li>
-  <li><a href="#working-with-r" id="toc-working-with-r" class="nav-link" data-scroll-target="#working-with-r"> <span class="header-section-number">B.2</span> Working with R</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"> <span class="header-section-number">B.3</span> Variables</a>
-  <ul class="collapse">
-  <li><a href="#using-objects-and-functions" id="toc-using-objects-and-functions" class="nav-link" data-scroll-target="#using-objects-and-functions"> <span class="header-section-number">B.3.1</span> Using objects and functions</a></li>
-  </ul></li>
-  <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes"> <span class="header-section-number">B.4</span> Dataframes</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"> <span class="header-section-number">B.5</span> Packages</a></li>
-  <li><a href="#using-r-help" id="toc-using-r-help" class="nav-link" data-scroll-target="#using-r-help"> <span class="header-section-number">B.6</span> Using R Help</a></li>
+  <li><a href="#null-models" id="toc-null-models" class="nav-link active" data-scroll-target="#null-models"> <span class="header-section-number">1.1</span> Null Models</a></li>
+  <li><a href="#p-values" id="toc-p-values" class="nav-link" data-scroll-target="#p-values"> <span class="header-section-number">1.2</span> <span class="math inline">\(p\)</span>-values</a></li>
+  <li><a href="#slopes-of-straight-lines-can-help-us-think-about-differences-between-things" id="toc-slopes-of-straight-lines-can-help-us-think-about-differences-between-things" class="nav-link" data-scroll-target="#slopes-of-straight-lines-can-help-us-think-about-differences-between-things"> <span class="header-section-number">1.3</span> Slopes of straight lines can help us think about differences between things</a></li>
   </ul>
 </nav>
     </div>
@@ -311,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Appendix B — R Fundamentals</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></h1>
 </div>
 
 
@@ -327,167 +321,149 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="about-this-chapter" class="level2" data-number="B.1">
-<h2 data-number="B.1" class="anchored" data-anchor-id="about-this-chapter"><span class="header-section-number">B.1</span> About this chapter</h2>
 <ol type="1">
-<li>Questions:</li>
+<li>Questions</li>
 </ol>
 <ul>
-<li>How do I use R?</li>
+<li>Why do we need statistics?</li>
+<li>What is a null model?</li>
+<li>What is significance?</li>
 </ul>
 <ol start="2" type="1">
-<li>Objectives:</li>
+<li>Objectives</li>
 </ol>
 <ul>
-<li>Become familiar with R syntax</li>
-<li>Understand the concepts of objects and assignment</li>
-<li>Get exposed to a few functions</li>
+<li>Understand what the aim of a statistical analysis is</li>
+<li>Understand what a null model is for</li>
+<li>Understand <span class="math inline">\(p\)</span>-value informally</li>
 </ul>
 <ol start="3" type="1">
-<li>Keypoints:</li>
+<li>Keypoints</li>
 </ol>
 <ul>
-<li>R’s capabilities are provided by functions</li>
-<li>R users call functions and get results</li>
+<li>We do statistics to be reasonably certain that differences are ‘real’</li>
+<li>A <span class="math inline">\(p\)</span>-value describes how often the observed difference occurs according to a default situation we choose</li>
+<li>The slope of a line can help us think about whether two numbers are different.</li>
 </ul>
+<section id="null-models" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="null-models"><span class="header-section-number">1.1</span> Null Models</h2>
+<p>We all know that doing the same experiment twice will return different results each time. Perhaps not massively different, but definitely not exactly the same. Variation like this can make it hard for us to assert that there are differences between the things we are testing. This is the central issue that statistics seeks to address, in plain English we ask</p>
+<blockquote class="blockquote">
+<p>How can I be reasonably certain that the difference I see is a real one?</p>
+</blockquote>
+<p>the answer to this in statistics is usually the same one - compare it to the situation where there isn’t any difference, if it is an unlikely result there, then perhaps there is a difference. This ‘situation where there isn’t any difference’ is called a Null Model, or perhaps you can think of it as a random model or a default model.</p>
+<p>And that’s the whole of the logic to a statistical test - we simply make an assumption about what a Null Model of no difference is, then use it to see how likely a given difference would be in that model.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Skinning Cats
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just because the overall answer is usually the same one, that doesn’t mean that there is only one way of generating a Null Model. Far from it! The selection of the Null Model is one of the thorniest issues in statistics and is one of the reasons most often cited for selecting one type of test over another. Often the Null Model will be the Normal Distribution, which you may have heard of (and yes, it’s called the Normal because it’s the one we normally use) other common ones are the Binomial or Poisson, the exponential, the Gamma and the <span class="math inline">\(t\)</span> and <span class="math inline">\(\chi-squared\)</span>. Thankfully, the tool we are going to learn will be able to use all of these appropriately. For most of this book our focus will be on Normal Null Models.</p>
+</div>
+</div>
+<p>A Null Model will always have some way of incorporating variability, if you ask for a likelihood of a given difference, there will always be an effect of variability on the likelihood, usually the as variability increases the likelihood that there is a difference decreases.</p>
+<p>Either way, for our purposes the basic idea is that we look inside the null model and see how likely it would be. Usually we ask a very specific question of a Null Model</p>
+<blockquote class="blockquote">
+<p>What is the likelihood of getting the difference we observed if the true difference were 0, given the observed amount of variablility?</p>
+</blockquote>
+<p>The likelihood of the difference under the Null Model is expressed as a very misunderstood and abused quantity - the <span class="math inline">\(p\)</span>-value.</p>
 </section>
-<section id="working-with-r" class="level2" data-number="B.2">
-<h2 data-number="B.2" class="anchored" data-anchor-id="working-with-r"><span class="header-section-number">B.2</span> Working with R</h2>
-<p>In this workshop we’ll use R in the extremely useful RStudio software. For the most part we’ll work interactively, meaning we’ll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the console or in a window on the right).</p>
-<p>Panels like the ones below mimic the interaction with R and first show the thing to type into R, and below the calculated result from R.</p>
-<p>Let’s look at how R works by using it for it’s most basic job - as a calculator:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 8</code></pre>
+<section id="p-values" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="p-values"><span class="header-section-number">1.2</span> <span class="math inline">\(p\)</span>-values</h2>
+<p>A lot of researchers get the impression that <span class="math inline">\(t\)</span>-tests, ANOVAs and other hypothesis tests tell you whether something is significant with probability <span class="math inline">\(p\)</span>. This is quite a misinterpretation. They do no such thing. More accurately but still rather informally and in general <span class="math inline">\(p\)</span> can be taken as follows</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+What <span class="math inline">\(p\)</span> really is
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">12</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 24</code></pre>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(p\)</span> should be thought of as the frequency of seeing a difference of the size observed in the Null Model</p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3333333</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a> <span class="dv">12</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 24</code></pre>
-</div>
-</div>
-<p>Fairly straightforward, we type in the expression and we get a result. That’s how this whole book will work, you type the stuff in, and get answers out. It’ll be easiest to learn if you go ahead and copy the examples one by one. Try to resist the urge to use copy and paste. Typing longhand really encourages you to look at what you’re entering.</p>
-<p>As far as the R output itself goes, it’s really straightforward - its just the answer with a <code>[1]</code> stuck on the front. This <code>[1]</code> tells us how many items through the output we are. Often R will return long lists of numbers and it can be helpful to have this extra information.</p>
+<p>Remembering that the Null Model is the default situation where the difference is 0 then this is resolutely not the same as saying they are definitely different. Just that they’re not likely to be the same. The <span class="math inline">\(p\)</span> in <span class="math inline">\(p\)</span> value is usually taken to mean ‘probability’, but if it stands for anything it should be ‘probably not the same’.</p>
+<p>Hypothesis testing like this has been criticized for being weak inference, and not without reason. All this means is that we need to be awake to the limitations of our methods.</p>
+<p>With this idea of using a Null Model as a reference to see whether our difference is likely or not we can start to think about defining a difference.</p>
 </section>
-<section id="variables" class="level2" data-number="B.3">
-<h2 data-number="B.3" class="anchored" data-anchor-id="variables"><span class="header-section-number">B.3</span> Variables</h2>
-<p>We can save the output of operations for later use by giving it a name using the assignment symbol <code>&lt;-</code>. Read this symbol as ‘gets’, so <code>x &lt;- 5</code> reads as ‘x gets 5’. These names are called variables, because the value they are associated with can change.</p>
-<p>Let’s give five a name, <code>x</code> then refer to the value 5 by it’s name. We can then use the name in place of the value. In the jargon of computing we say we are assigning a value to a variable.</p>
+<section id="slopes-of-straight-lines-can-help-us-think-about-differences-between-things" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="slopes-of-straight-lines-can-help-us-think-about-differences-between-things"><span class="header-section-number">1.3</span> Slopes of straight lines can help us think about differences between things</h2>
+<p>One way of examining a difference is to think about the slopes of straight lines. It isn’t immediately obvious how this works, intuitively we might just want to think about numbers, so let’s work through a quick example. Let’s consider these data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a> x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itssl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">its_bardata_time</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">its_table_time</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: center;">group1</th>
+<th style="text-align: center;">group2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5.833352</td>
+<td style="text-align: center;">5.580961</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6.986474</td>
+<td style="text-align: center;">5.326897</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5.983585</td>
+<td style="text-align: center;">7.586356</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5.665471</td>
+<td style="text-align: center;">7.477662</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5.274798</td>
+<td style="text-align: center;">6.709282</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5.604079</td>
+<td style="text-align: center;">5.019353</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>In the beginning of our scientific education we might’ve plotted them as barcharts, by taking the mean, like this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_barplot_time</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-background_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Imagine drawing a line between the tops of the bars, like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_barplot_time</span>(df, <span class="at">join_tops =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-background_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The slope of that line tells us about the difference in the means. If it is flat there’s no difference, if it isn’t flat maybe there is a difference.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="01-background_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a> x <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_barplot_time</span>(df1, <span class="at">join_tops=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="01-background_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 15</code></pre>
-</div>
-</div>
-<p>This is of course of limited value with just numbers but is of great value when we have large datasets, as the whole thing can be referred to by the variable.</p>
-<section id="using-objects-and-functions" class="level3" data-number="B.3.1">
-<h3 data-number="B.3.1" class="anchored" data-anchor-id="using-objects-and-functions"><span class="header-section-number">B.3.1</span> Using objects and functions</h3>
-<p>At the top level, R is a simple language with two types of thing: functions and objects. As a user you will use functions to do stuff, and get back objects as an answer. Functions are easy to spot, they are a name followed by a pair of brackets. A function like <code>mean()</code> is the function for calculating a mean. The options (or arguments) for the function go inside the brackets:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
-</div>
-</div>
-<p>Often the result from a function will be more complicated than a simple number object, often it will be a vector (simple list), like from the <code>rnorm()</code> function that returns lists of random numbers</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] -0.552715718  1.375818309  0.610826968 -0.644098437  0.967057727
-  [6] -1.806403067  0.951115323 -0.588280780  2.123871437  1.645221712
- [11] -1.402154031  0.953978734  0.332177909 -0.351744782  1.122317969
- [16]  2.719837310  0.150359776  0.430853270  1.800669501  0.783266547
- [21]  0.528251315 -1.095096091  0.872137131 -0.984084445 -0.715913702
- [26] -0.377851475 -0.243333554 -2.376828745 -0.684764513  1.452856848
- [31] -1.350481797  0.711479526  2.380695022 -0.238404990  0.989274783
- [36]  1.850747077 -0.409472652 -0.712439934  2.442425740  0.580950454
- [41] -0.550613103 -0.524199425  0.237859266 -0.942185863  0.044916260
- [46]  0.629051054  1.928991858  1.264376607 -1.063812534  0.383277197
- [51]  0.790439933  1.031488953  0.085887006  0.435838719 -0.876813353
- [56]  0.135834067  0.918133153  0.177104858  0.790931680 -1.377218168
- [61] -1.049003211  0.924246118 -0.196621695 -0.338520580 -1.248041557
- [66]  0.484969119 -0.424091774 -1.331041766 -0.035349924 -0.848101556
- [71]  0.533459149  0.153878963 -0.065912548  0.500531284 -0.448411260
- [76]  0.085240333  0.099204649 -1.037631149  0.367870607 -0.011991467
- [81] -0.180809183 -1.704509635 -0.210295844  0.157207721 -0.288645712
- [86]  0.222764783 -0.930208811 -1.056120876 -0.569358154 -1.799658629
- [91] -0.762147092  0.203021299  2.145067376  0.545542434 -0.005536023
- [96] -0.127646340 -0.085425989 -0.594848671  0.364681747  0.731183566</code></pre>
-</div>
-</div>
-<p>We can combine objects, variables and functions to do more complex stuff in R, here’s how we get the mean of 100 random numbers.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2348937</code></pre>
-</div>
-</div>
-<p>Here we created a vector object with <code>rnorm(100)</code> and assigned it to the variable <code>numbers</code>. We than used the <code>mean()</code> function, passing it the variable <code>numbers</code>. The <code>mean()</code> function returned the mean of the hundred random numbers.</p>
-</section>
-</section>
-<section id="dataframes" class="level2" data-number="B.4">
-<h2 data-number="B.4" class="anchored" data-anchor-id="dataframes"><span class="header-section-number">B.4</span> Dataframes</h2>
-<p>One of the more common objects that R uses is a dataframe. The dataframe is a rectangular table-like object that contains data, think of it like a spreadsheet tab. Like the spreadsheet, the dataframe has rows and columns, the columns have names and the different columns can have different types of data in. Here’s a little one</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>  names age    score
-1 Guido  24 16.77618
-2 Marty  45 60.21637
-3  Alan  11 18.20798</code></pre>
-</div>
-</div>
-<p>Usually we get a dataframe by loading in data from an external source or as a result from functions, occasionally we’ll want to hand make one, which can be done with various functions, <code>data.frame</code> being the most common.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"Guido"</span>, <span class="st">"Marty"</span>, <span class="st">"Alan"</span>),</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">24</span>,<span class="dv">45</span>,<span class="dv">11</span>),</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">score =</span> <span class="fu">runif</span>(<span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="packages" class="level2" data-number="B.5">
-<h2 data-number="B.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">B.5</span> Packages</h2>
-<p>Many of the tools we use in will come in R packages, little nuggets of code that group related functions together. Installing new packages can be done using the <code>Packages</code> pane of RStudio or the <code>install.packages()</code> function. When we wish to use that code we use the <code>library()</code> function</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(somepackage)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="using-r-help" class="level2" data-number="B.6">
-<h2 data-number="B.6" class="anchored" data-anchor-id="using-r-help"><span class="header-section-number">B.6</span> Using R Help</h2>
-<p>R provides a command, called <code>?</code> that will display the documentation for functions. For example <code>?mean</code> will display the help for the <code>mean()</code> function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>As in all programming languages the internal documentation in R is written with some assumption that the reader is familiar with the language. This can be a pain when you are starting out as the help will seem a bit obscure at times. Don’t worry about this, usually the <code>Examples</code> section will give you a good idea of how to use the function and as your experience grows then the more things will make more sense.</p>
+<p>Now we have a conceptual tool for thinking about differences (like differences in means of samples) as a slope between the means from one group to another. And that is the logic we will be following in this little book. All we will do is learn to look for a slope of a line. We’ll look at using a statistical tool called a linear model, which tries to create a straight line that matches the data, so it contains the equation of a straight line but elaborates on the equation alone by providing measures of believability about the slope and other things. The technique we will learn will give us a framework for thinking about performing hypothesis testing in all sorts of comparisons including <span class="math inline">\(t\)</span>-tests, ANOVA, etc. and with elaborations we’ll be able to see how to use the same framework for the other class of tests that we often use, the non-parametric tests.</p>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -498,7 +474,11 @@ Roundup
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre><code>* R is an excellent and powerful statistical computing environment</code></pre>
+<ul>
+<li>We do statistics to be reasonably certain that differences we observe don’t occur by chance.</li>
+<li>A <span class="math inline">\(p\)</span> value doesn’t tell us the probability of a result. It tells us how often we would see the observed result in an idealised and simplisitic situation.</li>
+<li>The slope of a line can help us think about whether two numbers are different.</li>
+</ul>
 </div>
 </div>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -511,7 +491,7 @@ For you to do
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Complete the interactive tutorial online <a href="https://danmaclean.shinyapps.io/r-start">https://danmaclean.shinyapps.io/r-start</a></p>
+<p>Complete the interactive quiz online <a href="https://danmaclean.shinyapps.io/linear-models-background">https://danmaclean.shinyapps.io/linear-models-background/</a></p>
 </div>
 </div>
 
@@ -600,13 +580,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./prerequisites.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></span>
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Motivation</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./acknowledgements.html" class="pagination-link">
-        <span class="nav-page-text">Acknowledgements</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-linear-models.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The linear model</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

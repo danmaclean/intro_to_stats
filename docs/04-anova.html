@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.387">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Understanding Statistics Through Linear Models - 4&nbsp; ANOVA and linear models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<link href="./05-discrete.html" rel="next">
+<link href="./03-ttest.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ANOVA and linear models</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Understanding Statistics Through Linear Models</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Understanding-Statistics-Through-Linear-Models.pdf" title="Download PDF" class="sidebar-tool px-1"><i class="bi bi-file-pdf"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Motivation</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Background</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-background.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The essence of statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-linear-models.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The linear model</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Common statistical tests</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="math inline">\(t\)</span>-tests and linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-anova.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ANOVA and linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-discrete.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Non-parametric tests and linear models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-loglinear.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><span class="math inline">\(\chi ^2\)</span> tests and linear models</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">More applications of linear models</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-testing_model.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Checking the quality of a linear model</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-predictions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Predictions</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Beyond linear models</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-glms.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Generalized Linear Models</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Appendices</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-fundamentals.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">R Fundamentals</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#comparing-groups-in-a-single-variable" id="toc-comparing-groups-in-a-single-variable" class="nav-link active" data-scroll-target="#comparing-groups-in-a-single-variable"> <span class="header-section-number">4.1</span> Comparing groups in a single variable</a></li>
+  <li><a href="#one-way-comparisons---groups-in-a-single-variable" id="toc-one-way-comparisons---groups-in-a-single-variable" class="nav-link" data-scroll-target="#one-way-comparisons---groups-in-a-single-variable"> <span class="header-section-number">4.2</span> One-Way comparisons - groups in a single variable</a></li>
+  <li><a href="#two-way-comparisons---groups-in-multiple-variables" id="toc-two-way-comparisons---groups-in-multiple-variables" class="nav-link" data-scroll-target="#two-way-comparisons---groups-in-multiple-variables"> <span class="header-section-number">4.3</span> Two-Way comparisons - groups in multiple variables</a></li>
+  <li><a href="#interactions-between-variables" id="toc-interactions-between-variables" class="nav-link" data-scroll-target="#interactions-between-variables"> <span class="header-section-number">4.4</span> Interactions between variables</a>
+  <ul class="collapse">
+  <li><a href="#analysing-and-modelling-an-interaction-effect" id="toc-analysing-and-modelling-an-interaction-effect" class="nav-link" data-scroll-target="#analysing-and-modelling-an-interaction-effect"> <span class="header-section-number">4.4.1</span> Analysing and modelling an interaction effect</a></li>
+  </ul></li>
+  <li><a href="#doing-all-pairwise-interactions" id="toc-doing-all-pairwise-interactions" class="nav-link" data-scroll-target="#doing-all-pairwise-interactions"> <span class="header-section-number">4.5</span> Doing all pairwise interactions</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"> <span class="header-section-number">4.6</span> Summary</a></li>
+  <li><a href="#extra-credit-anova-model-level-p-and-as-a-hypothesis-test" id="toc-extra-credit-anova-model-level-p-and-as-a-hypothesis-test" class="nav-link" data-scroll-target="#extra-credit-anova-model-level-p-and-as-a-hypothesis-test"> <span class="header-section-number">4.7</span> Extra Credit: ANOVA model-level <span class="math inline">\(p\)</span> and as a hypothesis test</a></li>
+  <li><a href="#extra-credit-testing-specific-interactions" id="toc-extra-credit-testing-specific-interactions" class="nav-link" data-scroll-target="#extra-credit-testing-specific-interactions"> <span class="header-section-number">4.8</span> Extra Credit: Testing specific interactions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ANOVA and linear models</span></h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<ol type="1">
+<li>Questions</li>
+</ol>
+<ul>
+<li>How can we compare many variables and factor levels</li>
+<li>How can we check for interactions between treatments</li>
+</ul>
+<ol start="2" type="1">
+<li>Objectives</li>
+</ol>
+<ul>
+<li>Learn how to specify more complicated linear models</li>
+<li>Understand how ANOVA works with a linear model</li>
+<li>Understand how to spot interactions from plots</li>
+<li>Learn how to deal with interactions in ANOVA</li>
+</ul>
+<ol start="3" type="1">
+<li>Keypoints</li>
+</ol>
+<ul>
+<li>Working with many variables is the same as working with just one</li>
+<li>ANOVA is a tool for specifying comparisons between variables in linear models</li>
+<li>We must take care to account for interactions between the variables</li>
+</ul>
+<section id="comparing-groups-in-a-single-variable" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="comparing-groups-in-a-single-variable"><span class="header-section-number">4.1</span> Comparing groups in a single variable</h2>
+<p>In the last section we looked at using the linear model to compare two groups, in this section we’ll look at using it to compare more than two. One thing to note is that (for now) we’re still working with only one explanatory variable (that is one thing we measured), the groups we are talking about are basically different values that the one variable can take. In the <code>PlantGrowth</code> data the variable is called <code>group</code> and the values it takes are <code>ctrl</code>, <code>trt1</code> and <code>trt2</code>.</p>
+<p>You’ll be pleased to know this is where the pay off comes. Any number of groups (and later any number of variables) is no more complicated than the two we’ve already done.</p>
+<p>We can visualise the process as simply being a case where we have more than one line to examine. Consider this figure, here we draw the categorical scatter plot and draw lines joining all the different group means that indicate the different comparisons we might choose to do with these data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itssl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">its_multi_category_with_lines_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-anova_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>So we’ll need to know how to read the linear model for each of the given lines. Let’s jump in and work through that. First let’s build a linear model with a variable with multiple groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> group, <span class="at">data =</span> PlantGrowth)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = weight ~ group, data = PlantGrowth)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0710 -0.4180 -0.0060  0.2627  1.3690 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   5.0320     0.1971  25.527   &lt;2e-16 ***
+grouptrt1    -0.3710     0.2788  -1.331   0.1944    
+grouptrt2     0.4940     0.2788   1.772   0.0877 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6234 on 27 degrees of freedom
+Multiple R-squared:  0.2641,    Adjusted R-squared:  0.2096 
+F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591</code></pre>
+</div>
+</div>
+<p>Great! so we handle the extra levels of the variable nearly perfectly. There are two lines of coefficient results, the first showing the gradient between the <code>ctrl</code> and <code>trt1</code> and the second showing the gradient between <code>ctrl</code> and <code>trt2</code>. The <code>ctrl</code> data has clearly been used as a common reference - this is the default design in the function, the first group in the data becomes the common reference. Here we get away with it, as we do want the first level to be the common reference. When you need to change the order, you can set the reference level explicitly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> PlantGrowth</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>group<span class="ot">&lt;-</span> <span class="fu">relevel</span>(df<span class="sc">$</span>group, <span class="at">ref=</span><span class="st">"trt2"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> group  , <span class="at">data =</span> df,)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = weight ~ group, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0710 -0.4180 -0.0060  0.2627  1.3690 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   5.5260     0.1971  28.032  &lt; 2e-16 ***
+groupctrl    -0.4940     0.2788  -1.772  0.08768 .  
+grouptrt1    -0.8650     0.2788  -3.103  0.00446 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6234 on 27 degrees of freedom
+Multiple R-squared:  0.2641,    Adjusted R-squared:  0.2096 
+F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591</code></pre>
+</div>
+</div>
+<p>And now we see the <code>trt2</code> as common reference against the <code>ctrl</code> and <code>trt1</code> groups.</p>
+<p>In these data only <code>trt2 vs trt1</code> appears to be significant according to the linear model <code>model2</code> but we did need to create two models to do this, which is a bit of a statistical mess. If this seems longwinded or illogical, then that’s fair. The two models have the same data and specification so should have the same results in - it was really just the way we were ordering things in the data that was different. The real problem is just one of bookkeeping.</p>
+<p>The linear models are rich and not all the comparisons that can be done with them can easily be written in <code>summary(model)</code>. To answer specific questions from an analysis technique for getting specific comparisons (or contrasts in the statistics jargon) from linear models has been invented, that technique is called ANOVA (Analysis of Variance).</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I know, I gave you the impression that we would be using linear models and not ANOVAs, but the thing is, ANOVAs have always been based on linear models. In a way ANOVA isn’t a test of its own, not in the way we think of <span class="math inline">\(t\)</span>-tests or <span class="math inline">\(\chi\)</span>-squared tests. ANOVA is plural, they are a set of tools for pulling comparisons straight out of linear models in the best way. So that’s another great reason for having bothered to understand something of how linear models work.</p>
+</div>
+</div>
+</section>
+<section id="one-way-comparisons---groups-in-a-single-variable" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="one-way-comparisons---groups-in-a-single-variable"><span class="header-section-number">4.2</span> One-Way comparisons - groups in a single variable</h2>
+<p>The situation where we have just one variable is called a ‘One-Way’ ANOVA.</p>
+<p>Now that we have a solid way of thinking about contrasts as the slope between the categories, we can think of ANOVA as a tool for pulling out the significances in the best way. All we have to do is learn how to specify the contrasts for ANOVA.</p>
+<p>Every time we do ANOVA we need a model to feed into it. Here’s the most common way ANOVA is done in R, with the <code>aov()</code> and <code>TukeyHSD()</code> functions, you’ve probably seen this before.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ano <span class="ot">&lt;-</span> <span class="fu">aov</span>(model)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(ano)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = model)
+
+$group
+            diff        lwr       upr     p adj
+trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+trt2-trt1  0.865  0.1737839 1.5562161 0.0120064</code></pre>
+</div>
+</div>
+<p>It seems to do the job, though the ‘flavour’ of ANOVA it does is sometimes limited and applies only when the standard assumptions of ANOVA are met.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A scary thing that statisticians often say is that such-and-such a method is only applicable when certain assumptions are met. This can make scientists nervy about applying any methods in case it is wrong. I would like to encourage you to relax about this aspect. Most statistical tests are pretty robust to against violations, and if anything tend to get more conservative (IE, generate fewer significant results) in these cases. There are a few assumptions and even a few types of data that we need to be aware of. I dedicate some space in the last chapter to understanding where these trip-ups might happen.</p>
+</div>
+</div>
+<p>A better alternative than the quick and dirty ANOVA approach above (in the sense of flexibility for the user) is the <code>multcomp</code> package function <code>glht()</code> (general linear model hypothesis test), which is more flexible with respect to which designs and contrasts you can get out, at the expense of being a little more complicated. The basic case is straightforward though.</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tested <span class="ot">&lt;-</span> <span class="fu">glht</span>(model, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">group =</span> <span class="st">"Tukey"</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tested)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = weight ~ group, data = PlantGrowth)
+
+Linear Hypotheses:
+                 Estimate Std. Error t value Pr(&gt;|t|)  
+trt1 - ctrl == 0  -0.3710     0.2788  -1.331    0.391  
+trt2 - ctrl == 0   0.4940     0.2788   1.772    0.198  
+trt2 - trt1 == 0   0.8650     0.2788   3.103    0.012 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+(Adjusted p values reported -- single-step method)</code></pre>
+</div>
+</div>
+<p>The <code>linfct</code> option just takes a specification of the things to be tested, and the <code>mcp()</code> function is a helper that generates the comparison based on a text description, here that the variable <code>group</code> should be analysed by ‘Tukey’.</p>
+<p>By printing the summary we see the contrast hypotheses writ explicitly (e.g.&nbsp;the difference between <code>ctrl</code> and <code>trt1</code> is 0) and the conclusions: there is no evidence to suggest either treatment is different from the control, but the difference we observe between the <code>trt1</code> and <code>trt2</code> occurs by chance only about 1.2 percent of the time, so is deemed ‘significant’.</p>
+<p>And that’s it! A properly done and specified use of the linear model and a subsequent ANOVA with Tukey’s <em>post hoc</em> used to determine differences.</p>
+<p>We’ll see more of how to use <code>glht()</code> as we go.</p>
+</section>
+<section id="two-way-comparisons---groups-in-multiple-variables" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="two-way-comparisons---groups-in-multiple-variables"><span class="header-section-number">4.3</span> Two-Way comparisons - groups in multiple variables</h2>
+<p>Often we’ll have experimental data where we have more than one explanatory variable, for example, <code>compost</code> and <code>fertiliser</code> and want to know the effects of each on a response variable like <code>yield</code>. Where you have two variables, it’s called a Two-Way ANOVA.</p>
+<p>Two-Way comparisons are pretty similar in practice to One-Way comparisons. So similar in fact that you’re going to jump in and try one, without any further instruction</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+For you to do
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Use the function <code>its_compost_time()</code> to load some data on the effects of changing compost type and a supplement on plant size.</li>
+<li>Build a linear model specifying that size is related to the two other explanatory variables. We haven’t explicitly discussed the syntax for two variables, but in the linear model a extra variables is added with ‘+’, thats how its done in R e.g.&nbsp;<code>lm(y ~ a + b + c)</code>. Inspect the model.</li>
+<li>Carry out Tukey’s to test the hypotheses i) that the true difference in means between Formula X1 and X2 is 0, and ii) that the true difference in means between John Innes #1 and #2 is 0.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="interactions-between-variables" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="interactions-between-variables"><span class="header-section-number">4.4</span> Interactions between variables</h2>
+<p>Working with multiple variables is complicated over the single case as we have the possibility of an interaction between the variables to consider. That is to say that the response in an experiment may be stronger under conditions <code>a and b</code> than in <code>a</code> or <code>b</code> alone whether <code>a</code> or <code>b</code> alone is greater than a <code>control</code> or not. We can visualise this as straight lines like in the diagrams below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_interaction_example_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-anova_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see the effect of interaction quite clearly in the two types of data, whenever <code>a &amp; b</code> is used then we have greater responses, either in greater means or in steeper gradients.</p>
+<p>Let’s work through an example that highlights how we identify and investigate this with linear models and ANOVAs. Here’s some data on reported enjoyment of some food, with different condiments added</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>food <span class="ot">&lt;-</span> <span class="fu">its_food_data_time</span>()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#look at specific rows 1,21,41,61</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>food[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">21</span>,<span class="dv">41</span>,<span class="dv">61</span>),]                                      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Food Condiment Enjoyment
+1  Tortilla Chips   Hummous  87.19762
+21 Tortilla Chips       Jam  55.72871
+41       Porridge   Hummous  57.22117
+61       Porridge       Jam  91.89820</code></pre>
+</div>
+</div>
+<p>Looking at those in the way we have already - each variable individually - then we would generate the following plots and lines to examine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_food_plot_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-anova_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Without rushing ahead to do the modelling, we see that hummous has a slightly greater effect on enjoyment than jam, whereas the enjoyment of the two food types is much more similar. So without a hypothesis test the dangerously thin conclusion would be ‘use hummous to enhance your enjoyment of Porridge or Tortilla Chips’. We might be suspect of this conclusion not only because it seems not to line up with our intuitive sense of what’s going on, but also because of those strange splits in the data. Look within each column and you can see that there is a definite clustering that is not a good sign, we possibly don’t have a good specification of our data here.</p>
+<p>Let’s see what the model says, in specifying the second variable can be added with a <code>+</code> as</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Enjoyment <span class="sc">~</span> Food <span class="sc">+</span> Condiment, <span class="at">data =</span> food)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Enjoyment ~ Food + Condiment, data = food)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-21.593 -15.526  -1.348  14.832  25.822 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         75.3978     3.0674  24.580   &lt;2e-16 ***
+FoodTortilla Chips   0.3384     3.5419   0.096    0.924    
+CondimentJam        -0.9693     3.5419  -0.274    0.785    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15.84 on 77 degrees of freedom
+Multiple R-squared:  0.00109,   Adjusted R-squared:  -0.02486 
+F-statistic: 0.04201 on 2 and 77 DF,  p-value: 0.9589</code></pre>
+</div>
+</div>
+<p>The summary isn’t promising, it looks like neither is significant. Let’s do the ANOVA and get a clearer view.</p>
+<p>The call to <code>glht()</code> is a bit more complicated than before, but not much</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>(model_1, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">Food =</span> <span class="st">"Tukey"</span>, <span class="at">Condiment =</span> <span class="st">"Tukey"</span>) ) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = Enjoyment ~ Food + Condiment, data = food)
+
+Linear Hypotheses:
+                                     Estimate Std. Error t value Pr(&gt;|t|)
+Food: Tortilla Chips - Porridge == 0   0.3384     3.5419   0.096    0.994
+Condiment: Jam - Hummous == 0         -0.9693     3.5419  -0.274    0.954
+(Adjusted p values reported -- single-step method)</code></pre>
+</div>
+</div>
+<p>Neither factor seems to be significant. Hmm. This seems like a slightly strange conclusion - and it is. The presence of two variables is confusing this approach. Look at what we get if we split the data by the two variables at once.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_food_two_ways_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-anova_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ok! That’s very different and very much clearer. The enjoyment is very much dependent on the combination of food and condiment. This is a classic case of interaction between variables. You get results that are conditional on the combined values of the variables.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The cross-over of the lines is a visual diagnostic of the presence of an interaction effect.</p>
+</div>
+</div>
+<section id="analysing-and-modelling-an-interaction-effect" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="analysing-and-modelling-an-interaction-effect"><span class="header-section-number">4.4.1</span> Analysing and modelling an interaction effect</h3>
+<p>The interaction effect should be checked for in the linear model. It is quite easy to check for and requires a slight extension to syntax. An interaction term can be specified with the <code>:</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>interaction_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Enjoyment <span class="sc">~</span> Food <span class="sc">+</span> Condiment <span class="sc">+</span> Food<span class="sc">:</span>Condiment, <span class="at">data =</span> food)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(there is also a short hand that allows the whole thing to be specified in one term <code>*</code>, which is used like <code>lm(Enjoyment ~ Food * Condiment, data=food)</code>)</p>
+<p>and when we print the <code>summary()</code> we get the book-keeping issue of not all the results we want to see being immediately available, but we can see the usual stuff.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(interaction_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment, data = food)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-10.9463  -2.8645  -0.2551   2.7201  10.8500 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                      60.4259     0.9553   63.25   &lt;2e-16 ***
+FoodTortilla Chips               30.2822     1.3510   22.41   &lt;2e-16 ***
+CondimentJam                     28.9745     1.3510   21.45   &lt;2e-16 ***
+FoodTortilla Chips:CondimentJam -59.8876     1.9106  -31.34   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.272 on 76 degrees of freedom
+Multiple R-squared:  0.9283,    Adjusted R-squared:  0.9254 
+F-statistic: 327.9 on 3 and 76 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>This seems much more like what we expect from the graph, significance everywhere! Basically what the summary is saying is that the Food, Condiment and both together have an effect on the reported enjoyment. This is a bit confusing, because the previous model said that the main effects (Food, Condiment) <em>weren’t</em> significant. The issue is the way the two models separate the data. The point is that in the second model the significance for the main effect is reliant on the interaction, so we can’t generalise to say that Food or Condiment alone has significant effect on enjoyment. We must ignore these main effects in our interpretation.</p>
+<p>But are the contrasts presented here really all the ones we’re interested in? These seem a bit generic and hard to interpret. This is generally the case so we need to know how to extract the ones we’re interested in.</p>
+<p>In our linear model way of thinking this means which lines do we want to test for zero slopes? There can be many lines we could imagine depending on how we decide to group the data and the number of variables that we have. Let’s define which we’ll look at before we begin.</p>
+<p>Let’s see whether food alone or condiment alone has an effect. This would be like the first situation we looked at,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_food_plot_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-anova_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>in the way that the output we’ve seen so far has it, this would be</p>
+<blockquote class="blockquote">
+<p>Porridge - Tortilla Chips == 0</p>
+<p>Hummous - Jam == 0</p>
+</blockquote>
+<p>Let’s also see whether <code>food * condiment</code> has an effect. This would be like the interaction situation.</p>
+<blockquote class="blockquote">
+<p>Porridge:Jam - Tortilla Chips:Jam == 0</p>
+<p>Porridge:Hummous - Tortilla Chips:Hummous == 0</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">its_food_two_ways_time</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04-anova_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>So we have four lines of interest to look at - four contrasts.</p>
+<p>For the two main non-interaction effects we could think to look at these as we’ve done before, using the <code>mcp()</code> function with the <code>interaction_model</code> with the explicit interaction in it, like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glht</span>(interaction_model, <span class="at">linfct =</span> <span class="fu">mcp</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Food =</span> <span class="st">"Tukey"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Condiment =</span> <span class="st">"Tukey"</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mcp2matrix(model, linfct = linfct): covariate interactions found --
+default contrast might be inappropriate
+
+Warning in mcp2matrix(model, linfct = linfct): covariate interactions found --
+default contrast might be inappropriate</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment, data = food)
+
+Linear Hypotheses:
+                                     Estimate Std. Error t value Pr(&gt;|t|)    
+Food: Tortilla Chips - Porridge == 0   30.282      1.351   22.41   &lt;1e-10 ***
+Condiment: Jam - Hummous == 0          28.974      1.351   21.45   &lt;1e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+(Adjusted p values reported -- single-step method)</code></pre>
+</div>
+</div>
+<p>This gives a result, but actually throws up a warning. Since we have an interaction term in our model, we have a complication. The <code>glht()</code> function has spotted that there are interacting terms and potential for confounding and the <span class="math inline">\(p\)</span>-values are therefore a bit suspect without being a bit more careful. We need to take account of the interaction as a term of its own in our hypothesis tests. Annoyingly, this isn’t an easy thing to specify in the <code>glht()</code> function and the easiest way in practice is to just do all the comparisons.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+The Contrast Matrix
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The reason that the warnings are thrown in the interaction model is to do with an ANOVA internal object called the Contrasts Matrix, which specifies the contrasts and is used in the linear algebra of the ANOVA and Tukey’s method. The Contrast Matrix is basically a grid with the different samples and contrasts as the rows and columns with a load of ones and zeroes in it. For Tukey’s method to work the Contrast Matrix should be ‘orthogonal’, which roughly means symmetric around a certain axis. When we get the interaction term in the model we lose the orthogonality in the Contrast Matrix and Tukey’s method stops working well. The orthogonality is one of the assumptions that statisticians talk about. It is possible to set up different Contrast Matrices and there are methods for getting significance for non-orthogonal ones, however that does take us a bit too far into theory. For most purposes, except for those with very large numbers of variables it is convenient to use the alternative method below.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="doing-all-pairwise-interactions" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="doing-all-pairwise-interactions"><span class="header-section-number">4.5</span> Doing all pairwise interactions</h2>
+<p>Although we’re interested in only two specific interactions, usually it’s easier to do all pairwise comparisons in one step, as we don’t often have so many interacting variables that it gets unwieldy. To do this we must add an interaction column to our data and model that. The <code>interaction()</code> function is built for just this reason and allows us to add an interaction column directly from existing data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>food_2 <span class="ot">&lt;-</span> food <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">FoodCondiment =</span> <span class="fu">interaction</span>(Food, Condiment))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>( food_2[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">21</span>,<span class="dv">41</span>,<span class="dv">61</span>),] , <span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Food</th>
+<th style="text-align: center;">Condiment</th>
+<th style="text-align: center;">Enjoyment</th>
+<th style="text-align: center;">FoodCondiment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: center;">Tortilla Chips</td>
+<td style="text-align: center;">Hummous</td>
+<td style="text-align: center;">87.19762</td>
+<td style="text-align: center;">Tortilla Chips.Hummous</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">21</td>
+<td style="text-align: center;">Tortilla Chips</td>
+<td style="text-align: center;">Jam</td>
+<td style="text-align: center;">55.72871</td>
+<td style="text-align: center;">Tortilla Chips.Jam</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">41</td>
+<td style="text-align: center;">Porridge</td>
+<td style="text-align: center;">Hummous</td>
+<td style="text-align: center;">57.22117</td>
+<td style="text-align: center;">Porridge.Hummous</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">61</td>
+<td style="text-align: center;">Porridge</td>
+<td style="text-align: center;">Jam</td>
+<td style="text-align: center;">91.89820</td>
+<td style="text-align: center;">Porridge.Jam</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We can see that all we’ve done is add a column that describes the interaction. We can use this in the place of the individual variables as before and now don’t need to explicitly mention the interaction in the specification because it is modelled implicitly in the new column. That means our model looks like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>interaction_model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Enjoyment <span class="sc">~</span> FoodCondiment, <span class="at">data =</span> food_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To do the contrasts we can use the single interaction column as the target of Tukey.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glht</span>(interaction_model2, <span class="at">linfct =</span> <span class="fu">mcp</span>(<span class="at">FoodCondiment =</span> <span class="st">"Tukey"</span>))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = Enjoyment ~ FoodCondiment, data = food_2)
+
+Linear Hypotheses:
+                                                 Estimate Std. Error t value
+Tortilla Chips.Hummous - Porridge.Hummous == 0     30.282      1.351  22.414
+Porridge.Jam - Porridge.Hummous == 0               28.974      1.351  21.446
+Tortilla Chips.Jam - Porridge.Hummous == 0         -0.631      1.351  -0.467
+Porridge.Jam - Tortilla Chips.Hummous == 0         -1.308      1.351  -0.968
+Tortilla Chips.Jam - Tortilla Chips.Hummous == 0  -30.913      1.351 -22.881
+Tortilla Chips.Jam - Porridge.Jam == 0            -29.605      1.351 -21.913
+                                                 Pr(&gt;|t|)    
+Tortilla Chips.Hummous - Porridge.Hummous == 0     &lt;1e-04 ***
+Porridge.Jam - Porridge.Hummous == 0               &lt;1e-04 ***
+Tortilla Chips.Jam - Porridge.Hummous == 0          0.966    
+Porridge.Jam - Tortilla Chips.Hummous == 0          0.768    
+Tortilla Chips.Jam - Tortilla Chips.Hummous == 0   &lt;1e-04 ***
+Tortilla Chips.Jam - Porridge.Jam == 0             &lt;1e-04 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+(Adjusted p values reported -- single-step method)</code></pre>
+</div>
+</div>
+<p>We can see all possible interaction groupings and lines, without any warnings. We can see that the significances make good sense. The Porridge and Jam is no more enjoyable than the Tortilla Chips and Hummous, the Porridge and Hummous is no more enjoyable than the Tortilla Chips and Jam and all the other match and mismatch food and condiments are as we might expect from this very obviously loaded example.</p>
+<p>We said we wanted to look specifically at the interaction between the Porridge with Jam and Tortilla Chips with Jam - we can see that there is a significant difference in enjoyment, about 29 points. Similarly Porridge with Hummous is less enjoyable than Tortilla Chips with Hummous, by about 30 points.</p>
+</section>
+<section id="summary" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.6</span> Summary</h2>
+<p>We’ve looked at how to use linear models to think about differences between lots of categories and at what it means for variables to be interacting. We learned that ANOVA is inherently a test based on a linear model that is designed to do all comparisons at once and we learned how to carry the ANOVAs out having built the proper linear model for cases with and without interactions. We know all we need to use R to perform ANOVAs with linear models - which always use linear models anyway.</p>
+</section>
+<section id="extra-credit-anova-model-level-p-and-as-a-hypothesis-test" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="extra-credit-anova-model-level-p-and-as-a-hypothesis-test"><span class="header-section-number">4.7</span> Extra Credit: ANOVA model-level <span class="math inline">\(p\)</span> and as a hypothesis test</h2>
+<p>Recall that when we introduced linear models we looked at the statistics of the coefficients (the column <span class="math inline">\(Pr(&gt;|t|)\)</span> in the coefficient block of the summary) <em>and</em> the statistics of the whole model, the <span class="math inline">\(p\)</span>-value at the end.</p>
+<p>When we did the simple linear model as an alternative of the <span class="math inline">\(t\)</span>-test, then these two <span class="math inline">\(p\)</span>-values were the same - this is because the model then only had one coefficient, so the <span class="math inline">\(p\)</span> of that coefficient was the overall <span class="math inline">\(p\)</span>. With more than one coefficient, then the overall model score is made up differently. The overall model can be significant, whereas the individual variables/groups/coefficient within may not be. That’s what we saw when we looked at the <code>PlantGrowth</code> data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = weight ~ group, data = PlantGrowth)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0710 -0.4180 -0.0060  0.2627  1.3690 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   5.0320     0.1971  25.527   &lt;2e-16 ***
+grouptrt1    -0.3710     0.2788  -1.331   0.1944    
+grouptrt2     0.4940     0.2788   1.772   0.0877 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6234 on 27 degrees of freedom
+Multiple R-squared:  0.2641,    Adjusted R-squared:  0.2096 
+F-statistic: 4.846 on 2 and 27 DF,  p-value: 0.01591</code></pre>
+</div>
+</div>
+<p>None of the reported variable/group/coefficient values are significant but the model level <span class="math inline">\(p\)</span> is. This indicates that one of the groups is significant. This is because the ANOVA as a test tests the hypothesis that all lines between groups have slopes of zero. When one line isn’t likely to have a zero slope the model <span class="math inline">\(p\)</span> is low</p>
+<p>In terms of a formal hypothesis test what we’re asking amounts to an extension to what we saw with the <span class="math inline">\(t\)</span>-test:</p>
+<ul>
+<li>All flat lines with slopes of zero is equivalent to the Null hypothesis
+<ul>
+<li><span class="math inline">\(H_{0}\)</span> the group means are <em>all</em> equal</li>
+</ul></li>
+<li>At least one <span class="math inline">\(p\)</span>-value that suggests the slope is rare is equivalent to the Alternative hypothesis
+<ul>
+<li><span class="math inline">\(H_{1}\)</span> the group means are not <em>all</em> equal</li>
+</ul></li>
+</ul>
+<p>In other words we can think of the ANOVA testing the idea that all the groups are the result of random sampling from all the observations, if this were true the slopes between groups would all be the same.</p>
+<p>It’s by using the <em>post-hoc</em> tests like Tukey’s we get at the specific differences between groups.</p>
+</section>
+<section id="extra-credit-testing-specific-interactions" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="extra-credit-testing-specific-interactions"><span class="header-section-number">4.8</span> Extra Credit: Testing specific interactions</h2>
+<p>The table output is a bit rich and confusing, you can get a simpler output at the expense of some more work. For the two sets of interactions we’re interested in we can look at them specifically but naming them explicitly in <code>glht</code> is trickier than we’ve done so far.</p>
+<p>We have to specify a matrix of comparisons ourselves. The first step is to work out all the different interactions of the levels of the <code>food*condiment</code> interaction term. We can do that with the <code>interaction()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>f_c_interactions <span class="ot">&lt;-</span> <span class="fu">interaction</span>(food<span class="sc">$</span>Food, food<span class="sc">$</span>Condiment, <span class="at">sep=</span><span class="st">":"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(f_c_interactions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Tortilla Chips:Hummous Tortilla Chips:Hummous Tortilla Chips:Hummous
+[4] Tortilla Chips:Hummous Tortilla Chips:Hummous Tortilla Chips:Hummous
+4 Levels: Porridge:Hummous Tortilla Chips:Hummous ... Tortilla Chips:Jam</code></pre>
+</div>
+</div>
+<p>We can see that this is just a factor object with all the combinations of <code>Food</code> and <code>Condiment</code>. Using the <code>levels()</code> function gives us all the unique values in the order that R will use them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f_c_interactions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Porridge:Hummous"       "Tortilla Chips:Hummous" "Porridge:Jam"          
+[4] "Tortilla Chips:Jam"    </code></pre>
+</div>
+</div>
+<p>Now we can make the matrix, our eventual matrix will look like this</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                                          Porridge:Hummous
+Porridge:Jam - Tortilla Chips:Jam                        0
+Porridge:Hummous - Tortilla Chips:Hummous                1
+                                          Tortilla Chips:Hummous Porridge:Jam
+Porridge:Jam - Tortilla Chips:Jam                              0            1
+Porridge:Hummous - Tortilla Chips:Hummous                     -1            0
+                                          Tortilla Chips:Jam
+Porridge:Jam - Tortilla Chips:Jam                         -1
+Porridge:Hummous - Tortilla Chips:Hummous                  0</code></pre>
+</div>
+</div>
+<p>We can see that there is a row per comparison and a column per possible interaction. At the intersection we write a zero if we don’t want to include that possible interaction in the contrast, a 1 if we want it to be the first part and a -1 if we want it to be the second part (IE, the part after the minus sign).</p>
+<p>As the <code>levels()</code> function gives us the order, we set up the rows one by one and join them together.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>P.J_TC.J <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>P.H_TC.H <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can stick them together, use the <code>levels()</code> function as the column names and add row names. Note you can call the rows what you like, so you dont have to use the long names, but the columns <em>must</em> be named and ordered according to the <code>levels()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>contr_of_interest <span class="ot">&lt;-</span> <span class="fu">rbind</span>(P.J_TC.J, P.H_TC.H)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(contr_of_interest) <span class="ot">&lt;-</span> <span class="fu">levels</span>(f_c_interactions)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(contr_of_interest) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"P:J - TC:J"</span>,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">"P:H - TC:H"</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>contr_of_interest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Porridge:Hummous Tortilla Chips:Hummous Porridge:Jam
+P:J - TC:J                0                      0            1
+P:H - TC:H                1                     -1            0
+           Tortilla Chips:Jam
+P:J - TC:J                 -1
+P:H - TC:H                  0</code></pre>
+</div>
+</div>
+<p>Now we can do the test using the custom matrix.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glht</span>( interaction_model, <span class="at">linfct =</span> contr_of_interest))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Simultaneous Tests for General Linear Hypotheses
+
+Fit: lm(formula = Enjoyment ~ Food + Condiment + Food:Condiment, data = food)
+
+Linear Hypotheses:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+P:J - TC:J == 0   88.862      3.021   29.41   &lt;1e-10 ***
+P:H - TC:H == 0   30.144      2.136   14.11   &lt;1e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+(Adjusted p values reported -- single-step method)</code></pre>
+</div>
+</div>
+<p>And there we have the specific interaction contrasts. Note how in doing this we don’t generate any warnings even though we used the model with the explicit interaction term, this is because when we generate our own contrast matrix like this we get an appropriate orthogonality for the test.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Roundup
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Working with multiple variables goes the same as working with just one</li>
+<li>ANOVA is a flexible tool for specifying comparisons between variables in linear models</li>
+</ul>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For you to do Complete the interactive tutorial online <a href="http://v1068.nbi.ac.uk/datasci/anova/">http://v1068.nbi.ac.uk/datasci/anova/</a></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-ttest.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><span class="math inline">\(t\)</span>-tests and linear models</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./05-discrete.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Non-parametric tests and linear models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
