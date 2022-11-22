@@ -234,8 +234,7 @@ The general applicability of the straight line and linear model concept comes in
 
 
 :::{.callout-tip}
-Complete the interactive tutorial online [http://v1068.nbi.ac.uk/datasci/ttests/](http://v1068.nbi.ac.uk/datasci/ttests/)
+Complete the interactive tutorial online [https://tsl-bioinformatics.shinyapps.io/ttests/](https://tsl-bioinformatics.shinyapps.io/ttests/)
 
-This will only work on the NBI site.
 :::
 

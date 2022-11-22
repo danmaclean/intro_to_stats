@@ -343,5 +343,5 @@ At the very least knowing notation like this will be useful later when we are lo
 
 :::{.callout-tip}
 ## For you to do
-Complete the interactive quiz online [https://danmaclean.shinyapps.io/linear-models](https://danmaclean.shinyapps.io/linear-models)
+Complete the interactive quiz online [https://tsl-bioinformatics.shinyapps.io/linear_models/](https://tsl-bioinformatics.shinyapps.io/linear_models/)
 :::

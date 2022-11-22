@@ -355,9 +355,8 @@ As with the $t$-test, then in practice, sometimes, yes, these tests are easier. 
 
 :::{.callout-tip}
 ## For you to do
-Complete the interactive tutorial online [http://v1068.nbi.ac.uk/datasci/type/](http://v1068.nbi.ac.uk/datasci/type/)
+Complete the interactive tutorial online [https://tsl-bioinformatics.shinyapps.io/type/](https://tsl-bioinformatics.shinyapps.io/type/)
 
-This will only work on the NBI site.
 :::
 
 ## References

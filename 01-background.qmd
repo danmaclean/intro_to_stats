@@ -101,5 +101,5 @@ Now we have a conceptual tool for thinking about differences (like differences i
 
 :::{.callout-tip}
 ## For you to do
-Complete the interactive quiz online [https://danmaclean.shinyapps.io/linear-models-background/](https://danmaclean.shinyapps.io/linear-models-background)
+Complete the interactive quiz online [https://tsl-bioinformatics.shinyapps.io/linear_models_background/](https://tsl-bioinformatics.shinyapps.io/linear_models_background/)
 :::
