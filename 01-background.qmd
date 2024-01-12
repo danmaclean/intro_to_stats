@@ -84,10 +84,8 @@ vals <- runif(6, min = 4, max = 7)
 df1 <- tibble::tibble(group1 = vals,
                  group2 = vals
                  )
-its_barplot_time(df,join_tops=TRUE)
-```
-```{r}
 its_barplot_time(df1, join_tops=TRUE)
+its_barplot_time(df,join_tops=TRUE)
 ```
 
 Now we have a conceptual tool for thinking about differences (like differences in means of samples) as a slope between the means from one group to another. And that is the logic we will be following in this little book. All we will do is learn to look for a slope of a line. We'll look at using a statistical tool called a linear model, which tries to create a straight line that matches the data, so it contains the equation of a straight line but elaborates on the equation alone by providing measures of believability about the slope and other things. The technique we will learn will give us a framework for thinking about performing hypothesis testing in all sorts of comparisons including $t$-tests, ANOVA, etc. and with elaborations we'll be able to see how to use the same framework for the other class of tests that we often use, the non-parametric tests.
