@@ -38,6 +38,10 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    other-links:
+      - text: Understanding Statistics with Linear models Chatbot
+        href: https://tsl-bioinformatics.shinyapps.io/test_elmer/
+        target: _blank
   pdf:
     documentclass: scrreprt
 comments:
