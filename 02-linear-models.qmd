@@ -69,7 +69,9 @@ The graph shows 20 random $x$ values between 5 and 15 plotted against 20 $y$ val
 lm(y ~ x, data = df)
 ```
 
-That's it! The function `lm()` does the work, it takes a fairly odd syntax, though. The `y ~ x` bit is an R formula and describes the relationship you want to examine, you can read it as `y depends on x`. The `y` and `x` we're referring to here are the two columns of numbers we created and plotted above, the `data` argument just says in which object to look for the data.
+That's it! The function `lm()` does the work, it takes a fairly odd syntax, though. The `y ~ x` bit is an R formula and describes the relationship you want to examine, you can read it as `y depends on x`. The `y` and `x` we're referring to here are the two columns of numbers we created and plotted above, the `data` argument just says in which object to look for the data.[^1]
+
+[^1]: Here we're using the example data, but this is never different whether you're using example or 'real' data. The maths is the same and the code is the same.
 
 Looking at the function output we get this 
 
@@ -175,7 +177,6 @@ So what's the difference between these two - at first glance they do the same th
 ### $F$-Statistic
 
 The $F$-Statistic is an indicator of a relationship between the $x$ and $y$ values of the model. In effect $F$ tests how much better the relationship is in your model than a model in which the relationship is completely random. It's actually a ratio such that when the $F$-statistic is at 1, the relationship is no stronger than a random relationship.  The further above 1 $F$ is, the more it is likely there is a real relationship in the model. The $p$ value here is the $p$ that this size of $F$ would occur in a random relationship with a similar dataset size. As with the other statistics, the significance of the actual size of $F$ is dependent on the domain and data being analysed.
-
 ## Coefficients have statistics 
 
 Along with these model level statistics, linear modelling with `lm()` gives us a set of statistics _per coefficient_. These measure the effect that each coefficient has on the output variable $y$. Basically a significant coefficient, is one that has a non-zero slope and is an important determinant of the value of $y$. 
