@@ -7,3 +7,4 @@ _bookdown_files/*
 _book/*
 
 /.quarto/
+.idea/
