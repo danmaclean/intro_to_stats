@@ -1,0 +1,57 @@
+name: Publish book (gh-pages)
+
+# Phase 0 / C1 — build the site and push it to the gh-pages branch.
+#
+# This does NOT change the live site: GitHub Pages still serves master:/docs
+# until C2 flips the Pages source to gh-pages (deferred to go-live). Pushing to
+# the gh-pages branch is therefore safe to verify now.
+#
+# Trigger note: currently runs on workflow_dispatch and on pushes to this
+# verification branch so we can populate/verify gh-pages without touching master.
+# AT GO-LIVE (C2/C3): change the push trigger to [master], drop the verification
+# branch, and decide whether to also render the PDF download (currently HTML only).
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [stabilise/ci-publish]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-gh-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}   # for renv installing the GitHub-sourced itssl
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: '1.6.32'
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.3'
+
+      - name: Restore renv library
+        uses: r-lib/actions/setup-renv@v2
+
+      - name: Render book (HTML only)
+        run: quarto render --to html
+
+      - name: Publish prebuilt site to gh-pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          render: false   # publish the docs/ we just rendered; no re-render, no LaTeX/PDF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
