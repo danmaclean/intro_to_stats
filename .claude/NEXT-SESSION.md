@@ -4,7 +4,17 @@ Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable fact
 Last updated: 2026-06-26.
 
 ## Where we are
-Executing **Phase 0 (Stabilise)** of `ROADMAP.md`. **All safe Phase-0 work is done**; only the deliberate go-live steps remain (see ROADMAP "Go-live checklist").
+**Phase 1 (modernise `itssl`) in progress.** Phase 0 safe work all done (go-live steps still deferred — see ROADMAP "Go-live checklist").
+
+### Phase 1 status (started 2026-06-26)
+- **`itssl` cloned to `/Users/macleand/Desktop/itssl`** (separate repo; same branch/PR discipline as the book). Branch `phase1/description-audit` pushed; **PR `danmaclean/itssl#1` open**; **tag `v0.1.0` pushed** (commit `b455516`). NB: when merging #1, use a merge-commit/FF (not squash) so `v0.1.0` stays reachable from `master`, else re-point the tag.
+- **Dependency audit ✅ (committed):** `DESCRIPTION` `Imports` realigned to real usage — dropped 5 unused (`ggthemes`, `gridGraphics`, `multcomp`, `rcompanion`, `readr`), added 3 missing (`tibble`, `knitr`, `tidyselect`); `.Rprofile` build-ignored (it sourced the absent `renv/activate.R` and broke clean install); version `0.0.0.9000`→`0.1.0`. Clean build+install verified; all 30 helpers run.
+- **webR feasibility spike ✅ POSITIVE:** full 47-pkg dep closure all present as WASM binaries; headless webR run installed them (~20s) and ran helpers (incl. `fGarch`, ggplot, knitr) — all pass. webR delivery (Phase 2) is unblocked.
+- **Book `renv.lock` repointed ✅:** itssl pin moved from raw SHA (`RemoteRef master`) → tag `v0.1.0` (Version `0.1.0`, SHA `b455516`, Imports updated). **Minimal hand-edit** (only the itssl block) — deliberately did NOT run `renv::snapshot()`, which would also prune the pinned recommended pkgs (mgcv/nlme/cluster/…) and churn the lock, broadening the change. Full `quarto render --to html` succeeds against 0.1.0 (regenerated `docs/` discarded). On its own book branch `phase1/pin-itssl-v0.1.0` → PR into `stabilise/ci-render`.
+- **TODO next:** **Bundle real data — waiting on author to choose the dataset** (the remaining Phase-1 item). Then Phase 2 (quarto-live/webR) or go-live, per author.
+
+---
+*(Phase 0 recap below — all safe work complete; only go-live remains.)*
 
 - Group A (reproducibility) ✅ — renv.lock pins R 4.5.3 + renv 1.2.3 + itssl@commit + ~127 pkgs; clean-room restore verified.
 - Group B (CI gate) ✅ — `.github/workflows/render.yml`, verified green-on-clean / red-on-error.

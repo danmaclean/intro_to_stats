@@ -84,10 +84,10 @@ Do deliberately, in order. The stabilisation work sits in a PR stack on `stabili
 
 Goal: turn `itssl` from an unpinned helper into a durable, webR-ready, data-bearing package.
 
-- [ ] Versioned, tagged releases.
-- [ ] webR/WASM compatibility (the feasibility spike from Phase 0's gating unknown).
-- [ ] Bundle the **real biology dataset(s)** in the package so chapters can `data()` them.
-- [ ] Audit helpers: keep the ones that hide *irrelevant* complexity; reconsider any that hide something a beginner should actually see.
+- [x] Versioned, tagged releases. — `itssl` bumped `0.0.0.9000`→`0.1.0`; PR `danmaclean/itssl#1`; **tag `v0.1.0` pushed**; book `renv.lock` repointed from raw SHA → tag `v0.1.0` (minimal hand-edit, full render verified) on book branch `phase1/pin-itssl-v0.1.0`.
+- [x] **webR/WASM compatibility — SPIKE DONE, RESULT POSITIVE.** itssl is pure-R (installs from source); its full 47-package transitive dependency closure is 100% present as WASM binaries on repo.r-wasm.org (incl. the compiled `fGarch`, `scatterplot3d`, `cowplot`). A headless webR (Node) run installed the deps in ~20s and ran representative helpers (incl. the `fGarch::rsnorm` path, ggplot build, knitr table) — all PASS; seeded helpers reproduce the native values. **Conclusion: no blocker to webR delivery (Phase 2).**
+- [ ] Bundle the **real biology dataset(s)** in the package so chapters can `data()` them. — *blocked on dataset choice (author deciding).*
+- [x] Audit helpers (dependency audit): `DESCRIPTION` `Imports` realigned to actual usage — dropped 5 unused (`ggthemes`, `gridGraphics`, `multcomp`, `rcompanion`, `readr`), added 3 missing (`tibble`, `knitr`, `tidyselect`); build-ignored `.Rprofile` (was breaking clean `R CMD INSTALL`). Verified: clean build+install, all 30 helpers load/run. *(Deeper "does a helper hide something a beginner should see" editorial audit still open — overlaps Phase 3.)*
 
 ## Phase 2 — Modernise delivery (webR in-page)
 
