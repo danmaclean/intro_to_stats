@@ -4,7 +4,7 @@ Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable fact
 Last updated: 2026-06-26.
 
 ## Where we are
-**Phase 1 (modernise `itssl`) in progress.** Phase 0 safe work all done (go-live steps still deferred — see ROADMAP "Go-live checklist").
+**Phase 1 (modernise `itssl`) essentially COMPLETE** — all four goals done (webR spike, dep audit, tagged release, real data bundled); only the PR merges + a `v0.2.0` tag remain (see "Open PRs"). Phase 0 safe work all done (go-live steps still deferred — see ROADMAP "Go-live checklist"). Next major decision: Phase 2 vs Phase 3 vs go-live (see "Next options").
 
 ### Phase 1 status (started 2026-06-26)
 - **`itssl` cloned to `/Users/macleand/Desktop/itssl`** (separate repo; same branch/PR discipline as the book). Branch `phase1/description-audit` pushed; **PR `danmaclean/itssl#1` open**; **tag `v0.1.0` pushed** (commit `b455516`). NB: when merging #1, use a merge-commit/FF (not squash) so `v0.1.0` stays reachable from `master`, else re-point the tag.
@@ -33,13 +33,15 @@ Last updated: 2026-06-26.
 - The CI render gate runs on every non-master push, so feature branches are still checked.
 - Note: `master` still has the OLD state (stub renv.lock, committed docs/, no CI) — that's expected; the improvements live on the integration branch until go-live.
 
-## Open PRs (all into the integration line; merge at go-live, bottom-up)
-- #19 renv pinning (draft) · #20 CI gate (draft) · #21 trivial fixes · #22 ch.7/ch.2 fixes · #23 publish workflow (C1).
-- Non-default base ⇒ referenced issues won't auto-close; close manually on merge.
+## Open PRs
+**Book** (`danmaclean/intro_to_stats`, base `stabilise/ci-render`): #19 renv (draft) · #20 CI (draft) · #21 trivial fixes · #22 ch.7/ch.2 · #23 publish (C1) · **#24 renv pin → itssl v0.1.0** (Phase-1). Merge bottom-up at go-live; non-default base ⇒ referenced issues won't auto-close, close manually.
+**itssl** (`danmaclean/itssl`, base `master`): **#1** dep audit (0.1.0; tag `v0.1.0` already pushed) → **#2** potato data (0.2.0; *stacked on #1*). Merge #1 then #2 with a **merge-commit/FF, not squash** (keeps `v0.1.0` reachable); **tag `v0.2.0` after #2 merges**.
 
 ## Next options (pick one)
-1. **Phase 1 — modernise `itssl`** (recommended next; the enabler for webR + real data): versioned/tagged releases, webR/WASM compatibility spike, bundle real biology dataset(s), audit helpers. See ROADMAP Phase 1.
-2. **Go-live** (whenever the user is ready): execute the ROADMAP "Go-live checklist" (merge stack, flip Pages to gh-pages, drop docs/, switch publish trigger).
+Phase 1 is essentially done (pending the merges above). Then:
+1. **Phase 2 — webR delivery pilot** (now de-risked by the spike): adopt `quarto-live`, pilot ONE chapter end-to-end. See ROADMAP Phase 2.
+2. **Phase 3 — content**: rewrite chapters onto the bundled potato data (replaces PlantGrowth/chickwts/txhousing). Open sub-question: whether to add a **potato-themed contingency dataset** so chi-square/log-linear leave toy data too. See ROADMAP Phase 3.
+3. **Go-live** (whenever ready): execute the ROADMAP "Go-live checklist" (merge stack, flip Pages to gh-pages, drop docs/, switch publish trigger). Decide whether to also repoint the book lock to `v0.2.0` first.
 
 ## Environment / gotchas
 See `MEMORY.md` (shell/permission conventions, gh PAT can't rerun workflows, zsh quirks). Reminder: the user once pasted a GitHub PAT in chat — suggest rotating it if not already done.

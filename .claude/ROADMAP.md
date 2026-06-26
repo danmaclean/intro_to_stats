@@ -6,13 +6,17 @@ Planning document (not a commitment to dates). Captures direction agreed in plan
 
 ## Status (2026-06-26)
 
-**Phase 0 safe work complete.** Done on integration branch `stabilise/ci-render`:
+**Phase 0 safe work complete** + **Phase 1 essentially complete.** Done on integration branch `stabilise/ci-render` (+ the external `itssl` repo).
+
+Phase 0:
 - Group A (reproducibility) ✅ — full `renv.lock`, `itssl` pinned, clean-room restore verified.
 - Group B (CI gate) ✅ — render-on-PR, verified green/red.
 - Group D (bug fixes) ✅ — all of #12–#18 (RNG audit concluded: book is deterministic, no `set.seed` needed).
 - Group C1 (publish workflow) ✅ — builds to `gh-pages`; live source untouched. **C2/C3 deferred to go-live.**
 
-Remaining Phase 0 = the go-live steps only (see checklist below), deliberately deferred while `master` serves the live site. Next major phase = Phase 1 (modernise `itssl`).
+Phase 1 (all four goals ✅ — detail in the Phase 1 section below): webR feasibility confirmed; `itssl` dependency audit (0.1.0, tagged `v0.1.0`); real **potato plant-pathology data** bundled (0.2.0); book `renv.lock` repointed to `v0.1.0`. Pending only the PR merges + a `v0.2.0` tag (see `NEXT-SESSION.md`).
+
+Remaining Phase 0 = the go-live steps only (see checklist below), deliberately deferred while `master` serves the live site. **Next: Phase 2 (webR delivery) / Phase 3 (content onto the potato data) / go-live — author's call.**
 
 ## Fixed constraints / principles
 
