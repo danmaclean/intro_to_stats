@@ -46,8 +46,8 @@ Another thing you can do to assess your linear model is check out the residuals.
 #| layout-ncol: 2
 close_fit <- its_random_xy_time(20)
 far_fit <- data.frame(
-  x <- runif(20, 5, 15),
-  y <- runif(20, 5, 15)
+  x = runif(20, 5, 15),
+  y = runif(20, 5, 15)
 )
 
 its_plot_xy_time(close_fit, line = TRUE)
@@ -116,4 +116,4 @@ plot(non_linear_model, which = 2)
 :::{.callout-note}
 ## Roundup
   * Linear models work best when the residuals are normally distributed, but linear models are somewhat robust to deviation from this
-```
+:::

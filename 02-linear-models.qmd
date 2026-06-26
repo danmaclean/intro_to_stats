@@ -103,8 +103,8 @@ Although a line of best fit can always be calculated, the line might not be wort
 
 ```{r}
 more_df <- data.frame(
-  x <- runif(20, 5, 15),
-  y <- runif(20, 5, 15)
+  x = runif(20, 5, 15),
+  y = runif(20, 5, 15)
 )
 
 its_plot_xy_time(more_df)
