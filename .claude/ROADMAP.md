@@ -2,6 +2,18 @@
 
 Planning document (not a commitment to dates). Captures direction agreed in planning, June 2026.
 
+> **Live status lives in `.claude/NEXT-SESSION.md`.** This file is the plan; that file is where we are in it.
+
+## Status (2026-06-26)
+
+**Phase 0 safe work complete.** Done on integration branch `stabilise/ci-render`:
+- Group A (reproducibility) ✅ — full `renv.lock`, `itssl` pinned, clean-room restore verified.
+- Group B (CI gate) ✅ — render-on-PR, verified green/red.
+- Group D (bug fixes) ✅ — all of #12–#18 (RNG audit concluded: book is deterministic, no `set.seed` needed).
+- Group C1 (publish workflow) ✅ — builds to `gh-pages`; live source untouched. **C2/C3 deferred to go-live.**
+
+Remaining Phase 0 = the go-live steps only (see checklist below), deliberately deferred while `master` serves the live site. Next major phase = Phase 1 (modernise `itssl`).
+
 ## Fixed constraints / principles
 
 - **Audience is always the absolute-beginner biologist.** Gentle on-ramp is the product. New material must not raise the floor.
@@ -56,6 +68,17 @@ Assumption to confirm: GitHub Pages currently serves `master:/docs`.
 - [ ] **D7 (optional cleanup).** Remove the stray `09-glms.ipynb` (not wired into `_quarto.yml`; the `.qmd` is canonical). Branch: `fix/remove-ipynb`.
 
 **Phase 0 done when:** clean checkout → `renv::restore()` → `quarto render` succeeds with no R errors; CI gates PRs into `master`; the live site is served from the CI build (not committed `docs/`); D1–D6 resolved.
+
+### Go-live checklist (deferred — the only remaining Phase 0 work; touches the LIVE site)
+
+Do deliberately, in order. The stabilisation work sits in a PR stack on `stabilise/ci-render`; `master` is frozen until this.
+
+1. **Merge the stack bottom-up to `master`**, un-drafting first: #19 (renv) → #20 (CI) → #21 (trivial fixes) → #22 (ch.7/ch.2 fixes) → #23 (publish workflow). Or merge the integration branch in one go once it contains them all. Manually close #9–#18 references (non-default base means no auto-close).
+2. **Reconcile docs:** this branch keeps the canonical docs in `.claude/`; delete the root `ROADMAP.md` that came from PR #2 (superseded by `.claude/ROADMAP.md`). Take the branch's `CLAUDE.md` if an add/add conflict surfaces.
+3. **C2 — flip Pages source** from `master:/docs` to the `gh-pages` branch (repo Settings → Pages), *after* a fresh `gh-pages` build exists. Verify the live site is intact.
+4. **C3 — stop committing `docs/`:** `git rm -r docs/`, add to `.gitignore`.
+5. **Switch the publish trigger** in `.github/workflows/publish.yml` from `[stabilise/ci-publish]` to `[master]`; decide whether to also render the PDF download (currently HTML-only).
+6. **Update `CLAUDE.md`** lines that were true only for frozen `master` (it now reflects the post-stabilisation state already on the integration branch).
 
 ## Phase 1 — Modernise `itssl` (enabler for webR + real data)
 

@@ -1,6 +1,16 @@
-LetsLets # CLAUDE.md
+# CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## ▶ START HERE (read at the start of every session)
+
+This repo carries its own working context in **`.claude/`** so any new agent/session has it (it is committed, unlike machine-local memory). Read these first:
+
+- **`.claude/NEXT-SESSION.md`** — current status, what's in flight, the exact next steps, open PRs/branches. *Read this first.*
+- **`.claude/ROADMAP.md`** — the phased plan, decisions, and the go-live checklist.
+- **`.claude/MEMORY.md`** — durable facts: working preferences, conventions, project constraints.
+
+Keep those three up to date as work progresses — they are the source of truth that travels with the branch.
 
 ## What this is
 
@@ -13,6 +23,8 @@ Published site: https://danmaclean.github.io/intro_to_stats/
 The book is a published, in-use course handbook. Treat the current content as mission-critical.
 
 - **Never commit changes directly to `master`.** Make changes on a dedicated feature branch and merge via a reviewed PR. `master` should always be in a known-good, renderable state.
+- **`master` serves the LIVE teaching site** (GitHub Pages, `master:/docs`). It is currently **frozen**: during the stabilisation phase, work accumulates on the integration branch **`stabilise/ci-render`** and is NOT merged to `master` until a deliberate go-live (the go-live checklist is in `.claude/ROADMAP.md`). Doc-only changes (CLAUDE.md/ROADMAP) are safe to land on `master` since they don't touch `docs/`.
+- **CI gate:** `.github/workflows/render.yml` restores the pinned library and renders the book on every PR/feature-branch push, failing on any R error. `.github/workflows/publish.yml` builds to a `gh-pages` branch (not yet the live source).
 - **Render before merging.** A change isn't done until the affected chapter(s) render without R errors (`quarto render <chapter>.qmd`, or a full `quarto render`).
 - Keep edits scoped and reversible; prefer small branches over large sweeping ones.
 
@@ -28,7 +40,7 @@ quarto render 03-ttest.qmd   # render a single chapter for a fast check
 
 There are no tests or linters — "correctness" means the chapters render without R errors and the prose/stats are right. After editing a `.qmd`, render at least that chapter to confirm the R code chunks still execute.
 
-`renv` activates automatically via `.Rprofile`. Note `renv.lock` only pins `renv` itself; the actual analysis dependencies are **not** locked here (see below).
+`renv` activates automatically via `.Rprofile`. `renv.lock` pins the **full dependency stack** (R 4.5.3, renv 1.2.3, `itssl` at a fixed GitHub commit, ~127 packages); `renv::restore()` reproduces it exactly. For installs/restores of the GitHub-sourced `itssl`, set `export GITHUB_PAT=$(gh auth token)` first. (NB: on `master` the lock is still the old `renv`-only stub until the stabilisation stack merges at go-live.)
 
 ## Architecture / things that aren't obvious
 

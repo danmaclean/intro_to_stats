@@ -1,0 +1,21 @@
+# MEMORY — durable facts & working conventions
+
+Committed, in-repo memory (travels with the branch). Durable preferences, conventions, and project facts that aren't the plan (`ROADMAP.md`) or the live status (`NEXT-SESSION.md`). Keep entries durable — not session chatter.
+
+## Who / working style
+- **Author:** Dan MacLean (maclean.daniel@gmail.com), TSL Bioinformatics. Sole maintainer; the book is a live, in-use course handbook.
+- **Planning:** when planning, expand scope into a phased roadmap covering all viable goals rather than narrowing to one. Prefer open discussion; reserve multiple-choice questions for genuine decision forks, not "did I capture this right". (A single-goal multiple-choice framing was rejected.)
+- **Live-site caution:** the published site is mission-critical; the user is deliberately conservative about anything that changes what readers see. Confirm before live-facing changes.
+
+## Shell / permission conventions
+- **Don't prepend `export PATH="/opt/homebrew/bin:$PATH"`** to Bash calls — the tool already inherits the full login PATH (gh, git at /usr/bin, Rscript & quarto at /usr/local/bin all resolve). The prefix was a leftover habit that caused repeated "export …" permission prompts.
+- **Don't wrap R code in bash variable assignments** (e.g. `SCRIPT='... y~x ...'`) — a `~` (R formula) in an assignment value trips a tilde-expansion permission flag and forces a prompt. Pass R directly via `Rscript -e '...'` (single-quoted). Avoid heredocs.
+- **Permission allowlist** lives in `.claude/settings.local.json` (personal, gitignored): export/git/gh/Rscript/quarto/python3 + common read-only utils. **Gotcha:** editing that file mid-session is inert until the user reloads (`/config` or restart); until then, every "always allow" click re-serializes the in-memory ruleset over external edits. Destructive commands (rm, mv) still prompt by design.
+- **`GITHUB_PAT`:** set `export GITHUB_PAT=$(gh auth token)` only for commands that need it (renv installing/restoring the GitHub-sourced `itssl`).
+- **zsh gotchas:** `status` is read-only (don't use as a loop var); brace `${var}` before a `:` (modifier clash, e.g. `${commit}:refs/...`); quote URLs containing `?` (glob).
+- **gh:** installed via Homebrew, authed as `danmaclean` (keyring). The PAT in use **cannot rerun workflows** (no Actions:write) — re-trigger via an empty commit push instead.
+
+## Project facts (not obvious from code)
+- **`itssl` is external** (`danmaclean/itssl`), not in this repo — it holds the `its_*_time()` helpers and (post-Phase-1) will hold real data. It seeds its RNG internally, so the book renders deterministically. Fixes to helper behaviour belong in that repo, not here.
+- **Fixed product constraints** (full detail in `ROADMAP.md`): audience is always the absolute-beginner biologist; course time is tight (ration content); GitHub Pages static hosting (client-side interactivity only); the "every test is a slope in a linear model" thesis is the identity.
+- **Code & prose style** are deliberate and documented in `CLAUDE.md` — match them.
