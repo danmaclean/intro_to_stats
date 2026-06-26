@@ -1,0 +1,106 @@
+# Roadmap — Understanding Statistics Through Linear Models
+
+Planning document (not a commitment to dates). Captures direction agreed in planning, June 2026.
+
+## Fixed constraints / principles
+
+- **Audience is always the absolute-beginner biologist.** Gentle on-ramp is the product. New material must not raise the floor.
+- **Course time is tight** — arguably the current book is already too much for the time available. New content must be *rationed*: a lean "core" path the course can actually cover, with deeper material clearly optional.
+- **Hosted on GitHub Pages** (static). Any interactivity must be client-side.
+- The straight-line / "every test is a slope in a linear model" thesis is the book's identity — protect it.
+
+## Key technical facts that shape the plan
+
+- **webR runs entirely client-side (WASM)** → compatible with static GitHub Pages, and can *replace* the shinyapps.io exercises (removing a server dependency we don't fully control). Quarto integration via the `quarto-live` extension.
+- **Gating unknown:** whether `itssl` + its dependencies install inside webR. Pure-R packages install from source; compiled deps need prebuilt WASM binaries (repo.r-wasm.org). A feasibility spike must happen before committing to in-page code.
+- **`renv.lock` currently pins only `renv` itself** — the book is not actually reproducible, and depends on an unpinned GitHub `itssl`. This is the biggest threat to longevity.
+
+---
+
+## Phase 0 — Stabilise (do first; foundation for everything)
+
+Goal: make the *existing* book reproducible and correct before changing scope.
+
+Each task is a feature branch → PR (per CLAUDE.md dev process). Suggested branch names in `code`.
+Groups A–D; order is A → B → (C and D can follow once B is green). D tasks are independent of each other.
+
+### Group A — Reproducibility (must come first; enables CI)
+
+- [ ] **A1. Establish a known-good baseline render.** `git`-clean working tree, run a full `quarto render` with currently-installed packages; record any existing breakage. *AC: full render completes with no R errors, OR breakages are listed as blockers to fix first.* Branch: none (investigation; findings noted here).
+- [ ] **A2. Full `renv` snapshot.** Ensure the renv library has every dep actually used — dplyr, ggplot2, multcomp, readr, tidyr, tibble, magrittr, itssl (+ transitive); consider upgrading `renv` itself (currently 0.12.0, very old). `renv::snapshot()`, commit `renv.lock`. *AC: `renv::status()` clean; lock lists all the above.* Branch: `stabilise/renv-snapshot`.
+- [ ] **A3. Pin `itssl` explicitly.** Install from a fixed ref (cut a tag in the `itssl` repo, or pin current commit) so `renv.lock` records a fixed `RemoteSha`. *AC: lock shows itssl with a pinned SHA/ref, not floating `main`.* Branch: `stabilise/pin-itssl`. (Note: deeper itssl work is Phase 1; this is just the pin.)
+- [ ] **A4. Verify clean-room restore.** From a fresh checkout / empty renv library, `renv::restore()` then `quarto render` reproduces a clean build. *AC: clean-environment render succeeds.* This is the real proof the lock works.
+
+### Group B — Continuous integration
+
+- [ ] **B1. Render-on-PR workflow.** GitHub Action (`.github/workflows/render.yml`): triggers on PRs to `master` and pushes to feature branches; steps = checkout → setup-quarto → setup-R → restore renv from lock (with `GITHUB_PAT` from `secrets.GITHUB_TOKEN` for the GitHub-sourced itssl) → `quarto render` → **fail on any R error**; cache the renv library. Render **HTML only** for the gate (keep it fast; avoids LaTeX). *AC: green on a no-op PR; verified red by intentionally breaking a chunk on a scratch branch.* Branch: `stabilise/ci-render`.
+- [ ] **B2. PDF-in-CI decision.** Recommend: HTML-only gate; PDF left out of the blocking job (it's second-class — see rationing decision). *AC: choice recorded.*
+
+### Group C — Publishing flow (highest risk: touches the live site; do after B is green, stage to avoid downtime)
+
+Assumption to confirm: GitHub Pages currently serves `master:/docs`.
+
+- [ ] **C1. Add a `gh-pages` publish job** (quarto publish action) on push to `master`; verify it builds and pushes to a `gh-pages` branch **without yet** changing the Pages source. *AC: `gh-pages` branch contains a correct build.* Branch: `stabilise/ci-publish`.
+- [ ] **C2. Flip Pages source** from `/docs` to the `gh-pages` branch (repo settings); verify the live site is intact. *AC: live site unchanged, now served from CI build.*
+- [ ] **C3. Stop committing build output.** Remove `docs/` from the repo, `.gitignore` it (and/or move `output-dir` to `_site`). *AC: site still live; repo no longer tracks generated HTML/PDF.* Branch: `stabilise/drop-docs`.
+- Rollback safety: keep `docs/` in place until C2 is verified.
+
+### Group D — Known content bugs (independent; each a small branch; land after B1 so CI checks them)
+
+- [ ] **D1.** `07-testing_model.qmd` — close the unclosed Roundup callout / repair the truncated ending. Decide whether ch.7 should have a "For you to do" (it's the only chapter without one — confirm intentional rather than inventing a link). Branch: `fix/ch07-ending`.
+- [ ] **D2.** `08-predictions.qmd` — "turns it into something **useless**" → "useful"; give the final one-bullet roundup a title and align to the Roundup pattern. Branch: `fix/ch08-typos`.
+- [ ] **D3.** `09-glms.qmd` — remove the "in this chapter we went to a lot of trouble…" copy leaked from ch.7. Branch: `fix/ch09-copy`.
+- [ ] **D4.** `data.frame(x <- runif(...), y <- runif(...))` → `data.frame(x = ..., y = ...)` in ch.2 (`more_df`) and ch.7 (`far_fit`). **Render-check** that `its_plot_xy_time()`, `lm(y ~ x)`, and `aes(sample = y)` still resolve `x`/`y` columns afterwards (current code only works via leaked globals). Branch: `fix/dataframe-naming`.
+- [ ] **D5.** Update stale "May 2022" date in `_quarto.yml`. Branch: `fix/date`.
+- [ ] **D6. RNG reproducibility audit (investigation, possibly larger).** No `set.seed` exists anywhere, yet prose hard-codes computed values from random data (e.g. ch.2 `y = 1.955x + 0.778` from `its_random_xy_time(20)`; the `runif` chunks in ch.2/ch.7). On re-render these can desync from the rendered output. Determine whether `itssl` helpers seed internally; if not, decide the fix (seed in chunks/helpers, or reference values dynamically via inline `` `r ` `` as ch.8 already does). NB: ch.3's `5.03` / `-0.371` come from the deterministic `PlantGrowth` dataset and are safe. May split into its own task if it grows. Branch: `fix/rng-repro`.
+- [ ] **D7 (optional cleanup).** Remove the stray `09-glms.ipynb` (not wired into `_quarto.yml`; the `.qmd` is canonical). Branch: `fix/remove-ipynb`.
+
+**Phase 0 done when:** clean checkout → `renv::restore()` → `quarto render` succeeds with no R errors; CI gates PRs into `master`; the live site is served from the CI build (not committed `docs/`); D1–D6 resolved.
+
+## Phase 1 — Modernise `itssl` (enabler for webR + real data)
+
+Goal: turn `itssl` from an unpinned helper into a durable, webR-ready, data-bearing package.
+
+- [ ] Versioned, tagged releases.
+- [ ] webR/WASM compatibility (the feasibility spike from Phase 0's gating unknown).
+- [ ] Bundle the **real biology dataset(s)** in the package so chapters can `data()` them.
+- [ ] Audit helpers: keep the ones that hide *irrelevant* complexity; reconsider any that hide something a beginner should actually see.
+
+## Phase 2 — Modernise delivery (webR in-page)
+
+Goal: remove install friction and self-host interactivity.
+
+- [ ] Adopt `quarto-live`; pilot on ONE chapter end-to-end before rolling out.
+- [ ] Convert code chunks to live/editable incrementally.
+- [ ] Migrate shinyapps exercises into in-page webR exercises with solutions / self-check. Keep shinyapps live until parity is reached.
+- [ ] Reconsider whether the install-heavy `prerequisites.qmd` can shrink dramatically once readers run code in the browser.
+
+## Phase 3 — Content (built on the new itssl + real data)
+
+Goal: extend coverage without overloading the core path. Apply the rationing strategy below (Core/Extension by statistical load; within-chapter progressive disclosure; "Going Further" part for separate advanced topics).
+
+- [ ] Thread one genuine, messy biology dataset across chapters (replaces PlantGrowth / chickwts / txhousing).
+- [ ] Write GLMs as a *real but fenced* chapter in the "Going Further" part: a worked `glm()` example (logistic or Poisson) with residual check & interpretation. Replaces the current stub; lives outside the core course path.
+- [ ] Candidate additions, all as clearly-marked *extension* tier given the beginner+time constraint:
+  - Effect sizes & confidence intervals (important — the book leans hard on p-values, the very thing it critiques).
+  - Random effects / blocking (biology is full of batch/plate/replicate; natural extension of the thesis).
+  - Multiple-testing correction (FDR/BH) — small add to the ANOVA chapter.
+- [ ] Audit the ch.5 "rank-then-`lm()`" framing — it's an *approximation* of Wilcoxon/Kruskal-Wallis, not an identity; make sure claims are hedged.
+
+---
+
+## Decided — time-rationing strategy
+
+- **One online reference text.** No Quarto profiles, no separate course/reference builds — a single site is the product.
+- **The rationing axis is statistical depth/load, not "optional" in general.** Content is *Core* or *Extension* by how much statistical weight it adds to a beginner, not by whether it's strictly necessary.
+- **English-context asides stay inline.** Asides that deepen *understanding in plain language* (rather than pile on more stats) are part of the core voice and are NOT rationed.
+- **Granularity is within-chapter**, via progressive disclosure — collapsible callouts / `panel-tabset` ("quick vs deep"). Heavy statistical content stays *present* but folded so the beginner's visible page stays light.
+- **Genuinely separate advanced topics** (GLMs, random effects, effect sizes, FDR) go in a fenced **"Going Further"** Part the course doesn't assign.
+- **Existing overload → editorial scissors first.** Tighten/trim core chapters and lift heavy asides into folded Extension before reaching for more tooling.
+- **No reading-time estimates** — rejected as a false target that demoralises rather than helps.
+- **PDF is not a constraint.** It's a second-class, little-used product; collapsibles flattening (expanding) in PDF is acceptable.
+
+## Decided — content & sequencing
+
+- **GLMs**: a *real but fenced* chapter in the "Going Further" part (worked `glm()`, residual check, interpretation). Replaces the stub; stays off the core course path.
+- **Sequencing**: confirmed **Phase 0 → 1 → 2 → 3** (Stabilise → Modernise itssl → webR delivery → Content). No content win pulled forward — reproducibility and the itssl/webR enablers come first.
