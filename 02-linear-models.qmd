@@ -116,7 +116,7 @@ We can definitely calculate a line that fits these,
 lm(y ~ x, data = more_df)
 ```
 
-and it would be $y = 0.1103x + 10.6495$. But if we compare the fit of those lines, like in these plots 
+and it would be $y = 0.1103x + 10.4695$. But if we compare the fit of those lines, like in these plots 
 
 ```{r, echo=FALSE}
 #| layout-ncol: 2
