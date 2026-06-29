@@ -12,6 +12,9 @@
   * The $p$ value of the coefficient tests the same thing as a $t$-test
   
   
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
+
 In this section we'll look at how the linear model can be used as a conceptual tool to understand the sort of comparison a $t$-test does and as a straightforward way to perform a hypothesis test.
 
 ## Recap
@@ -234,7 +237,232 @@ The general applicability of the straight line and linear model concept comes in
 
 
 :::{.callout-tip}
-Complete the interactive tutorial online [https://tsl-bioinformatics.shinyapps.io/ttests/](https://tsl-bioinformatics.shinyapps.io/ttests/)
+## For you to do
+Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://tsl-bioinformatics.shinyapps.io/ttests/).)
+:::
 
+We've seen how the slope, its gradient, and the statistics from a linear model give us a test for differences that is the same as a $t$-test. Let's use the `penguins` data set to examine differences in bill size between two penguin species. A cut-down version, `penguins_small` (just the `species` and `bill_length_mm` columns, for the Adelie and Chinstrap species), is already set up for you.
+
+```{webr}
+#| setup: true
+#| exercise: [ttest-str, ttest-summary, ttest-lm]
+library(dplyr)
+library(palmerpenguins)
+penguins_small <- penguins %>%
+  select(species, bill_length_mm) %>%
+  filter(species %in% c("Adelie", "Chinstrap")) %>%
+  droplevels()
+```
+
+### Examining the data
+
+Examine the `penguins_small` data with `str()`.
+
+```{webr}
+#| exercise: ttest-str
+
+```
+
+```{webr}
+#| exercise: ttest-str
+#| solution: true
+str(penguins_small)
+```
+
+```{webr}
+#| exercise: ttest-str
+#| check: true
+gradethis::grade_this_code()
+```
+
+:::::{.question}
+How many experimental groups are there?
+
+::::{.choices}
+:::{.choice}
+1
+:::
+
+:::{.choice .correct-choice}
+2
+:::
+
+:::{.choice}
+3
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+A two-sample $t$-test needs two groups — here, the two penguin species.
+:::
+
+Get a summary of the data per group by modifying the code below.
+
+```{webr}
+#| exercise: ttest-summary
+penguins_small %>%
+  group_by() %>%
+  summarize(mean_bill_length = mean(bill_length_mm),
+            sd_bill_length = sd(bill_length_mm))
+```
+
+```{webr}
+#| exercise: ttest-summary
+#| solution: true
+penguins_small %>%
+  group_by(species) %>%
+  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE),
+            sd_bill_length = sd(bill_length_mm, na.rm = TRUE))
+```
+
+```{webr}
+#| exercise: ttest-summary
+#| check: true
+gradethis::grade_this({
+  gradethis::pass_if(nrow(.result) == 2 && !anyNA(.result))
+  gradethis::fail("Remember to group by the right column, and to remove NA values (na.rm = TRUE) in summary functions.")
+})
+```
+
+### $t$-tests
+
+Build a linear model suitable for the `penguins_small` data set, and generate a summary of it.
+
+```{webr}
+#| exercise: ttest-lm
+model <- lm()
+```
+
+```{webr}
+#| exercise: ttest-lm
+#| solution: true
+model <- lm(bill_length_mm ~ species, data = penguins_small)
+summary(model)
+```
+
+```{webr}
+#| exercise: ttest-lm
+#| check: true
+gradethis::grade_this_code()
+```
+
+Recall that the $F$ statistic indicates the strength of the relationship between $x$ and $y$ — the size of, and fit to, the slope — which together indicate a real difference between the groups.
+
+:::::{.question}
+What is the $F$-statistic between these groups?
+
+::::{.choices}
+:::{.choice .correct-choice}
+566.5
+:::
+
+:::{.choice}
+38.7914
+:::
+
+:::{.choice}
+10.0424
+:::
+::::
+:::::
+
+:::::{.question}
+Is this a strong $F$ value? Which of these statements is most true?
+
+::::{.choices}
+:::{.choice}
+It is low, there isn't evidence of differences.
+:::
+
+:::{.choice}
+It is moderate, there is some relationship and some difference between the groups.
+:::
+
+:::{.choice .correct-choice}
+Yes, there is a good relationship and likely a real difference.
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+Remember $F$ is a ratio; moving above 1 indicates a relationship, and this $F$ value is a long way over 1.
+:::
+
+Remember that the coefficient tells us about the change in $y$ per unit increase in $x$. In our two-group situation we set things up so the distance on the $x$-axis between groups is 1.
+
+:::::{.question}
+What is the size difference between the bills of the two penguin types?
+
+::::{.choices}
+:::{.choice}
+Chinstrap is bigger than Adelie by 10.0424 cm
+:::
+
+:::{.choice}
+Adelie is bigger than Chinstrap by 38.7914 mm
+:::
+
+:::{.choice .correct-choice}
+Adelie is smaller than Chinstrap by 10.0424 mm
+:::
+
+:::{.choice}
+Adelie is smaller than Chinstrap by 38.7914 mm
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+The `speciesChinstrap` coefficient is `10.0424` — how much *bigger*, in mm, Chinstrap bills are than Adelie. (The `38.7914` is the intercept — the mean Adelie bill length — not a difference. And watch your units: it's mm, not cm.)
+:::
+
+:::::{.question}
+What is the $p$-value for the likelihood that a size difference this large occurs by chance under a Null Model?
+
+::::{.choices}
+:::{.choice .correct-choice}
+$< 2.2 \times 10^{-16}$
+:::
+
+:::{.choice}
+0.723
+:::
+
+:::{.choice}
+0.728
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why? (and a word about that number)
+`< 2.2e-16` is one of those numbers you'll meet a lot in R. It's roughly the smallest difference R's arithmetic can tell apart from zero — the limit of the double-precision numbers R works with (`.Machine$double.eps`). So R isn't reporting an exact probability here; it's really saying *"smaller than I can reliably measure"*. For a $p$-value that's usually good news — the result is vanishingly unlikely under the null. But because it's R bumping into its precision floor rather than a measured value, treat it as a nudge to sanity-check: glance over the rest of the output and make sure nothing has gone numerically wrong, rather than reading the exact figure too literally.
+:::
+
+:::::{.question}
+Is this value significant?
+
+::::{.choices}
+:::{.choice}
+YES!
+:::
+
+:::{.choice}
+No.
+:::
+
+:::{.choice .correct-choice}
+Yes, but no.
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+This $p$-value *would* be significant at $0.05$ — but we never set a significance level beforehand. A $p$-value can only be called significant when compared to a level we decided on *in advance* (e.g. 0.05, accepting a 1-in-20 error rate). Choosing that level *after* seeing the $p$-value isn't playing fair.
 :::
 

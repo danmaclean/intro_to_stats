@@ -37,6 +37,10 @@ bibliography: references.bib
 
 engine: knitr
 
+# naquiz: multiple-choice questions (::: {.question}) for migrated exercises.
+filters:
+  - naquiz
+
 # webR (quarto-live) config: runnable {webr} cells install itssl from the
 # course r-universe; dependencies come from repo.r-wasm.org. Only chapters that
 # include the live setup + use {webr} cells become interactive.
@@ -44,6 +48,7 @@ webr:
   packages:
     - itssl
     - ggplot2
+    - palmerpenguins
   repos:
     - https://danmaclean.r-universe.dev
     - https://repo.r-wasm.org
