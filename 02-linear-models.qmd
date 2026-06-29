@@ -23,16 +23,25 @@ Its all about $y = ax + b$ (or $y = mx + c$, depending on where you went to scho
 
 As a refresher, $a$ tells us how much $y$ increases for every unit increase in $x$. Here's an example for the equation $y = 4x$ 
 
-```{r, fig.height=5, fig.width=5}
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
 
+```{r}
+#| include: false
+library(itssl)
+```
+
+```{webr}
+#| fig-width: 5
+#| fig-height: 5
 library(itssl)
 its_axplusb_time(a = 4)
-
 ```
 
 If we play about with that value, the slope of the line changes, the $a$ term is known as the slope, or gradient, or more often because it is just a multiplier of $x$ its called the coefficient. Here's some different coefficients just to prove that point
 
-```{r, fig.height=5, fig.width=5}
+```{webr}
+#| fig-width: 5
+#| fig-height: 5
 its_axplusb_time(a = 4) +
   its_add_line_time(a = 2, colour = "deepskyblue") +
   its_add_line_time(a = 6, colour = "darkorange")
@@ -40,8 +49,10 @@ its_axplusb_time(a = 4) +
 
 The $b$ part of the formula just tells us how much we add on to $y$ after we've calculated the coefficient effect. It has the effect of pushing the line up and down the y-axis. When we look at the value of $y$ for $x = 0$ we get the position that the graph hits the y-axis so this number is often called the intercept. Here's a set of lines to show that.
 
-```{r, fig.height=5, fig.width=5}
-its_axplusb_time(a = 4, b = 0) + 
+```{webr}
+#| fig-width: 5
+#| fig-height: 5
+its_axplusb_time(a = 4, b = 0) +
   its_add_line_time(a = 4, b = -2, colour = "deepskyblue") +
   its_add_line_time(a = 4, b = 2, colour = "darkorange")
 ```
@@ -287,7 +298,7 @@ with $e$ being a measure of `error` (or random measurement differences) added on
 
 But unlike a straight line, a linear model doesn't have to have only one slope, it can have many. This doesn't mean that the line has a bend in it, like this 
 
-```{r}
+```{webr}
 its_bendy_line_time()
 ```
 
