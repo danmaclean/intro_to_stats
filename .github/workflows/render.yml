@@ -40,4 +40,4 @@ jobs:
         uses: r-lib/actions/setup-renv@v2   # restores from renv.lock and caches keyed on the lockfile
 
       - name: Render book (HTML only; fails on any R error)
-        run: quarto render --to html
+        run: quarto render --to live-html   # book format is live-html (quarto-live / webR); still HTML-only, no PDF
