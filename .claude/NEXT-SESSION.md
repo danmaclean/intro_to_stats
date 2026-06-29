@@ -4,7 +4,9 @@ Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable fact
 Last updated: 2026-06-26.
 
 ## Where we are
-**Phase 1 (modernise `itssl`) essentially COMPLETE** — all four goals done (webR spike, dep audit, tagged release, real data bundled); only the PR merges + a `v0.2.0` tag remain (see "Open PRs"). Phase 0 safe work all done (go-live steps still deferred — see ROADMAP "Go-live checklist"). Next major decision: Phase 2 vs Phase 3 vs go-live (see "Next options").
+**Phase 1 (modernise `itssl`) COMPLETE & shipped.** itssl PRs #1 (0.1.0 audit) + #2 (0.2.0 potato data) merged to itssl `master`; tags `v0.1.0` and `v0.2.0` both pushed and verified to install from GitHub with the data. Phase 0 safe work all done (go-live steps still deferred — see ROADMAP "Go-live checklist"). **Book PR #24** (renv pin → itssl `v0.1.0`) is still OPEN into the integration trunk; the book lock still pins `v0.1.0` (bump to `v0.2.0` when chapters start using the data). Next major decision: Phase 2 vs Phase 3 vs go-live (see "Next options").
+
+> **Fixed 2026-06-29 — stacked-PR merge gotcha:** itssl #2 was stacked on `phase1/description-audit`; merging it landed its content on that branch, NOT `master` (no auto-retarget after #1 merged via merge-commit), and `v0.2.0` got tagged on the 0.1.0 master commit. Corrected by merging the audit branch into `master` (commit `4590087`) and moving `v0.2.0` there. Lesson in `MEMORY.md`.
 
 ### Phase 1 status (started 2026-06-26)
 - **`itssl` cloned to `/Users/macleand/Desktop/itssl`** (separate repo; same branch/PR discipline as the book). Branch `phase1/description-audit` pushed; **PR `danmaclean/itssl#1` open**; **tag `v0.1.0` pushed** (commit `b455516`). NB: when merging #1, use a merge-commit/FF (not squash) so `v0.1.0` stays reachable from `master`, else re-point the tag.
@@ -16,8 +18,8 @@ Last updated: 2026-06-26.
   - `potato_nematode` (van Eeuwijk 1995) → two-way ANOVA + interaction (genotype × nematode population).
   - `potato_blight` (Johnson et al. 1996) → logistic GLM (blight ~ spring weather).
   - Built clean; data + worked models verified. **Gap:** chi-square / log-linear chapters still on toy data (Mendel/voting) — potato-themed contingency set is a possible follow-up.
-- **Open PR stack now:** itssl `#1` (audit/0.1.0, tagged) → itssl `#2` (potato data/0.2.0, stacked); book `#24` (renv pin → v0.1.0). Merge itssl #1 then #2 (merge-commit, not squash, to keep tag); tag `v0.2.0` after #2.
-- **TODO next (Phase-1 wrap):** after itssl #1+#2 merge & `v0.2.0` tagged, optionally repoint book `renv.lock` → `v0.2.0` (only needed once chapters use the data). Then **Phase 2** (quarto-live/webR pilot — now de-risked) or **go-live**, per author. Phase 3 = rewrite chapters onto the potato data.
+- **Merges/tags DONE (2026-06-29):** itssl #1 + #2 both merged to itssl `master` (now `0.2.0` with potato data, commit `4590087`); `v0.1.0` and `v0.2.0` tagged correctly and verified to `renv::install` from GitHub with data. (#2's stacked-merge mis-landing was corrected — see gotcha note above.)
+- **TODO next (Phase-1 wrap):** repoint book `renv.lock` → `v0.2.0` only when chapters start using the data (Phase 3); for now it stays at `v0.1.0` and book **PR #24** can merge into the integration trunk whenever. Then **Phase 2** (quarto-live/webR pilot — now de-risked) or **Phase 3** (chapters onto potato data) or **go-live**, per author.
 
 ---
 *(Phase 0 recap below — all safe work complete; only go-live remains.)*
@@ -35,7 +37,7 @@ Last updated: 2026-06-26.
 
 ## Open PRs
 **Book** (`danmaclean/intro_to_stats`, base `stabilise/ci-render`): #19 renv (draft) · #20 CI (draft) · #21 trivial fixes · #22 ch.7/ch.2 · #23 publish (C1) · **#24 renv pin → itssl v0.1.0** (Phase-1). Merge bottom-up at go-live; non-default base ⇒ referenced issues won't auto-close, close manually.
-**itssl** (`danmaclean/itssl`, base `master`): **#1** dep audit (0.1.0; tag `v0.1.0` already pushed) → **#2** potato data (0.2.0; *stacked on #1*). Merge #1 then #2 with a **merge-commit/FF, not squash** (keeps `v0.1.0` reachable); **tag `v0.2.0` after #2 merges**.
+**itssl** (`danmaclean/itssl`): **#1** (0.1.0 audit) + **#2** (0.2.0 potato data) — both **MERGED**; `master` at `0.2.0` (`4590087`); tags **`v0.1.0`** and **`v0.2.0`** pushed & verified. ✅ done.
 
 ## Next options (pick one)
 Phase 1 is essentially done (pending the merges above). Then:
