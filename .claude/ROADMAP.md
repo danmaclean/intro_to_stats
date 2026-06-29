@@ -99,8 +99,8 @@ Goal: remove install friction and self-host interactivity.
 
 **Status (2026-06-29): pilot underway, core feasibility PROVEN end-to-end** (branch `phase2/quarto-live-pilot`). `quarto-live` adopted; `itssl` delivered to the browser via the **`danmaclean.r-universe.dev`** r-universe (auto-built WASM binary; r-universe GitHub App installed). Headless webR (`tools/webr-verify/`) installs itssl from the universe and runs the potato analyses green; standalone `pilot-webr.qmd` renders with live cells. Remaining = rollout. (Details + exact config in `MEMORY.md` / `NEXT-SESSION.md`.)
 
-- [~] Adopt `quarto-live`; pilot on ONE chapter end-to-end before rolling out. — extension added + feasibility proven via a standalone pilot; **integrating into a real chapter is the next step**.
-- [ ] Convert code chunks to live/editable incrementally. (Simplest format approach: switch the whole book `format: html` → `live-html`, a superset, so non-live chapters are unaffected.)
+- [x] Adopt `quarto-live`; pilot on ONE chapter end-to-end before rolling out. — done: book switched to `format: live-html`; **chapter 2 (`02-linear-models.qmd`) integrated** with 4 live `{webr}` cells; full book renders clean; non-live chapters carry 0 webR overhead; CI gate updated to `--to live-html`. (PR #25.)
+- [~] Convert code chunks to live/editable incrementally. — pattern established on ch.2: convert *self-contained* chunks to `{webr}`; keep state-coupled / `echo=FALSE` / figure chunks static `{r}` (webr=browser session, {r}=render-time, separate state). Roll out chapter by chapter.
 - [ ] Migrate shinyapps exercises into in-page webR exercises with solutions / self-check. Keep shinyapps live until parity is reached.
 - [ ] Reconsider whether the install-heavy `prerequisites.qmd` can shrink dramatically once readers run code in the browser.
 
