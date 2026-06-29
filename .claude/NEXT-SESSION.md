@@ -1,12 +1,37 @@
 # NEXT SESSION — current status & what to do next
 
 Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable facts = `MEMORY.md`.)
-Last updated: 2026-06-26.
+Last updated: 2026-06-29.
 
 ## Where we are
-**Phase 2 (webR delivery) pilot — IN PROGRESS; core feasibility PROVEN end-to-end.** Working on book branch `phase2/quarto-live-pilot`. Phase 1 COMPLETE & shipped (itssl `0.1.0`+`0.2.0` merged & tagged; **book PR #24 — renv pin → `v0.1.0` — now MERGED into the trunk**). Phase 0 done (go-live deferred — see ROADMAP "Go-live checklist"). Book lock still pins itssl `v0.1.0` (bump to `v0.2.0` when chapters use the data). Next decision: finish Phase 2 rollout vs Phase 3 vs go-live.
+**Phase 2 (webR delivery) pilot — IN PROGRESS; core feasibility PROVEN end-to-end.** Working on book branch `phase2/quarto-live-pilot`. Phase 1 COMPLETE & shipped (itssl `0.1.0`+`0.2.0` merged & tagged; **book PR #24 — renv pin → `v0.1.0` — now MERGED into the trunk**). Phase 0 done (go-live deferred — see ROADMAP "Go-live checklist"). Book lock still pins itssl `v0.1.0` (bump to `v0.2.0` when chapters use the data). **Current task: migrate the 6 remaining shinyapps tutorials into the page — see ▶ NEXT SESSION below.**
 
 > **Fixed 2026-06-29 — stacked-PR merge gotcha:** itssl #2 was stacked on `phase1/description-audit`; merging it landed its content on that branch, NOT `master` (no auto-retarget after #1 merged via merge-commit), and `v0.2.0` got tagged on the 0.1.0 master commit. Corrected by merging the audit branch into `master` (commit `4590087`) and moving `v0.2.0` there. Lesson in `MEMORY.md`.
+
+## ▶ NEXT SESSION — migrate the 6 remaining shinyapps tutorials (current task)
+
+**Continue on branch `phase2/quarto-live-pilot` (→ PR #25 into `stabilise/ci-render`). `03-ttest.qmd` is the PROVEN REFERENCE — copy its structure exactly.** Author confirmed ch.3's in-browser grading + MCQs work. Migrate the rest the same way.
+
+**Source** (author cloned the private `TeamMacLean/shinyapps` to `/Users/macleand/Desktop/shinyapps`; my PAT can't reach that org): `/.../shinyapps/<dir>/<file>.Rmd`. **Suggested order** (MCQ + codeEx counts):
+1. `anova/anova.Rmd` → `04-anova.qmd` (7 MCQ + 9 codeEx — most code; best next stress-test)
+2. `type/type.Rmd` → `05-discrete.qmd` (5 + 5)
+3. `chisq/chisquared.Rmd` → `06-loglinear.qmd` (1 + 3)
+4. `r_basics/r-start.Rmd` → `r-fundamentals.qmd` (7 + 4)
+5. `linear_models_background/linear-models-background.Rmd` → `01-background.qmd` (6 MCQ, no code)
+6. `linear_models/linear-models.Rmd` → `02-linear-models.qmd` (10 MCQ + **4 reactive sliders** — do LAST; sliders need OJS-reactive or folding into ch2's existing live cells → **flag to author**)
+
+**Per-chapter recipe (mirror ch3):**
+- Top of chapter (after the opening Q/O/K block): add `{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}`, and — if it has graded code exercises — also `{{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}`.
+- Replace the end `:::{.callout-tip}` shinyapps-link block with a "## For you to do" intro callout (keep the shinyapps URL as a fallback note) + the migrated tutorial.
+- **Code exercise** → `{webr}` cells sharing an `#| exercise: <id>`: a starter editor cell, a `#| solution: true` cell, a `#| check: true` cell using the **agreed warm template**:
+  `gradethis::grade_this_code(correct = "Nicely done — that's exactly it.", incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}")`
+  Shared setup: ONE `#| setup: true` + `#| exercise: [id1, id2, …]` cell that attaches packages + builds any data (hidden). Use result-based `grade_this()` only where several valid approaches should pass.
+- **MCQ** → naquiz `:::::{.question}` / `::::{.choices}` / `:::{.choice}` (+`.correct-choice`) **+** a `:::{.callout-note collapse="true"}` titled `## Why?` carrying the learnr per-answer feedback (naquiz itself shows none).
+- Add any chapter-specific webR packages to `_quarto.yml` `webr.packages` (ch3 needed `palmerpenguins`; scan each tutorial's `library()` calls — itssl deps like dplyr/ggplot2/tidyr come free). Confirm each new pkg + `gradethis` is on repo.r-wasm.org for **R 4.6** (quick PACKAGES probe, or `tools/webr-verify/`).
+- **FIDELITY: migrate verbatim; PING THE AUTHOR on every quirk as you hit it** (odd value, gotcha/confusing question, a detail like `na.rm` the book would rather not police) — never silently "fix". Author preference: **ping as you go, not batched.**
+- Verify: `quarto render <chapter>.qmd --to live-html` clean → full `quarto render --to live-html` clean → discard regenerated `docs/` (`git checkout -- docs/ && git clean -fdq docs/`) → commit → push (CI gate runs `--to live-html`).
+
+**Deferred (NOT part of this task):** ch2 reactive sliders; the live-cell **narrative rewrite** (Phase-3-adjacent — see ROADMAP); bumping book `renv.lock` → itssl `v0.2.0` (only once a chapter uses the potato data).
 
 ### Phase 2 status (started 2026-06-29) — on branch `phase2/quarto-live-pilot`
 - **quarto-live added** to the book (`quarto add r-wasm/quarto-live` → `_extensions/r-wasm/live`, committed). Live `{webr}` cells need `format: live-html` + `engine: knitr` + the `_knitr.qmd` include.
@@ -15,7 +40,7 @@ Last updated: 2026-06-26.
 - **Chapter 2 (`02-linear-models.qmd`) is now LIVE ✅ (first real integration).** Book switched to `format: live-html` + `engine: knitr` + book-wide `webr:` config in `_quarto.yml`. Converted the 4 self-contained illustrative chunks (slope demo, 2 add-line demos, bendy line) to `{webr}` cells; kept the data-modelling narrative chunks static `{r}`. **Key constraint:** `{webr}` cells run in the *browser* session, `{r}` chunks at *render* time — separate state, so only self-contained chunks can be converted; a hidden render-time `library(itssl)` keeps the static chunks working. Full book renders to live-html clean; ch.2 has 4 live cells, narrative intact; **non-live chapters carry 0 webR overhead** (quarto-live injects only where live cells exist). **CI gate updated** `--to html` → `--to live-html`.
 - **Live-cell rollout PAUSED (author, 2026-06-29):** ch.2 proves it works, but bare interactivity doesn't add to the message without narrative built around it → logged as a Phase-3-adjacent **rewrite point** in ROADMAP ("rewrite narrative to make genuine use of webR"). Don't convert more chunks until that rewrite.
 - **Shinyapps "For you to do" migration — IN PROGRESS (current focus).** Source = **`TeamMacLean/shinyapps`** (private org; my PAT can't reach it — author cloned it to `/Users/macleand/Desktop/shinyapps`). learnr `.Rmd` tutorials, content mix per tutorial: MCQs (`question()`) + code exercises (`exercise=TRUE`/`-solution`/`-check` gradethis) + ch2-only reactive sliders. **Mechanism DECIDED (author):** code exercises → quarto-live `{webr}` exercises (graded via `gradethis::grade_this_code()`); **MCQs → `naquiz`** (added at `_extensions/nareal`, `filters: [naquiz]`; `:::{.question}/.choices/.choice/.correct-choice}`) **+ a collapsible "Why?" `callout-note` for the explanation** (naquiz has no per-answer feedback). Sliders deferred (hardest; ch2 only).
-  - **CH3 PILOT DONE ✅** (`03-ttest.qmd`): migrated 3 graded penguins exercises + 6 MCQs + 4 "Why?" reveals; needs BOTH includes (`_knitr.qmd` + `_gradethis.qmd`) at top; added `palmerpenguins` to book webr packages. `gradethis` + `palmerpenguins` confirmed installable from repo.r-wasm.org (R 4.6). Full book renders clean. Replaced the shinyapps link (kept as a fallback note). *(In-browser grading/MCQ behaviour not yet click-tested — render + dep-availability proven; optional Playwright check remains.)*
+  - **CH3 PILOT DONE & is the REFERENCE ✅** (`03-ttest.qmd`): 3 graded penguins exercises + 6 MCQs + 5 "Why?" reveals; needs BOTH includes (`_knitr.qmd` + `_gradethis.qmd`); added `palmerpenguins` to book webr packages. **In-browser grading + MCQs confirmed working by the author.** Grading style FINALISED: warm `grade_this_code(correct=…, incorrect="… {code_feedback()}")` — soft human lead-in then the package's auto-pointer (one exercise keeps the original `na.rm` wording then the pointer). Units-gotcha MCQ kept (author's call); p-value option set to `< 2.2e-16` with a "Why?" explaining it's R's precision floor.
   - **TODO:** migrate the other 6 tutorials the same way — `linear_models_background` (ch1, 6 MCQ), `linear_models` (ch2, 10 MCQ + **4 sliders** ← needs OJS reactive or fold into existing ch2 live cells), `anova` (ch4, 7 MCQ + 9 codeEx), `type` (ch5, 5+5), `chisq` (ch6, 1+3), `r-start` (r-fundamentals, 7+4). Keep shinyapps live until parity.
 - **Committed on the branch (PR #25):** quarto-live + naquiz extensions, `pilot-webr.qmd` (throwaway, not in book nav), `tools/webr-verify/`, ch.2 + ch.3 + `_quarto.yml` + `render.yml`, `.gitignore`.
 - **Also pending:** bump book `renv.lock` itssl pin to `v0.2.0` once a chapter uses the potato data (none do yet → still `v0.1.0`).
@@ -51,11 +76,11 @@ Last updated: 2026-06-26.
 **Book** (`danmaclean/intro_to_stats`, base `stabilise/ci-render`): #19 renv (draft) · #20 CI (draft) · #21 trivial fixes · #22 ch.7/ch.2 · #23 publish (C1) — the Phase-0 stack, merge bottom-up at go-live (non-default base ⇒ close referenced issues manually). **#24 renv pin → itssl v0.1.0 — MERGED** into the trunk. Phase-2 PR (`phase2/quarto-live-pilot`) pending.
 **itssl** (`danmaclean/itssl`): **#1** (0.1.0 audit) + **#2** (0.2.0 potato data) — both **MERGED**; `master` at `0.2.0` (`4590087`); tags **`v0.1.0`** and **`v0.2.0`** pushed & verified. ✅ done.
 
-## Next options (pick one)
-Phase 2 feasibility is **proven**; the rest of Phase 2 is rollout. Choices:
-1. **Finish Phase 2 rollout** (continue on `phase2/quarto-live-pilot`): integrate live `{webr}` cells into ONE real chapter end-to-end (decide format approach — simplest: whole book `format: live-html`), then plan the shinyapps→webR exercise migration. See ROADMAP Phase 2.
-2. **Phase 3 — content**: rewrite chapters onto the bundled potato data (replaces PlantGrowth/chickwts/txhousing). Open sub-question: whether to add a **potato-themed contingency dataset** so chi-square/log-linear leave toy data too. See ROADMAP Phase 3.
-3. **Go-live** (whenever ready): execute the ROADMAP "Go-live checklist" (merge stack, flip Pages to gh-pages, drop docs/, switch publish trigger). Decide whether to also repoint the book lock to `v0.2.0` first.
+## After the migration (later options)
+The immediate task is the 6-chapter shinyapps migration (▶ NEXT SESSION, above). Once that's done:
+1. **Finish Phase 2 tail:** ch2 reactive sliders (OJS-reactive or fold into ch2's live cells); then the **narrative rewrite** to make the live cells earn their place (this is also when the paused live-cell rollout resumes).
+2. **Phase 3 — content**: rewrite chapters onto the bundled potato data (replaces PlantGrowth/chickwts/txhousing). Open sub-question: a **potato-themed contingency dataset** so chi-square/log-linear leave toy data too. See ROADMAP Phase 3.
+3. **Go-live** (whenever ready): ROADMAP "Go-live checklist" (merge the Phase-0 stack + the webR work, flip Pages to gh-pages, drop docs/, switch publish trigger). Decide whether to repoint the book lock to `v0.2.0` first.
 
 ## Environment / gotchas
 See `MEMORY.md` (shell/permission conventions, gh PAT can't rerun workflows, zsh quirks). Reminder: the user once pasted a GitHub PAT in chat — suggest rotating it if not already done.
