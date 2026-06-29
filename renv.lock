@@ -2134,7 +2134,7 @@
     },
     "itssl": {
       "Package": "itssl",
-      "Version": "0.0.0.9000",
+      "Version": "0.1.0",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "Functions For An Internal TSL Statistics Workshop",
@@ -2148,14 +2148,12 @@
         "dplyr",
         "fGarch",
         "ggplot2",
-        "ggthemes",
-        "gridGraphics",
+        "knitr",
         "magrittr",
-        "multcomp",
-        "rcompanion",
-        "readr",
         "scatterplot3d",
-        "tidyr"
+        "tibble",
+        "tidyr",
+        "tidyselect"
       ],
       "RoxygenNote": "7.1.1",
       "Author": "Dan MacLean [cre, aut]",
@@ -2164,8 +2162,8 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "danmaclean",
       "RemoteRepo": "itssl",
-      "RemoteRef": "master",
-      "RemoteSha": "1aa9b7cbe42088771c29d14de04a137157f8c6bc"
+      "RemoteRef": "v0.1.0",
+      "RemoteSha": "b455516384f282b370db734741538b887d5a42fd"
     },
     "jquerylib": {
       "Package": "jquerylib",

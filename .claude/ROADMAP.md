@@ -6,13 +6,17 @@ Planning document (not a commitment to dates). Captures direction agreed in plan
 
 ## Status (2026-06-26)
 
-**Phase 0 safe work complete.** Done on integration branch `stabilise/ci-render`:
+**Phase 0 safe work complete** + **Phase 1 essentially complete.** Done on integration branch `stabilise/ci-render` (+ the external `itssl` repo).
+
+Phase 0:
 - Group A (reproducibility) ✅ — full `renv.lock`, `itssl` pinned, clean-room restore verified.
 - Group B (CI gate) ✅ — render-on-PR, verified green/red.
 - Group D (bug fixes) ✅ — all of #12–#18 (RNG audit concluded: book is deterministic, no `set.seed` needed).
 - Group C1 (publish workflow) ✅ — builds to `gh-pages`; live source untouched. **C2/C3 deferred to go-live.**
 
-Remaining Phase 0 = the go-live steps only (see checklist below), deliberately deferred while `master` serves the live site. Next major phase = Phase 1 (modernise `itssl`).
+Phase 1 (all four goals ✅ — detail in the Phase 1 section below): webR feasibility confirmed; `itssl` dependency audit (0.1.0, tagged `v0.1.0`); real **potato plant-pathology data** bundled (0.2.0); book `renv.lock` repointed to `v0.1.0`. Pending only the PR merges + a `v0.2.0` tag (see `NEXT-SESSION.md`).
+
+Remaining Phase 0 = the go-live steps only (see checklist below), deliberately deferred while `master` serves the live site. **Next: Phase 2 (webR delivery) / Phase 3 (content onto the potato data) / go-live — author's call.**
 
 ## Fixed constraints / principles
 
@@ -84,10 +88,10 @@ Do deliberately, in order. The stabilisation work sits in a PR stack on `stabili
 
 Goal: turn `itssl` from an unpinned helper into a durable, webR-ready, data-bearing package.
 
-- [ ] Versioned, tagged releases.
-- [ ] webR/WASM compatibility (the feasibility spike from Phase 0's gating unknown).
-- [ ] Bundle the **real biology dataset(s)** in the package so chapters can `data()` them.
-- [ ] Audit helpers: keep the ones that hide *irrelevant* complexity; reconsider any that hide something a beginner should actually see.
+- [x] Versioned, tagged releases. — `itssl` bumped `0.0.0.9000`→`0.1.0`; PR `danmaclean/itssl#1`; **tag `v0.1.0` pushed**; book `renv.lock` repointed from raw SHA → tag `v0.1.0` (minimal hand-edit, full render verified) on book branch `phase1/pin-itssl-v0.1.0`.
+- [x] **webR/WASM compatibility — SPIKE DONE, RESULT POSITIVE.** itssl is pure-R (installs from source); its full 47-package transitive dependency closure is 100% present as WASM binaries on repo.r-wasm.org (incl. the compiled `fGarch`, `scatterplot3d`, `cowplot`). A headless webR (Node) run installed the deps in ~20s and ran representative helpers (incl. the `fGarch::rsnorm` path, ggplot build, knitr table) — all PASS; seeded helpers reproduce the native values. **Conclusion: no blocker to webR delivery (Phase 2).**
+- [x] Bundle the **real biology dataset(s)** in the package so chapters can `data()` them. — Author chose a **small themed potato plant-pathology family** (real/published, via `agridat`, copied in so no runtime dep). Shipped in itssl `0.2.0` (`danmaclean/itssl#2`, stacked on #1): `potato_scab` (regression/t-test/ANOVA), `potato_nematode` (two-way + interaction), `potato_blight` (logistic GLM). Documented with primary-source citations; built & verified. *(Chapters adopting the data = Phase 3. Chi-square/log-linear still on toy data — possible follow-up.)*
+- [x] Audit helpers (dependency audit): `DESCRIPTION` `Imports` realigned to actual usage — dropped 5 unused (`ggthemes`, `gridGraphics`, `multcomp`, `rcompanion`, `readr`), added 3 missing (`tibble`, `knitr`, `tidyselect`); build-ignored `.Rprofile` (was breaking clean `R CMD INSTALL`). Verified: clean build+install, all 30 helpers load/run. *(Deeper "does a helper hide something a beginner should see" editorial audit still open — overlaps Phase 3.)*
 
 ## Phase 2 — Modernise delivery (webR in-page)
 
