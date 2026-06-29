@@ -3,7 +3,7 @@
 Committed, in-repo memory (travels with the branch). Durable preferences, conventions, and project facts that aren't the plan (`ROADMAP.md`) or the live status (`NEXT-SESSION.md`). Keep entries durable — not session chatter.
 
 ## Who / working style
-- **Author:** Dan MacLean (maclean.daniel@gmail.com), TSL Bioinformatics. Sole maintainer; the book is a live, in-use course handbook.
+- **Author:** Dan MacLean, TSL Bioinformatics. Sole maintainer; the book is a live, in-use course handbook.
 - **Planning:** when planning, expand scope into a phased roadmap covering all viable goals rather than narrowing to one. Prefer open discussion; reserve multiple-choice questions for genuine decision forks, not "did I capture this right". (A single-goal multiple-choice framing was rejected.)
 - **Live-site caution:** the published site is mission-critical; the user is deliberately conservative about anything that changes what readers see. Confirm before live-facing changes.
 
