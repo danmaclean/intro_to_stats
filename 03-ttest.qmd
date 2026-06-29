@@ -272,7 +272,10 @@ str(penguins_small)
 ```{webr}
 #| exercise: ttest-str
 #| check: true
-gradethis::grade_this_code()
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
 ```
 
 :::::{.question}
@@ -320,10 +323,10 @@ penguins_small %>%
 ```{webr}
 #| exercise: ttest-summary
 #| check: true
-gradethis::grade_this({
-  gradethis::pass_if(nrow(.result) == 2 && !anyNA(.result))
-  gradethis::fail("Remember to group by the right column, and to remove NA values (na.rm = TRUE) in summary functions.")
-})
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Remember to group by the right column, and to remove NA values (na.rm = TRUE) in your summary functions. If you'd like a more specific pointer: {code_feedback()}"
+)
 ```
 
 ### $t$-tests
@@ -345,7 +348,10 @@ summary(model)
 ```{webr}
 #| exercise: ttest-lm
 #| check: true
-gradethis::grade_this_code()
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
 ```
 
 Recall that the $F$ statistic indicates the strength of the relationship between $x$ and $y$ — the size of, and fit to, the slope — which together indicate a real difference between the groups.
