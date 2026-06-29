@@ -97,8 +97,10 @@ Goal: turn `itssl` from an unpinned helper into a durable, webR-ready, data-bear
 
 Goal: remove install friction and self-host interactivity.
 
-- [ ] Adopt `quarto-live`; pilot on ONE chapter end-to-end before rolling out.
-- [ ] Convert code chunks to live/editable incrementally.
+**Status (2026-06-29): pilot underway, core feasibility PROVEN end-to-end** (branch `phase2/quarto-live-pilot`). `quarto-live` adopted; `itssl` delivered to the browser via the **`danmaclean.r-universe.dev`** r-universe (auto-built WASM binary; r-universe GitHub App installed). Headless webR (`tools/webr-verify/`) installs itssl from the universe and runs the potato analyses green; standalone `pilot-webr.qmd` renders with live cells. Remaining = rollout. (Details + exact config in `MEMORY.md` / `NEXT-SESSION.md`.)
+
+- [~] Adopt `quarto-live`; pilot on ONE chapter end-to-end before rolling out. — extension added + feasibility proven via a standalone pilot; **integrating into a real chapter is the next step**.
+- [ ] Convert code chunks to live/editable incrementally. (Simplest format approach: switch the whole book `format: html` → `live-html`, a superset, so non-live chapters are unaffected.)
 - [ ] Migrate shinyapps exercises into in-page webR exercises with solutions / self-check. Keep shinyapps live until parity is reached.
 - [ ] Reconsider whether the install-heavy `prerequisites.qmd` can shrink dramatically once readers run code in the browser.
 

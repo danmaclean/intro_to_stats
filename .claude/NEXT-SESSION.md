@@ -4,9 +4,16 @@ Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable fact
 Last updated: 2026-06-26.
 
 ## Where we are
-**Phase 1 (modernise `itssl`) COMPLETE & shipped.** itssl PRs #1 (0.1.0 audit) + #2 (0.2.0 potato data) merged to itssl `master`; tags `v0.1.0` and `v0.2.0` both pushed and verified to install from GitHub with the data. Phase 0 safe work all done (go-live steps still deferred — see ROADMAP "Go-live checklist"). **Book PR #24** (renv pin → itssl `v0.1.0`) is still OPEN into the integration trunk; the book lock still pins `v0.1.0` (bump to `v0.2.0` when chapters start using the data). Next major decision: Phase 2 vs Phase 3 vs go-live (see "Next options").
+**Phase 2 (webR delivery) pilot — IN PROGRESS; core feasibility PROVEN end-to-end.** Working on book branch `phase2/quarto-live-pilot`. Phase 1 COMPLETE & shipped (itssl `0.1.0`+`0.2.0` merged & tagged; **book PR #24 — renv pin → `v0.1.0` — now MERGED into the trunk**). Phase 0 done (go-live deferred — see ROADMAP "Go-live checklist"). Book lock still pins itssl `v0.1.0` (bump to `v0.2.0` when chapters use the data). Next decision: finish Phase 2 rollout vs Phase 3 vs go-live.
 
 > **Fixed 2026-06-29 — stacked-PR merge gotcha:** itssl #2 was stacked on `phase1/description-audit`; merging it landed its content on that branch, NOT `master` (no auto-retarget after #1 merged via merge-commit), and `v0.2.0` got tagged on the 0.1.0 master commit. Corrected by merging the audit branch into `master` (commit `4590087`) and moving `v0.2.0` there. Lesson in `MEMORY.md`.
+
+### Phase 2 status (started 2026-06-29) — on branch `phase2/quarto-live-pilot`
+- **quarto-live added** to the book (`quarto add r-wasm/quarto-live` → `_extensions/r-wasm/live`, committed). Live `{webr}` cells need `format: live-html` + `engine: knitr` + the `_knitr.qmd` include.
+- **itssl delivery SOLVED via r-universe.** Created `danmaclean/danmaclean.r-universe.dev` (registry repo, `packages.json` → itssl) + installed the **r-universe GitHub App** (required — without it the universe never builds). r-universe now auto-builds the **WASM binary** on every itssl release, served at `https://danmaclean.r-universe.dev`. quarto-live config: `webr: {packages: [itssl, ...], repos: [https://danmaclean.r-universe.dev, https://repo.r-wasm.org]}`. itssl `0.2.0` WASM is live for **R 4.6** (webR's current R).
+- **END-TO-END PROVEN.** Headless webR (`tools/webr-verify/`) installs itssl *from the universe* (deps from r-wasm) and runs the potato analyses — p-values match native (`infection~sulfur` p=0.0061, blight logistic p=0.0163), helper builds a ggplot. Standalone `pilot-webr.qmd` renders with live cells + the universe config baked into the page.
+- **Committed on the branch:** the extension, `pilot-webr.qmd` (throwaway pilot — NOT in the book nav, confirmed not in `quarto inspect` inputs so CI ignores it), `tools/webr-verify/`, `.gitignore` updates.
+- **TODO next (Phase-2 rollout):** (1) optional belt-and-suspenders: a Playwright in-browser click-through; (2) **integrate live cells into ONE real chapter** end-to-end (pick the chapter; decide format approach — simplest is switch the whole book `format: html` → `live-html`, which is a superset so non-live chapters are unaffected); (3) plan migrating the shinyapps.io exercises → in-page webR; (4) bump book `renv.lock` itssl pin to `v0.2.0` once chapters use the potato data. Pilot proves the path — rollout is incremental.
 
 ### Phase 1 status (started 2026-06-26)
 - **`itssl` cloned to `/Users/macleand/Desktop/itssl`** (separate repo; same branch/PR discipline as the book). Branch `phase1/description-audit` pushed; **PR `danmaclean/itssl#1` open**; **tag `v0.1.0` pushed** (commit `b455516`). NB: when merging #1, use a merge-commit/FF (not squash) so `v0.1.0` stays reachable from `master`, else re-point the tag.
@@ -36,12 +43,12 @@ Last updated: 2026-06-26.
 - Note: `master` still has the OLD state (stub renv.lock, committed docs/, no CI) — that's expected; the improvements live on the integration branch until go-live.
 
 ## Open PRs
-**Book** (`danmaclean/intro_to_stats`, base `stabilise/ci-render`): #19 renv (draft) · #20 CI (draft) · #21 trivial fixes · #22 ch.7/ch.2 · #23 publish (C1) · **#24 renv pin → itssl v0.1.0** (Phase-1). Merge bottom-up at go-live; non-default base ⇒ referenced issues won't auto-close, close manually.
+**Book** (`danmaclean/intro_to_stats`, base `stabilise/ci-render`): #19 renv (draft) · #20 CI (draft) · #21 trivial fixes · #22 ch.7/ch.2 · #23 publish (C1) — the Phase-0 stack, merge bottom-up at go-live (non-default base ⇒ close referenced issues manually). **#24 renv pin → itssl v0.1.0 — MERGED** into the trunk. Phase-2 PR (`phase2/quarto-live-pilot`) pending.
 **itssl** (`danmaclean/itssl`): **#1** (0.1.0 audit) + **#2** (0.2.0 potato data) — both **MERGED**; `master` at `0.2.0` (`4590087`); tags **`v0.1.0`** and **`v0.2.0`** pushed & verified. ✅ done.
 
 ## Next options (pick one)
-Phase 1 is essentially done (pending the merges above). Then:
-1. **Phase 2 — webR delivery pilot** (now de-risked by the spike): adopt `quarto-live`, pilot ONE chapter end-to-end. See ROADMAP Phase 2.
+Phase 2 feasibility is **proven**; the rest of Phase 2 is rollout. Choices:
+1. **Finish Phase 2 rollout** (continue on `phase2/quarto-live-pilot`): integrate live `{webr}` cells into ONE real chapter end-to-end (decide format approach — simplest: whole book `format: live-html`), then plan the shinyapps→webR exercise migration. See ROADMAP Phase 2.
 2. **Phase 3 — content**: rewrite chapters onto the bundled potato data (replaces PlantGrowth/chickwts/txhousing). Open sub-question: whether to add a **potato-themed contingency dataset** so chi-square/log-linear leave toy data too. See ROADMAP Phase 3.
 3. **Go-live** (whenever ready): execute the ROADMAP "Go-live checklist" (merge stack, flip Pages to gh-pages, drop docs/, switch publish trigger). Decide whether to also repoint the book lock to `v0.2.0` first.
 
