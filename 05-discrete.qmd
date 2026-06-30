@@ -16,6 +16,9 @@ So far we've looked at tests where the dependent or response measurement has bee
 
 We'll start by looking at how these data really are different from the data we've used already, common mistakes are always enlightening.
 
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
+
 ## Common misrepresentations of discrete data
 
 A common place where analysing discrete data goes wrong is when the analyst confuses the categoric with the continuous, this is often caused by a bad naming scheme as much as a lack of appreciation of the real nature of the data. Often, using numbers as the names for categories can lead the unaware analyst to make a critical mistake. Let's consider a plant infection assay (sometimes called an HR assay). Here a large-ish leaf of a plant is infected at points on its surface with either different strains or varieties of some pathogen and controls. After a period of incubation the severity of disease at each patch is assessed by eye and a score of disease applied. Sometimes that score will be a numeric one that may be like this example from Supplemental Figure 1 A in a 2020 PNAS paper by Gao et al. @Gao9613
@@ -355,8 +358,276 @@ As with the $t$-test, then in practice, sometimes, yes, these tests are easier. 
 
 :::{.callout-tip}
 ## For you to do
-Complete the interactive tutorial online [https://tsl-bioinformatics.shinyapps.io/type/](https://tsl-bioinformatics.shinyapps.io/type/)
-
+Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://tsl-bioinformatics.shinyapps.io/type/).)
 :::
+
+```{webr}
+#| setup: true
+#| exercise: [type-0, type-3]
+library(dplyr)
+plant_greenness <- transmute(PlantGrowth, green_score = round(weight, digits = 0), group)
+```
+
+```{webr}
+#| setup: true
+#| exercise: [type-4, type-6, type-7]
+library(dplyr)
+plant_greenness <- transmute(PlantGrowth, green_score = as.factor(round(weight, digits = 0)), group)
+ranked_plant_greenness <- mutate(plant_greenness, ranked_green_score = rank(green_score))
+```
+
+### Setting data type
+
+Inspect the data frame `plant_greenness`, which scores how green a plant's leaves looked after a treatment — a by-eye category, labelled with a digit.
+
+```{webr}
+#| exercise: type-0
+
+```
+
+```{webr}
+#| exercise: type-0
+#| solution: true
+str(plant_greenness)
+```
+
+```{webr}
+#| exercise: type-0
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+:::::{.question}
+Are the types set correctly?
+
+::::{.choices}
+:::{.choice}
+Yes
+:::
+
+:::{.choice .correct-choice}
+No
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+The column `green_score` is set as *numeric* — but these scores are categories that just happen to be labelled with digits.
+:::
+
+:::::{.question}
+What should the type for `green_score` be set to?
+
+::::{.choices}
+:::{.choice}
+logical
+:::
+
+:::{.choice}
+double
+:::
+
+:::{.choice .correct-choice}
+factor
+:::
+
+:::{.choice}
+character
+:::
+
+:::{.choice}
+numeric
+:::
+::::
+:::::
+
+:::::{.question}
+Is `green_score`…
+
+::::{.choices}
+:::{.choice .correct-choice}
+ordered
+:::
+
+:::{.choice}
+unordered
+:::
+
+:::{.choice}
+neither, that doesn't apply
+:::
+::::
+:::::
+
+Set the column types correctly. Use `transmute` from `dplyr` and the `factor` function, explicitly setting the factor levels as `1,2,3,4,5` and `6`.
+
+```{webr}
+#| exercise: type-3
+library(...)
+
+plant_greenness <- ...(plant_greenness,
+                       green_score = ...(..., levels = c(...), ordered = ... ),
+                       group)
+str(...)
+```
+
+```{webr}
+#| exercise: type-3
+#| solution: true
+library(dplyr)
+
+plant_greenness <- transmute(plant_greenness,
+                       green_score =
+                               factor(green_score, levels = c("1","2","3","4","5","6"), ordered = TRUE),
+                       group)
+str(plant_greenness)
+```
+
+```{webr}
+#| exercise: type-3
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+### Plotting categoric data
+
+With the types set correctly we can plot the data meaningfully — a 'balloon' plot. Use `ggplot` and `geom_count()` to plot `green_score` by `group`.
+
+```{webr}
+#| exercise: type-4
+library(ggplot2)
+
+ggplot(plant_greenness) + aes(..., ...) + ...()
+```
+
+```{webr}
+#| exercise: type-4
+#| solution: true
+library(ggplot2)
+ggplot(plant_greenness) + aes(group, green_score) + geom_count()
+```
+
+```{webr}
+#| exercise: type-4
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+:::::{.question}
+What does the legend `n` represent?
+
+::::{.choices}
+:::{.choice}
+The sample size
+:::
+
+:::{.choice .correct-choice}
+The number of observations of each score
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+In other contexts `n` is used for the sample size, but here it's just the number of observations of that score.
+:::
+
+### Linear models on ranked category data
+
+Now make the model and do the hypothesis test with an ANOVA on a *ranked* version of `green_score`. Use `dplyr`'s `mutate` to add the ranks to a new data frame, and view it.
+
+```{webr}
+#| exercise: type-6
+library(...)
+ranked_plant_greenness <- mutate(..., ranked_green_score = ...(green_score))
+
+ranked_plant_greenness
+```
+
+```{webr}
+#| exercise: type-6
+#| solution: true
+library(dplyr)
+ranked_plant_greenness <- mutate(plant_greenness, ranked_green_score = rank(green_score))
+
+ranked_plant_greenness
+```
+
+```{webr}
+#| exercise: type-6
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+Now build the linear model — ranks as the response, group as the explanatory — and run Tukey's *post hoc* test of the hypothesis that there's no difference in mean rank between the groups.
+
+```{webr}
+#| exercise: type-7
+
+rank_model <- ...
+
+
+library(multcomp)
+
+...
+
+```
+
+```{webr}
+#| exercise: type-7
+#| solution: true
+rank_model <- lm(ranked_green_score ~ group, data = ranked_plant_greenness)
+
+library(multcomp)
+summary(
+        glht(rank_model, linfct = mcp(group = "Tukey"))
+)
+```
+
+```{webr}
+#| exercise: type-7
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+Now interpret the result.
+
+:::::{.question}
+At a pre-decided 0.05 $p$-value level, which is a correct interpretation of the hypothesis test?
+
+::::{.choices}
+:::{.choice}
+trt1, ctrl and trt2 are all the same.
+:::
+
+:::{.choice}
+trt2 is significantly higher than trt1.
+:::
+
+:::{.choice .correct-choice}
+trt2 and trt1 are not likely to have the same mean rank, according to the Null Model.
+:::
+
+:::{.choice}
+trt2 has a more significant mean rank than trt1 according to the Null Model.
+:::
+::::
+:::::
 
 ## References
