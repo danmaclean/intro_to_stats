@@ -37,6 +37,11 @@ bibliography: references.bib
 
 engine: knitr
 
+# Keep R warnings / package messages out of the rendered (reader-facing) output.
+execute:
+  warning: false
+  message: false
+
 # naquiz: multiple-choice questions (::: {.question}) for migrated exercises.
 filters:
   - naquiz

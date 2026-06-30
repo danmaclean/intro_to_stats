@@ -355,5 +355,279 @@ At the very least knowing notation like this will be useful later when we are lo
 
 :::{.callout-tip}
 ## For you to do
-Complete the interactive quiz online [https://tsl-bioinformatics.shinyapps.io/linear_models/](https://tsl-bioinformatics.shinyapps.io/linear_models/)
+Use the interactive sliders and questions below to check your understanding — everything runs **in your browser**. Drag a slider and watch the plot update, then answer. (The original standalone quiz is still [available online](https://tsl-bioinformatics.shinyapps.io/linear_models/).)
+:::
+
+### Straight lines
+
+:::::{.question}
+In $y = ax + b$, the number represented by $a$ is known as what?
+
+::::{.choices}
+:::{.choice}
+The multiplier of $x$
+:::
+
+:::{.choice}
+The factor of $x$
+:::
+
+:::{.choice .correct-choice}
+The coefficient of $x$
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+$a$ does multiply $x$, but its proper name is the *coefficient* — not the "multiplier" or "factor".
+:::
+
+:::::{.question}
+In $y = ax + b$, the number represented by $b$ is known as what?
+
+::::{.choices}
+:::{.choice}
+The increaser of $y$
+:::
+
+:::{.choice}
+The factor of $x$
+:::
+
+:::{.choice .correct-choice}
+The intercept
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+$b$ does increase $y$, but its proper name is the *intercept* — it sets the place the line crosses the $y$-axis.
+:::
+
+Use the slider to examine the role of $a$, the coefficient of $x$, then answer the question.
+
+```{ojs}
+//| echo: false
+viewof aval = Inputs.range([-5, 5], {value: 1, step: 0.25, label: "a (coefficient of x)"})
+```
+
+```{webr}
+#| input:
+#|  - aval
+#| edit: false
+#| echo: false
+#| runbutton: false
+#| autorun: true
+#| warning: false
+#| message: false
+#| fig-width: 5
+#| fig-height: 5
+library(itssl)
+its_axplusb_time(xrange = c(-5, 5), a = aval, b = 0, yrange = c(-5, 5))
+```
+
+:::::{.question}
+As the coefficient reaches zero, the slope of the line…
+
+::::{.choices}
+:::{.choice}
+gets steeper
+:::
+
+:::{.choice .correct-choice}
+gets flatter
+:::
+
+:::{.choice}
+goes negative
+:::
+::::
+:::::
+
+Use the slider to examine the role of $b$, the intercept, then answer the question.
+
+```{ojs}
+//| echo: false
+viewof bval = Inputs.range([-5, 5], {value: 1, step: 0.25, label: "b (intercept)"})
+```
+
+```{webr}
+#| input:
+#|  - bval
+#| edit: false
+#| echo: false
+#| runbutton: false
+#| autorun: true
+#| warning: false
+#| message: false
+#| fig-width: 5
+#| fig-height: 5
+library(itssl)
+its_axplusb_time(xrange = c(-5, 5), a = 1, b = bval, yrange = c(-5, 5))
+```
+
+:::::{.question}
+Changing $b$ changes the place the line hits the $y$-axis, but nothing else.
+
+::::{.choices}
+:::{.choice .correct-choice}
+True
+:::
+
+:::{.choice}
+False
+:::
+::::
+:::::
+
+### Linear models
+
+Linear models try to build a linear equation from data, and the quality of the model depends on how well it fits. Use the sliders to explore how the **coefficient** and the **amount of noise** (experimental variability) affect the fit and the model statistics, then answer the questions.
+
+```{ojs}
+//| echo: false
+viewof coefval = Inputs.range([-10, 10], {value: 2, step: 0.5, label: "Coefficient (a) of x"})
+```
+
+```{ojs}
+//| echo: false
+viewof noiseval = Inputs.range([0, 20], {value: 2, step: 0.5, label: "Amount of random noise (experimental variability)"})
+```
+
+```{webr}
+#| input:
+#|  - coefval
+#|  - noiseval
+#| edit: false
+#| echo: false
+#| runbutton: false
+#| autorun: true
+#| warning: false
+#| message: false
+#| fig-width: 6
+#| fig-height: 4
+library(itssl)
+set.seed(123)
+df <- tibble::tibble(x = runif(20, 5, 15), y = x * coefval + rnorm(20, 0, noiseval))
+print(its_plot_xy_time(df, line = TRUE, residuals = TRUE))
+model <- lm(y ~ x, data = df)
+s <- summary(model)
+data.frame(
+  Statistic = c("adj.r.squared", "F", "p"),
+  Value = round(c(s$adj.r.squared,
+                  s$fstatistic[[1]],
+                  pf(s$fstatistic[[1]], s$fstatistic[[2]], s$fstatistic[[3]], lower.tail = FALSE)), 4)
+)
+```
+
+:::::{.question}
+Increasing the noise has what effect on the fit of the model to the data?
+
+::::{.choices}
+:::{.choice}
+The fit gets better
+:::
+
+:::{.choice .correct-choice}
+The fit gets worse
+:::
+::::
+:::::
+
+:::::{.question}
+…and this is true for any value of the coefficient.
+
+::::{.choices}
+:::{.choice}
+False
+:::
+
+:::{.choice .correct-choice}
+True
+:::
+::::
+:::::
+
+:::::{.question}
+When the noise increases (for a fixed coefficient)…
+
+::::{.choices}
+:::{.choice .correct-choice}
+$p$ goes up, adjusted $r^2$ goes down, $F$ goes down
+:::
+
+:::{.choice}
+$p$ goes down, adjusted $r^2$ goes up, $F$ goes up
+:::
+
+:::{.choice}
+$p$ goes down, adjusted $r^2$ goes down, $F$ goes up
+:::
+
+:::{.choice}
+$p$ goes up, adjusted $r^2$ goes up, $F$ goes up
+:::
+::::
+:::::
+
+:::::{.question}
+When the coefficient increases (for a fixed amount of noise)…
+
+::::{.choices}
+:::{.choice}
+$p$ goes up, adjusted $r^2$ goes down, $F$ goes down
+:::
+
+:::{.choice .correct-choice}
+$p$ goes down, adjusted $r^2$ goes up, $F$ goes up
+:::
+
+:::{.choice}
+$p$ goes down, adjusted $r^2$ goes down, $F$ goes up
+:::
+
+:::{.choice}
+$p$ goes up, adjusted $r^2$ goes up, $F$ goes up
+:::
+::::
+:::::
+
+:::::{.question}
+When the coefficient is zero, what should happen to $x$?
+
+::::{.choices}
+:::{.choice .correct-choice}
+$x$ should evaluate to zero
+:::
+
+:::{.choice}
+$x$ should stay unchanged
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+$x$ is multiplied by the coefficient, so when the coefficient is 0, $ax$ works out to zero and effectively disappears.
+:::
+
+:::::{.question}
+Why doesn't the line behave exactly as expected when you set $a$ to zero?
+
+::::{.choices}
+:::{.choice}
+$a$ must be being altered to stop the program breaking
+:::
+
+:::{.choice .correct-choice}
+The $ax$ part is worked out first, then experimental noise is added, so the final value for each point is rarely exactly zero
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+The $ax$ term is computed first and then noise is added — so each point's value is rarely *exactly* zero. (If $ax +$ noise were exactly zero, that point would vanish.)
 :::
