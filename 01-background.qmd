@@ -99,5 +99,133 @@ Now we have a conceptual tool for thinking about differences (like differences i
 
 :::{.callout-tip}
 ## For you to do
-Complete the interactive quiz online [https://tsl-bioinformatics.shinyapps.io/linear_models_background/](https://tsl-bioinformatics.shinyapps.io/linear_models_background/)
+Try the quiz below to check your understanding — answer each question and expand *Why?* to see the reasoning. (The original standalone quiz is still [available online](https://tsl-bioinformatics.shinyapps.io/linear_models_background/).)
+:::
+
+### Null Models
+
+:::::{.question}
+Which of these is the best definition of a Null Model?
+
+::::{.choices}
+:::{.choice .correct-choice}
+An idealised version of the situation in which there are no statistical differences between samples
+:::
+
+:::{.choice}
+An empty version of the model we are building with no real data in it
+:::
+
+:::{.choice}
+A base case against which we can measure the size of our hypothesised difference
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+A Null Model is, in simple terms, an idealised situation where there *isn't* a difference between samples. It's not "empty" — it contains idealised data like the experiment's — and it doesn't tell us the *size* of any difference, only how often a difference that big would crop up by chance.
+:::
+
+:::::{.question}
+The value of the Null Model is that…
+
+::::{.choices}
+:::{.choice}
+We can use it to guess the probability of our hypothesis being correct
+:::
+
+:::{.choice .correct-choice}
+We can use it to tell how often our observed difference happens by chance in an idealised situation
+:::
+
+:::{.choice}
+It gives us the $p$-value which tells us whether our experiment is significant or not
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+The Null Model only ever tells us the *frequency* with which our observed difference would happen by chance in an idealised "no difference" world. It never gives us the probability that our hypothesis is true, and it doesn't by itself declare an experiment "significant" — we make inferences from that frequency.
+:::
+
+### $p$-values
+
+$p$-values are one of the most misunderstood and misused values in science. What do you make of the following statements?
+
+:::::{.question}
+$p$-values are frequently misinterpreted.
+
+::::{.choices}
+:::{.choice .correct-choice}
+True
+:::
+
+:::{.choice}
+False
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+True — $p$-values are probably the most misinterpreted number in science.
+:::
+
+:::::{.question}
+$p$-values tell us how likely our hypothesis is to be true.
+
+::::{.choices}
+:::{.choice}
+True
+:::
+
+:::{.choice .correct-choice}
+False
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+False — and this is the most damaging misinterpretation. A $p$-value is a *frequency*, not the probability that your hypothesis is true, nor a measure of how good the experiment is.
+:::
+
+:::::{.question}
+A $p$-value of 0.05 is a gold standard that means I have a solid result that *must* be correct.
+
+::::{.choices}
+:::{.choice}
+True
+:::
+
+:::{.choice .correct-choice}
+False
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+False. 0.05 is an arbitrarily chosen value — it just means we've decided we can live with detecting a difference incorrectly about 1 time in 20. It's no guarantee the result is correct.
+:::
+
+:::::{.question}
+A $p$-value of 0.01 is inherently and at all times better than a $p$-value of 0.05.
+
+::::{.choices}
+:::{.choice}
+True
+:::
+
+:::{.choice .correct-choice}
+False
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+False. The threshold you pick should depend on how often you can live with being wrong — sometimes stricter, sometimes looser. 0.01 isn't universally "better" than 0.05.
 :::
