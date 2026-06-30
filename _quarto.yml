@@ -62,6 +62,7 @@ webr:
 format:
   live-html:
     theme: cosmo
+    css: webr-ui.css
   pdf:
     documentclass: scrreprt
 comments:
