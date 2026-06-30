@@ -1,24 +1,31 @@
 # NEXT SESSION — current status & what to do next
 
 Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable facts = `MEMORY.md`.)
-Last updated: 2026-06-29.
+Last updated: 2026-06-30.
 
 ## Where we are
-**Phase 2 (webR delivery) pilot — IN PROGRESS; core feasibility PROVEN end-to-end.** Working on book branch `phase2/quarto-live-pilot`. Phase 1 COMPLETE & shipped (itssl `0.1.0`+`0.2.0` merged & tagged; **book PR #24 — renv pin → `v0.1.0` — now MERGED into the trunk**). Phase 0 done (go-live deferred — see ROADMAP "Go-live checklist"). Book lock still pins itssl `v0.1.0` (bump to `v0.2.0` when chapters use the data). **Current task: migrate the 6 remaining shinyapps tutorials into the page — see ▶ NEXT SESSION below.**
+**Phase 2 (webR delivery) pilot — IN PROGRESS; core feasibility PROVEN end-to-end.** Working on book branch `phase2/quarto-live-pilot`. Phase 1 COMPLETE & shipped (itssl `0.1.0`+`0.2.0` merged & tagged; **book PR #24 — renv pin → `v0.1.0` — now MERGED into the trunk**). Phase 0 done (go-live deferred — see ROADMAP "Go-live checklist"). Book lock still pins itssl `v0.1.0` (bump to `v0.2.0` when chapters use the data). **Shinyapps "For you to do" migration: 6 of 7 tutorials now in-page** (ch3 pilot last session + ch1, ch4, ch5, ch6, r-fundamentals this session, 2026-06-30). **ch2 (`linear_models`) is the one left** — its 10 MCQs are *coupled to 4 reactive sliders* ("use the slider, then answer"), so it must be done *with* the slider solution, not as a plain quiz. See next options.
 
 > **Fixed 2026-06-29 — stacked-PR merge gotcha:** itssl #2 was stacked on `phase1/description-audit`; merging it landed its content on that branch, NOT `master` (no auto-retarget after #1 merged via merge-commit), and `v0.2.0` got tagged on the 0.1.0 master commit. Corrected by merging the audit branch into `master` (commit `4590087`) and moving `v0.2.0` there. Lesson in `MEMORY.md`.
 
-## ▶ NEXT SESSION — migrate the 6 remaining shinyapps tutorials (current task)
+## ▶ NEXT SESSION — Phase 2 tail + then go-live / Phase 3
 
-**Continue on branch `phase2/quarto-live-pilot` (→ PR #25 into `stabilise/ci-render`). `03-ttest.qmd` is the PROVEN REFERENCE — copy its structure exactly.** Author confirmed ch.3's in-browser grading + MCQs work. Migrate the rest the same way.
+**6 of 7 shinyapps tutorials migrated (branch `phase2/quarto-live-pilot` → PR #25; CI green).** Pick from:
+1. **ch2 (`linear_models`) — the last tutorial + the slider work (one job).** Its 10 MCQs are single-select (naquiz-ready) BUT several say "use the slider to examine… then answer", so they need the 4 reactive widgets (`straightline_a` slider→plot, `straightline_b` slider→plot, and a coef+noise→plot+stats explorer). Build the sliders as OJS `Inputs.range` feeding a `{webr}` cell (Bellini blog pattern), or fold into ch2's existing editable live cells, then migrate the coupled MCQs. **Flag the slider design choice to the author before building.** Source: `~/Desktop/shinyapps/linear_models/linear-models.Rmd`.
+2. **Live-cell narrative rewrite** (the paused rollout) — write prose that drives readers into the cells. Phase-3-adjacent; a writing pass.
+3. **Per-chapter webR package trim** (optimisation) — base-R chapters (r-fundamentals) currently install the full book-wide list (itssl/multcomp/palmerpenguins) on first webR load. Per-chapter `webr.packages` overrides would speed startup. Verify Quarto array merge-vs-replace first.
+4. **Go-live** / **merge PR #25** into `stabilise/ci-render` when the author's happy with the in-browser experience across chapters.
 
-**Source** (author cloned the private `TeamMacLean/shinyapps` to `/Users/macleand/Desktop/shinyapps`; my PAT can't reach that org): `/.../shinyapps/<dir>/<file>.Rmd`. **Suggested order** (MCQ + codeEx counts):
-1. `anova/anova.Rmd` → `04-anova.qmd` (7 MCQ + 9 codeEx — most code; best next stress-test)
-2. `type/type.Rmd` → `05-discrete.qmd` (5 + 5)
-3. `chisq/chisquared.Rmd` → `06-loglinear.qmd` (1 + 3)
-4. `r_basics/r-start.Rmd` → `r-fundamentals.qmd` (7 + 4)
-5. `linear_models_background/linear-models-background.Rmd` → `01-background.qmd` (6 MCQ, no code)
-6. `linear_models/linear-models.Rmd` → `02-linear-models.qmd` (10 MCQ + **4 reactive sliders** — do LAST; sliders need OJS-reactive or folding into ch2's existing live cells → **flag to author**)
+---
+*Migration reference (how it was done — for the slider work or any future tutorials):* branch `phase2/quarto-live-pilot`; `03-ttest.qmd`/`04-anova.qmd` are the reference chapters. Sources in `/Users/macleand/Desktop/shinyapps/<dir>/*.Rmd`.
+
+**Source** (author cloned the private `TeamMacLean/shinyapps` to `/Users/macleand/Desktop/shinyapps`; my PAT can't reach that org): `/.../shinyapps/<dir>/<file>.Rmd`. **Status — all migrated:**
+1. ✅ `anova/anova.Rmd` → `04-anova.qmd` — 3 multi-selects reworded to single-best; main-effects-model typo fixed; needs `multcomp` (added).
+2. ✅ `type/type.Rmd` → `05-discrete.qmd` — two setup cells (numeric vs factor `plant_greenness`).
+3. ✅ `chisq/chisquared.Rmd` → `06-loglinear.qmd` — **rcompanion → base `pairwise.prop.test`** (rcompanion can't load in webR: dep `rootSolve` = compiled Fortran, no WASM binary); chi-2 orientation fixed; "survivors"→"passengers" (data was passenger counts).
+4. ✅ `r_basics/r-start.Rmd` → `r-fundamentals.qmd` — base-R exercises; "2+2" is result-graded (`grade_this` + shown solution).
+5. ✅ `linear_models_background/linear-models-background.Rmd` → `01-background.qmd` — pure MCQ quiz, no code.
+6. ❌ `linear_models/linear-models.Rmd` → `02-linear-models.qmd` — **NOT migrated.** 10 single-select MCQs + 4 reactive sliders; the MCQs depend on the sliders, so do them together with the slider solution (see next options above). ch2 already has its slope-demo live cells from the earlier rollout.
 
 **Per-chapter recipe (mirror ch3):**
 - Top of chapter (after the opening Q/O/K block): add `{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}`, and — if it has graded code exercises — also `{{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}`.
