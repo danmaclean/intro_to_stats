@@ -12,6 +12,9 @@
 
 In the last chapter we looked at discrete data that was ordered and got around it, as hypothesis tests do, by working on ranked data with a linear model. In this section we'll look at discrete data that isn't ordered, or is nominal, things like `agree, disagree, don't know`, or `yellow, green, wrinkled, smooth`.  We'll also look at discrete data in the form of counts or frequencies. 
 
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
+
 ## The problem with unordered response data
 
 If we have unordered categoric response data ($y$-axis) we find ourselves in a bit of a pickle if we want to try to apply a linear model to understand relationships, because there are no numbers _at all_. In every other example we've looked at the $y$ response data has been numeric or at least coercible into numbers.
@@ -238,5 +241,107 @@ ggplot(job_mood) + aes(role, Freq) + geom_col(aes(fill = mood))
 :::
 
 :::{.callout-tip}
-Complete the interactive tutorial online [https://tsl-bioinformatics.shinyapps.io/chisq/](https://tsl-bioinformatics.shinyapps.io/chisq/)
+## For you to do
+Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://tsl-bioinformatics.shinyapps.io/chisq/).)
 :::
+
+When both the explanatory ($x$) and response ($y$) variables are non-continuous categories, we reach for the $\chi^2$ test instead of a linear model. Here we'll use a table of the *adult passengers* on the ill-fated ship Titanic, broken down by travel `Class` and `Sex`, in a data frame called `titanic`, and ask whether the split between the sexes differs from one class to another.
+
+```{webr}
+#| setup: true
+#| exercise: [chi-0, chi-2, chi-3]
+library(dplyr)
+titanic <- as.data.frame(Titanic) %>%
+  filter(Age == "Adult") %>%
+  droplevels() %>%
+  select(Class, Sex, Freq)
+tab_titanic <- xtabs(Freq ~ Class + Sex, data = titanic)
+```
+
+### Inspecting the data
+
+View the `titanic` data frame.
+
+```{webr}
+#| exercise: chi-0
+
+```
+
+```{webr}
+#| exercise: chi-0
+#| solution: true
+titanic
+```
+
+```{webr}
+#| exercise: chi-0
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+:::::{.question}
+Which variable holds the counts (the number of passengers in each `Class` × `Sex` group)?
+
+::::{.choices}
+:::{.choice}
+Sex
+:::
+
+:::{.choice}
+Class
+:::
+
+:::{.choice .correct-choice}
+Freq
+:::
+::::
+:::::
+
+To use the data in a $\chi^2$ test we first tabulate it, with `xtabs` and an R formula. Put the variable we want to compare — `Class` — in the **rows** of the table. (Hint: the order of the explanatory variables in the formula decides which goes in the rows; change the order and see what happens.)
+
+```{webr}
+#| exercise: chi-2
+tab_titanic <- xtabs(... ~ ... + ..., data = ...)
+tab_titanic
+```
+
+```{webr}
+#| exercise: chi-2
+#| solution: true
+tab_titanic <- xtabs(Freq ~ Class + Sex, data = titanic)
+tab_titanic
+```
+
+```{webr}
+#| exercise: chi-2
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+Now compare the classes pairwise. Base R's `pairwise.prop.test()` tests, for each pair of classes, whether the proportion of the sexes differs — and applies a multiple-testing (FDR) correction so we don't get fooled by doing many comparisons at once.
+
+```{webr}
+#| exercise: chi-3
+pairwise.prop.test(..., p.adjust.method = "fdr")
+```
+
+```{webr}
+#| exercise: chi-3
+#| solution: true
+pairwise.prop.test(tab_titanic, p.adjust.method = "fdr")
+```
+
+```{webr}
+#| exercise: chi-3
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
