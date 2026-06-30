@@ -49,6 +49,7 @@ webr:
     - itssl
     - ggplot2
     - palmerpenguins
+    - multcomp
   repos:
     - https://danmaclean.r-universe.dev
     - https://repo.r-wasm.org
