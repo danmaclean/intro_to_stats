@@ -215,10 +215,10 @@ y = ax + b
 
 If we let the coefficient $a = 0$, this happens
 
-\begin{align*}
-y &= 0 x + b\\
-y &= b
-\end{align*}
+\begin{equation}
+y = 0 x + b\\
+y = b
+\end{equation}
 
 The coefficient disappears, it's having no effect! 
 

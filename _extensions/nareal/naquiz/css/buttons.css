@@ -5,11 +5,13 @@
   border-radius: 3px;
 }
 
-#correct {
+/* Scoped to .choices so these don't leak onto page elements whose id happens
+   to start with "no" (e.g. Quarto section ids like "not-all-lines-..."). */
+.choices #correct {
   color: green;
 }
 
-[id^="no"] {
+.choices [id^="no"] {
   color: red;
 }
 
