@@ -10,14 +10,16 @@ Last updated: 2026-06-30.
 
 ## ▶ NEXT SESSION — Phase 2 tail + then go-live / Phase 3
 
-**All 7 shinyapps tutorials migrated (branch `phase2/quarto-live-pilot` → PR #25; CI green).** Pick from:
-1. **In-browser verification pass** — render proves structure, but the live behaviour (grading, MCQ feedback, and especially ch2's **OJS↔webR reactive sliders**) only runs in a real browser. Open the rendered book (or `quarto preview`) and click through, ch2 first. A Playwright harness could automate this if wanted.
-2. **Live-cell narrative rewrite** (the paused rollout) — write prose that drives readers into the cells. Phase-3-adjacent; a writing pass.
-3. **Per-chapter webR package trim** (optimisation) — base-R chapters (r-fundamentals) install the full book-wide list on first webR load; per-chapter `webr.packages` overrides would speed startup (verify Quarto array merge-vs-replace first).
-4. **Go-live / merge PR #25** into `stabilise/ci-render` once the author's happy with the in-browser experience.
-2. **Live-cell narrative rewrite** (the paused rollout) — write prose that drives readers into the cells. Phase-3-adjacent; a writing pass.
-3. **Per-chapter webR package trim** (optimisation) — base-R chapters (r-fundamentals) currently install the full book-wide list (itssl/multcomp/palmerpenguins) on first webR load. Per-chapter `webr.packages` overrides would speed startup. Verify Quarto array merge-vs-replace first.
-4. **Go-live** / **merge PR #25** into `stabilise/ci-render` when the author's happy with the in-browser experience across chapters.
+**All 7 shinyapps tutorials migrated (branch `phase2/quarto-live-pilot` → PR #25; CI green).**
+
+Fixed 2026-06-30 after author review: (a) **red-text bleed** — naquiz's `[id^="no"]` CSS matched Quarto section ids starting "no" (`not-all-lines-…` ch2, `non-parametric-…` ch5 title → whole sections red); scoped to `.choices` in the vendored `_extensions/nareal/naquiz/css/buttons.css` (re-apply if `quarto add` overwrites; report upstream). (b) **slider "working" cue** — added a fade-in on live-output update + an intro note (`webr-ui.css`); a true during-compute spinner is **deferred** (item 5). Verified the red fix in a real browser via a headless-Playwright harness (`scratchpad/find-red.mjs`, `trace-red.mjs`) — 0 red prose in ch2/ch5.
+
+Pick from:
+1. **Finish in-browser verification** — render only proves *structure*; live behaviour (grading, MCQ feedback, ch2's OJS↔webR reactive sliders) runs only in a browser. `quarto preview` + click through (ch2 first); the Playwright harness can automate it.
+2. **Live-cell narrative rewrite** (the paused rollout) — prose that drives readers into the cells. Phase-3-adjacent writing pass.
+3. **Per-chapter webR package trim** (optimisation) — base-R chapters (r-fundamentals) install the full book-wide package list on first webR load; per-chapter `webr.packages` overrides would speed startup (verify Quarto array merge-vs-replace first).
+4. **Go-live / merge PR #25** into `stabilise/ci-render` once happy with the in-browser experience.
+5. **(deferred — author OK'd skipping for now) During-compute "⏳ computing…" spinner** for the reactive sliders — needs bespoke JS (quarto-live has no per-cell busy hook); build + verify with the Playwright harness.
 
 ---
 *Migration reference (how it was done — for the slider work or any future tutorials):* branch `phase2/quarto-live-pilot`; `03-ttest.qmd`/`04-anova.qmd` are the reference chapters. Sources in `/Users/macleand/Desktop/shinyapps/<dir>/*.Rmd`.
