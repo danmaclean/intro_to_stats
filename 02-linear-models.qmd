@@ -114,8 +114,8 @@ Although a line of best fit can always be calculated, the line might not be wort
 
 ```{r}
 more_df <- data.frame(
-  x <- runif(20, 5, 15),
-  y <- runif(20, 5, 15)
+  x = runif(20, 5, 15),
+  y = runif(20, 5, 15)
 )
 
 its_plot_xy_time(more_df)
@@ -127,7 +127,7 @@ We can definitely calculate a line that fits these,
 lm(y ~ x, data = more_df)
 ```
 
-and it would be $y = 0.1103x + 10.6495$. But if we compare the fit of those lines, like in these plots 
+and it would be $y = 0.1103x + 10.4695$. But if we compare the fit of those lines, like in these plots 
 
 ```{r, echo=FALSE}
 #| layout-ncol: 2
