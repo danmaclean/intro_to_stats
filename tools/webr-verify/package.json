@@ -1,0 +1,13 @@
+{
+  "name": "webr-verify",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Headless webR smoke test for the Intro to Stats course: installs itssl from danmaclean.r-universe.dev under webR and runs the bundled potato analyses.",
+  "scripts": {
+    "verify": "node verify-itssl-webr.mjs"
+  },
+  "dependencies": {
+    "webr": "^0.6.0"
+  }
+}

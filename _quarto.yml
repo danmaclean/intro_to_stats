@@ -5,7 +5,7 @@ project:
 book:
   title: "Understanding Statistics Through Linear Models"
   author: "Dan MacLean"
-  date: "May 2022"
+  date: "June 2026"
   search: true
   downloads: [pdf]
   sharing: [twitter, facebook]
@@ -35,9 +35,34 @@ book:
 
 bibliography: references.bib
 
+engine: knitr
+
+# Keep R warnings / package messages out of the rendered (reader-facing) output.
+execute:
+  warning: false
+  message: false
+
+# naquiz: multiple-choice questions (::: {.question}) for migrated exercises.
+filters:
+  - naquiz
+
+# webR (quarto-live) config: runnable {webr} cells install itssl from the
+# course r-universe; dependencies come from repo.r-wasm.org. Only chapters that
+# include the live setup + use {webr} cells become interactive.
+webr:
+  packages:
+    - itssl
+    - ggplot2
+    - palmerpenguins
+    - multcomp
+  repos:
+    - https://danmaclean.r-universe.dev
+    - https://repo.r-wasm.org
+
 format:
-  html:
+  live-html:
     theme: cosmo
+    css: webr-ui.css
   pdf:
     documentclass: scrreprt
 comments:

@@ -8,3 +8,7 @@ _book/*
 
 /.quarto/
 .idea/
+
+# webR verification tool — npm deps
+tools/webr-verify/node_modules/
+tools/webr-verify/package-lock.json

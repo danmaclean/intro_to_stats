@@ -1,0 +1,43 @@
+name: Render book
+
+# Phase 0 / B1 — gate every PR (and feature-branch push) on a clean render.
+# Restores the exact library from renv.lock, then renders HTML only. Any R
+# chunk error makes `quarto render` exit non-zero and fails the job.
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches-ignore: [master]   # feature-branch pushes get early feedback; master publishes separately (Group C)
+
+concurrency:
+  group: render-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}   # lets renv install the GitHub-sourced itssl without rate limits
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: '1.6.32'
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.3'   # matches renv.lock; renv warns (not fails) on minor drift
+
+      - name: Restore renv library
+        uses: r-lib/actions/setup-renv@v2   # restores from renv.lock and caches keyed on the lockfile
+
+      - name: Render book (HTML only; fails on any R error)
+        run: quarto render --to live-html   # book format is live-html (quarto-live / webR); still HTML-only, no PDF

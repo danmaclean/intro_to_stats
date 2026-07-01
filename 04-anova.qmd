@@ -13,6 +13,9 @@
   * ANOVA is a tool for specifying comparisons between variables in linear models
   * We must take care to account for interactions between the variables
 
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
+
 ## Comparing groups in a single variable
 
 In the last section we looked at using the linear model to compare two groups, in this section we'll look at using it to compare more than two. One thing to note is that (for now) we're still working with only one explanatory variable (that is one thing we measured), the groups we are talking about are basically different values that the one variable can take. In the `PlantGrowth` data the variable is called `group` and the values it takes are `ctrl`, `trt1` and `trt2`.
@@ -353,6 +356,381 @@ And there we have the specific interaction contrasts. Note how in doing this we 
 :::
 
 :::{.callout-tip}
-For you to do
-Complete the interactive tutorial online [https://tsl-bioinformatics.shinyapps.io/anova/](https://tsl-bioinformatics.shinyapps.io/anova/)
+## For you to do
+Work through the tutorial below — the code runs **in your browser**. Type your answer and press *Run*; use *Show solution* if you get stuck.
+
 :::
+
+The `penguins` data set (from `palmerpenguins`) and a small plant-growth data frame, `plant_weight`, are set up for you.
+
+```{webr}
+#| setup: true
+#| exercise: [anova-penguins-x, anova-penguins-1, anova-penguins-3, anova-interactions-1, anova-interactions-2, anova-interactions-3, anova-interactions-5, anova-interactions-7, anova-interactions-10]
+library(palmerpenguins)
+library(dplyr)
+library(ggplot2)
+library(multcomp)
+
+model <- lm(body_mass_g ~ species + island + sex + year, data = penguins)
+
+set.seed("23456")
+n <- 3
+plant_weight <- bind_rows(
+  data.frame(compost = "john_innes_1", supplement = "formula1", dry_weight = rnorm(n, 45, 10)),
+  data.frame(compost = "john_innes_1", supplement = "formula2", dry_weight = rnorm(n, 30, 8)),
+  data.frame(compost = "john_innes_2", supplement = "formula1", dry_weight = rnorm(n, 30, 8)),
+  data.frame(compost = "john_innes_2", supplement = "formula2", dry_weight = rnorm(n, 45, 8))
+)
+plant_weight$compost    <- factor(plant_weight$compost,    levels = c("john_innes_2", "john_innes_1"))
+plant_weight$supplement <- factor(plant_weight$supplement, levels = c("formula1", "formula2"))
+```
+
+### A multi-variable ANOVA
+
+Inspect the `penguins` data.
+
+```{webr}
+#| exercise: anova-penguins-x
+summary(...)
+```
+
+```{webr}
+#| exercise: anova-penguins-x
+#| solution: true
+summary(penguins)
+```
+
+```{webr}
+#| exercise: anova-penguins-x
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+:::::{.question}
+Which group are the response (measured outcome) variables in `penguins`?
+
+::::{.choices}
+:::{.choice .correct-choice}
+The body measurements — bill length, bill depth, flipper length, body mass
+:::
+
+:::{.choice}
+The grouping factors — species, island, sex
+:::
+
+:::{.choice}
+Every column is a response variable
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+The *response* variables are the things we measured as outcomes — the continuous body measurements. `species`, `island`, `sex` and `year` are explanatory / grouping variables we'd use to *predict* a response.
+:::
+
+Make a model to predict `body_mass_g` from the explanatory variables. Recall that in the linear model an extra variable is added with `+`, e.g. `lm(y ~ x_1 + x_2 + x_3)`. Inspect your model.
+
+```{webr}
+#| exercise: anova-penguins-1
+model <- lm(...  ~ ... + ... + ... + ..., data = penguins)
+summary( ... )
+```
+
+```{webr}
+#| exercise: anova-penguins-1
+#| solution: true
+model <- lm(body_mass_g ~ species + island + sex + year, data = penguins)
+summary(model)
+```
+
+:::::{.question}
+From the model summary, which variables are having a significant effect on body mass?
+
+::::{.choices}
+:::{.choice .correct-choice}
+species and sex
+:::
+
+:::{.choice}
+island and year
+:::
+
+:::{.choice}
+all four variables
+:::
+
+:::{.choice}
+none of them
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+`species` and `sex` come out significant; `island` and `year` do not.
+:::
+
+Complete the code below to test the hypothesis that the true differences in mass between the species are 0 g, using Tukey's test.
+
+```{webr}
+#| exercise: anova-penguins-3
+library(multcomp)
+tested <- glht(model, ... )
+summary(tested)
+```
+
+```{webr}
+#| exercise: anova-penguins-3
+#| solution: true
+library(multcomp)
+tested <- glht(model, linfct = mcp(species = "Tukey"))
+summary(tested)
+```
+
+```{webr}
+#| exercise: anova-penguins-3
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+### Interactions between variables
+
+Interactions between variables can cause misleading models, so we need to check for them when we have multiple variables and use an interaction model if needed. Let's run a non-interaction model on some data, then inspect it for potential interactions.
+
+Inspect the `plant_weight` data frame.
+
+```{webr}
+#| exercise: anova-interactions-1
+
+```
+
+```{webr}
+#| exercise: anova-interactions-1
+#| solution: true
+summary(plant_weight)
+```
+
+```{webr}
+#| exercise: anova-interactions-1
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+Run the code below to see the data plotted.
+
+```{webr}
+#| exercise: anova-interactions-2
+library(ggplot2)
+ggplot(plant_weight) + aes(compost, dry_weight) + geom_jitter(aes(colour = supplement))
+```
+
+Now run a model to inspect the main effects of `compost` and `supplement` on `dry_weight`. Inspect the result and answer the questions.
+
+```{webr}
+#| exercise: anova-interactions-3
+imodel <-
+```
+
+```{webr}
+#| exercise: anova-interactions-3
+#| solution: true
+imodel <- lm(dry_weight ~ compost + supplement, data = plant_weight)
+summary(imodel)
+```
+
+```{webr}
+#| exercise: anova-interactions-3
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+:::::{.question}
+Are there any significant variables in `imodel`?
+
+::::{.choices}
+:::{.choice}
+No.
+:::
+
+:::{.choice}
+Yes.
+:::
+
+:::{.choice .correct-choice}
+No, but I thought there would be from the first plot.
+:::
+::::
+:::::
+
+We can use an interaction plot to spot interactions between the variables. When the lines are not parallel, we have a suggestion that the variables are interacting. `interaction.plot()` takes single columns, not whole data frames, so we use `$` to pick out each variable. Replace `var1`/`var2`/`response_var` with the real variables.
+
+```{webr}
+#| exercise: anova-interactions-5
+interaction.plot(plant_weight$var1, plant_weight$var2, plant_weight$response_var)
+```
+
+```{webr}
+#| exercise: anova-interactions-5
+#| solution: true
+interaction.plot(plant_weight$compost, plant_weight$supplement, plant_weight$dry_weight)
+```
+
+```{webr}
+#| exercise: anova-interactions-5
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+:::::{.question}
+Does the pattern suggest an interaction?
+
+::::{.choices}
+:::{.choice .correct-choice}
+Yes.
+:::
+
+:::{.choice}
+No.
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+Lines that cross are indicative of an interaction — but not conclusive. You'd still need a hypothesis test to confirm it.
+:::
+
+Make an interaction model of `dry_weight` and the explanatory variables. Use an explicit interaction term with `:`, and keep the main terms in the model as well. Inspect the model.
+
+```{webr}
+#| exercise: anova-interactions-7
+int_model <- lm(... ~ ... + ... + ...:... , data = ...)
+
+```
+
+```{webr}
+#| exercise: anova-interactions-7
+#| solution: true
+int_model <- lm(dry_weight ~ compost + supplement + compost:supplement, data = plant_weight)
+summary(int_model)
+```
+
+From the summary we can see a significant interaction. But the main effects also appear significant. This is confusing — but recall that the main effects can't be used if the interaction is significant.
+
+:::::{.question}
+Which is the best interpretation of the interaction model summary?
+
+::::{.choices}
+:::{.choice}
+Compost type or Formula type have an effect on the dry weight.
+:::
+
+:::{.choice .correct-choice}
+The mixture of Compost type and Formula type is important in combination only.
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+The main effects alone don't generalise if there is a significant interaction term. (Note this doesn't tell us *which* combination is best, though!)
+:::
+
+The summary only tells us there *is* an interaction. To learn more we need to test the specific hypotheses the model suggests.
+
+:::::{.question}
+What kind of hypothesis are we actually testing here?
+
+::::{.choices}
+:::{.choice .correct-choice}
+That the difference in dry weight between specific compost-and-formula combinations is zero
+:::
+
+:::{.choice}
+That one specific combination produces heavier plants than another
+:::
+
+:::{.choice}
+That every combination produces equal weight on average
+:::
+::::
+:::::
+
+:::{.callout-note collapse="true"}
+## Why?
+The Null-Model tests ask whether a *difference is zero* — not whether one group is *greater than* another. We get the likelihood of the observed difference under "no difference", not a direction.
+:::
+
+It's often easier to test all the interactions at once by adding a single interaction column and modelling that. Use the `interaction()` function to add a column called `compost_supplement` to a new data frame, build the model on the new column, and carry out Tukey's post-hoc test.
+
+```{webr}
+#| exercise: anova-interactions-10
+library(dplyr)
+plant_weight_int <- plant_weight %>% mutate(... = interaction(..., ...))
+
+spec_int_model <- lm(... ~ ..., data = ...)
+
+library(multcomp)
+summary(glht(..., linfct = mcp(... = "Tukey")))
+```
+
+```{webr}
+#| exercise: anova-interactions-10
+#| solution: true
+library(dplyr)
+plant_weight_int <- plant_weight %>% mutate(compost_supplement = interaction(compost, supplement))
+
+spec_int_model <- lm(dry_weight ~ compost_supplement, data = plant_weight_int)
+
+library(multcomp)
+summary(glht(spec_int_model, linfct = mcp(compost_supplement = "Tukey")))
+```
+
+```{webr}
+#| exercise: anova-interactions-10
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+Examine the hypothesis-test results above and answer the question below.
+
+:::::{.question}
+Which is the best combination for maximising plant dry weight?
+
+::::{.choices}
+:::{.choice .correct-choice}
+John Innes 1, Formula 1
+:::
+
+:::{.choice}
+John Innes 1, Formula 2
+:::
+
+:::{.choice}
+John Innes 2, Formula 1
+:::
+
+:::{.choice}
+John Innes 2, Formula 2
+:::
+::::
+:::::

@@ -2,6 +2,22 @@
 
 Planning document (not a commitment to dates). Captures direction agreed in planning, June 2026.
 
+> **Live status lives in `.claude/NEXT-SESSION.md`.** This file is the plan; that file is where we are in it.
+
+## Status (2026-06-26)
+
+**Phase 0 safe work complete** + **Phase 1 essentially complete.** Done on integration branch `stabilise/ci-render` (+ the external `itssl` repo).
+
+Phase 0:
+- Group A (reproducibility) ✅ — full `renv.lock`, `itssl` pinned, clean-room restore verified.
+- Group B (CI gate) ✅ — render-on-PR, verified green/red.
+- Group D (bug fixes) ✅ — all of #12–#18 (RNG audit concluded: book is deterministic, no `set.seed` needed).
+- Group C1 (publish workflow) ✅ — builds to `gh-pages`; live source untouched. **C2/C3 deferred to go-live.**
+
+Phase 1 (all four goals ✅ — detail in the Phase 1 section below): webR feasibility confirmed; `itssl` dependency audit (0.1.0, tagged `v0.1.0`); real **potato plant-pathology data** bundled (0.2.0); book `renv.lock` repointed to `v0.1.0`. Pending only the PR merges + a `v0.2.0` tag (see `NEXT-SESSION.md`).
+
+Remaining Phase 0 = the go-live steps only (see checklist below), deliberately deferred while `master` serves the live site. **Next: Phase 2 (webR delivery) / Phase 3 (content onto the potato data) / go-live — author's call.**
+
 ## Fixed constraints / principles
 
 - **Audience is always the absolute-beginner biologist.** Gentle on-ramp is the product. New material must not raise the floor.
@@ -57,22 +73,36 @@ Assumption to confirm: GitHub Pages currently serves `master:/docs`.
 
 **Phase 0 done when:** clean checkout → `renv::restore()` → `quarto render` succeeds with no R errors; CI gates PRs into `master`; the live site is served from the CI build (not committed `docs/`); D1–D6 resolved.
 
+### Go-live checklist (deferred — the only remaining Phase 0 work; touches the LIVE site)
+
+Do deliberately, in order. The stabilisation work sits in a PR stack on `stabilise/ci-render`; `master` is frozen until this.
+
+1. **Merge the stack bottom-up to `master`**, un-drafting first: #19 (renv) → #20 (CI) → #21 (trivial fixes) → #22 (ch.7/ch.2 fixes) → #23 (publish workflow). Or merge the integration branch in one go once it contains them all. Manually close #9–#18 references (non-default base means no auto-close).
+2. **Reconcile docs:** this branch keeps the canonical docs in `.claude/`; delete the root `ROADMAP.md` that came from PR #2 (superseded by `.claude/ROADMAP.md`). Take the branch's `CLAUDE.md` if an add/add conflict surfaces.
+3. **C2 — flip Pages source** from `master:/docs` to the `gh-pages` branch (repo Settings → Pages), *after* a fresh `gh-pages` build exists. Verify the live site is intact.
+4. **C3 — stop committing `docs/`:** `git rm -r docs/`, add to `.gitignore`.
+5. **Switch the publish trigger** in `.github/workflows/publish.yml` from `[stabilise/ci-publish]` to `[master]`; decide whether to also render the PDF download (currently HTML-only).
+6. **Update `CLAUDE.md`** lines that were true only for frozen `master` (it now reflects the post-stabilisation state already on the integration branch).
+
 ## Phase 1 — Modernise `itssl` (enabler for webR + real data)
 
 Goal: turn `itssl` from an unpinned helper into a durable, webR-ready, data-bearing package.
 
-- [ ] Versioned, tagged releases.
-- [ ] webR/WASM compatibility (the feasibility spike from Phase 0's gating unknown).
-- [ ] Bundle the **real biology dataset(s)** in the package so chapters can `data()` them.
-- [ ] Audit helpers: keep the ones that hide *irrelevant* complexity; reconsider any that hide something a beginner should actually see.
+- [x] Versioned, tagged releases. — `itssl` bumped `0.0.0.9000`→`0.1.0`; PR `danmaclean/itssl#1`; **tag `v0.1.0` pushed**; book `renv.lock` repointed from raw SHA → tag `v0.1.0` (minimal hand-edit, full render verified) on book branch `phase1/pin-itssl-v0.1.0`.
+- [x] **webR/WASM compatibility — SPIKE DONE, RESULT POSITIVE.** itssl is pure-R (installs from source); its full 47-package transitive dependency closure is 100% present as WASM binaries on repo.r-wasm.org (incl. the compiled `fGarch`, `scatterplot3d`, `cowplot`). A headless webR (Node) run installed the deps in ~20s and ran representative helpers (incl. the `fGarch::rsnorm` path, ggplot build, knitr table) — all PASS; seeded helpers reproduce the native values. **Conclusion: no blocker to webR delivery (Phase 2).**
+- [x] Bundle the **real biology dataset(s)** in the package so chapters can `data()` them. — Author chose a **small themed potato plant-pathology family** (real/published, via `agridat`, copied in so no runtime dep). Shipped in itssl `0.2.0` (`danmaclean/itssl#2`, stacked on #1): `potato_scab` (regression/t-test/ANOVA), `potato_nematode` (two-way + interaction), `potato_blight` (logistic GLM). Documented with primary-source citations; built & verified. *(Chapters adopting the data = Phase 3. Chi-square/log-linear still on toy data — possible follow-up.)*
+- [x] Audit helpers (dependency audit): `DESCRIPTION` `Imports` realigned to actual usage — dropped 5 unused (`ggthemes`, `gridGraphics`, `multcomp`, `rcompanion`, `readr`), added 3 missing (`tibble`, `knitr`, `tidyselect`); build-ignored `.Rprofile` (was breaking clean `R CMD INSTALL`). Verified: clean build+install, all 30 helpers load/run. *(Deeper "does a helper hide something a beginner should see" editorial audit still open — overlaps Phase 3.)*
 
 ## Phase 2 — Modernise delivery (webR in-page)
 
 Goal: remove install friction and self-host interactivity.
 
-- [ ] Adopt `quarto-live`; pilot on ONE chapter end-to-end before rolling out.
-- [ ] Convert code chunks to live/editable incrementally.
-- [ ] Migrate shinyapps exercises into in-page webR exercises with solutions / self-check. Keep shinyapps live until parity is reached.
+**Status (2026-06-29): pilot underway, core feasibility PROVEN end-to-end** (branch `phase2/quarto-live-pilot`). `quarto-live` adopted; `itssl` delivered to the browser via the **`danmaclean.r-universe.dev`** r-universe (auto-built WASM binary; r-universe GitHub App installed). Headless webR (`tools/webr-verify/`) installs itssl from the universe and runs the potato analyses green; standalone `pilot-webr.qmd` renders with live cells. Remaining = rollout. (Details + exact config in `MEMORY.md` / `NEXT-SESSION.md`.)
+
+- [x] Adopt `quarto-live`; pilot on ONE chapter end-to-end before rolling out. — done: book switched to `format: live-html`; **chapter 2 (`02-linear-models.qmd`) integrated** with 4 live `{webr}` cells; full book renders clean; non-live chapters carry 0 webR overhead; CI gate updated to `--to live-html`. (PR #25.)
+- [~] Convert code chunks to live/editable incrementally. — pattern established + PROVEN on ch.2 (4 live cells). **Rollout PAUSED by author (2026-06-29):** bare interactivity doesn't add to the message without narrative built around it. Resume only as part of the rewrite point below. (The mechanism is done; this is now a writing task, not a tooling one.)
+- [ ] **(Rewrite point — later) Rewrite the narrative to make genuine use of webR interactivity.** Don't just convert chunks; write prose that pushes the reader *into* editing/running them (predict-then-run, "change `a` and see…", mini-challenges). This is the thing that makes live cells worth it. A content/editorial pass, likely alongside Phase 3.
+- [x] **Migrate the shinyapps "For you to do" exercises into the page — DONE (7/7).** Source = **`TeamMacLean/shinyapps`** (private; cloned to `~/Desktop/shinyapps`); learnr `.Rmd` tutorials. Mechanism: **code exercises → quarto-live `{webr}` exercises** (gradethis warm `grade_this_code()` template, soft lead-in + `{code_feedback()}`); **MCQs → `naquiz` + a "Why?" collapse callout**. Migrated: `ttests`/ch3, `linear_models_background`/ch1, `anova`/ch4, `type`/ch5, `chisq`/ch6, `r-start`/r-fundamentals, and `linear_models`/ch2 (10 MCQs + its 4 reactive sliders rebuilt as **OJS `Inputs.range` → reactive `{webr}` cells**). Notable deviations (author-approved): ch4 multi-selects→single-best + typo fix; ch6 rcompanion→base `pairwise.prop.test` (rcompanion won't load in webR) + chi-2 orientation + "survivors"→"passengers". Reader-output hygiene: book-wide `execute: warning/message false`. **Remaining:** in-browser verification (esp. ch2 reactivity) + keep shinyapps live until that's confirmed.
 - [ ] Reconsider whether the install-heavy `prerequisites.qmd` can shrink dramatically once readers run code in the browser.
 
 ## Phase 3 — Content (built on the new itssl + real data)

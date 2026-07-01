@@ -1,5 +1,8 @@
 # R Fundamentals
 
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ./_extensions/r-wasm/live/_gradethis.qmd >}}
+
 ## About this chapter
 
 1. Questions:
@@ -14,7 +17,7 @@
 
 ## Working with R 
 
-In this workshop we'll use R in the extremely useful RStudio software. For the most part we'll work interactively, meaning we'll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the console or in a window on the right). 
+In this book we'll use R interactively — for the most part we'll type code and get our results straight back.
 
 Panels like the ones below mimic the interaction with R and first show the thing to type into R, and below the calculated result from R. 
 
@@ -108,7 +111,7 @@ data.frame(
 
 ## Packages
 
-Many of the tools we use in will come in R packages, little nuggets of code that group related functions together. Installing new packages can be done using the `Packages` pane of RStudio or the `install.packages()` function. When we wish to use that code we use the `library()` function
+Many of the tools we use come in R packages, little nuggets of code that group related functions together. To use the code in a package we load it with the `library()` function
 
 ```{r, eval=FALSE}
 library(somepackage)
@@ -133,5 +136,262 @@ As in all programming languages the internal documentation in R is written with 
 
 :::{.callout-tip}
 ## For you to do
-Complete the interactive tutorial online [https://danmaclean.shinyapps.io/r-start](https://danmaclean.shinyapps.io/r-start)
+Work through the exercises below — the code runs **in your browser**. Type your answer and press *Run*; use *Show solution* if you get stuck.
+
 :::
+
+### Variables
+
+Write the R code required to add two plus two.
+
+```{webr}
+#| exercise: rf-two
+
+```
+
+```{webr}
+#| exercise: rf-two
+#| solution: true
+2 + 2
+```
+
+```{webr}
+#| exercise: rf-two
+#| check: true
+gradethis::grade_this({
+  gradethis::pass_if(identical(.result, 4))
+  gradethis::fail("Not quite — we're after the number 4. Try adding two and two.")
+})
+```
+
+Now create two variables `a` and `b`, each containing the number 2, and add those.
+
+```{webr}
+#| exercise: rf-vars
+
+```
+
+```{webr}
+#| exercise: rf-vars
+#| solution: true
+a <- 2
+b <- 2
+a + b
+```
+
+```{webr}
+#| exercise: rf-vars
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+### Vectors
+
+Variables can hold more than single numbers. Try assigning a vector of 16 random uniform numbers from the `runif()` function to a variable called `rand`.
+
+```{webr}
+#| exercise: rf-rand
+
+```
+
+```{webr}
+#| exercise: rf-rand
+#| solution: true
+rand <- runif(16)
+```
+
+```{webr}
+#| exercise: rf-rand
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+And vectors can be operated on as a single thing — sometimes the operation returns a single number, sometimes a vector. Here are some R vectors:
+
+```r
+a <- c(1, 2, 3)
+b <- c("a", "b")
+d <- c(a, b)
+```
+
+:::::{.question}
+What is the result of `mean(a)`?
+
+::::{.choices}
+:::{.choice}
+6
+:::
+
+:::{.choice .correct-choice}
+2
+:::
+
+:::{.choice}
+3
+:::
+::::
+:::::
+
+:::::{.question}
+What is the result of `a + 2`?
+
+::::{.choices}
+:::{.choice .correct-choice}
+3, 4, 5
+:::
+
+:::{.choice}
+1, 2, 3, 2
+:::
+::::
+:::::
+
+:::::{.question}
+What is the result of `d * 2`?
+
+::::{.choices}
+:::{.choice}
+3, 4, 5
+:::
+
+:::{.choice}
+2, 4, 6
+:::
+
+:::{.choice .correct-choice}
+Error …
+:::
+
+:::{.choice}
+2, 4, 6, NA, NA
+:::
+::::
+:::::
+
+### Dataframes
+
+Dataframes are rectangular, spreadsheet-style objects that hold data we want to analyse. A small one called `small_df` is loaded for you; the `str()` function tells us about a dataframe. Use `str()` on `small_df`.
+
+```{webr}
+#| setup: true
+#| exercise: rf-str
+small_df <- data.frame(
+  names = c("Guido", "Marty", "Alan"),
+  age = c(24, 45, 11),
+  score = runif(3) * 100
+)
+```
+
+```{webr}
+#| exercise: rf-str
+
+```
+
+```{webr}
+#| exercise: rf-str
+#| solution: true
+str(small_df)
+```
+
+```{webr}
+#| exercise: rf-str
+#| check: true
+gradethis::grade_this_code(
+  correct = "Nicely done — that's exactly it.",
+  incorrect = "Not quite yet — and that's completely fine, this takes practice. Here's the specific thing the checker suggests you look at: {code_feedback()}"
+)
+```
+
+:::::{.question}
+What does the output tell us about the column `names`?
+
+::::{.choices}
+:::{.choice}
+It has chromosome data in it
+:::
+
+:::{.choice .correct-choice}
+It is text-based (CHaRacter) data
+:::
+
+:::{.choice}
+It has numeric data in it
+:::
+::::
+:::::
+
+### Using R help
+
+Use the `help()` function (or `?`) to answer these questions.
+
+:::::{.question}
+Does the `mean()` function compute…
+
+::::{.choices}
+:::{.choice}
+the geometric mean
+:::
+
+:::{.choice}
+the average
+:::
+
+:::{.choice}
+the arithmetic mean
+:::
+
+:::{.choice}
+the harmonic mean
+:::
+
+:::{.choice .correct-choice}
+the (trimmed) arithmetic mean
+:::
+::::
+:::::
+
+:::::{.question}
+What does the `c` of the `c()` function stand for?
+
+::::{.choices}
+:::{.choice}
+concatenate
+:::
+
+:::{.choice}
+convolve
+:::
+
+:::{.choice .correct-choice}
+combine
+:::
+
+:::{.choice}
+complete
+:::
+::::
+:::::
+
+:::::{.question}
+Do you fully understand what the `apply` function does?
+
+::::{.choices}
+:::{.choice}
+Yes!
+:::
+
+:::{.choice}
+No
+:::
+
+:::{.choice .correct-choice}
+No, but that's ok — I've read the help, it's a bit opaque, but some googling will help
+:::
+::::
+:::::
