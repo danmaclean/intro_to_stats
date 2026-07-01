@@ -7,7 +7,6 @@ book:
   author: "Dan MacLean"
   date: "June 2026"
   search: true
-  downloads: [pdf]
   sharing: [twitter, facebook]
   chapters: 
     - index.qmd
@@ -63,7 +62,5 @@ format:
   live-html:
     theme: cosmo
     css: webr-ui.css
-  pdf:
-    documentclass: scrreprt
 comments:
   hypothesis: true
