@@ -238,7 +238,7 @@ The general applicability of the straight line and linear model concept comes in
 
 :::{.callout-tip}
 ## For you to do
-Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+Work through the tutorial below — the code runs **in your browser**. Type your answer and press *Run*; use *Show solution* if you get stuck.
 
 :::
 

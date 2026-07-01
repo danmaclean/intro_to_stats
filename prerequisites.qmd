@@ -4,9 +4,9 @@ The primary purpose of this course is to help you to understand how to use stati
 
 Statistics is a computationally heavy topic, so we'll be making use of the R statistical programming environment to do that side of the work.
 
-## Nothing to install
+## Running the code
 
-You don't need to install anything to follow this book. All the code examples and exercises run **right here in your browser** — when you see a code cell, just press *Run* and the result appears beneath it. You can edit the code and run it again to see what changes.
+All the code examples and exercises in this book run **right here in your browser** — when you see a code cell, just press *Run* and the result appears beneath it. You can edit the code and run it again to see what changes.
 
 ## Knowledge prerequisites
 

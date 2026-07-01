@@ -358,7 +358,7 @@ As with the $t$-test, then in practice, sometimes, yes, these tests are easier. 
 
 :::{.callout-tip}
 ## For you to do
-Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+Work through the tutorial below — the code runs **in your browser**. Type your answer and press *Run*; use *Show solution* if you get stuck.
 
 :::
 

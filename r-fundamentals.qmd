@@ -136,7 +136,7 @@ As in all programming languages the internal documentation in R is written with 
 
 :::{.callout-tip}
 ## For you to do
-Work through the exercises below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+Work through the exercises below — the code runs **in your browser**. Type your answer and press *Run*; use *Show solution* if you get stuck.
 
 :::
 

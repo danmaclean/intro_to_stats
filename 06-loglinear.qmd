@@ -242,7 +242,7 @@ ggplot(job_mood) + aes(role, Freq) + geom_col(aes(fill = mood))
 
 :::{.callout-tip}
 ## For you to do
-Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+Work through the tutorial below — the code runs **in your browser**. Type your answer and press *Run*; use *Show solution* if you get stuck.
 
 :::
 
