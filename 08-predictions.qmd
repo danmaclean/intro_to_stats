@@ -65,7 +65,7 @@ It is possible to over-complicate models to make them fit all the points by allo
 
 #### Prediction intervals
 
-If you are going to predict a value, you might want instead an interval in which that prediction might lie with certain amount of certainty. Like a confidence interval for the position of the mean in a sample, a prediction interval is a range that we are most certain a prediction will land in. This interval takes in the range of spread in the data we build the linear model with and turns it into something useless. Once the model is built, it's easy to use the `predict()` function to get the prediction interval
+If you are going to predict a value, you might want instead an interval in which that prediction might lie with certain amount of certainty. Like a confidence interval for the position of the mean in a sample, a prediction interval is a range that we are most certain a prediction will land in. This interval takes in the range of spread in the data we build the linear model with and turns it into something useful. Once the model is built, it's easy to use the `predict()` function to get the prediction interval
 
 ```{r}
 vals_to_predict <- data.frame( x = c(10) )
@@ -147,5 +147,6 @@ This shows how the linear model can be used to make predictions and hypothesis f
 
 
 :::{.callout-note}
+## Roundup
   * Models can be used to make new hypotheses
 :::
