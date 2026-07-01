@@ -4,7 +4,11 @@ Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable fact
 Last updated: 2026-06-30.
 
 ## Where we are
-**Phase 2 (webR delivery) pilot — IN PROGRESS; core feasibility PROVEN end-to-end.** Working on book branch `phase2/quarto-live-pilot`. Phase 1 COMPLETE & shipped (itssl `0.1.0`+`0.2.0` merged & tagged; **book PR #24 — renv pin → `v0.1.0` — now MERGED into the trunk**). Phase 0 done (go-live deferred — see ROADMAP "Go-live checklist"). Book lock still pins itssl `v0.1.0` (bump to `v0.2.0` when chapters use the data). **Shinyapps "For you to do" migration COMPLETE (2026-06-30): all 7 tutorials in-page** (ch1, ch3, ch4, ch5, ch6, r-fundamentals + ch2 with bespoke OJS sliders). Remaining Phase-2 tail = in-browser verification + the live-cell narrative rewrite; then go-live / merge PR #25. See next options.
+**GO-LIVE IN PROGRESS (2026-07-01).** Phase 2 (webR delivery) content is COMPLETE on branch `phase2/quarto-live-pilot` (PR #25 → `stabilise/ci-render`): all 7 shinyapps tutorials migrated in-page (ch1/ch3/ch4/ch5/ch6/r-fundamentals + ch2 with bespoke OJS sliders). Phase 1 shipped (itssl `0.1.0`+`0.2.0` tagged; renv pinned via merged #24). Phase 0 done.
+
+**Go-live tidy-ups DONE (2026-07-01, on the branch):** removed all standalone-exercise (shinyapps) links; removed ALL install language (prerequisites.qmd → "Before you start" with a "Running the code" section, no install wording; ch3–6 + r-fundamentals intros de-installed; r-fundamentals RStudio/`install.packages` reframed to in-browser); deleted leftovers `pilot-webr.qmd` + `fig/package_install.png`. Full book renders clean.
+
+Now executing the ROADMAP **"Go-live checklist"** (the deliberate, live-facing steps — merge to `master`, flip Pages to the CI build, drop committed `docs/`). Book lock still pins itssl `v0.1.0` (fine — no chapter uses the potato data yet).
 
 > **Fixed 2026-06-29 — stacked-PR merge gotcha:** itssl #2 was stacked on `phase1/description-audit`; merging it landed its content on that branch, NOT `master` (no auto-retarget after #1 merged via merge-commit), and `v0.2.0` got tagged on the 0.1.0 master commit. Corrected by merging the audit branch into `master` (commit `4590087`) and moving `v0.2.0` there. Lesson in `MEMORY.md`.
 
