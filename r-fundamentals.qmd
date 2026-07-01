@@ -17,7 +17,7 @@
 
 ## Working with R 
 
-In this workshop we'll use R in the extremely useful RStudio software. For the most part we'll work interactively, meaning we'll type stuff straight into the R console in RStudio (Usually this is a window on the left or lower left) and get our results there too (usually in the console or in a window on the right). 
+In this book we'll use R interactively — for the most part we'll type code and get our results straight back.
 
 Panels like the ones below mimic the interaction with R and first show the thing to type into R, and below the calculated result from R. 
 
@@ -111,7 +111,7 @@ data.frame(
 
 ## Packages
 
-Many of the tools we use in will come in R packages, little nuggets of code that group related functions together. Installing new packages can be done using the `Packages` pane of RStudio or the `install.packages()` function. When we wish to use that code we use the `library()` function
+Many of the tools we use come in R packages, little nuggets of code that group related functions together. To use the code in a package we load it with the `library()` function
 
 ```{r, eval=FALSE}
 library(somepackage)
@@ -136,7 +136,8 @@ As in all programming languages the internal documentation in R is written with 
 
 :::{.callout-tip}
 ## For you to do
-Work through the exercises below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://danmaclean.shinyapps.io/r-start).)
+Work through the exercises below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+
 :::
 
 ### Variables

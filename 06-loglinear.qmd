@@ -242,7 +242,8 @@ ggplot(job_mood) + aes(role, Freq) + geom_col(aes(fill = mood))
 
 :::{.callout-tip}
 ## For you to do
-Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://tsl-bioinformatics.shinyapps.io/chisq/).)
+Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+
 :::
 
 When both the explanatory ($x$) and response ($y$) variables are non-continuous categories, we reach for the $\chi^2$ test instead of a linear model. Here we'll use a table of the *adult passengers* on the ill-fated ship Titanic, broken down by travel `Class` and `Sex`, in a data frame called `titanic`, and ask whether the split between the sexes differs from one class to another.

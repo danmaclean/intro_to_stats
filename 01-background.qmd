@@ -99,7 +99,8 @@ Now we have a conceptual tool for thinking about differences (like differences i
 
 :::{.callout-tip}
 ## For you to do
-Try the quiz below to check your understanding — answer each question and expand *Why?* to see the reasoning. (The original standalone quiz is still [available online](https://tsl-bioinformatics.shinyapps.io/linear_models_background/).)
+Try the quiz below to check your understanding — answer each question and expand *Why?* to see the reasoning.
+
 :::
 
 ### Null Models

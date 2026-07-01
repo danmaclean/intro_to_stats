@@ -358,7 +358,8 @@ As with the $t$-test, then in practice, sometimes, yes, these tests are easier. 
 
 :::{.callout-tip}
 ## For you to do
-Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://tsl-bioinformatics.shinyapps.io/type/).)
+Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+
 :::
 
 ```{webr}

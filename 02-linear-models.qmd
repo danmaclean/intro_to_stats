@@ -355,7 +355,8 @@ At the very least knowing notation like this will be useful later when we are lo
 
 :::{.callout-tip}
 ## For you to do
-Use the interactive sliders and questions below to check your understanding — everything runs **in your browser**. Drag a slider and watch the plot update, then answer. The plots are computed live in your browser, so they take a moment to catch up after you move a slider — the plot fades back in once it's recalculated. (The original standalone quiz is still [available online](https://tsl-bioinformatics.shinyapps.io/linear_models/).)
+Use the interactive sliders and questions below to check your understanding — everything runs **in your browser**. Drag a slider and watch the plot update, then answer. The plots are computed live in your browser, so they take a moment to catch up after you move a slider — the plot fades back in once it's recalculated.
+
 :::
 
 ### Straight lines

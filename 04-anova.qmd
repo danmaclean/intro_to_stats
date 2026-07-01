@@ -357,7 +357,8 @@ And there we have the specific interaction contrasts. Note how in doing this we 
 
 :::{.callout-tip}
 ## For you to do
-Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://tsl-bioinformatics.shinyapps.io/anova/).)
+Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+
 :::
 
 The `penguins` data set (from `palmerpenguins`) and a small plant-growth data frame, `plant_weight`, are set up for you.

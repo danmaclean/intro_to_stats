@@ -238,7 +238,8 @@ The general applicability of the straight line and linear model concept comes in
 
 :::{.callout-tip}
 ## For you to do
-Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck. (The original standalone version is still [available online](https://tsl-bioinformatics.shinyapps.io/ttests/).)
+Work through the tutorial below — the code runs **in your browser**, no installation needed. Type your answer and press *Run*; use *Show solution* if you get stuck.
+
 :::
 
 We've seen how the slope, its gradient, and the statistics from a linear model give us a test for differences that is the same as a $t$-test. Let's use the `penguins` data set to examine differences in bill size between two penguin species. A cut-down version, `penguins_small` (just the `species` and `bill_length_mm` columns, for the Adelie and Chinstrap species), is already set up for you.
