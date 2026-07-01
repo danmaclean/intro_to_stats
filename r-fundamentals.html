@@ -488,23 +488,23 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1]  2.51103060 -0.29001149  0.02356940 -1.32477401  0.43318063  0.39074295
-  [7] -0.14280778  0.88005978  1.19418391 -1.09148797  0.69405982  0.86471059
- [13] -0.86991942 -0.07211868 -0.95988257 -0.13794107 -0.09220669  0.90758961
- [19]  1.21090583  0.33310662  0.06016914 -0.54787111 -0.19132262  0.65050278
- [25]  1.19706952 -0.14461794 -1.20715880  0.26936972  0.31591939 -1.17691699
- [31] -0.15234637 -0.08464049 -0.12082128 -1.58700018  0.76192121  0.06108705
- [37] -0.44128321 -0.01362152  0.14252742 -0.80562030  0.78124454  0.90525465
- [43] -0.67147733  0.63623556  1.46679359 -2.12831962 -0.86993762  0.11630155
- [49]  0.77176642  1.17621463 -0.23577894 -0.92396490  0.20415869  1.37953098
- [55]  0.14431981 -2.38027512 -0.56806700  1.13075600 -0.38915268 -1.87454860
- [61] -1.07665110  0.81678304 -0.10807257  0.97082365 -1.76395907  1.75170899
- [67] -0.42242715 -0.48133948 -0.47183195  1.61160218  0.62491947  1.26794761
- [73] -1.12737665  0.19976198  0.76738266 -0.83228765  1.03170158  1.29516557
- [79] -1.17198619 -0.60054980 -1.94828096  0.17632262  0.38284959  0.42580254
- [85] -0.65453769  2.08895699  0.62813121 -0.91968297  0.06326542  2.21930791
- [91]  1.64692013 -1.41863674  1.23527672  0.42574677  2.02859415 -0.47925326
- [97]  0.21907360 -2.30264425  1.26152183  0.50241340</code></pre>
+<pre><code>  [1] -0.34436007  0.08977248 -1.09267157  1.03945737 -1.11634746  0.98817164
+  [7] -0.99002876 -0.96572360  0.35090565 -0.54612091 -0.55313448  0.35595107
+ [13] -0.19620754 -1.09895539 -1.17772867 -0.24913928 -1.83184338 -0.20086927
+ [19] -0.39252413 -0.11452024  1.56162329  0.65054494 -0.67135726 -0.14353571
+ [25] -0.15349833  0.14109723  0.64458979  0.68949925  1.66755573  0.38915781
+ [31] -1.87930495 -1.95203692 -1.63786108  2.15280763 -0.09429294  0.60327529
+ [37] -1.64381844  0.72529869  0.56352284 -0.74105599 -0.91505677 -1.02569699
+ [43] -0.18578997  1.23036606  0.43922879 -0.01499213  0.74401212 -0.45422125
+ [49]  0.60107340 -2.06140284 -0.92789382  1.05970491 -0.99122961 -0.67237610
+ [55] -1.66661372 -0.29997806 -0.73521382 -1.00842351  0.06812406 -0.32150681
+ [61] -0.04455236 -1.30691176 -0.44370438  0.43445800  0.81390089  1.41830435
+ [67]  0.20520569  1.48215178  1.29055838  1.21281914 -0.39187560 -2.57306080
+ [73]  2.42309967 -1.08136614  0.18744317  0.19384658 -1.08079680 -0.37553810
+ [79] -1.04305374 -1.28992717 -1.22790420 -0.55096212  0.45811771 -0.42075659
+ [85] -1.99044365 -1.14726381  2.19187542 -1.18255268  0.94247466  0.08547115
+ [91] -1.99971402  2.17430261  0.94845865  0.54471062 -1.40954829  0.57199357
+ [97] -0.86789463  0.30782335  0.72023363 -0.09110187</code></pre>
 </div>
 </div>
 <p>We can combine objects, variables and functions to do more complex stuff in R, here’s how we get the mean of 100 random numbers.</p>
@@ -512,7 +512,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.1333685</code></pre>
+<pre><code>[1] -0.0441554</code></pre>
 </div>
 </div>
 <p>Here we created a vector object with <code>rnorm(100)</code> and assigned it to the variable <code>numbers</code>. We than used the <code>mean()</code> function, passing it the variable <code>numbers</code>. The <code>mean()</code> function returned the mean of the hundred random numbers.</p>
@@ -524,9 +524,9 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  names age    score
-1 Guido  24 86.23096
-2 Marty  45 99.58646
-3  Alan  11 47.86315</code></pre>
+1 Guido  24 32.86308
+2 Marty  45 48.78002
+3  Alan  11 91.51130</code></pre>
 </div>
 </div>
 <p>Usually we get a dataframe by loading in data from an external source or as a result from functions, occasionally we’ll want to hand make one, which can be done with various functions, <code>data.frame</code> being the most common.</p>
