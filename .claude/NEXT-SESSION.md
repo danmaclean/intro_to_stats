@@ -1,29 +1,26 @@
 # NEXT SESSION — current status & what to do next
 
 Live handoff. Update this as work progresses. (Plan = `ROADMAP.md`; durable facts = `MEMORY.md`.)
-Last updated: 2026-06-30.
+Last updated: 2026-07-01.
 
 ## Where we are
-**GO-LIVE IN PROGRESS (2026-07-01).** Phase 2 (webR delivery) content is COMPLETE on branch `phase2/quarto-live-pilot` (PR #25 → `stabilise/ci-render`): all 7 shinyapps tutorials migrated in-page (ch1/ch3/ch4/ch5/ch6/r-fundamentals + ch2 with bespoke OJS sliders). Phase 1 shipped (itssl `0.1.0`+`0.2.0` tagged; renv pinned via merged #24). Phase 0 done.
+**🎉 GO-LIVE COMPLETE (2026-07-01).** The stabilised, webR-enabled book is **LIVE** at https://danmaclean.github.io/intro_to_stats/ — served from the **`gh-pages`** branch, which `publish.yml` rebuilds from `master` on every push. `master` is **no longer frozen**; committed `docs/` has been dropped (now git-ignored, built by CI).
 
-**Go-live tidy-ups DONE (2026-07-01, on the branch):** removed all standalone-exercise (shinyapps) links; removed ALL install language (prerequisites.qmd → "Before you start" with a "Running the code" section, no install wording; ch3–6 + r-fundamentals intros de-installed; r-fundamentals RStudio/`install.packages` reframed to in-browser); deleted leftovers `pilot-webr.qmd` + `fig/package_install.png`. Full book renders clean.
-
-Now executing the ROADMAP **"Go-live checklist"** (the deliberate, live-facing steps — merge to `master`, flip Pages to the CI build, drop committed `docs/`). Book lock still pins itssl `v0.1.0` (fine — no chapter uses the potato data yet).
+**What shipped:** Phase 0 (pinned `renv.lock`, CI render gate, publish workflow) + Phase 1 (itssl `v0.2.0` + bundled potato datasets; book lock still pins `v0.1.0`, fine until a chapter uses the data) + Phase 2 (quarto-live in-page exercises + naquiz quizzes across all 7 tutorials; ch2 OJS reactive sliders) + go-live tidy (no standalone-exercise links, no install language; dropped `pilot-webr.qmd` + the orphaned install screenshot) + render-checked bug fixes. All merged to `master` via **PR #26**; PRs #19–#25 resolved.
 
 > **Fixed 2026-06-29 — stacked-PR merge gotcha:** itssl #2 was stacked on `phase1/description-audit`; merging it landed its content on that branch, NOT `master` (no auto-retarget after #1 merged via merge-commit), and `v0.2.0` got tagged on the 0.1.0 master commit. Corrected by merging the audit branch into `master` (commit `4590087`) and moving `v0.2.0` there. Lesson in `MEMORY.md`.
 
-## ▶ NEXT SESSION — Phase 2 tail + then go-live / Phase 3
+## ▶ NEXT SESSION — post-go-live follow-ups
 
-**All 7 shinyapps tutorials migrated (branch `phase2/quarto-live-pilot` → PR #25; CI green).**
+The book is live and nothing is blocking. Options, roughly in priority:
 
-Fixed 2026-06-30 after author review: (a) **red-text bleed** — naquiz's `[id^="no"]` CSS matched Quarto section ids starting "no" (`not-all-lines-…` ch2, `non-parametric-…` ch5 title → whole sections red); scoped to `.choices` in the vendored `_extensions/nareal/naquiz/css/buttons.css` (re-apply if `quarto add` overwrites; report upstream). (b) **slider "working" cue** — added a fade-in on live-output update + an intro note (`webr-ui.css`); a true during-compute spinner is **deferred** (item 5). Verified the red fix in a real browser via a headless-Playwright harness (`scratchpad/find-red.mjs`, `trace-red.mjs`) — 0 red prose in ch2/ch5.
+1. **PDF download follow-up (small; do soon):** `_quarto.yml` has `downloads: [pdf]` but `publish.yml` renders `live-html` only, so the live site's PDF button likely 404s. Either drop `downloads: [pdf]` or add a PDF render step to `publish.yml`.
+2. **Live-cell narrative rewrite** (the paused rollout / Phase 3) — prose that genuinely drives readers into the cells rather than bare interactivity. The big content opportunity.
+3. **Phase 3 — potato data:** rewrite chapters onto the bundled potato datasets (replaces PlantGrowth/chickwts/txhousing); then bump the book `renv.lock` itssl pin → `v0.2.0`. Open sub-question: a potato-themed contingency dataset for chi-square/log-linear. See ROADMAP Phase 3.
+4. **Per-chapter webR package trim** (optimisation) — base-R chapters install the full book-wide package list on first webR load; per-chapter `webr.packages` overrides would speed startup (verify Quarto array merge-vs-replace first).
+5. **During-compute slider spinner** (deferred; author OK'd skipping) — a true "⏳ computing…" cue needs bespoke JS (quarto-live has no per-cell busy hook); build + verify with the Playwright harness (`scratchpad/find-red.mjs` pattern).
 
-Pick from:
-1. **Finish in-browser verification** — render only proves *structure*; live behaviour (grading, MCQ feedback, ch2's OJS↔webR reactive sliders) runs only in a browser. `quarto preview` + click through (ch2 first); the Playwright harness can automate it.
-2. **Live-cell narrative rewrite** (the paused rollout) — prose that drives readers into the cells. Phase-3-adjacent writing pass.
-3. **Per-chapter webR package trim** (optimisation) — base-R chapters (r-fundamentals) install the full book-wide package list on first webR load; per-chapter `webr.packages` overrides would speed startup (verify Quarto array merge-vs-replace first).
-4. **Go-live / merge PR #25** into `stabilise/ci-render` once happy with the in-browser experience.
-5. **(deferred — author OK'd skipping for now) During-compute "⏳ computing…" spinner** for the reactive sliders — needs bespoke JS (quarto-live has no per-cell busy hook); build + verify with the Playwright harness.
+**Durable go-live facts (for future sessions):** live site = `gh-pages`, rebuilt from `master` by `publish.yml` on every push; `master` unfrozen; `docs/` git-ignored (never commit it). Changing GitHub Pages settings needs a token with Pages-admin — the working PAT lacks it, so Pages-source changes are a manual UI step (Settings → Pages). naquiz's `_extensions/nareal/naquiz/css/buttons.css` is a **vendored** patch (`.choices`-scoped selector) — re-apply if `quarto add` overwrites.
 
 ---
 *Migration reference (how it was done — for the slider work or any future tutorials):* branch `phase2/quarto-live-pilot`; `03-ttest.qmd`/`04-anova.qmd` are the reference chapters. Sources in `/Users/macleand/Desktop/shinyapps/<dir>/*.Rmd`.
@@ -82,21 +79,18 @@ Pick from:
 - Group C1 (publish) ✅ — `.github/workflows/publish.yml` builds to `gh-pages`; **live Pages source still `master:/docs` (untouched)**. C2/C3 deferred.
 - Group D (bug fixes) ✅ — #12–#18 all done. RNG audit (#17): book is deterministic, **no `set.seed` needed**; fixed a stale ch.2 intercept (10.6495→10.4695).
 
-## Branch model & policy (IMPORTANT)
-- **`master` = the live site** (GitHub Pages `master:/docs`) and is **FROZEN** — do not merge to it until the deliberate go-live.
-- **`stabilise/ci-render` = the integration branch / trunk** we work from. It now carries the canonical `.claude/` docs + `CLAUDE.md`. Branch new work off it; PR back into it (not master).
-- The CI render gate runs on every non-master push, so feature branches are still checked.
-- Note: `master` still has the OLD state (stub renv.lock, committed docs/, no CI) — that's expected; the improvements live on the integration branch until go-live.
+## Branch model & policy (post-go-live)
+- **`master` = the trunk AND the live source.** It carries the full stabilised webR book + the canonical `.claude/` docs + `CLAUDE.md`. GitHub Pages serves the site from **`gh-pages`**, which `publish.yml` rebuilds from `master` on every push. `master` is no longer frozen.
+- **Branch new work off `master`; PR back into `master`.** Keep it known-good/renderable. `render.yml` gates PRs + non-master pushes; merging to `master` also triggers `publish.yml` → gh-pages.
+- **Never commit `docs/`** (git-ignored build output). Don't hand-edit `gh-pages` (CI-generated).
+- `stabilise/ci-render` (old integration trunk) is now merged into `master` and retired.
 
-## Open PRs
-**Book** (`danmaclean/intro_to_stats`, base `stabilise/ci-render`): #19 renv (draft) · #20 CI (draft) · #21 trivial fixes · #22 ch.7/ch.2 · #23 publish (C1) — the Phase-0 stack, merge bottom-up at go-live (non-default base ⇒ close referenced issues manually). **#24 renv pin → itssl v0.1.0 — MERGED** into the trunk. Phase-2 PR (`phase2/quarto-live-pilot`) pending.
-**itssl** (`danmaclean/itssl`): **#1** (0.1.0 audit) + **#2** (0.2.0 potato data) — both **MERGED**; `master` at `0.2.0` (`4590087`); tags **`v0.1.0`** and **`v0.2.0`** pushed & verified. ✅ done.
+## PRs — all resolved
+**Book** (`danmaclean/intro_to_stats`): #21/#22/#23/#24/#25 **merged**; #19/#20 **closed** (superseded); **#26 (go-live: stabilise → `master`) merged**; a final `chore/go-live-cleanup` PR dropped committed `docs/` + unfroze `CLAUDE.md`. No open PRs.
+**itssl** (`danmaclean/itssl`): #1 (0.1.0 audit) + #2 (0.2.0 potato data) both **merged**; `master` at `0.2.0` (`4590087`); tags `v0.1.0` + `v0.2.0` pushed & verified. ✅
 
-## After the migration (later options)
-The immediate task is the 6-chapter shinyapps migration (▶ NEXT SESSION, above). Once that's done:
-1. **Finish Phase 2 tail:** ch2 reactive sliders (OJS-reactive or fold into ch2's live cells); then the **narrative rewrite** to make the live cells earn their place (this is also when the paused live-cell rollout resumes).
-2. **Phase 3 — content**: rewrite chapters onto the bundled potato data (replaces PlantGrowth/chickwts/txhousing). Open sub-question: a **potato-themed contingency dataset** so chi-square/log-linear leave toy data too. See ROADMAP Phase 3.
-3. **Go-live** (whenever ready): ROADMAP "Go-live checklist" (merge the Phase-0 stack + the webR work, flip Pages to gh-pages, drop docs/, switch publish trigger). Decide whether to repoint the book lock to `v0.2.0` first.
+## Phase 3 & beyond
+See ROADMAP Phase 3 (rewrite chapters onto the bundled potato data; a potato-themed contingency dataset for chi-square/log-linear) and the ▶ NEXT SESSION list above. Bump the book `renv.lock` itssl pin → `v0.2.0` when a chapter first uses the potato data.
 
 ## Environment / gotchas
 See `MEMORY.md` (shell/permission conventions, gh PAT can't rerun workflows, zsh quirks). Reminder: the user once pasted a GitHub PAT in chat — suggest rotating it if not already done.
