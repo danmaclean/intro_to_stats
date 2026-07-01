@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Appendix A — Installing what you need – Understanding Statistics Through Linear Models</title>
+<title>Appendix A — Before you start – Understanding Statistics Through Linear Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -41,6 +41,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-e4b9a4ba5d8a7e950ef79f6888d54b71.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/alpine-3.12/buttons.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,6 +77,8 @@ ul.task-list li input[type="checkbox"] {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -105,6 +110,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="webr-ui.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -116,7 +122,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prerequisites.html">Appendices</a></li><li class="breadcrumb-item"><a href="./prerequisites.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prerequisites.html">Appendices</a></li><li class="breadcrumb-item"><a href="./prerequisites.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Before you start</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -277,7 +283,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prerequisites.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Before you start</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -304,28 +310,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites"><span class="header-section-number">A.1</span> Prerequisites</a>
-  <ul class="collapse">
-  <li><a href="#knowledge-prerequisites" id="toc-knowledge-prerequisites" class="nav-link" data-scroll-target="#knowledge-prerequisites"><span class="header-section-number">A.1.1</span> Knowledge prerequisites</a></li>
-  <li><a href="#software-prerequisites" id="toc-software-prerequisites" class="nav-link" data-scroll-target="#software-prerequisites"><span class="header-section-number">A.1.2</span> Software prerequisites</a></li>
-  </ul></li>
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"><span class="header-section-number">A.2</span> Installing R</a></li>
-  <li><a href="#installing-rstudio" id="toc-installing-rstudio" class="nav-link" data-scroll-target="#installing-rstudio"><span class="header-section-number">A.3</span> Installing RStudio</a></li>
-  <li><a href="#installing-r-packages-in-rstudio." id="toc-installing-r-packages-in-rstudio." class="nav-link" data-scroll-target="#installing-r-packages-in-rstudio."><span class="header-section-number">A.4</span> Installing R packages in RStudio.</a>
-  <ul class="collapse">
-  <li><a href="#standard-packages---devtools" id="toc-standard-packages---devtools" class="nav-link" data-scroll-target="#standard-packages---devtools"><span class="header-section-number">A.4.1</span> Standard packages - <code>devtools</code></a></li>
-  <li><a href="#development-packages---itssl" id="toc-development-packages---itssl" class="nav-link" data-scroll-target="#development-packages---itssl"><span class="header-section-number">A.4.2</span> Development packages - itssl</a></li>
-  </ul></li>
-  <li><a href="#using-the-itssl-package" id="toc-using-the-itssl-package" class="nav-link" data-scroll-target="#using-the-itssl-package"><span class="header-section-number">A.5</span> Using the <code>itssl</code> package</a></li>
+  <li><a href="#running-the-code" id="toc-running-the-code" class="nav-link active" data-scroll-target="#running-the-code"><span class="header-section-number">A.1</span> Running the code</a></li>
+  <li><a href="#knowledge-prerequisites" id="toc-knowledge-prerequisites" class="nav-link" data-scroll-target="#knowledge-prerequisites"><span class="header-section-number">A.2</span> Knowledge prerequisites</a></li>
+  <li><a href="#the-itssl-package" id="toc-the-itssl-package" class="nav-link" data-scroll-target="#the-itssl-package"><span class="header-section-number">A.3</span> The <code>itssl</code> package</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prerequisites.html">Appendices</a></li><li class="breadcrumb-item"><a href="./prerequisites.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Installing what you need</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prerequisites.html">Appendices</a></li><li class="breadcrumb-item"><a href="./prerequisites.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Before you start</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix A — Installing what you need</h1>
+<h1 class="title">Appendix A — Before you start</h1>
 </div>
 
 
@@ -343,63 +339,49 @@ window.Quarto = {
 
 
 <p>The primary purpose of this course is to help you to understand how to use statistics that will help with your research. The course will try to explain statistics using the same path through the topic that statistics students are educated along, but without the rigorous mathematical background necessary for those students. Instead this course will focus on making you aware of the major concepts and help you to be a better user of statistics in your research.</p>
-<p>Statistics is a computationally heavy topic, so we’ll be making use of the R statistical programming environment to do that side of the work. The rest of this chapter will help you get that set up on your own computer.</p>
-<section id="prerequisites" class="level2" data-number="A.1">
-<h2 data-number="A.1" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">A.1</span> Prerequisites</h2>
-<section id="knowledge-prerequisites" class="level3" data-number="A.1.1">
-<h3 data-number="A.1.1" class="anchored" data-anchor-id="knowledge-prerequisites"><span class="header-section-number">A.1.1</span> Knowledge prerequisites</h3>
+<p>Statistics is a computationally heavy topic, so we’ll be making use of the R statistical programming environment to do that side of the work.</p>
+<section id="running-the-code" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="running-the-code"><span class="header-section-number">A.1</span> Running the code</h2>
+<p>All the code examples and exercises in this book run <strong>right here in your browser</strong> — when you see a code cell, just press <em>Run</em> and the result appears beneath it. You can edit the code and run it again to see what changes.</p>
+</section>
+<section id="knowledge-prerequisites" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="knowledge-prerequisites"><span class="header-section-number">A.2</span> Knowledge prerequisites</h2>
 <p>There are no specific knowledge prerequisites for this book but it will help if you have heard of some common statistical tests, like <code>t</code>, <code>ANOVA</code> and regression. It’ll also be helpful for following some of the code examples if you are familiar with basic R use.</p>
 </section>
-<section id="software-prerequisites" class="level3" data-number="A.1.2">
-<h3 data-number="A.1.2" class="anchored" data-anchor-id="software-prerequisites"><span class="header-section-number">A.1.2</span> Software prerequisites</h3>
-<p>You need to install the following stuff for this book:</p>
-<ol type="1">
-<li>R</li>
-<li>RStudio</li>
-<li>Some R packages: <code>devtools</code> and <code>itssl</code></li>
-</ol>
-</section>
-</section>
-<section id="installing-r" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">A.2</span> Installing R</h2>
-<p>Follow this link and install the right version for your operating system <a href="https://www.stats.bris.ac.uk/R/">https://www.stats.bris.ac.uk/R/</a></p>
-</section>
-<section id="installing-rstudio" class="level2" data-number="A.3">
-<h2 data-number="A.3" class="anchored" data-anchor-id="installing-rstudio"><span class="header-section-number">A.3</span> Installing RStudio</h2>
-<p>Follow this link and install the right version for your operating system <a href="https://www.rstudio.com/products/rstudio/download/">https://www.rstudio.com/products/rstudio/download/</a></p>
-</section>
-<section id="installing-r-packages-in-rstudio." class="level2" data-number="A.4">
-<h2 data-number="A.4" class="anchored" data-anchor-id="installing-r-packages-in-rstudio."><span class="header-section-number">A.4</span> Installing R packages in RStudio.</h2>
-<section id="standard-packages---devtools" class="level3" data-number="A.4.1">
-<h3 data-number="A.4.1" class="anchored" data-anchor-id="standard-packages---devtools"><span class="header-section-number">A.4.1</span> Standard packages - <code>devtools</code></h3>
-<p><code>devtools</code> is a standard R package and can be installed like any other you may have done from CRAN. Start RStudio and use the <code>Packages</code> tab in lower right panel. Click the install button (top left of the panel) and enter the package name, then click install as in this picture</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig/package_install.png" class="img-fluid figure-img"></p>
-<figcaption>Installing Packages</figcaption>
-</figure>
+<section id="the-itssl-package" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="the-itssl-package"><span class="header-section-number">A.3</span> The <code>itssl</code> package</h2>
+<p>As you read along you’ll see functions with names like <code>its_&lt;something-something&gt;_time()</code>. These come from <code>itssl</code>, a package written solely to accompany this course, and it’s already loaded for you in the code cells. The main purpose of these functions is to make the course easier to follow and to stop us from getting bogged down in a lot of circumstantial code that isn’t directly related to our current point, which will usually be statistical rather than related to programming — so you’ll be able to get a lot out of this course even if you haven’t used much R before.</p>
+<p>If you do have a desire to see the code inside the <code>itssl</code> functions it is available at <a href="https://github.com/danmaclean/itssl/tree/master/R">https://github.com/danmaclean/itssl/tree/master/R</a>.</p>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
 </div>
-</section>
-<section id="development-packages---itssl" class="level3" data-number="A.4.2">
-<h3 data-number="A.4.2" class="anchored" data-anchor-id="development-packages---itssl"><span class="header-section-number">A.4.2</span> Development packages - itssl</h3>
-<p><code>itssl</code> is a new package that contains all the materials including the exercises for this handbook. As it is a development package you need to install it using <code>devtools</code>.</p>
-<ol type="1">
-<li>In the <code>Console</code> tab in the lower left panel of RStudio type <code>devtools::install_github("danmaclean/itssl")</code></li>
-</ol>
-<p>You may get asked to install newer versions of packages, select <code>1. All</code> for these questions.</p>
-<p>You may get asked whether you wish to install the newest version from source, decline this option and install binaries by selecting the appropriate option</p>
-</section>
-</section>
-<section id="using-the-itssl-package" class="level2" data-number="A.5">
-<h2 data-number="A.5" class="anchored" data-anchor-id="using-the-itssl-package"><span class="header-section-number">A.5</span> Using the <code>itssl</code> package</h2>
-<p><code>itssl</code> is a package developed solely to accompany this course. Once it is installed you can load it as usual - <code>library(itssl)</code></p>
-<p>All the functions in <code>itssl</code> follow this naming scheme <code>its_&lt;something-something&gt;_time()</code> so you’ll be able to spot them as you read along. The main purpose of the functions is to make the course easier to follow and stop us from getting bogged down in a lot of circumstantial code that isn’t directly related to our current point, which will usually be statistical rather than related to programming, hence you’ll be able to get a lot out of this course even if you haven’t used much R before.</p>
-<p>If you do have a desire to see the code inside the <code>itssl</code> functions it is available at <a href="https://github.com/danmaclean/itssl/tree/master/R">https://github.com/danmaclean/itssl/tree/master/R</a></p>
+<div class="spinner-grow spinner-grow-sm">
 
-
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
 </section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -837,4 +819,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-contrib/alpine-3.12/alpine@3.12.min.js"></script>
 </body></html>

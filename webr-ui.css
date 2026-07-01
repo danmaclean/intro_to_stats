@@ -1,0 +1,21 @@
+/* webR/quarto-live UI niceties.
+   Gentle fade-in when a live cell's output (re)appears — a visual cue that it
+   has just recomputed (e.g. after moving a slider). Best-effort: relies on
+   quarto-live replacing the output element on each evaluation. */
+.cell-output-webr,
+.exercise-cell-output {
+  animation: ql-output-update 0.45s ease;
+}
+
+@keyframes ql-output-update {
+  from { opacity: 0.4; }
+  to   { opacity: 1; }
+}
+
+/* Caption used under the interactive sliders to set expectations. */
+.webr-slider-note {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #6c757d;
+  margin-top: -0.25rem;
+}
